@@ -291,3 +291,331 @@ export function createTimeline(options?: gsap.TimelineVars) {
     ...options,
   });
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ADVANCED ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * Multi-layer parallax effect for hero sections
+ * Each layer moves at a different speed creating depth
+ */
+export function multiLayerParallax(
+  layers: { element: HTMLElement; speed: number }[],
+  trigger?: HTMLElement
+) {
+  if (prefersReducedMotion()) return [];
+
+  const triggerElement = trigger || layers[0]?.element;
+  if (!triggerElement) return [];
+
+  return layers.map(({ element, speed }) => {
+    return gsap.to(element, {
+      scrollTrigger: {
+        trigger: triggerElement,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+      y: (1 - speed) * 300,
+      ease: 'none',
+    });
+  });
+}
+
+/**
+ * Split text animation - reveals text character by character or line by line
+ */
+export function textReveal(
+  container: HTMLElement,
+  type: 'chars' | 'lines' | 'words' = 'chars',
+  options?: {
+    scrollTrigger?: boolean;
+    delay?: number;
+    stagger?: number;
+  }
+) {
+  if (prefersReducedMotion()) {
+    gsap.set(container, { opacity: 1 });
+    return;
+  }
+
+  const text = container.textContent || '';
+  let elements: HTMLElement[] = [];
+
+  if (type === 'chars') {
+    container.innerHTML = text
+      .split('')
+      .map((char) => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`)
+      .join('');
+    elements = Array.from(container.querySelectorAll('.char'));
+  } else if (type === 'words') {
+    container.innerHTML = text
+      .split(' ')
+      .map((word) => `<span class="word">${word}</span>`)
+      .join(' ');
+    elements = Array.from(container.querySelectorAll('.word'));
+  } else if (type === 'lines') {
+    // For lines, we assume content is already split with line breaks or we split by sentences
+    const lines = text.split(/[.!?]+/).filter(Boolean);
+    container.innerHTML = lines
+      .map((line) => `<span class="line">${line.trim()}.</span>`)
+      .join(' ');
+    elements = Array.from(container.querySelectorAll('.line'));
+  }
+
+  gsap.set(elements, { opacity: 0, y: type === 'chars' ? 20 : 40 });
+
+  const config: gsap.TweenVars = {
+    opacity: 1,
+    y: 0,
+    duration: type === 'chars' ? duration.fast : duration.slow,
+    ease: ease.out,
+    stagger: options?.stagger ?? (type === 'chars' ? 0.02 : 0.15),
+    delay: options?.delay ?? 0,
+  };
+
+  if (options?.scrollTrigger) {
+    config.scrollTrigger = {
+      trigger: container,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse',
+    };
+  }
+
+  return gsap.to(elements, config);
+}
+
+/**
+ * Horizontal curtain reveal (left to right or right to left)
+ */
+export function revealHorizontal(
+  element: HTMLElement,
+  direction: 'left' | 'right' = 'left',
+  options?: {
+    delay?: number;
+    duration?: number;
+  }
+) {
+  if (prefersReducedMotion()) {
+    gsap.set(element, { clipPath: 'inset(0 0 0 0)' });
+    return;
+  }
+
+  // Start fully hidden from the specified direction
+  const startClip = direction === 'left'
+    ? 'inset(0 100% 0 0)'
+    : 'inset(0 0 0 100%)';
+
+  gsap.set(element, { clipPath: startClip });
+
+  return gsap.to(element, {
+    scrollTrigger: {
+      trigger: element,
+      start: 'top 80%',
+    },
+    clipPath: 'inset(0 0 0 0)',
+    duration: options?.duration ?? duration.slowest,
+    delay: options?.delay ?? 0,
+    ease: ease.inOut,
+  });
+}
+
+/**
+ * Hero entrance sequence - orchestrated timeline for hero elements
+ */
+export function heroEntrance(
+  container: HTMLElement,
+  elements: {
+    video?: HTMLElement;
+    headline?: HTMLElement;
+    tagline?: HTMLElement;
+    scrollIndicator?: HTMLElement;
+  }
+) {
+  if (prefersReducedMotion()) {
+    Object.values(elements).forEach((el) => {
+      if (el) gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+    });
+    return;
+  }
+
+  const tl = createTimeline({ delay: 0.3 });
+
+  // Video/background fade in with subtle scale
+  if (elements.video) {
+    gsap.set(elements.video, { opacity: 0, scale: 1.1 });
+    tl.to(elements.video, {
+      opacity: 1,
+      scale: 1,
+      duration: duration.slowest,
+      ease: ease.out,
+    });
+  }
+
+  // Headline character reveal
+  if (elements.headline) {
+    const chars = elements.headline.querySelectorAll('.char');
+    if (chars.length > 0) {
+      gsap.set(chars, { opacity: 0, y: 50 });
+      tl.to(
+        chars,
+        {
+          opacity: 1,
+          y: 0,
+          duration: duration.slow,
+          stagger: 0.03,
+          ease: ease.out,
+        },
+        '-=0.8'
+      );
+    } else {
+      gsap.set(elements.headline, { opacity: 0, y: 60 });
+      tl.to(
+        elements.headline,
+        {
+          opacity: 1,
+          y: 0,
+          duration: duration.slower,
+          ease: ease.out,
+        },
+        '-=0.8'
+      );
+    }
+  }
+
+  // Tagline fade up
+  if (elements.tagline) {
+    gsap.set(elements.tagline, { opacity: 0, y: 30 });
+    tl.to(
+      elements.tagline,
+      {
+        opacity: 1,
+        y: 0,
+        duration: duration.slow,
+        ease: ease.out,
+      },
+      '-=0.5'
+    );
+  }
+
+  // Scroll indicator
+  if (elements.scrollIndicator) {
+    gsap.set(elements.scrollIndicator, { opacity: 0 });
+    tl.to(
+      elements.scrollIndicator,
+      {
+        opacity: 1,
+        duration: duration.slow,
+        ease: ease.out,
+      },
+      '-=0.2'
+    );
+  }
+
+  return tl;
+}
+
+/**
+ * Horizontal scroll gallery - pins section and scrolls content horizontally
+ */
+export function horizontalScroll(
+  container: HTMLElement,
+  options?: {
+    itemSelector?: string;
+    spacing?: number;
+  }
+) {
+  if (prefersReducedMotion()) return;
+
+  const wrapper = container.querySelector('[data-scroll-wrapper]') as HTMLElement;
+  if (!wrapper) return;
+
+  const items = options?.itemSelector
+    ? wrapper.querySelectorAll(options.itemSelector)
+    : wrapper.children;
+
+  // Calculate total scroll distance
+  const totalWidth = wrapper.scrollWidth - container.offsetWidth;
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: container,
+      start: 'top top',
+      end: () => `+=${totalWidth}`,
+      pin: true,
+      scrub: 1,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  tl.to(wrapper, {
+    x: -totalWidth,
+    ease: 'none',
+  });
+
+  // Stagger reveal items as they come into view
+  if (items.length > 0) {
+    gsap.set(items, { opacity: 0.5, scale: 0.95 });
+
+    Array.from(items).forEach((item, index) => {
+      gsap.to(item, {
+        scrollTrigger: {
+          trigger: item as HTMLElement,
+          containerAnimation: tl,
+          start: 'left 80%',
+          end: 'left 20%',
+          scrub: true,
+        },
+        opacity: 1,
+        scale: 1,
+        ease: 'none',
+      });
+    });
+  }
+
+  return tl;
+}
+
+/**
+ * Stagger cards animation with optional hover effects
+ */
+export function staggerCards(
+  container: HTMLElement,
+  cardSelector: string,
+  options?: {
+    delay?: number;
+    direction?: 'up' | 'left' | 'right';
+  }
+) {
+  const cards = container.querySelectorAll(cardSelector);
+
+  if (prefersReducedMotion()) {
+    gsap.set(cards, { opacity: 1, y: 0, x: 0 });
+    return;
+  }
+
+  const dir = options?.direction ?? 'up';
+  const initialState = {
+    opacity: 0,
+    y: dir === 'up' ? 60 : 0,
+    x: dir === 'left' ? -60 : dir === 'right' ? 60 : 0,
+  };
+
+  gsap.set(cards, initialState);
+
+  return gsap.to(cards, {
+    scrollTrigger: {
+      trigger: container,
+      start: 'top 75%',
+    },
+    opacity: 1,
+    y: 0,
+    x: 0,
+    duration: duration.slower,
+    ease: ease.out,
+    stagger: 0.12,
+    delay: options?.delay ?? 0,
+  });
+}

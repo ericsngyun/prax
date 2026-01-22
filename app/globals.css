@@ -498,3 +498,197 @@ html.lenis body {
 .animate-scroll-line {
   animation: scroll-line 1.5s ease-in-out infinite;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ADDITIONAL TYPOGRAPHY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.text-display-sm {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+}
+
+.text-title {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SPLIT TEXT ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.split-text .char,
+.split-text .word,
+.split-text .line {
+  display: inline-block;
+}
+
+.char {
+  display: inline-block;
+}
+
+.word {
+  display: inline-block;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PORTFOLIO SECTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.portfolio-item {
+  will-change: transform, opacity;
+}
+
+.portfolio-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    oklch(0.05 0 0 / 0.8) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.portfolio-item:hover::after {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MAGNETIC BUTTON
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.magnetic-btn {
+  will-change: transform;
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    var(--color-prax-bone) 0%,
+    transparent 50%,
+    var(--color-prax-bone) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  z-index: -1;
+}
+
+.magnetic-btn:hover::before {
+  opacity: 0.1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   IMAGE REVEAL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.image-reveal-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-reveal-frame {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-prax-bone);
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TEAM SECTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.team-member {
+  will-change: transform, opacity;
+}
+
+.team-member img {
+  filter: grayscale(100%) contrast(1.05);
+  transition: filter var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+.team-member:hover img {
+  filter: grayscale(0%) contrast(1);
+  transform: scale(1.05);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SERVICE CARDS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.service-card {
+  will-change: transform;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-prax-bone);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VIDEO BACKGROUND
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.video-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-container video {
+  will-change: transform, opacity;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HORIZONTAL SCROLL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-scroll-wrapper] {
+  will-change: transform;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE ADJUSTMENTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .text-hero {
+    font-size: clamp(3rem, 12vw, 5rem);
+  }
+
+  .text-display {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
+
+  .section-padding {
+    padding-top: clamp(4rem, 10vh, 6rem);
+    padding-bottom: clamp(4rem, 10vh, 6rem);
+  }
+
+  .section-padding-lg {
+    padding-top: clamp(5rem, 12vh, 8rem);
+    padding-bottom: clamp(5rem, 12vh, 8rem);
+  }
+}
