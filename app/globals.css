@@ -28,9 +28,8 @@
 
   /* ═══════════════════════════════════════════════════════════════════════════
      TYPOGRAPHY
+     Note: --font-sans is set by Next.js font loader in layout.tsx
      ═══════════════════════════════════════════════════════════════════════════ */
-
-  --font-sans: "PP Neue Montreal", "Satoshi", ui-sans-serif, system-ui, sans-serif;
 
   /* Fluid Type Scale */
   --text-hero: clamp(4.5rem, 15vw, 15rem);
