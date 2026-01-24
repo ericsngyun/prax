@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nImplement premium landing page redesign with scroll animations\n\n- Add 6 new animation functions: multiLayerParallax, textReveal,\n  revealHorizontal, heroEntrance, horizontalScroll, staggerCards\n- Create UI components: SplitText, ParallaxImage, MagneticButton,\n  VideoBackground, ImageReveal with curtain/reveal effects\n- Create section components: HeroSection \\(video + parallax\\),\n  PhilosophySection \\(split layout\\), PortfolioSection \\(horizontal scroll\\),\n  ServicesSection \\(card grid\\), TeamSection \\(grayscale portraits\\),\n  CTASection \\(magnetic buttons\\), Footer \\(newsletter + nav\\)\n- Extend globals.css with section-specific styles, responsive adjustments,\n  and additional typography classes\n- Wire all components in page.tsx for Awwwards-level experience\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}
