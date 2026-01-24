@@ -49,11 +49,15 @@ export function ImageReveal({
     <div
       ref={containerRef}
       className={cn('relative', containerClassName)}
+      style={showFrame ? {
+        paddingRight: `${frameOffset.x}px`,
+        paddingBottom: `${frameOffset.y}px`,
+      } : undefined}
     >
       {/* Decorative frame */}
       {showFrame && (
         <div
-          className="absolute inset-0 border-2 pointer-events-none z-0"
+          className="absolute top-0 left-0 w-full h-full border-2 pointer-events-none z-0"
           style={{
             borderColor: frameColor,
             transform: `translate(${frameOffset.x}px, ${frameOffset.y}px)`,
@@ -64,7 +68,7 @@ export function ImageReveal({
       {/* Image with reveal */}
       <div
         ref={imageWrapperRef}
-        className="relative z-10 overflow-hidden"
+        className="relative z-10 overflow-hidden w-full h-full"
       >
         <Image
           className={cn('w-full h-full object-cover', className)}

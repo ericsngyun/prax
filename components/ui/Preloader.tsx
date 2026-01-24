@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { usePreloaderStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
@@ -13,7 +14,7 @@ import { prefersReducedMotion } from '@/lib/utils';
 
 export function Preloader() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<SVGSVGElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const progressTextRef = useRef<HTMLSpanElement>(null);
   const [displayProgress, setDisplayProgress] = useState(0);
@@ -54,29 +55,30 @@ export function Preloader() {
   useEffect(() => {
     if (!logoRef.current || prefersReducedMotion()) return;
 
-    const paths = logoRef.current.querySelectorAll('path');
+    const logo = logoRef.current;
 
-    // Initial state - hidden
-    gsap.set(paths, {
-      strokeDasharray: 1000,
-      strokeDashoffset: 1000,
-      fill: 'transparent',
+    // Initial state - hidden and scaled down
+    gsap.set(logo, {
+      opacity: 0,
+      scale: 0.8,
     });
 
-    // Draw animation
-    gsap.to(paths, {
-      strokeDashoffset: 0,
-      duration: 1.5,
-      stagger: 0.1,
-      ease: 'power2.inOut',
-    });
-
-    // Fill animation
-    gsap.to(paths, {
-      fill: 'currentColor',
-      duration: 0.6,
-      delay: 1.2,
+    // Fade in and scale up
+    gsap.to(logo, {
+      opacity: 1,
+      scale: 1,
+      duration: 1.2,
       ease: 'power2.out',
+    });
+
+    // Subtle breathing animation
+    gsap.to(logo, {
+      scale: 1.05,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+      delay: 1.2,
     });
   }, []);
 
@@ -141,23 +143,15 @@ export function Preloader() {
       aria-hidden={isComplete}
     >
       {/* Logo */}
-      <svg
-        ref={logoRef}
-        viewBox="0 0 200 60"
-        className="w-48 md:w-64 text-prax-white"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      >
-        {/* P */}
-        <path d="M10 50V10h20c8 0 14 6 14 14s-6 14-14 14H10" />
-        {/* R */}
-        <path d="M55 50V10h20c8 0 14 6 14 14 0 6-4 11-10 13l12 13" />
-        {/* A */}
-        <path d="M105 50l15-40 15 40M112 38h16" />
-        {/* X */}
-        <path d="M145 10l25 40M170 10l-25 40" />
-      </svg>
+      <div ref={logoRef} className="relative w-56 h-56 md:w-80 md:h-80">
+        <Image
+          src="/images/prax_logo.png"
+          alt="PRAX"
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
 
       {/* Progress */}
       <div ref={progressRef} className="mt-12 flex flex-col items-center gap-4">

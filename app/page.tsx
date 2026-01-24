@@ -25,8 +25,8 @@ export default function HomePage() {
           "Every cut tells a story. Every detail matters. At PRAX, we believe in the power of precision—where artistry meets intention.",
           "Founded in Los Angeles by Jack Louii, we've built a community that values craft above all else. Our work isn't about following trends; it's about setting them.",
         ]}
-        imageSrc="/images/philosophy-portrait.jpg"
-        imageAlt="PRAX Philosophy - Master craftsmanship"
+        imageSrc="/images/image_02.jpg"
+        imageAlt="PRAX Team - Master craftsmanship"
       />
 
       {/* Portfolio Section - Horizontal scroll gallery */}
@@ -34,12 +34,12 @@ export default function HomePage() {
         label="Selected Work"
         heading="Portfolio"
         items={[
-          { src: '/images/work/work-01.jpg', alt: 'Precision Cut', title: 'Precision Cut' },
-          { src: '/images/work/work-02.jpg', alt: 'Textured Fade', title: 'Textured Fade' },
-          { src: '/images/work/work-03.jpg', alt: 'Classic Style', title: 'Classic Style' },
-          { src: '/images/work/work-04.jpg', alt: 'Modern Edge', title: 'Modern Edge' },
-          { src: '/images/work/work-05.jpg', alt: 'Clean Lines', title: 'Clean Lines' },
-          { src: '/images/work/work-06.jpg', alt: 'Artistic Vision', title: 'Artistic Vision' },
+          { src: '/images/portfolio/image_01.png', alt: 'Precision Cut', title: 'Precision Cut' },
+          { src: '/images/portfolio/image_03.png', alt: 'Textured Style', title: 'Textured Style' },
+          { src: '/images/portfolio/image_04.png', alt: 'Platinum Fade', title: 'Platinum Fade' },
+          { src: '/images/portfolio/image_06.png', alt: 'Modern Mullet', title: 'Modern Mullet' },
+          { src: '/images/portfolio/image_05.png', alt: 'Silver Texture', title: 'Silver Texture' },
+          { src: '/images/portfolio/image_07.png', alt: 'Neon Art Design', title: 'Neon Art Design' },
         ]}
       />
 
@@ -68,10 +68,10 @@ export default function HomePage() {
         label="The Artists"
         heading="Meet the Team"
         members={[
-          { name: 'Jack Louii', role: 'Founder & Lead Artist', imageSrc: '/images/team/artist-01.jpg' },
-          { name: 'Marcus Chen', role: 'Senior Stylist', imageSrc: '/images/team/artist-02.jpg' },
-          { name: 'Elena Vasquez', role: 'Color Specialist', imageSrc: '/images/team/artist-03.jpg' },
-          { name: 'Andre Williams', role: 'Master Barber', imageSrc: '/images/team/artist-04.jpg' },
+          { name: 'Jack', role: 'Founder & Lead Artist', imageSrc: '/images/team/team_jack.jpg' },
+          { name: 'Gavin', role: 'Master Barber', imageSrc: '/images/team/team_gavin.jpg' },
+          { name: 'Edward', role: 'Senior Stylist', imageSrc: '/images/team/team_edward.jpg' },
+          { name: 'Steven', role: 'Color Specialist', imageSrc: '/images/team/team_steven.jpg' },
         ]}
       />
 

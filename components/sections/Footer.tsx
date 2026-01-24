@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn, prefersReducedMotion } from '@/lib/utils';
@@ -160,8 +161,18 @@ export function Footer({
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-prax-charcoal">
           {/* Logo */}
-          <div className="text-2xl font-bold text-prax-white tracking-tight">
-            PRAX
+          <div className="flex items-center gap-3">
+            <div className="relative w-10 h-10 md:w-12 md:h-12">
+              <Image
+                src="/images/prax_logo.png"
+                alt="PRAX"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <span className="text-2xl md:text-3xl font-bold text-prax-white tracking-tight">
+              PRAX
+            </span>
           </div>
 
           {/* Copyright */}

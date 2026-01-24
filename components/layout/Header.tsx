@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigationStore } from '@/lib/store';
@@ -96,11 +97,20 @@ export function Header() {
             {/* Logo */}
             <Link
               href="/"
-              className="relative z-10"
+              className="relative z-10 flex items-center gap-4"
               onMouseEnter={() => onEnter('hover')}
               onMouseLeave={onLeave}
             >
-              <span className="text-xl md:text-2xl font-bold tracking-tight text-prax-white">
+              <div className="relative w-12 h-12 md:w-16 md:h-16">
+                <Image
+                  src="/images/prax_logo.png"
+                  alt="PRAX"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <span className="text-2xl md:text-3xl font-bold tracking-tight text-prax-white">
                 PRAX
               </span>
             </Link>
