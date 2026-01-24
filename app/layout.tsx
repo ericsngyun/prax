@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { LenisProvider } from '@/components/providers/LenisProvider';
+import { Header } from '@/components/layout/Header';
+import { CustomCursor } from '@/components/ui/CustomCursor';
+import { PreloaderWrapper } from '@/components/ui/Preloader';
 
 // PP Neue Montreal Font
 const ppNeueMontreal = localFont({
@@ -89,10 +92,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={ppNeueMontreal.variable}>
-      <body className="bg-prax-ink text-prax-white font-sans antialiased">
+      <body className="bg-prax-ink text-prax-white font-sans antialiased cursor-custom">
         <LenisProvider>
-          {children}
+          <PreloaderWrapper>
+            <Header />
+            {children}
+          </PreloaderWrapper>
         </LenisProvider>
+        {/* Custom Cursor */}
+        <CustomCursor />
         {/* Noise Overlay */}
         <div className="noise-overlay" aria-hidden="true" />
       </body>
