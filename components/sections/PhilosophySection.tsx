@@ -88,7 +88,7 @@ export function PhilosophySection({
       className="section-padding bg-prax-ink"
     >
       <div className="container-prax">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
           {/* Text Content */}
           <div className="order-2 lg:order-1">
             <span

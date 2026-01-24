@@ -112,7 +112,7 @@ export function HeroSection({
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen min-h-[600px] overflow-hidden"
+      className="relative h-screen min-h-[500px] sm:min-h-[600px] overflow-hidden"
     >
       {/* Video Background */}
       <VideoBackground
@@ -166,7 +166,7 @@ export function HeroSection({
       {/* Scroll Indicator */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
         <div className="flex flex-col items-center gap-3">
           <span className="text-xs text-prax-bone uppercase tracking-widest">

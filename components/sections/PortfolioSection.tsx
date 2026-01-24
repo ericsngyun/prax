@@ -105,7 +105,7 @@ export function PortfolioSection({
       {/* Header */}
       <div
         ref={headerRef}
-        className="container-prax pt-20 pb-12"
+        className="container-prax pt-16 sm:pt-20 pb-8 sm:pb-12"
       >
         <span className="text-label text-prax-bone uppercase tracking-widest block mb-4">
           {label}
@@ -119,12 +119,12 @@ export function PortfolioSection({
       <div
         ref={wrapperRef}
         data-scroll-wrapper
-        className="flex gap-8 px-8 lg:px-16 h-[60vh]"
+        className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-8 lg:px-16 h-[55vh] sm:h-[60vh]"
       >
         {items.map((item, index) => (
           <div
             key={index}
-            className="portfolio-item flex-shrink-0 w-[40vw] min-w-[300px] max-w-[500px] group relative"
+            className="portfolio-item flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[40vw] min-w-[280px] max-w-[500px] group relative"
           >
             {/* Number */}
             <span className="absolute -top-8 left-0 text-label text-prax-bone">

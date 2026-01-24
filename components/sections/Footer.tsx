@@ -114,7 +114,7 @@ export function Footer({
               <p className="text-body text-prax-stone mb-6">
                 Subscribe for updates on new courses, events, and exclusive content.
               </p>
-              <form onSubmit={handleSubmit} className="flex gap-4">
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <input
                   type="email"
                   value={email}
@@ -126,7 +126,7 @@ export function Footer({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary whitespace-nowrap disabled:opacity-50"
+                  className="btn-primary whitespace-nowrap disabled:opacity-50 w-full sm:w-auto"
                 >
                   {isSubmitting ? 'Sending...' : 'Subscribe'}
                 </button>
@@ -136,7 +136,7 @@ export function Footer({
         )}
 
         {/* Navigation Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
           {columns.map((column, i) => (
             <div key={i}>
               <h4 className="text-label text-prax-bone uppercase tracking-widest mb-4">

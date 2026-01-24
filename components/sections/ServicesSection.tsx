@@ -90,12 +90,12 @@ export function ServicesSection({
         {/* Cards Grid */}
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         >
           {services.map((service, index) => (
             <div
               key={index}
-              className="service-card group relative bg-prax-charcoal/50 p-8 rounded-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+              className="service-card group relative bg-prax-charcoal/50 p-6 md:p-8 rounded-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
             >
               {/* Top accent line */}
               <div className="absolute top-0 left-0 w-0 h-0.5 bg-prax-bone transition-all duration-500 group-hover:w-full" />
