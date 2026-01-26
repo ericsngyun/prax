@@ -14,31 +14,34 @@ export function getCloudinaryUrl(
   const resourceType = type === 'video' ? 'video' : 'image';
   const transforms = transformations || 'f_auto,q_auto';
 
-  return `${BASE_URL}/${resourceType}/upload/${transforms}/home/prax/${path}`;
+  // Remove file extension from path as Cloudinary doesn't use it in URLs
+  const pathWithoutExt = path.replace(/\.(png|jpg|jpeg|mp4|webp|gif)$/i, '');
+
+  return `${BASE_URL}/${resourceType}/upload/${transforms}/home/prax/${pathWithoutExt}`;
 }
 
 // Preset URLs for common assets
 export const cloudinaryAssets = {
   // Brand
-  logo: getCloudinaryUrl('brand/prax_logo.png'),
+  logo: getCloudinaryUrl('brand/prax_logo'),
 
   // Team
-  teamEdward: getCloudinaryUrl('team/team_edward.jpg'),
-  teamGavin: getCloudinaryUrl('team/team_gavin.jpg'),
-  teamJack: getCloudinaryUrl('team/team_jack.jpg'),
-  teamSteven: getCloudinaryUrl('team/team_steven.jpg'),
+  teamEdward: getCloudinaryUrl('team/team_edward'),
+  teamGavin: getCloudinaryUrl('team/team_gavin'),
+  teamJack: getCloudinaryUrl('team/team_jack'),
+  teamSteven: getCloudinaryUrl('team/team_steven'),
 
   // Portfolio
-  portfolio01: getCloudinaryUrl('portfolio/image_01.png'),
-  portfolio03: getCloudinaryUrl('portfolio/image_03.png'),
-  portfolio04: getCloudinaryUrl('portfolio/image_04.png'),
-  portfolio05: getCloudinaryUrl('portfolio/image_05.png'),
-  portfolio06: getCloudinaryUrl('portfolio/image_06.png'),
-  portfolio07: getCloudinaryUrl('portfolio/image_07.png'),
+  portfolio01: getCloudinaryUrl('portfolio/image_01'),
+  portfolio03: getCloudinaryUrl('portfolio/image_03'),
+  portfolio04: getCloudinaryUrl('portfolio/image_04'),
+  portfolio05: getCloudinaryUrl('portfolio/image_05'),
+  portfolio06: getCloudinaryUrl('portfolio/image_06'),
+  portfolio07: getCloudinaryUrl('portfolio/image_07'),
 
   // Content
-  philosophyImage: getCloudinaryUrl('content/image_02.jpg'),
+  philosophyImage: getCloudinaryUrl('content/image_02'),
 
   // Videos
-  heroVideo: getCloudinaryUrl('videos/hero-bg.mp4', 'video', 'f_auto,q_auto'),
+  heroVideo: getCloudinaryUrl('videos/hero-bg', 'video', 'f_auto,q_auto'),
 };
