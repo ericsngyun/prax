@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cn, prefersReducedMotion } from '@/lib/utils';
+import { cloudinaryAssets } from '@/lib/cloudinary';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -164,7 +165,7 @@ export function Footer({
           <div className="flex items-center gap-3">
             <div className="relative w-10 h-10 md:w-12 md:h-12">
               <Image
-                src="/images/prax_logo.png"
+                src={cloudinaryAssets.logo}
                 alt="PRAX"
                 fill
                 className="object-contain"

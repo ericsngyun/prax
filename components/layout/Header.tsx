@@ -9,6 +9,7 @@ import { useNavigationStore } from '@/lib/store';
 import { useCursor } from '@/components/ui/CustomCursor';
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
+import { cloudinaryAssets } from '@/lib/cloudinary';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -103,7 +104,7 @@ export function Header() {
             >
               <div className="relative w-12 h-12 md:w-16 md:h-16">
                 <Image
-                  src="/images/prax_logo.png"
+                  src={cloudinaryAssets.logo}
                   alt="PRAX"
                   fill
                   className="object-contain"

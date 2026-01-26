@@ -5,6 +5,7 @@ import { ServicesSection } from '@/components/sections/ServicesSection';
 import { TeamSection } from '@/components/sections/TeamSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
+import { cloudinaryAssets } from '@/lib/cloudinary';
 
 export default function HomePage() {
   return (
@@ -13,8 +14,7 @@ export default function HomePage() {
       <HeroSection
         headline="PRECISION"
         tagline="Hair artistry redefined. Los Angeles."
-        videoSrc="/videos/hero-bg.mp4"
-        videoPoster="/images/hero-poster.jpg"
+        videoSrc={cloudinaryAssets.heroVideo}
       />
 
       {/* Philosophy Section - Split layout with image reveal */}
@@ -25,7 +25,7 @@ export default function HomePage() {
           "Every cut tells a story. Every detail matters. At PRAX, we believe in the power of precision—where artistry meets intention.",
           "Founded in Los Angeles by Jack Louii, we've built a community that values craft above all else. Our work isn't about following trends; it's about setting them.",
         ]}
-        imageSrc="/images/image_02.jpg"
+        imageSrc={cloudinaryAssets.philosophyImage}
         imageAlt="PRAX Team - Master craftsmanship"
       />
 
@@ -34,12 +34,12 @@ export default function HomePage() {
         label="Selected Work"
         heading="Portfolio"
         items={[
-          { src: '/images/portfolio/image_01.png', alt: 'Precision Cut', title: 'Precision Cut' },
-          { src: '/images/portfolio/image_03.png', alt: 'Textured Style', title: 'Textured Style' },
-          { src: '/images/portfolio/image_04.png', alt: 'Platinum Fade', title: 'Platinum Fade' },
-          { src: '/images/portfolio/image_06.png', alt: 'Modern Mullet', title: 'Modern Mullet' },
-          { src: '/images/portfolio/image_05.png', alt: 'Silver Texture', title: 'Silver Texture' },
-          { src: '/images/portfolio/image_07.png', alt: 'Neon Art Design', title: 'Neon Art Design' },
+          { src: cloudinaryAssets.portfolio01, alt: 'Precision Cut', title: 'Precision Cut' },
+          { src: cloudinaryAssets.portfolio03, alt: 'Textured Style', title: 'Textured Style' },
+          { src: cloudinaryAssets.portfolio04, alt: 'Platinum Fade', title: 'Platinum Fade' },
+          { src: cloudinaryAssets.portfolio06, alt: 'Modern Mullet', title: 'Modern Mullet' },
+          { src: cloudinaryAssets.portfolio05, alt: 'Silver Texture', title: 'Silver Texture' },
+          { src: cloudinaryAssets.portfolio07, alt: 'Neon Art Design', title: 'Neon Art Design' },
         ]}
       />
 
@@ -68,10 +68,10 @@ export default function HomePage() {
         label="The Artists"
         heading="Meet the Team"
         members={[
-          { name: 'Jack', role: 'Founder & Lead Artist', imageSrc: '/images/team/team_jack.jpg' },
-          { name: 'Gavin', role: 'Master Barber', imageSrc: '/images/team/team_gavin.jpg' },
-          { name: 'Edward', role: 'Senior Stylist', imageSrc: '/images/team/team_edward.jpg' },
-          { name: 'Steven', role: 'Color Specialist', imageSrc: '/images/team/team_steven.jpg' },
+          { name: 'Jack', role: 'Founder & Lead Artist', imageSrc: cloudinaryAssets.teamJack },
+          { name: 'Gavin', role: 'Master Barber', imageSrc: cloudinaryAssets.teamGavin },
+          { name: 'Edward', role: 'Senior Stylist', imageSrc: cloudinaryAssets.teamEdward },
+          { name: 'Steven', role: 'Color Specialist', imageSrc: cloudinaryAssets.teamSteven },
         ]}
       />
 
