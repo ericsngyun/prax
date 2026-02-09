@@ -20,12 +20,12 @@ interface CTASectionProps {
 }
 
 export function CTASection({
-  headline = 'Ready to elevate your craft?',
-  description = 'Whether you\'re looking for a premium cut or want to join our academy, we\'re here to help you reach the next level.',
-  primaryButtonText = 'Book a Cut',
-  primaryButtonHref = '#book',
-  secondaryButtonText = 'Join Academy',
-  secondaryButtonHref = '#academy',
+  headline = 'Book With Confidence',
+  description = 'If you\'re looking for a high-end haircut executed with precision and care, PRAX is for you.',
+  primaryButtonText = 'Book an Appointment',
+  primaryButtonHref = 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+  secondaryButtonText,
+  secondaryButtonHref,
 }: CTASectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const decorativeLineRef = useRef<HTMLDivElement>(null);
@@ -125,10 +125,10 @@ export function CTASection({
           className="w-px h-20 bg-prax-bone mx-auto mb-16"
         />
 
-        {/* Headline */}
+        {/* Headline - Serif for elegance */}
         <h2
           ref={headlineRef}
-          className="text-display font-bold text-prax-white tracking-tight mb-6 max-w-4xl mx-auto"
+          className="text-serif-display text-prax-white mb-6 max-w-4xl mx-auto"
         >
           {headlineWords}
         </h2>
@@ -149,18 +149,22 @@ export function CTASection({
           <MagneticButton
             as="a"
             href={primaryButtonHref}
+            target={primaryButtonHref.startsWith('http') ? '_blank' : undefined}
+            rel={primaryButtonHref.startsWith('http') ? 'noopener noreferrer' : undefined}
             className="btn-primary"
           >
             {primaryButtonText}
           </MagneticButton>
 
-          <MagneticButton
-            as="a"
-            href={secondaryButtonHref}
-            className="btn-secondary"
-          >
-            {secondaryButtonText}
-          </MagneticButton>
+          {secondaryButtonText && secondaryButtonHref && (
+            <MagneticButton
+              as="a"
+              href={secondaryButtonHref}
+              className="btn-ghost text-prax-stone hover:text-prax-bone"
+            >
+              {secondaryButtonText}
+            </MagneticButton>
+          )}
         </div>
 
         {/* Bottom Divider */}

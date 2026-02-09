@@ -1,35 +1,94 @@
 import { HeroSection } from '@/components/sections/HeroSection';
-import { PhilosophySection } from '@/components/sections/PhilosophySection';
+import { IntroSection } from '@/components/sections/IntroSection';
+import { ServicesPreviewSection } from '@/components/sections/ServicesPreviewSection';
+import { DifferentiationSection } from '@/components/sections/DifferentiationSection';
+import { SocialProofSection } from '@/components/sections/SocialProofSection';
 import { PortfolioSection } from '@/components/sections/PortfolioSection';
-import { ServicesSection } from '@/components/sections/ServicesSection';
+import { FounderSection } from '@/components/sections/FounderSection';
+import { LocationSection } from '@/components/sections/LocationSection';
 import { TeamSection } from '@/components/sections/TeamSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
 import { cloudinaryAssets } from '@/lib/cloudinary';
+import { footerColumns } from '@/lib/footerConfig';
 
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      {/* Hero Section - Video background with multi-layer parallax */}
+      {/* 1. Hero Section - Clear positioning with CTAs */}
       <HeroSection
-        headline="PRECISION"
-        tagline="Hair artistry redefined. Los Angeles."
+        headline="Precision Haircuts for Men Who Care About Detail"
+        subheadline="PRAX is a high-end grooming studio in Los Angeles specializing in modern men's haircuts, executed with discipline, design, and intention."
+        primaryCTA={{
+          text: 'Book an Appointment',
+          href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+        }}
+        secondaryCTA={{ text: 'View Our Work', href: '#work' }}
         videoSrc={cloudinaryAssets.heroVideo}
       />
 
-      {/* Philosophy Section - Split layout with image reveal */}
-      <PhilosophySection
-        label="Our Philosophy"
-        heading="We craft transformations that transcend technique"
+      {/* 2. Intro Section - "What is PRAX" */}
+      <IntroSection
+        statement="PRAX is not a traditional barbershop."
         paragraphs={[
-          "Every cut tells a story. Every detail matters. At PRAX, we believe in the power of precision—where artistry meets intention.",
-          "Founded in Los Angeles by Jack Louii, we've built a community that values craft above all else. Our work isn't about following trends; it's about setting them.",
+          'We are a precision-driven grooming studio focused on craftsmanship, structure, and long-term hair design.',
+          'Every service is intentional. Every haircut is built, not rushed.',
+          'Our clients come to PRAX because details matter.',
         ]}
-        imageSrc={cloudinaryAssets.philosophyImage}
-        imageAlt="PRAX Team - Master craftsmanship"
       />
 
-      {/* Portfolio Section - Horizontal scroll gallery */}
+      {/* 3. Services Preview - Trust builder */}
+      <ServicesPreviewSection
+        label="Services"
+        heading="What We Offer"
+      />
+
+      {/* 4. Why PRAX - Differentiation */}
+      <DifferentiationSection
+        label="Why PRAX"
+        heading="Built on Three Principles"
+        pillars={[
+          {
+            number: '01',
+            title: 'Precision First',
+            description:
+              'Every haircut is approached with structure, balance, and control—not trends or shortcuts.',
+          },
+          {
+            number: '02',
+            title: 'Education-Driven Studio',
+            description:
+              'PRAX is also an academy. Our standards are higher because we teach them.',
+          },
+          {
+            number: '03',
+            title: 'Designed Experience',
+            description:
+              'From consultation to finish, every detail is intentional—calm, focused, and professional.',
+          },
+        ]}
+      />
+
+      {/* 5. Social Proof */}
+      <SocialProofSection
+        heading="Trusted by Clients Who Expect More"
+        testimonials={[
+          {
+            quote: "I've never had a haircut that grew out this well.",
+            author: 'Client, Los Angeles',
+          },
+          {
+            quote: 'PRAX feels more like a design studio than a barbershop.',
+            author: 'Client, Beverly Hills',
+          },
+          {
+            quote: 'The attention to detail is unmatched. Every visit is consistent.',
+            author: 'Client, West Hollywood',
+          },
+        ]}
+      />
+
+      {/* 6. Portfolio Section - Visual proof */}
       <PortfolioSection
         label="Selected Work"
         heading="Portfolio"
@@ -43,30 +102,38 @@ export default function HomePage() {
         ]}
       />
 
-      {/* Services Section - 3-column card grid with stagger */}
-      <ServicesSection
-        label="What We Do"
-        heading="Services"
-        services={[
-          {
-            title: 'The Studio',
-            description: 'Premium cuts and styling at our flagship Los Angeles location. Experience precision craftsmanship in an environment designed for excellence.',
-          },
-          {
-            title: 'The Academy',
-            description: 'In-person education programs across 7 cities worldwide. Learn from master craftsmen and elevate your technique to the next level.',
-          },
-          {
-            title: 'PRAX Online',
-            description: 'Digital courses and workshops accessible anywhere. Master the fundamentals and advanced techniques at your own pace.',
-          },
+      {/* 7. Founder Section - Authority without ego */}
+      <FounderSection
+        heading="Built on Craft, Not Hype"
+        philosophy={[
+          'PRAX was founded to raise the standard of men\'s haircutting—emphasizing discipline, precision, and education over speed or volume.',
+          'The studio operates with the same principles we teach: clarity, structure, and mastery of fundamentals.',
+        ]}
+        founderName="Jack Louii"
+        founderTitle="Founder & Lead Artist"
+        founderBio="Raised the standard for precision haircutting through discipline, education, and an uncompromising commitment to craft."
+        imageSrc={cloudinaryAssets.teamJack}
+        imageAlt="Jack Louii - PRAX Founder"
+      />
+
+      {/* 8. Location Section */}
+      <LocationSection
+        label="Visit Us"
+        heading="Located in Los Angeles"
+        description="PRAX Studio offers a calm, focused environment designed for clients who value quality and consistency."
+        address="123 Main Street"
+        city="Los Angeles, CA 90001"
+        hours={[
+          'Tuesday - Friday: 10am - 7pm',
+          'Saturday: 9am - 6pm',
+          'Sunday - Monday: Closed',
         ]}
       />
 
-      {/* Team Section - Portrait grid with grayscale effect */}
+      {/* 9. Team Section - Simplified */}
       <TeamSection
-        label="The Artists"
-        heading="Meet the Team"
+        label="The Team"
+        heading="Meet Our Artists"
         members={[
           { name: 'Jack', role: 'Founder & Lead Artist', imageSrc: cloudinaryAssets.teamJack },
           { name: 'Gavin', role: 'Master Barber', imageSrc: cloudinaryAssets.teamGavin },
@@ -75,54 +142,11 @@ export default function HomePage() {
         ]}
       />
 
-      {/* CTA Section - Large typography with magnetic buttons */}
-      <CTASection
-        headline="Ready to elevate your craft?"
-        description="Whether you're looking for a premium cut or want to join our academy, we're here to help you reach the next level."
-        primaryButtonText="Book a Cut"
-        primaryButtonHref="#book"
-        secondaryButtonText="Join Academy"
-        secondaryButtonHref="#academy"
-      />
+      {/* 10. Final CTA - Conversion close */}
+      <CTASection />
 
-      {/* Footer - Newsletter and navigation */}
-      <Footer
-        showNewsletter
-        columns={[
-          {
-            title: 'Studio',
-            links: [
-              { label: 'Book Appointment', href: '#book' },
-              { label: 'Our Work', href: '#work' },
-              { label: 'Location', href: '#location' },
-            ],
-          },
-          {
-            title: 'Academy',
-            links: [
-              { label: 'In-Person Classes', href: '#classes' },
-              { label: 'Online Courses', href: '#courses' },
-              { label: 'Workshops', href: '#workshops' },
-            ],
-          },
-          {
-            title: 'About',
-            links: [
-              { label: 'Our Story', href: '#story' },
-              { label: 'Team', href: '#team' },
-              { label: 'Press', href: '#press' },
-            ],
-          },
-          {
-            title: 'Connect',
-            links: [
-              { label: 'Instagram', href: 'https://instagram.com' },
-              { label: 'YouTube', href: 'https://youtube.com' },
-              { label: 'Contact', href: '#contact' },
-            ],
-          },
-        ]}
-      />
+      {/* Footer */}
+      <Footer showNewsletter columns={footerColumns} />
     </main>
   );
 }
