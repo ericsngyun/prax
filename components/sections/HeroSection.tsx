@@ -4,9 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { VideoBackground } from '@/components/ui/VideoBackground';
-import { PreSplitText } from '@/components/ui/SplitText';
-import { heroEntrance, fadeOnScroll, multiLayerParallax } from '@/lib/animations';
-import { cn, prefersReducedMotion } from '@/lib/utils';
+import { prefersReducedMotion } from '@/lib/utils';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -14,60 +12,71 @@ if (typeof window !== 'undefined') {
 
 interface HeroSectionProps {
   headline?: string;
-  tagline?: string;
+  subheadline?: string;
+  primaryCTA?: { text: string; href: string };
+  secondaryCTA?: { text: string; href: string };
   videoSrc?: string;
   videoPoster?: string;
 }
 
 export function HeroSection({
-  headline = 'PRECISION',
-  tagline = 'Hair artistry redefined. Los Angeles.',
+  headline = 'Precision Haircuts for Men Who Care About Detail',
+  subheadline = 'PRAX is a high-end grooming studio in Los Angeles specializing in modern men\'s haircuts, executed with discipline, design, and intention.',
+  primaryCTA = { text: 'Book an Appointment', href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null' },
+  secondaryCTA = { text: 'View Our Work', href: '#work' },
   videoSrc = '/videos/hero-bg.mp4',
   videoPoster = '/images/hero-poster.jpg',
 }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
-  const taglineRef = useRef<HTMLParagraphElement>(null);
+  const subheadlineRef = useRef<HTMLParagraphElement>(null);
+  const ctaRef = useRef<HTMLDivElement>(null);
   const scrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const watermarkRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       // Initial states
-      const chars = headlineRef.current?.querySelectorAll('.char');
-      if (chars) {
-        gsap.set(chars, { opacity: 0, y: 80 });
-      }
-      gsap.set(taglineRef.current, { opacity: 0, y: 30 });
+      gsap.set(headlineRef.current, { opacity: 0, y: 40 });
+      gsap.set(subheadlineRef.current, { opacity: 0, y: 20 });
+      gsap.set(ctaRef.current, { opacity: 0, y: 15 });
       gsap.set(scrollIndicatorRef.current, { opacity: 0 });
 
-      // Entrance timeline
-      const tl = gsap.timeline({ delay: 0.5 });
+      // Entrance timeline - minimal, confident
+      const tl = gsap.timeline({ delay: 0.6 });
 
-      // Character reveal
-      if (chars && chars.length > 0) {
-        tl.to(chars, {
+      // Headline - simple fade
+      tl.to(headlineRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+      });
+
+      // Subheadline
+      tl.to(
+        subheadlineRef.current,
+        {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          stagger: 0.04,
-          ease: 'power3.out',
-        });
-      }
+          ease: 'power2.out',
+        },
+        '-=0.5'
+      );
 
-      // Tagline
+      // CTA
       tl.to(
-        taglineRef.current,
+        ctaRef.current,
         {
           opacity: 1,
           y: 0,
           duration: 0.6,
-          ease: 'power3.out',
+          ease: 'power2.out',
         },
-        '-=0.4'
+        '-=0.3'
       );
 
       // Scroll indicator
@@ -75,22 +84,11 @@ export function HeroSection({
         scrollIndicatorRef.current,
         {
           opacity: 1,
-          duration: 0.6,
-          ease: 'power3.out',
+          duration: 0.5,
+          ease: 'power2.out',
         },
         '-=0.2'
       );
-
-      // Multi-layer parallax on scroll
-      if (watermarkRef.current && contentRef.current) {
-        multiLayerParallax(
-          [
-            { element: watermarkRef.current, speed: 0.6 },
-            { element: contentRef.current, speed: 0.9 },
-          ],
-          sectionRef.current!
-        );
-      }
 
       // Fade content on scroll
       gsap.to(contentRef.current, {
@@ -112,7 +110,7 @@ export function HeroSection({
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen min-h-[500px] sm:min-h-[600px] overflow-hidden"
+      className="relative h-screen min-h-[600px] overflow-hidden"
     >
       {/* Video Background */}
       <VideoBackground
@@ -122,57 +120,56 @@ export function HeroSection({
         scaleAmount={1.15}
       />
 
-      {/* Watermark */}
-      <div
-        ref={watermarkRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-      >
-        <span className="text-[20vw] font-bold text-prax-white/[0.03] tracking-tighter">
-          PRAX
-        </span>
-      </div>
+      {/* Simple, clean overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-prax-black/30 via-prax-black/20 to-prax-black/70 z-[1]" />
 
-      {/* Content */}
+      {/* Content - Centered, minimal, generous spacing */}
       <div
         ref={contentRef}
-        className="relative z-10 h-full flex flex-col items-center justify-center container-prax"
+        className="relative z-10 h-full flex flex-col items-center justify-center container-prax px-6"
       >
-        <div className="text-center">
-          {/* Eyebrow */}
-          <p className="text-label text-prax-bone tracking-widest mb-4 uppercase">
-            The Art of
-          </p>
-
-          {/* Headline */}
+        <div className="text-center max-w-4xl mx-auto space-y-10 md:space-y-12">
+          {/* Headline - Large serif, broken for readability */}
           <h1
             ref={headlineRef}
-            className="text-hero font-bold text-prax-white tracking-tighter leading-none mb-6"
+            className="text-serif-h1 md:text-serif-display text-prax-white leading-tight"
           >
-            <PreSplitText type="chars" charClassName="opacity-0">
-              {headline}
-            </PreSplitText>
+            {headline}
           </h1>
 
-          {/* Tagline */}
+          {/* Subheadline - Smaller, cleaner */}
           <p
-            ref={taglineRef}
-            className="text-body text-prax-stone max-w-md mx-auto"
+            ref={subheadlineRef}
+            className="text-body md:text-body-lg text-prax-stone max-w-2xl mx-auto leading-relaxed"
           >
-            {tagline}
+            {subheadline}
           </p>
+
+          {/* Single primary CTA - confident, not salesy */}
+          <div ref={ctaRef}>
+            <a
+              href={primaryCTA.href}
+              target={primaryCTA.href.startsWith('http') ? '_blank' : undefined}
+              rel={primaryCTA.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="btn btn-primary text-body-sm"
+              data-cursor="hover"
+            >
+              {primaryCTA.text}
+            </a>
+          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Minimal scroll indicator */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
       >
-        <div className="flex flex-col items-center gap-3">
-          <span className="text-xs text-prax-bone uppercase tracking-widest">
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs text-prax-stone uppercase tracking-widest">
             Scroll
           </span>
-          <div className="w-px h-12 bg-prax-charcoal relative overflow-hidden">
+          <div className="w-px h-12 bg-prax-graphite relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1/2 bg-prax-bone animate-scroll-line" />
           </div>
         </div>
