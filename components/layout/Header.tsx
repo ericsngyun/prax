@@ -21,10 +21,10 @@ if (typeof window !== 'undefined') {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const navLinks = [
-  { href: '/#work', label: 'Work' },
-  { href: '/#services', label: 'Services' },
+  { href: '/services', label: 'Services' },
+  { href: '/team', label: 'Team' },
+  { href: '/about', label: 'About' },
   { href: '/#academy', label: 'Academy' },
-  { href: '/#about', label: 'About' },
 ];
 
 export function Header() {
@@ -133,14 +133,16 @@ export function Header() {
 
             {/* CTA Button (Desktop) */}
             <div className="hidden md:block">
-              <Link
-                href="/#contact"
+              <a
+                href="https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-primary text-body-sm"
                 onMouseEnter={() => onEnter('hover')}
                 onMouseLeave={onLeave}
               >
                 Book Now
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Menu Toggle */}
@@ -270,15 +272,17 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
           {/* CTA in mobile menu */}
           <div className="pt-8 mt-8 border-t border-prax-graphite">
-            <Link
-              href="/#contact"
+            <a
+              href="https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={onClose}
               className="btn btn-primary w-full text-center"
               onMouseEnter={() => onEnter('hover')}
               onMouseLeave={onLeave}
             >
               Book Now
-            </Link>
+            </a>
           </div>
         </nav>
 
@@ -286,7 +290,7 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className="absolute bottom-12 left-0 right-0 container-prax">
           <div className="flex gap-6 text-prax-silver text-body-sm">
             <a
-              href="https://instagram.com/prax.studio"
+              href="https://www.instagram.com/praxhair/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-prax-white transition-colors"
@@ -296,14 +300,14 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               Instagram
             </a>
             <a
-              href="https://youtube.com/@prax"
+              href="https://www.tiktok.com/@praxhair"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-prax-white transition-colors"
               onMouseEnter={() => onEnter('link')}
               onMouseLeave={onLeave}
             >
-              YouTube
+              TikTok
             </a>
           </div>
         </div>
