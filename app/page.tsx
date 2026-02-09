@@ -6,7 +6,6 @@ import { SocialProofSection } from '@/components/sections/SocialProofSection';
 import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { FounderSection } from '@/components/sections/FounderSection';
 import { LocationSection } from '@/components/sections/LocationSection';
-import { TeamSection } from '@/components/sections/TeamSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
 import { cloudinaryAssets } from '@/lib/cloudinary';
@@ -130,19 +129,7 @@ export default function HomePage() {
         ]}
       />
 
-      {/* 9. Team Section - Simplified */}
-      <TeamSection
-        label="The Team"
-        heading="Meet Our Artists"
-        members={[
-          { name: 'Jack', role: 'Founder & Lead Artist', imageSrc: cloudinaryAssets.teamJack },
-          { name: 'Gavin', role: 'Master Barber', imageSrc: cloudinaryAssets.teamGavin },
-          { name: 'Edward', role: 'Senior Stylist', imageSrc: cloudinaryAssets.teamEdward },
-          { name: 'Steven', role: 'Color Specialist', imageSrc: cloudinaryAssets.teamSteven },
-        ]}
-      />
-
-      {/* 10. Final CTA - Conversion close */}
+      {/* 9. Final CTA - Conversion close */}
       <CTASection />
 
       {/* Footer */}

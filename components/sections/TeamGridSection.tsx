@@ -27,6 +27,7 @@ interface TeamMember {
   portraitSrc: string;
   actionSrc: string;
   instagramHandle?: string; // Optional Instagram handle
+  bookingUrl?: string; // Optional individual booking URL
 }
 
 interface TeamGridSectionProps {
@@ -244,6 +245,21 @@ export function TeamGridSection({
                     "{member.philosophy}"
                   </p>
                 </div>
+
+                {/* Booking Button */}
+                {member.bookingUrl && (
+                  <div className="pt-6">
+                    <a
+                      href={member.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary w-full text-center"
+                      data-cursor="hover"
+                    >
+                      Book with {member.name.split(' ')[0]}
+                    </a>
+                  </div>
+                )}
 
                 {/* Instagram Link */}
                 {member.instagramHandle && (

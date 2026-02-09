@@ -46,7 +46,8 @@ export default function TeamPage() {
               'Precision is not about perfection—it is about intention. Every cut should be designed to maintain structure as it grows. That is the standard.',
             portraitSrc: cloudinaryAssets.teamJack,
             actionSrc: '',
-            instagramHandle: 'jacklouii', // UPDATE WITH ACTUAL HANDLE
+            instagramHandle: 'jacklouii',
+            bookingUrl: 'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
           },
           {
             name: 'Gavin',
@@ -64,6 +65,7 @@ export default function TeamPage() {
             portraitSrc: cloudinaryAssets.teamGavin,
             actionSrc: '',
             instagramHandle: 'gavinblond',
+            bookingUrl: 'https://getsquire.com/booking/book/prax-los-angeles/barber/gavin-ly-1/services',
           },
           {
             name: 'Edward',
@@ -81,6 +83,7 @@ export default function TeamPage() {
             portraitSrc: cloudinaryAssets.teamEdward,
             actionSrc: '',
             instagramHandle: 'edwardkt_',
+            bookingUrl: 'https://getsquire.com/booking/book/prax-los-angeles/barber/edward-kim-3/services',
           },
           {
             name: 'Steven Tao Tran',
@@ -98,6 +101,7 @@ export default function TeamPage() {
             portraitSrc: cloudinaryAssets.teamSteven,
             actionSrc: '',
             instagramHandle: 'steventaotran',
+            bookingUrl: 'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
           },
         ]}
       />
