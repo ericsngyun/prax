@@ -137,7 +137,7 @@ export function PortfolioSection({
                 src={item.src}
                 alt={item.alt}
                 fill
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
               />
 
               {/* Hover Overlay */}

@@ -98,7 +98,7 @@ export function ServicesSection({
               className="service-card group relative bg-prax-charcoal/50 p-6 md:p-8 rounded-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
             >
               {/* Top accent line */}
-              <div className="absolute top-0 left-0 w-0 h-0.5 bg-prax-bone transition-all duration-500 group-hover:w-full" />
+              <div className="absolute top-0 left-0 w-0 h-px bg-prax-bone transition-all duration-700 ease-out group-hover:w-full" />
 
               {/* Number */}
               <span className="text-label text-prax-bone block mb-6">
