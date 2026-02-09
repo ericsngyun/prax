@@ -28,8 +28,11 @@
 
   /* ═══════════════════════════════════════════════════════════════════════════
      TYPOGRAPHY
-     Note: --font-sans is set by Next.js font loader in layout.tsx
+     Note: --font-sans and --font-serif are set by Next.js font loader in layout.tsx
      ═══════════════════════════════════════════════════════════════════════════ */
+
+  --font-family-sans: var(--font-sans);
+  --font-family-serif: var(--font-serif);
 
   /* Fluid Type Scale */
   --text-hero: clamp(4.5rem, 15vw, 15rem);
@@ -291,6 +294,14 @@ html.lenis body {
   );
 }
 
+/* Radial Gradient - Cinematic focus */
+.bg-radial-gradient {
+  background: radial-gradient(
+    ellipse at center,
+    var(--tw-gradient-stops)
+  );
+}
+
 /* Noise Overlay */
 .noise-overlay {
   position: fixed;
@@ -419,7 +430,7 @@ html.lenis body {
 
 .btn-primary:hover {
   background: var(--color-prax-bone);
-  transform: scale(1.02);
+  box-shadow: 0 0 20px oklch(1 0 0 / 0.08), 0 0 40px oklch(1 0 0 / 0.04);
 }
 
 .btn-secondary {
@@ -515,6 +526,42 @@ html.lenis body {
   line-height: var(--leading-snug);
   letter-spacing: var(--tracking-tight);
   font-weight: 600;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SERIF TYPOGRAPHY (EDITORIAL)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.text-serif-hero {
+  font-family: var(--font-serif);
+  font-size: var(--text-hero);
+  line-height: var(--leading-none);
+  letter-spacing: var(--tracking-tighter);
+  font-weight: 300;
+}
+
+.text-serif-display {
+  font-family: var(--font-serif);
+  font-size: var(--text-display);
+  line-height: var(--leading-tighter);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 400;
+}
+
+.text-serif-h1 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  font-weight: 500;
+}
+
+.text-serif-h2 {
+  font-family: var(--font-serif);
+  font-size: var(--text-h2);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-normal);
+  font-weight: 500;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

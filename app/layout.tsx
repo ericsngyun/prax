@@ -1,12 +1,15 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import { Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import { LenisProvider } from '@/components/providers/LenisProvider';
 import { Header } from '@/components/layout/Header';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { PreloaderWrapper } from '@/components/ui/Preloader';
+import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { BookButton } from '@/components/ui/BookButton';
 
-// PP Neue Montreal Font
+// PP Neue Montreal Font (Sans-serif)
 const ppNeueMontreal = localFont({
   src: [
     {
@@ -31,45 +34,54 @@ const ppNeueMontreal = localFont({
   fallback: ['system-ui', 'sans-serif'],
 });
 
+// Cormorant Garamond (Serif) - For editorial headlines
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-serif',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
   title: {
-    default: 'PRAX — The Art of Precision',
+    default: 'PRAX — Precision Haircuts for Men Who Care About Detail',
     template: '%s | PRAX',
   },
   description:
-    'Hair artistry redefined. Premium cuts, world-class education, and a global community. Los Angeles.',
+    'High-end grooming studio in Los Angeles specializing in precision haircuts, executed with discipline, design, and intention. Built, not rushed.',
   keywords: [
     'PRAX',
     'Jack Louii',
-    'hair artist',
-    'barber',
-    'Los Angeles',
-    'hair education',
-    'premium haircuts',
+    'precision haircuts',
+    'mens grooming',
+    'Los Angeles barber',
+    'high-end haircuts',
+    'barber education',
+    'mens hair studio',
   ],
-  authors: [{ name: 'PRAX' }],
-  creator: 'PRAX',
+  authors: [{ name: 'PRAX Studio' }],
+  creator: 'PRAX Studio',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://prax.studio',
     siteName: 'PRAX',
-    title: 'PRAX — The Art of Precision',
+    title: 'PRAX — Precision Haircuts for Men Who Care About Detail',
     description:
-      'Hair artistry redefined. Premium cuts, world-class education, and a global community.',
+      'High-end grooming studio in Los Angeles. Precision haircuts executed with discipline, design, and intention.',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'PRAX — The Art of Precision',
+        alt: 'PRAX — Precision Grooming Studio',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PRAX — The Art of Precision',
-    description: 'Hair artistry redefined. Premium cuts, world-class education.',
+    title: 'PRAX — Precision Haircuts',
+    description: 'High-end grooming studio in Los Angeles. Built, not rushed.',
     images: ['/images/og-image.jpg'],
   },
   robots: {
@@ -91,16 +103,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={ppNeueMontreal.variable}>
+    <html lang="en" className={`${ppNeueMontreal.variable} ${cormorantGaramond.variable}`}>
       <body className="bg-prax-ink text-prax-white font-sans antialiased cursor-custom">
         <LenisProvider>
           <PreloaderWrapper>
             <Header />
             {children}
           </PreloaderWrapper>
+          <ScrollProgress />
         </LenisProvider>
         {/* Custom Cursor */}
         <CustomCursor />
+        {/* Fixed Book Button */}
+        <BookButton />
         {/* Noise Overlay */}
         <div className="noise-overlay" aria-hidden="true" />
       </body>
