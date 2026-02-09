@@ -14,6 +14,8 @@ interface ParallaxImageProps extends Omit<ImageProps, 'ref'> {
   speed?: number;
   containerClassName?: string;
   offset?: number;
+  sizes?: string;
+  quality?: number;
 }
 
 export function ParallaxImage({
@@ -22,6 +24,8 @@ export function ParallaxImage({
   offset = 0,
   className,
   alt,
+  sizes = '100vw',
+  quality = 85,
   ...props
 }: ParallaxImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -59,6 +63,8 @@ export function ParallaxImage({
         <Image
           className={cn('object-cover w-full h-full', className)}
           alt={alt}
+          sizes={sizes}
+          quality={quality}
           {...props}
         />
       </div>

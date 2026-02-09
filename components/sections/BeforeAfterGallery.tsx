@@ -85,6 +85,9 @@ export function BeforeAfterGallery({
                       src={item.beforeSrc}
                       alt={`${item.title} - Before`}
                       fill
+                      sizes="(max-width: 768px) 40vw, 300px"
+                      quality={85}
+                      loading="lazy"
                       className="object-cover"
                     />
                   ) : (
@@ -111,6 +114,9 @@ export function BeforeAfterGallery({
                       src={item.afterSrc}
                       alt={`${item.title} - After`}
                       fill
+                      sizes="(max-width: 768px) 40vw, 300px"
+                      quality={85}
+                      loading="lazy"
                       className="object-cover"
                     />
                   ) : (

@@ -134,6 +134,8 @@ export function TeamGridSection({
                       src={member.portraitSrc}
                       alt={member.name}
                       fill
+                      sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 600px"
+                      quality={80}
                       className="object-cover img-team"
                     />
                   ) : (
@@ -160,6 +162,9 @@ export function TeamGridSection({
                       src={member.actionSrc}
                       alt={`${member.name} working`}
                       fill
+                      sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 600px"
+                      quality={80}
+                      loading="lazy"
                       className="object-cover img-portfolio"
                     />
                   ) : (

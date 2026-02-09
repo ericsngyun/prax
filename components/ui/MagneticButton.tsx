@@ -12,6 +12,8 @@ interface MagneticButtonProps {
   href?: string;
   onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
+  target?: string;
+  rel?: string;
 }
 
 export function MagneticButton({
@@ -22,6 +24,8 @@ export function MagneticButton({
   href,
   onClick,
   type = 'button',
+  target,
+  rel,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLElement>(null);
 
@@ -46,7 +50,7 @@ export function MagneticButton({
 
   if (as === 'a' && href) {
     return (
-      <a {...commonProps} href={href}>
+      <a {...commonProps} href={href} target={target} rel={rel}>
         <span className="magnetic-btn-content relative z-10">{children}</span>
       </a>
     );

@@ -137,6 +137,9 @@ export function PortfolioSection({
                 src={item.src}
                 alt={item.alt}
                 fill
+                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, 500px"
+                quality={85}
+                loading="lazy"
                 className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
               />
 
