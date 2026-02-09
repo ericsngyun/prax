@@ -4,8 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { horizontalScroll } from '@/lib/animations';
-import { cn, prefersReducedMotion, formatNumber } from '@/lib/utils';
+import { prefersReducedMotion, formatNumber } from '@/lib/utils';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -39,10 +38,10 @@ export function PortfolioSection({
 }: PortfolioSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!sectionRef.current || !wrapperRef.current || prefersReducedMotion()) return;
+    if (!sectionRef.current || !marqueeRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       // Header animation
@@ -56,56 +55,48 @@ export function PortfolioSection({
         duration: 0.8,
         ease: 'power3.out',
       });
-
-      // Horizontal scroll
-      const totalWidth = wrapperRef.current!.scrollWidth - sectionRef.current!.offsetWidth;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: () => `+=${totalWidth}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      tl.to(wrapperRef.current, {
-        x: -totalWidth,
-        ease: 'none',
-      });
-
-      // Item reveal
-      const items = wrapperRef.current!.querySelectorAll('.portfolio-item');
-      items.forEach((item) => {
-        gsap.from(item, {
-          scrollTrigger: {
-            trigger: item,
-            containerAnimation: tl,
-            start: 'left 90%',
-            end: 'left 60%',
-            scrub: true,
-          },
-          opacity: 0.3,
-          scale: 0.9,
-        });
-      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
+  // Separate effect for marquee animation (CSS-based for smoothness)
+  useEffect(() => {
+    if (!marqueeRef.current || prefersReducedMotion()) return;
+
+    const marqueeInner = marqueeRef.current;
+    const marqueeWidth = marqueeInner.scrollWidth / 2; // Half because we duplicate
+
+    let animationId: number;
+    let startTime: number;
+    const duration = 40000; // 40 seconds for full loop
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = (elapsed % duration) / duration;
+      const x = -progress * marqueeWidth;
+
+      marqueeInner.style.transform = `translate3d(${x}px, 0, 0)`;
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationId) cancelAnimationFrame(animationId);
+    };
+  }, []);
+
   return (
     <section
       ref={sectionRef}
-      className="h-screen bg-prax-black overflow-hidden"
+      className="section-padding bg-prax-black overflow-hidden relative"
     >
       {/* Header */}
       <div
         ref={headerRef}
-        className="container-prax pt-16 sm:pt-20 pb-8 sm:pb-12"
+        className="container-prax pb-12 md:pb-16"
       >
         <span className="text-label text-prax-bone uppercase tracking-widest block mb-4">
           {label}
@@ -115,45 +106,89 @@ export function PortfolioSection({
         </h2>
       </div>
 
-      {/* Horizontal Gallery */}
-      <div
-        ref={wrapperRef}
-        data-scroll-wrapper
-        className="flex gap-4 sm:gap-6 md:gap-8 px-4 sm:px-8 lg:px-16 h-[55vh] sm:h-[60vh]"
-      >
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="portfolio-item flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[40vw] min-w-[280px] max-w-[500px] group relative"
-          >
-            {/* Number */}
-            <span className="absolute -top-8 left-0 text-label text-prax-bone">
-              {formatNumber(index + 1)}
-            </span>
+      {/* Marquee Container with Blur Edges */}
+      <div className="relative">
+        {/* Left blur gradient */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-prax-black via-prax-black/80 to-transparent z-10 pointer-events-none" />
 
-            {/* Image Container */}
-            <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-prax-charcoal">
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 640px) 80vw, (max-width: 1024px) 45vw, 500px"
-                quality={85}
-                loading="lazy"
-                className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
-              />
+        {/* Right blur gradient */}
+        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-prax-black via-prax-black/80 to-transparent z-10 pointer-events-none" />
 
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                {item.title && (
-                  <h3 className="text-body-lg font-medium text-prax-white">
-                    {item.title}
-                  </h3>
-                )}
+        {/* Infinite Marquee */}
+        <div
+          ref={marqueeRef}
+          className="flex gap-6 md:gap-8 will-change-transform"
+        >
+          {/* First set of items */}
+          {items.map((item, index) => (
+            <div
+              key={`first-${index}`}
+              className="portfolio-item flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative"
+            >
+              {/* Number */}
+              <span className="absolute -top-8 left-0 text-label text-prax-bone opacity-60">
+                {formatNumber(index + 1)}
+              </span>
+
+              {/* Image Container */}
+              <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-prax-charcoal">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="400px"
+                  quality={85}
+                  loading="lazy"
+                  className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  {item.title && (
+                    <h3 className="text-body-lg font-medium text-prax-white">
+                      {item.title}
+                    </h3>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+
+          {/* Duplicate set for seamless loop */}
+          {items.map((item, index) => (
+            <div
+              key={`second-${index}`}
+              className="portfolio-item flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative"
+            >
+              {/* Number */}
+              <span className="absolute -top-8 left-0 text-label text-prax-bone opacity-60">
+                {formatNumber(index + 1)}
+              </span>
+
+              {/* Image Container */}
+              <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-prax-charcoal">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="400px"
+                  quality={85}
+                  loading="lazy"
+                  className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
+                />
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  {item.title && (
+                    <h3 className="text-body-lg font-medium text-prax-white">
+                      {item.title}
+                    </h3>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
