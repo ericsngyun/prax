@@ -24,7 +24,7 @@ const navLinks = [
   { href: '/services', label: 'Services' },
   { href: '/team', label: 'Team' },
   { href: '/about', label: 'About' },
-  { href: '/#academy', label: 'Academy' },
+  { href: '/academy', label: 'Academy' },
 ];
 
 export function Header() {

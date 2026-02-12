@@ -28,8 +28,9 @@ export const footerColumns = [
   {
     title: 'Academy',
     links: [
-      { label: 'In-Person Classes', href: '#classes' },
-      { label: 'Online Courses', href: '#courses' },
+      { label: 'Programs', href: '/academy' },
+      { label: 'In-Person Classes', href: '/academy#programs' },
+      { label: 'Online Courses', href: '/academy#programs' },
     ],
   },
   {
