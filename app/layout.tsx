@@ -9,22 +9,27 @@ import { PreloaderWrapper } from '@/components/ui/Preloader';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { BookButton } from '@/components/ui/BookButton';
 
-// PP Neue Montreal Font (Sans-serif)
-const ppNeueMontreal = localFont({
+// Satoshi — Geometric sans-serif with street warmth
+const satoshi = localFont({
   src: [
     {
-      path: '../public/fonts/ppneuemontreal-book.otf',
+      path: '../public/fonts/satoshi-regular.woff2',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/ppneuemontreal-medium.otf',
+      path: '../public/fonts/satoshi-medium.woff2',
       weight: '500',
       style: 'normal',
     },
     {
-      path: '../public/fonts/ppneuemontreal-bold.otf',
+      path: '../public/fonts/satoshi-bold.woff2',
       weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/satoshi-black.woff2',
+      weight: '900',
       style: 'normal',
     },
   ],
@@ -34,7 +39,7 @@ const ppNeueMontreal = localFont({
   fallback: ['system-ui', 'sans-serif'],
 });
 
-// Cormorant Garamond (Serif) - For editorial headlines
+// Cormorant Garamond (Serif) - For editorial accent moments
 const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
@@ -103,7 +108,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${ppNeueMontreal.variable} ${cormorantGaramond.variable}`}>
+    <html lang="en" className={`${satoshi.variable} ${cormorantGaramond.variable}`}>
       <body className="bg-prax-ink text-prax-white font-sans antialiased cursor-custom">
         <LenisProvider>
           <PreloaderWrapper>
