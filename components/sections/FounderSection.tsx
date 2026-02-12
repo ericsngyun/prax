@@ -105,7 +105,7 @@ export function FounderSection({
           <div>
             <h2
               ref={headingRef}
-              className="text-serif-h1 text-prax-white mb-12 md:mb-16"
+              className="text-h1 text-prax-white mb-12 md:mb-16"
             >
               {heading}
             </h2>

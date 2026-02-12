@@ -95,7 +95,7 @@ export function IntroSection({
           {/* Statement - Serif, light weight, architectural */}
           <h2
             ref={statementRef}
-            className="text-serif-h1 text-prax-white mb-16 md:mb-20"
+            className="text-h1 text-prax-white mb-16 md:mb-20"
           >
             {statement}
           </h2>

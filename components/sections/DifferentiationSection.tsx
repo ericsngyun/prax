@@ -139,7 +139,7 @@ export function DifferentiationSection({
           </span>
           <h2
             ref={headingRef}
-            className="text-serif-display text-prax-white"
+            className="text-display text-prax-white"
           >
             {heading}
           </h2>

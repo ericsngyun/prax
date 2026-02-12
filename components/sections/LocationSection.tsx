@@ -119,7 +119,7 @@ export function LocationSection({
             </span>
             <h2
               ref={headingRef}
-              className="text-serif-h1 text-prax-white mb-8"
+              className="text-h1 text-prax-white mb-8"
             >
               {heading}
             </h2>

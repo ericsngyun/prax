@@ -14,10 +14,10 @@ import { footerColumns } from '@/lib/footerConfig';
 export default function HomePage() {
   return (
     <main className="min-h-screen">
-      {/* 1. Hero Section - Clear positioning with CTAs */}
+      {/* 1. Hero Section */}
       <HeroSection
         headline="Precision Haircuts for Men Who Care About Detail"
-        subheadline="PRAX is a high-end grooming studio in Los Angeles specializing in modern men's haircuts, executed with discipline, design, and intention."
+        subheadline="High-end grooming studio in Los Angeles. Executed with discipline, design, and intention."
         primaryCTA={{
           text: 'Book an Appointment',
           href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
@@ -26,23 +26,22 @@ export default function HomePage() {
         videoSrc={cloudinaryAssets.heroVideo}
       />
 
-      {/* 2. Intro Section - "What is PRAX" */}
+      {/* 2. Intro Section */}
       <IntroSection
         statement="PRAX is not a traditional barbershop."
         paragraphs={[
           'We are a precision-driven grooming studio focused on craftsmanship, structure, and long-term hair design.',
           'Every service is intentional. Every haircut is built, not rushed.',
-          'Our clients come to PRAX because details matter.',
         ]}
       />
 
-      {/* 3. Services Preview - Trust builder */}
+      {/* 3. Services Preview */}
       <ServicesPreviewSection
         label="Services"
         heading="What We Offer"
       />
 
-      {/* 4. Why PRAX - Differentiation */}
+      {/* 4. Why PRAX — Differentiation */}
       <DifferentiationSection
         label="Why PRAX"
         heading="Built on Three Principles"
@@ -51,11 +50,11 @@ export default function HomePage() {
             number: '01',
             title: 'Precision First',
             description:
-              'Every haircut is approached with structure, balance, and control—not trends or shortcuts.',
+              'Every haircut is approached with structure, balance, and control — not trends or shortcuts.',
           },
           {
             number: '02',
-            title: 'Education-Driven Studio',
+            title: 'Education-Driven',
             description:
               'PRAX is also an academy. Our standards are higher because we teach them.',
           },
@@ -63,7 +62,7 @@ export default function HomePage() {
             number: '03',
             title: 'Designed Experience',
             description:
-              'From consultation to finish, every detail is intentional—calm, focused, and professional.',
+              'From consultation to finish, every detail is intentional — calm, focused, and professional.',
           },
         ]}
       />
@@ -87,7 +86,7 @@ export default function HomePage() {
         ]}
       />
 
-      {/* 6. Portfolio Section - Visual proof */}
+      {/* 6. Portfolio */}
       <PortfolioSection
         label="Selected Work"
         heading="Portfolio"
@@ -101,11 +100,11 @@ export default function HomePage() {
         ]}
       />
 
-      {/* 7. Founder Section - Authority without ego */}
+      {/* 7. Founder Section */}
       <FounderSection
         heading="Built on Craft, Not Hype"
         philosophy={[
-          'PRAX was founded to raise the standard of men\'s haircutting—emphasizing discipline, precision, and education over speed or volume.',
+          'PRAX was founded to raise the standard of men\'s haircutting — emphasizing discipline, precision, and education over speed or volume.',
           'The studio operates with the same principles we teach: clarity, structure, and mastery of fundamentals.',
         ]}
         founderName="Jack Louii"
@@ -115,11 +114,11 @@ export default function HomePage() {
         imageAlt="Jack Louii - PRAX Founder"
       />
 
-      {/* 8. Location Section */}
+      {/* 8. Location */}
       <LocationSection
         label="Visit Us"
         heading="Located in Los Angeles"
-        description="PRAX Studio offers a calm, focused environment designed for clients who value quality and consistency."
+        description="A calm, focused environment designed for clients who value quality and consistency."
         address="123 Main Street"
         city="Los Angeles, CA 90001"
         hours={[
@@ -129,7 +128,7 @@ export default function HomePage() {
         ]}
       />
 
-      {/* 9. Final CTA - Conversion close */}
+      {/* 9. Final CTA */}
       <CTASection />
 
       {/* Footer */}

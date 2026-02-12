@@ -16,13 +16,16 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <main className="min-h-screen pt-20 md:pt-24">
-      {/* Hero */}
-      <section className="section-padding bg-prax-black">
-        <div className="container-prax text-center">
-          <h1 className="text-serif-display md:text-serif-hero text-prax-white mb-8">
-            Services
+      {/* Hero — Left-aligned, structured */}
+      <section className="section-padding-lg bg-prax-black">
+        <div className="container-prax max-w-5xl mx-auto">
+          <div className="mb-8">
+            <span className="text-label text-prax-silver">Services</span>
+          </div>
+          <h1 className="text-h1 md:text-display text-prax-white mb-10 max-w-4xl">
+            Built, Not Rushed
           </h1>
-          <p className="text-body-lg md:text-h4 text-prax-stone max-w-3xl mx-auto leading-relaxed">
+          <p className="text-body-lg md:text-h4 text-prax-stone max-w-2xl leading-relaxed">
             Clear service categories. Transparent expectations. Direct booking.
           </p>
         </div>
@@ -84,7 +87,7 @@ export default function ServicesPage() {
         ]}
       />
 
-      {/* Honesty Section - Is PRAX Right for You? */}
+      {/* Honesty Section */}
       <HonestySection
         heading="Is PRAX Right for You?"
         forYouItems={[
@@ -111,7 +114,7 @@ export default function ServicesPage() {
             number: '01',
             title: 'Structural Approach',
             description:
-              'We design haircuts based on your head shape and hair behavior—not fleeting trends. Every cut is engineered to maintain shape as it grows.',
+              'We design haircuts based on your head shape and hair behavior — not fleeting trends. Every cut is engineered to maintain shape as it grows.',
           },
           {
             number: '02',
@@ -128,7 +131,7 @@ export default function ServicesPage() {
         ]}
       />
 
-      {/* The Experience - Timeline */}
+      {/* The Experience */}
       <ExperienceTimelineSection
         heading="What to Expect"
         description="Every appointment follows the same disciplined process."
@@ -168,42 +171,12 @@ export default function ServicesPage() {
       <BeforeAfterGallery
         heading="Results Speak"
         items={[
-          {
-            beforeSrc: '',
-            afterSrc: '',
-            title: 'Precision Fade',
-            service: 'Signature Cut',
-          },
-          {
-            beforeSrc: '',
-            afterSrc: '',
-            title: 'Textured Crop',
-            service: 'Signature Cut',
-          },
-          {
-            beforeSrc: '',
-            afterSrc: '',
-            title: 'Classic Taper',
-            service: 'Signature Cut',
-          },
-          {
-            beforeSrc: '',
-            afterSrc: '',
-            title: 'Modern Pompadour',
-            service: 'Grooming Package',
-          },
-          {
-            beforeSrc: '',
-            afterSrc: '',
-            title: 'Beard Sculpting',
-            service: 'Grooming Package',
-          },
-          {
-            beforeSrc: '',
-            afterSrc: '',
-            title: 'Structural Cut',
-            service: 'Signature Cut',
-          },
+          { beforeSrc: '', afterSrc: '', title: 'Precision Fade', service: 'Signature Cut' },
+          { beforeSrc: '', afterSrc: '', title: 'Textured Crop', service: 'Signature Cut' },
+          { beforeSrc: '', afterSrc: '', title: 'Classic Taper', service: 'Signature Cut' },
+          { beforeSrc: '', afterSrc: '', title: 'Modern Pompadour', service: 'Grooming Package' },
+          { beforeSrc: '', afterSrc: '', title: 'Beard Sculpting', service: 'Grooming Package' },
+          { beforeSrc: '', afterSrc: '', title: 'Structural Cut', service: 'Signature Cut' },
         ]}
       />
 

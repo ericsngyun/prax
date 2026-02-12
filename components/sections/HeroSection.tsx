@@ -129,18 +129,18 @@ export function HeroSection({
         className="relative z-10 h-full flex flex-col items-center justify-center container-prax px-6"
       >
         <div className="text-center max-w-4xl mx-auto space-y-10 md:space-y-12">
-          {/* Headline - Large serif, broken for readability */}
+          {/* Headline - Bold sans, impactful */}
           <h1
             ref={headlineRef}
-            className="text-serif-h1 md:text-serif-display text-prax-white leading-tight"
+            className="text-h1 md:text-display text-prax-white leading-tight"
           >
             {headline}
           </h1>
 
-          {/* Subheadline - Smaller, cleaner */}
+          {/* Subheadline */}
           <p
             ref={subheadlineRef}
-            className="text-body md:text-body-lg text-prax-stone max-w-2xl mx-auto leading-relaxed"
+            className="text-body md:text-body-lg text-prax-stone/80 max-w-2xl mx-auto leading-relaxed"
           >
             {subheadline}
           </p>

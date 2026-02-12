@@ -125,10 +125,10 @@ export function CTASection({
           className="w-px h-20 bg-prax-bone mx-auto mb-16"
         />
 
-        {/* Headline - Serif for elegance */}
+        {/* Headline */}
         <h2
           ref={headlineRef}
-          className="text-serif-display text-prax-white mb-6 max-w-4xl mx-auto"
+          className="text-display text-prax-white mb-6 max-w-4xl mx-auto"
         >
           {headlineWords}
         </h2>

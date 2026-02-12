@@ -131,12 +131,8 @@ export function SocialProofSection({
           ))}
         </div>
 
-        {/* Optional: Credibility statement */}
-        <div className="text-center mt-20 md:mt-24">
-          <p className="text-body text-prax-stone italic">
-            Short. Credible. Minimal.
-          </p>
-        </div>
+        {/* Subtle divider */}
+        <div className="w-16 h-px bg-prax-bone/20 mx-auto mt-20 md:mt-24" />
       </div>
     </section>
   );

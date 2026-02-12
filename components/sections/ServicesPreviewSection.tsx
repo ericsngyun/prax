@@ -134,7 +134,7 @@ export function ServicesPreviewSection({
           </span>
           <h2
             ref={headingRef}
-            className="text-serif-h1 text-prax-white"
+            className="text-h1 text-prax-white"
           >
             {heading}
           </h2>
