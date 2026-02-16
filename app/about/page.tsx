@@ -90,12 +90,36 @@ export default function AboutPage() {
           'No distractions. No rush. Just a calm environment where precision work can happen.',
         ]}
         images={[
-          { src: '', alt: 'Studio interior - main floor', caption: 'The main cutting floor' },
-          { src: '', alt: 'Individual cutting station', caption: 'Each station is designed for focus' },
-          { src: '', alt: 'Tool detail shot', caption: 'Tools selected for precision' },
-          { src: '', alt: 'Product shelf', caption: 'Curated product selection' },
-          { src: '', alt: 'Waiting area', caption: 'Minimal aesthetic throughout' },
-          { src: '', alt: 'Studio exterior', caption: 'Located in Los Angeles' },
+          {
+            src: '',
+            alt: 'Studio interior wide shot',
+            caption: 'Wide studio interior — clean lines, neutral tones',
+          },
+          {
+            src: '',
+            alt: 'Individual cutting station',
+            caption: 'Station detail — mirror, chair, tools, minimal clutter',
+          },
+          {
+            src: '',
+            alt: 'Tool detail shot',
+            caption: 'Close-up tools — scissors/clipper, shallow depth of field',
+          },
+          {
+            src: '',
+            alt: 'Product shelf',
+            caption: 'Product shelf — curated, orderly, monochrome styling',
+          },
+          {
+            src: '',
+            alt: 'Waiting area',
+            caption: 'Waiting area — calm, soft lighting, minimal texture',
+          },
+          {
+            src: '',
+            alt: 'Studio exterior',
+            caption: 'Exterior — signage + street context, late-afternoon light',
+          },
         ]}
       />
 

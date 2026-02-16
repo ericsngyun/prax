@@ -172,6 +172,53 @@ export function AcademyContent() {
         </div>
       </section>
 
+      {/* Visuals Placeholder */}
+      <section className="section-padding bg-prax-ink">
+        <div className="container-prax max-w-6xl mx-auto">
+          <div className="mb-12 md:mb-16">
+            <span className="text-label text-prax-silver mb-4 block">
+              Academy Visuals
+            </span>
+            <h2 className="text-h2 md:text-h1 text-prax-white">
+              Inside the Classroom
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                title: 'Live Demonstration',
+                note: 'Instructor cutting, students watching, wide angle',
+              },
+              {
+                title: 'Technique Close-Up',
+                note: 'Hands + sectioning, sharp focus, neutral background',
+              },
+              {
+                title: 'Student Work',
+                note: 'Before/after or final result, consistent lighting',
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="relative aspect-[4/5] bg-prax-charcoal border-2 border-dashed border-prax-graphite flex items-center justify-center"
+              >
+                <div className="text-center px-6">
+                  <div className="text-label text-prax-bone/60 mb-3">
+                    Placeholder
+                  </div>
+                  <div className="text-body text-prax-white mb-2">
+                    {item.title}
+                  </div>
+                  <div className="text-caption text-prax-stone">
+                    {item.note}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Programs */}
       <section id="programs" className="section-padding bg-prax-ink">
         <div className="container-prax max-w-5xl mx-auto">

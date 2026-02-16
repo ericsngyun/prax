@@ -14,6 +14,7 @@ interface PortfolioItem {
   src: string;
   alt: string;
   title?: string;
+  note?: string;
 }
 
 interface PortfolioSectionProps {
@@ -106,13 +107,8 @@ export function PortfolioSection({
         </h2>
       </div>
 
-      {/* Marquee Container with Blur Edges */}
+      {/* Marquee Container */}
       <div className="relative">
-        {/* Left blur gradient */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-prax-black via-prax-black/80 to-transparent z-10 pointer-events-none" />
-
-        {/* Right blur gradient */}
-        <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-prax-black via-prax-black/80 to-transparent z-10 pointer-events-none" />
 
         {/* Infinite Marquee */}
         <div
@@ -132,24 +128,44 @@ export function PortfolioSection({
 
               {/* Image Container */}
               <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-prax-charcoal">
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="400px"
-                  quality={85}
-                  loading="lazy"
-                  className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
-                />
+                {item.src ? (
+                  <>
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="400px"
+                      quality={85}
+                      loading="lazy"
+                      className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
+                    />
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                  {item.title && (
-                    <h3 className="text-body-lg font-medium text-prax-white">
-                      {item.title}
-                    </h3>
-                  )}
-                </div>
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                      {item.title && (
+                        <h3 className="text-body-lg font-medium text-prax-white">
+                          {item.title}
+                        </h3>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center border-2 border-dashed border-prax-graphite bg-gradient-to-b from-prax-charcoal/40 to-prax-ink/80">
+                    <div className="text-center px-6">
+                      <div className="text-label text-prax-bone/60 mb-3">
+                        Placeholder
+                      </div>
+                      <div className="text-body text-prax-white mb-2">
+                        {item.title || 'Portfolio Image'}
+                      </div>
+                      {item.note && (
+                        <div className="text-caption text-prax-stone">
+                          {item.note}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -167,24 +183,44 @@ export function PortfolioSection({
 
               {/* Image Container */}
               <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-prax-charcoal">
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="400px"
-                  quality={85}
-                  loading="lazy"
-                  className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
-                />
+                {item.src ? (
+                  <>
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="400px"
+                      quality={85}
+                      loading="lazy"
+                      className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
+                    />
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                  {item.title && (
-                    <h3 className="text-body-lg font-medium text-prax-white">
-                      {item.title}
-                    </h3>
-                  )}
-                </div>
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                      {item.title && (
+                        <h3 className="text-body-lg font-medium text-prax-white">
+                          {item.title}
+                        </h3>
+                      )}
+                    </div>
+                  </>
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center border-2 border-dashed border-prax-graphite bg-gradient-to-b from-prax-charcoal/40 to-prax-ink/80">
+                    <div className="text-center px-6">
+                      <div className="text-label text-prax-bone/60 mb-3">
+                        Placeholder
+                      </div>
+                      <div className="text-body text-prax-white mb-2">
+                        {item.title || 'Portfolio Image'}
+                      </div>
+                      {item.note && (
+                        <div className="text-caption text-prax-stone">
+                          {item.note}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
