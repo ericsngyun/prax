@@ -38,14 +38,9 @@ export default function TeamPage() {
           {
             name: 'Jack Louii',
             role: 'Founder & Lead Artist',
-            specialty: 'Structural Design',
-            experience: '12+ Years',
-            credentials: [
-              'PRAX Academy Founder',
-              'Educator across 7 cities worldwide',
-              'Trained 500+ barbers internationally',
-              'Certified Master Barber',
-            ],
+            specialty: '',
+            experience: '',
+            credentials: [],
             philosophy:
               'Precision is not about perfection—it is about intention. Every cut should be designed to maintain structure as it grows. That is the standard.',
             portraitSrc: cloudinaryAssets.teamJack,
@@ -57,17 +52,11 @@ export default function TeamPage() {
           },
           {
             name: 'Gavin',
-            role: 'Master Barber',
-            specialty: 'Blonding & Color',
-            experience: '8+ Years',
-            credentials: [
-              'PRAX Senior Educator',
-              'Blonding Specialist',
-              'Advanced Color Techniques',
-              'International Educator',
-            ],
-            philosophy:
-              'A fade is not just a gradient—it is architecture. Every line must flow with intention. The details separate the good from the exceptional.',
+            role: 'Artist',
+            specialty: '',
+            experience: '',
+            credentials: [],
+            philosophy: '',
             portraitSrc: cloudinaryAssets.teamGavin,
             actionSrc: '',
             videoSrc: '', // Gavin's video intro — to be provided
@@ -77,17 +66,11 @@ export default function TeamPage() {
           },
           {
             name: 'Steven Tao Tran',
-            role: 'Master Barber & Educator',
-            specialty: "Men's Cutting & Styling",
-            experience: '10+ Years',
-            credentials: [
-              'PRAX Master Educator',
-              'International Barber',
-              'Competition Winner',
-              "Advanced Men's Haircutting",
-            ],
-            philosophy:
-              'Every cut tells a story. Precision, discipline, and intention create work that lasts beyond the chair.',
+            role: 'Artist',
+            specialty: '',
+            experience: '',
+            credentials: [],
+            philosophy: '',
             portraitSrc: cloudinaryAssets.teamSteven,
             actionSrc: '',
             videoSrc: '', // Steven's video intro — to be provided
@@ -95,98 +78,43 @@ export default function TeamPage() {
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
           },
-          // ═══════════════════════════════════════════════════════════════
-          // NEW TEAM MEMBERS — Placeholders until Jack provides details
-          // Each has videoSrc field ready for video introductions
-          // ═══════════════════════════════════════════════════════════════
           {
-            name: 'Team Member',
-            role: 'Barber',
-            specialty: 'Specialty TBD',
-            experience: 'TBD',
-            credentials: [
-              'PRAX Certified',
-              'Credential to be added',
-              'Credential to be added',
-            ],
-            philosophy:
-              'Philosophy quote to be provided.',
+            name: 'Ariel Donnel',
+            role: 'Artist',
+            specialty: '',
+            experience: '',
+            credentials: [],
+            philosophy: '',
             portraitSrc: '',
             actionSrc: '',
             videoSrc: '', // Video intro — to be provided
-            instagramHandle: '',
+            instagramHandle: 'aridonnel',
             bookingUrl: '',
           },
           {
-            name: 'Team Member',
-            role: 'Barber',
-            specialty: 'Specialty TBD',
-            experience: 'TBD',
-            credentials: [
-              'PRAX Certified',
-              'Credential to be added',
-              'Credential to be added',
-            ],
-            philosophy:
-              'Philosophy quote to be provided.',
+            name: 'Jared Phan',
+            role: 'Artist',
+            specialty: '',
+            experience: '',
+            credentials: [],
+            philosophy: '',
             portraitSrc: '',
             actionSrc: '',
             videoSrc: '', // Video intro — to be provided
-            instagramHandle: '',
+            instagramHandle: 'jaredtphan',
             bookingUrl: '',
           },
           {
-            name: 'Team Member',
-            role: 'Barber',
-            specialty: 'Specialty TBD',
-            experience: 'TBD',
-            credentials: [
-              'PRAX Certified',
-              'Credential to be added',
-              'Credential to be added',
-            ],
-            philosophy:
-              'Philosophy quote to be provided.',
+            name: 'Brandon Latung',
+            role: 'Intern Artist',
+            specialty: '',
+            experience: '',
+            credentials: [],
+            philosophy: '',
             portraitSrc: '',
             actionSrc: '',
             videoSrc: '', // Video intro — to be provided
-            instagramHandle: '',
-            bookingUrl: '',
-          },
-          {
-            name: 'Team Member',
-            role: 'Barber',
-            specialty: 'Specialty TBD',
-            experience: 'TBD',
-            credentials: [
-              'PRAX Certified',
-              'Credential to be added',
-              'Credential to be added',
-            ],
-            philosophy:
-              'Philosophy quote to be provided.',
-            portraitSrc: '',
-            actionSrc: '',
-            videoSrc: '', // Video intro — to be provided
-            instagramHandle: '',
-            bookingUrl: '',
-          },
-          {
-            name: 'Team Member',
-            role: 'Barber',
-            specialty: 'Specialty TBD',
-            experience: 'TBD',
-            credentials: [
-              'PRAX Certified',
-              'Credential to be added',
-              'Credential to be added',
-            ],
-            philosophy:
-              'Philosophy quote to be provided.',
-            portraitSrc: '',
-            actionSrc: '',
-            videoSrc: '', // Video intro — to be provided
-            instagramHandle: '',
+            instagramHandle: 'mysticalasian',
             bookingUrl: '',
           },
         ]}

@@ -189,6 +189,9 @@ function TeamMemberPortrait({
           <div className="text-center p-6">
             <div className="text-prax-silver text-sm mb-2">TEAM PORTRAIT</div>
             <div className="text-prax-stone text-xs">{member.name}</div>
+            <div className="text-prax-stone/70 text-xs mt-2">
+              Studio headshot, neutral background, soft contrast
+            </div>
           </div>
         </div>
       )}
@@ -331,18 +334,43 @@ export function TeamGridSection({
             </p>
           </div>
 
-          {/* Team Members Grid */}
-          <div className="space-y-24 md:space-y-32 max-w-6xl mx-auto">
-            {members.map((member, index) => (
-              <div
-                key={index}
-                ref={(el) => {
-                  if (el) memberRefs.current[index] = el;
-                }}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                }`}
-              >
+          {/* Team Index + Members */}
+          <div className="grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-12 md:gap-16 max-w-6xl mx-auto">
+            {/* Team Index */}
+            <aside className="hidden lg:block sticky top-28 self-start">
+              <div className="text-caption text-prax-silver uppercase tracking-widest mb-6">
+                Team Index
+              </div>
+              <div className="flex flex-col gap-3">
+                {members.map((member, index) => (
+                  <a
+                    key={member.name}
+                    href={`#team-${index + 1}`}
+                    className="text-body-sm text-prax-stone hover:text-prax-white transition-colors duration-300"
+                    data-cursor="link"
+                  >
+                    <span className="text-prax-silver mr-2">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    {member.name}
+                  </a>
+                ))}
+              </div>
+            </aside>
+
+            {/* Team Members Grid */}
+            <div className="space-y-24 md:space-y-32">
+              {members.map((member, index) => (
+                <div
+                  key={index}
+                  id={`team-${index + 1}`}
+                  ref={(el) => {
+                    if (el) memberRefs.current[index] = el;
+                  }}
+                  className={`grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-start ${
+                    index % 2 === 1 ? 'lg:flex-row-reverse' : ''
+                  }`}
+                >
                 {/* Portrait */}
                 <div
                   className={`space-y-4 ${
@@ -359,8 +387,8 @@ export function TeamGridSection({
                     }
                   />
 
-                  {/* Action shot (optional) */}
-                  {member.actionSrc && (
+                {/* Action shot (optional) */}
+                  {member.actionSrc ? (
                     <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden">
                       <Image
                         src={member.actionSrc}
@@ -371,6 +399,15 @@ export function TeamGridSection({
                         loading="lazy"
                         className="object-cover img-portfolio"
                       />
+                    </div>
+                  ) : (
+                    <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden border-2 border-dashed border-prax-graphite flex items-center justify-center">
+                      <div className="text-center p-6">
+                        <div className="text-prax-silver text-sm mb-2">ACTION B-ROLL</div>
+                        <div className="text-prax-stone text-xs">
+                          Hands at work, clipper detail, or client angle
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -392,51 +429,61 @@ export function TeamGridSection({
                   </div>
 
                   {/* Quick facts */}
-                  <div className="grid grid-cols-2 gap-6 py-6 border-y border-prax-graphite">
-                    <div>
-                      <div className="text-caption text-prax-silver uppercase tracking-widest mb-2">
-                        Specialty
-                      </div>
-                      <div className="text-body text-prax-white">
-                        {member.specialty}
-                      </div>
+                  {(member.specialty || member.experience) && (
+                    <div className="grid grid-cols-2 gap-6 py-6 border-y border-prax-graphite">
+                      {member.specialty && (
+                        <div>
+                          <div className="text-caption text-prax-silver uppercase tracking-widest mb-2">
+                            Specialty
+                          </div>
+                          <div className="text-body text-prax-white">
+                            {member.specialty}
+                          </div>
+                        </div>
+                      )}
+                      {member.experience && (
+                        <div>
+                          <div className="text-caption text-prax-silver uppercase tracking-widest mb-2">
+                            Experience
+                          </div>
+                          <div className="text-body text-prax-white">
+                            {member.experience}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                    <div>
-                      <div className="text-caption text-prax-silver uppercase tracking-widest mb-2">
-                        Experience
-                      </div>
-                      <div className="text-body text-prax-white">
-                        {member.experience}
-                      </div>
-                    </div>
-                  </div>
+                  )}
 
                   {/* Credentials */}
-                  <div>
-                    <div className="text-caption text-prax-silver uppercase tracking-widest mb-3">
-                      Education & Credentials
+                  {member.credentials.length > 0 && (
+                    <div>
+                      <div className="text-caption text-prax-silver uppercase tracking-widest mb-3">
+                        Education & Credentials
+                      </div>
+                      <ul className="space-y-2">
+                        {member.credentials.map((credential, i) => (
+                          <li key={i} className="flex items-start gap-2">
+                            <span className="text-prax-bone mt-1.5">·</span>
+                            <span className="text-body-sm text-prax-stone">
+                              {credential}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <ul className="space-y-2">
-                      {member.credentials.map((credential, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-prax-bone mt-1.5">·</span>
-                          <span className="text-body-sm text-prax-stone">
-                            {credential}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  )}
 
                   {/* Philosophy */}
-                  <div>
-                    <div className="text-caption text-prax-silver uppercase tracking-widest mb-3">
-                      Philosophy
+                  {member.philosophy && (
+                    <div>
+                      <div className="text-caption text-prax-silver uppercase tracking-widest mb-3">
+                        Philosophy
+                      </div>
+                      <p className="text-body text-prax-stone leading-relaxed italic">
+                        &ldquo;{member.philosophy}&rdquo;
+                      </p>
                     </div>
-                    <p className="text-body text-prax-stone leading-relaxed italic">
-                      &ldquo;{member.philosophy}&rdquo;
-                    </p>
-                  </div>
+                  )}
 
                   {/* Video intro indicator */}
                   {member.videoSrc && (
@@ -501,8 +548,9 @@ export function TeamGridSection({
                     </div>
                   )}
                 </div>
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
