@@ -92,12 +92,42 @@ export default function HomePage() {
         label="Selected Work"
         heading="Portfolio"
         items={[
-          { src: cloudinaryAssets.portfolio01, alt: 'Precision Cut', title: 'Precision Cut' },
-          { src: cloudinaryAssets.portfolio03, alt: 'Textured Style', title: 'Textured Style' },
-          { src: cloudinaryAssets.portfolio04, alt: 'Platinum Fade', title: 'Platinum Fade' },
-          { src: cloudinaryAssets.portfolio06, alt: 'Modern Mullet', title: 'Modern Mullet' },
-          { src: cloudinaryAssets.portfolio05, alt: 'Silver Texture', title: 'Silver Texture' },
-          { src: cloudinaryAssets.portfolio07, alt: 'Neon Art Design', title: 'Neon Art Design' },
+          {
+            src: '',
+            alt: 'Studio cut - side profile',
+            title: 'Studio Cut — Side Profile',
+            note: 'Clean lighting, neutral background, sharp silhouette',
+          },
+          {
+            src: '',
+            alt: 'Close-up detailing - scissor work',
+            title: 'Close-Up Detailing',
+            note: 'Hands + tools, shallow depth of field',
+          },
+          {
+            src: '',
+            alt: 'Finished haircut - front view',
+            title: 'Finished Look — Front View',
+            note: 'Model expression neutral, high contrast',
+          },
+          {
+            src: '',
+            alt: 'Texture and movement shot',
+            title: 'Texture + Movement',
+            note: 'Natural motion, mid-length styling',
+          },
+          {
+            src: '',
+            alt: 'Blonding or color result',
+            title: 'Color Work',
+            note: 'Even tone, refined finish, no distractions',
+          },
+          {
+            src: '',
+            alt: 'Studio environment b-roll',
+            title: 'Studio Atmosphere',
+            note: 'Wide shot, minimalist interior, soft lighting',
+          },
         ]}
       />
 
