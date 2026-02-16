@@ -16,7 +16,8 @@ export default function HomePage() {
     <main className="min-h-screen">
       {/* 1. Hero Section */}
       <HeroSection
-        headline="Precision Haircuts for Men Who Care About Detail"
+        headline="PRAX"
+        kicker="Precision Haircuts for Men Who Care About Detail"
         subheadline="High-end grooming studio in Los Angeles. Executed with discipline, design, and intention."
         primaryCTA={{
           text: 'Book an Appointment',

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
-import { Cormorant_Garamond } from 'next/font/google';
 import './globals.css';
 import { LenisProvider } from '@/components/providers/LenisProvider';
 import { Header } from '@/components/layout/Header';
@@ -9,27 +8,27 @@ import { PreloaderWrapper } from '@/components/ui/Preloader';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { BookButton } from '@/components/ui/BookButton';
 
-// Satoshi — Geometric sans-serif with street warmth
-const satoshi = localFont({
+// Söhne — Minimalist sans-serif with editorial polish
+const sohneSans = localFont({
   src: [
     {
-      path: '../public/fonts/satoshi-regular.woff2',
+      path: '../public/fonts/sohne-font-family/TestSohne-Buch-BF663d89cd32e6a.otf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../public/fonts/satoshi-medium.woff2',
-      weight: '500',
+      path: '../public/fonts/sohne-font-family/TestSohne-Halbfett-BF663d89cd2d67b.otf',
+      weight: '600',
       style: 'normal',
     },
     {
-      path: '../public/fonts/satoshi-bold.woff2',
+      path: '../public/fonts/sohne-font-family/TestSohne-Fett-BF663d89cca89ff.otf',
       weight: '700',
       style: 'normal',
     },
     {
-      path: '../public/fonts/satoshi-black.woff2',
-      weight: '900',
+      path: '../public/fonts/sohne-font-family/TestSohne-Extrafett-BF663d89cc9f2c0.otf',
+      weight: '800',
       style: 'normal',
     },
   ],
@@ -39,12 +38,33 @@ const satoshi = localFont({
   fallback: ['system-ui', 'sans-serif'],
 });
 
-// Cormorant Garamond (Serif) - For editorial accent moments
-const cormorantGaramond = Cormorant_Garamond({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+const sohneSerif = localFont({
+  src: [
+    {
+      path: '../public/fonts/sohne-font-family/TestSohne-Buch-BF663d89cd32e6a.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/sohne-font-family/TestSohne-Halbfett-BF663d89cd2d67b.otf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/sohne-font-family/TestSohne-Fett-BF663d89cca89ff.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/sohne-font-family/TestSohne-Extrafett-BF663d89cc9f2c0.otf',
+      weight: '800',
+      style: 'normal',
+    },
+  ],
   variable: '--font-serif',
   display: 'swap',
+  preload: false,
+  fallback: ['system-ui', 'sans-serif'],
 });
 
 export const metadata: Metadata = {
@@ -108,7 +128,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${satoshi.variable} ${cormorantGaramond.variable}`}>
+    <html lang="en" className={`${sohneSans.variable} ${sohneSerif.variable}`}>
       <body className="bg-prax-ink text-prax-white font-sans antialiased cursor-custom">
         <LenisProvider>
           <PreloaderWrapper>
