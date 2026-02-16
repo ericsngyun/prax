@@ -2,14 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigationStore } from '@/lib/store';
 import { useCursor } from '@/components/ui/CustomCursor';
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
-import { cloudinaryAssets } from '@/lib/cloudinary';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -21,6 +19,7 @@ if (typeof window !== 'undefined') {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const navLinks = [
+  { href: '/', label: 'Index' },
   { href: '/services', label: 'Services' },
   { href: '/team', label: 'Team' },
   { href: '/about', label: 'About' },
@@ -31,8 +30,9 @@ export function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const lastScrollY = useRef(0);
   const [isHidden, setIsHidden] = useState(false);
-  const { isMenuOpen, isHeaderSolid, toggleMenu, setHeaderSolid } = useNavigationStore();
+  const { isMenuOpen, toggleMenu } = useNavigationStore();
   const { onEnter, onLeave } = useCursor();
+  const scrollStopTimeout = useRef<number | null>(null);
 
   // Handle scroll behavior - hide on scroll down, show on scroll up
   useEffect(() => {
@@ -49,22 +49,34 @@ export function Header() {
         setIsHidden(false);
       }
 
-      // Solid background after scrolling past hero
-      setHeaderSolid(currentScrollY > 50);
-
       lastScrollY.current = currentScrollY;
+
+      // Reveal when scrolling stops
+      if (scrollStopTimeout.current) {
+        window.clearTimeout(scrollStopTimeout.current);
+      }
+      scrollStopTimeout.current = window.setTimeout(() => {
+        setIsHidden(false);
+      }, 220);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [setHeaderSolid]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollStopTimeout.current) {
+        window.clearTimeout(scrollStopTimeout.current);
+      }
+    };
+  }, []);
 
   // Animate header visibility
   useEffect(() => {
     if (!headerRef.current || prefersReducedMotion()) return;
 
     gsap.to(headerRef.current, {
-      y: isHidden && !isMenuOpen ? '-100%' : '0%',
+      y: isHidden && !isMenuOpen ? '-200%' : '0%',
+      autoAlpha: isHidden && !isMenuOpen ? 0 : 1,
+      pointerEvents: isHidden && !isMenuOpen ? 'none' : 'auto',
       duration: 0.4,
       ease: 'power3.out',
     });
@@ -87,94 +99,39 @@ export function Header() {
       <header
         ref={headerRef}
         className={cn(
-          'fixed top-0 left-0 right-0 z-[1000] transition-colors duration-500',
-          isHeaderSolid || isMenuOpen
-            ? 'bg-prax-ink/95 backdrop-blur-lg'
-            : 'bg-transparent'
+          'fixed top-6 left-0 right-0 z-[1000]'
         )}
       >
         <div className="container-prax">
-          <div className="flex items-center justify-between h-20 md:h-24">
-            {/* Logo */}
-            <Link
-              href="/"
-              className="relative z-10 flex items-center gap-4"
-              onMouseEnter={() => onEnter('hover')}
-              onMouseLeave={onLeave}
-            >
-              <div className="relative w-12 h-12 md:w-16 md:h-16">
-                <Image
-                  src={cloudinaryAssets.logo}
-                  alt="PRAX"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              <span className="text-2xl md:text-3xl font-bold tracking-tight text-prax-white">
-                PRAX
-              </span>
-            </Link>
+          <div className="flex items-center justify-end h-12 md:h-14">
+            <div className="flex items-center gap-3 md:gap-4 rounded-full border border-prax-graphite/70 bg-prax-ink/60 backdrop-blur-xl px-4 md:px-5 py-2">
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center gap-5">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-body-sm text-prax-stone hover:text-prax-white transition-colors duration-300"
+                    onMouseEnter={() => onEnter('link')}
+                    onMouseLeave={onLeave}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="link-underline text-body-sm text-prax-stone hover:text-prax-white transition-colors duration-300"
-                  onMouseEnter={() => onEnter('link')}
-                  onMouseLeave={onLeave}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-
-            {/* CTA Button (Desktop) */}
-            <div className="hidden md:block">
-              <a
-                href="https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary text-body-sm"
+              {/* Mobile Menu Toggle */}
+              <button
+                onClick={toggleMenu}
+                className="relative z-10 md:hidden px-2 py-1 text-body-sm tracking-wide text-prax-white"
                 onMouseEnter={() => onEnter('hover')}
                 onMouseLeave={onLeave}
+                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={isMenuOpen}
               >
-                Book Now
-              </a>
+                {isMenuOpen ? 'Close' : 'Menu'}
+              </button>
             </div>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={toggleMenu}
-              className="relative z-10 md:hidden w-10 h-10 flex items-center justify-center"
-              onMouseEnter={() => onEnter('hover')}
-              onMouseLeave={onLeave}
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              aria-expanded={isMenuOpen}
-            >
-              <div className="relative w-6 h-4">
-                <span
-                  className={cn(
-                    'absolute left-0 w-full h-px bg-prax-white transition-all duration-300 ease-out',
-                    isMenuOpen ? 'top-1/2 rotate-45' : 'top-0'
-                  )}
-                />
-                <span
-                  className={cn(
-                    'absolute left-0 top-1/2 w-full h-px bg-prax-white transition-all duration-300 ease-out',
-                    isMenuOpen ? 'opacity-0 scale-x-0' : 'opacity-100'
-                  )}
-                />
-                <span
-                  className={cn(
-                    'absolute left-0 w-full h-px bg-prax-white transition-all duration-300 ease-out',
-                    isMenuOpen ? 'top-1/2 -rotate-45' : 'bottom-0'
-                  )}
-                />
-              </div>
-            </button>
           </div>
         </div>
       </header>
@@ -253,6 +210,17 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       aria-hidden={!isOpen}
     >
       <div className="container-prax">
+        <div className="absolute top-6 right-6">
+          <button
+            onClick={onClose}
+            className="text-body-sm tracking-wide text-prax-white hover:text-prax-bone transition-colors"
+            onMouseEnter={() => onEnter('hover')}
+            onMouseLeave={onLeave}
+            aria-label="Close menu"
+          >
+            Close
+          </button>
+        </div>
         <nav ref={linksRef} className="flex flex-col gap-6">
           {navLinks.map((link, index) => (
             <Link
@@ -270,19 +238,10 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </Link>
           ))}
 
-          {/* CTA in mobile menu */}
           <div className="pt-8 mt-8 border-t border-prax-graphite">
-            <a
-              href="https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={onClose}
-              className="btn btn-primary w-full text-center"
-              onMouseEnter={() => onEnter('hover')}
-              onMouseLeave={onLeave}
-            >
-              Book Now
-            </a>
+            <div className="text-body-sm text-prax-silver">
+              Appointments are booked through the hero CTA.
+            </div>
           </div>
         </nav>
 
