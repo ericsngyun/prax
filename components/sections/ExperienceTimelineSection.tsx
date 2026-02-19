@@ -9,11 +9,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   EXPERIENCE TIMELINE SECTION
-   What to expect: time, detail, experience
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface TimelineStep {
   step: string;
   title: string;
@@ -33,37 +28,43 @@ export function ExperienceTimelineSection({
   steps,
 }: ExperienceTimelineSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const timelineLineRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(headingRef.current, {
+      // Header — fade up
+      gsap.from(headerRef.current, {
         scrollTrigger: {
-          trigger: headingRef.current,
+          trigger: headerRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
-      });
-
-      gsap.from(descriptionRef.current, {
-        scrollTrigger: {
-          trigger: descriptionRef.current,
-          start: 'top 80%',
-        },
-        opacity: 0,
-        y: 20,
+        y: 24,
         duration: 0.8,
         ease: 'power2.out',
       });
 
-      stepRefs.current.forEach((step, i) => {
+      // Timeline vertical line — scroll-linked scaleY (functional — keep)
+      if (timelineLineRef.current) {
+        gsap.set(timelineLineRef.current, { scaleY: 0, transformOrigin: 'top' });
+        gsap.to(timelineLineRef.current, {
+          scrollTrigger: {
+            trigger: timelineLineRef.current,
+            start: 'top 80%',
+            end: 'bottom 20%',
+            scrub: true,
+          },
+          scaleY: 1,
+          ease: 'none',
+        });
+      }
+
+      // Steps — fade up
+      stepRefs.current.forEach((step) => {
         if (!step) return;
         gsap.from(step, {
           scrollTrigger: {
@@ -71,9 +72,9 @@ export function ExperienceTimelineSection({
             start: 'top 85%',
           },
           opacity: 0,
-          x: i % 2 === 0 ? -30 : 30,
-          duration: 0.9,
-          ease: 'power3.out',
+          y: 24,
+          duration: 0.8,
+          ease: 'power2.out',
         });
       });
     }, sectionRef);
@@ -85,15 +86,13 @@ export function ExperienceTimelineSection({
     <section ref={sectionRef} className="section-padding bg-prax-ink">
       <div className="container-prax">
         {/* Header */}
-        <div className="text-center mb-20 md:mb-24 max-w-3xl mx-auto">
+        <div ref={headerRef} className="text-center mb-20 md:mb-24 max-w-3xl mx-auto">
           <h2
-            ref={headingRef}
-            className="text-serif-h1 text-prax-white mb-6"
+            className="text-h1 font-light text-prax-white mb-6"
           >
             {heading}
           </h2>
           <p
-            ref={descriptionRef}
             className="text-body-lg text-prax-stone leading-relaxed"
           >
             {description}
@@ -103,8 +102,11 @@ export function ExperienceTimelineSection({
         {/* Timeline */}
         <div className="max-w-4xl mx-auto">
           <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-prax-graphite" />
+            {/* Vertical line — scroll-linked scaleY */}
+            <div
+              ref={timelineLineRef}
+              className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-prax-graphite"
+            />
 
             {/* Steps */}
             <div className="space-y-16 md:space-y-20">
@@ -119,7 +121,9 @@ export function ExperienceTimelineSection({
                   }`}
                 >
                   {/* Number indicator */}
-                  <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 w-16 h-16 rounded-full bg-prax-charcoal border-2 border-prax-bone flex items-center justify-center">
+                  <div
+                    className="absolute left-8 md:left-1/2 md:-translate-x-1/2 w-16 h-16 rounded-full bg-prax-charcoal border-2 border-prax-bone flex items-center justify-center"
+                  >
                     <span className="text-prax-bone font-mono font-medium">
                       {step.step}
                     </span>
@@ -144,7 +148,6 @@ export function ExperienceTimelineSection({
                     </p>
                   </div>
 
-                  {/* Spacer for alternating layout */}
                   <div className="hidden md:block flex-1" />
                 </div>
               ))}

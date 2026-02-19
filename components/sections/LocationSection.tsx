@@ -9,12 +9,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   LOCATION SECTION
-   Clean, functional studio information
-   Optional map embed, contact details
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface LocationSectionProps {
   label?: string;
   heading: string;
@@ -41,62 +35,40 @@ export function LocationSection({
   mapEmbedUrl,
 }: LocationSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const labelRef = useRef<HTMLSpanElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const descriptionRef = useRef<HTMLParagraphElement>(null);
-  const detailsRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const detailRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Label
-      gsap.from(labelRef.current, {
+      // Header block — fade up
+      gsap.from(headerRef.current, {
         scrollTrigger: {
-          trigger: labelRef.current,
-          start: 'top 80%',
-        },
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        ease: 'power2.out',
-      });
-
-      // Heading
-      gsap.from(headingRef.current, {
-        scrollTrigger: {
-          trigger: headingRef.current,
+          trigger: headerRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
-      });
-
-      // Description
-      gsap.from(descriptionRef.current, {
-        scrollTrigger: {
-          trigger: descriptionRef.current,
-          start: 'top 80%',
-        },
-        opacity: 0,
-        y: 20,
+        y: 24,
         duration: 0.8,
         ease: 'power2.out',
       });
 
-      // Details
-      gsap.from(detailsRef.current, {
-        scrollTrigger: {
-          trigger: detailsRef.current,
-          start: 'top 85%',
-        },
-        opacity: 0,
-        y: 30,
-        duration: 0.9,
-        ease: 'power3.out',
-      });
+      // Details — staggered fade up
+      const details = detailRefs.current.filter(Boolean);
+      if (details.length > 0) {
+        gsap.from(details, {
+          scrollTrigger: {
+            trigger: details[0],
+            start: 'top 85%',
+          },
+          opacity: 0,
+          y: 24,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: 'power2.out',
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -110,21 +82,18 @@ export function LocationSection({
       <div className="container-prax">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16 md:mb-20">
+          <div ref={headerRef} className="text-center mb-16 md:mb-20">
             <span
-              ref={labelRef}
               className="text-label text-prax-bone uppercase tracking-widest block mb-6"
             >
               {label}
             </span>
             <h2
-              ref={headingRef}
               className="text-h1 text-prax-white mb-8"
             >
               {heading}
             </h2>
             <p
-              ref={descriptionRef}
               className="text-body-lg text-prax-stone max-w-2xl mx-auto leading-relaxed"
             >
               {description}
@@ -132,12 +101,14 @@ export function LocationSection({
           </div>
 
           {/* Details Grid */}
-          <div
-            ref={detailsRef}
-            className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {/* Address */}
-            <div className="space-y-4">
+            <div
+              ref={(el) => {
+                if (el) detailRefs.current[0] = el;
+              }}
+              className="space-y-4"
+            >
               <h3 className="text-label text-prax-bone uppercase tracking-widest">
                 Address
               </h3>
@@ -148,7 +119,12 @@ export function LocationSection({
             </div>
 
             {/* Hours */}
-            <div className="space-y-4">
+            <div
+              ref={(el) => {
+                if (el) detailRefs.current[1] = el;
+              }}
+              className="space-y-4"
+            >
               <h3 className="text-label text-prax-bone uppercase tracking-widest">
                 Hours
               </h3>

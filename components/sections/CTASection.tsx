@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { MagneticButton } from '@/components/ui/MagneticButton';
-import { cn, prefersReducedMotion } from '@/lib/utils';
+import { prefersReducedMotion } from '@/lib/utils';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -29,7 +29,7 @@ export function CTASection({
 }: CTASectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const decorativeLineRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
@@ -38,7 +38,7 @@ export function CTASection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Decorative line grow
+      // Decorative line grow (intentional accent — keep)
       gsap.from(decorativeLineRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -50,47 +50,43 @@ export function CTASection({
         ease: 'power3.out',
       });
 
-      // Headline word reveal
-      const words = headlineRef.current?.querySelectorAll('.word');
-      if (words) {
-        gsap.from(words, {
-          scrollTrigger: {
-            trigger: headlineRef.current,
-            start: 'top 80%',
-          },
-          opacity: 0,
-          y: 60,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: 'power3.out',
-        });
-      }
+      // Headline — fade up
+      gsap.from(headingRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 75%',
+        },
+        opacity: 0,
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
+      });
 
-      // Description
+      // Description — fade up
       gsap.from(descriptionRef.current, {
         scrollTrigger: {
           trigger: descriptionRef.current,
           start: 'top 85%',
         },
         opacity: 0,
-        y: 30,
+        y: 24,
         duration: 0.8,
-        ease: 'power3.out',
+        ease: 'power2.out',
       });
 
-      // Buttons
+      // Buttons — fade up
       gsap.from(buttonsRef.current, {
         scrollTrigger: {
           trigger: buttonsRef.current,
           start: 'top 90%',
         },
         opacity: 0,
-        y: 20,
-        duration: 0.6,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      // Bottom divider
+      // Bottom divider (intentional accent — keep)
       gsap.from(dividerRef.current, {
         scrollTrigger: {
           trigger: dividerRef.current,
@@ -104,14 +100,6 @@ export function CTASection({
 
     return () => ctx.revert();
   }, []);
-
-  // Split headline into words
-  const headlineWords = headline.split(' ').map((word, i) => (
-    <span key={i} className="word inline-block">
-      {word}
-      {i < headline.split(' ').length - 1 && '\u00A0'}
-    </span>
-  ));
 
   return (
     <section
@@ -127,10 +115,10 @@ export function CTASection({
 
         {/* Headline */}
         <h2
-          ref={headlineRef}
+          ref={headingRef}
           className="text-display text-prax-white mb-6 max-w-4xl mx-auto"
         >
-          {headlineWords}
+          {headline}
         </h2>
 
         {/* Description */}
@@ -151,7 +139,7 @@ export function CTASection({
             href={primaryButtonHref}
             target={primaryButtonHref.startsWith('http') ? '_blank' : undefined}
             rel={primaryButtonHref.startsWith('http') ? 'noopener noreferrer' : undefined}
-            className="btn-primary"
+            className="btn-primary btn-wipe"
           >
             {primaryButtonText}
           </MagneticButton>

@@ -9,11 +9,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TEAM VALUES SECTION
-   What the team believes in collectively
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface Value {
   title: string;
   description: string;
@@ -36,31 +31,33 @@ export function TeamValuesSection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
+      // Heading — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      valueRefs.current.forEach((value, i) => {
-        if (!value) return;
-        gsap.from(value, {
+      // Values — staggered fade up
+      const items = valueRefs.current.filter(Boolean);
+      if (items.length > 0) {
+        gsap.from(items, {
           scrollTrigger: {
-            trigger: value,
+            trigger: items[0],
             start: 'top 85%',
           },
           opacity: 0,
-          y: 30,
+          y: 24,
+          stagger: 0.1,
           duration: 0.8,
-          delay: i * 0.1,
           ease: 'power2.out',
         });
-      });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -72,7 +69,7 @@ export function TeamValuesSection({
         <div className="max-w-4xl mx-auto">
           <h2
             ref={headingRef}
-            className="text-serif-h1 text-prax-white text-center mb-20 md:mb-24"
+            className="text-h1 font-light text-prax-white text-center mb-20 md:mb-24"
           >
             {heading}
           </h2>
@@ -84,8 +81,12 @@ export function TeamValuesSection({
                 ref={(el) => {
                   if (el) valueRefs.current[index] = el;
                 }}
-                className="border-l-2 border-prax-bone/40 pl-8 md:pl-12"
+                className="relative pl-8 md:pl-12"
               >
+                {/* Left border */}
+                <div
+                  className="absolute left-0 top-0 bottom-0 w-0.5 bg-prax-bone/40"
+                />
                 <h3 className="text-h3 text-prax-white font-medium mb-4">
                   {value.title}
                 </h3>

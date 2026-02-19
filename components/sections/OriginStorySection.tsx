@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ImageReveal } from '@/components/ui/ImageReveal';
@@ -10,12 +9,6 @@ import { prefersReducedMotion } from '@/lib/utils';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   ORIGIN STORY SECTION
-   Why PRAX exists - Jack's vision
-   MEDIA NEEDED: 2-3 founder photos (Jack portrait, working, teaching)
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 interface OriginStorySectionProps {
   heading: string;
@@ -38,31 +31,33 @@ export function OriginStorySection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
+      // Heading — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      storyRefs.current.forEach((p, i) => {
-        if (!p) return;
-        gsap.from(p, {
+      // Story paragraphs — staggered fade up
+      const paragraphs = storyRefs.current.filter(Boolean);
+      if (paragraphs.length > 0) {
+        gsap.from(paragraphs, {
           scrollTrigger: {
-            trigger: p,
+            trigger: paragraphs[0],
             start: 'top 80%',
           },
           opacity: 0,
-          y: 30,
-          duration: 0.9,
-          delay: i * 0.1,
+          y: 24,
+          stagger: 0.1,
+          duration: 0.8,
           ease: 'power2.out',
         });
-      });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -76,7 +71,7 @@ export function OriginStorySection({
           <div className="space-y-8">
             <h2
               ref={headingRef}
-              className="text-serif-h1 text-prax-white"
+              className="text-h1 font-light text-prax-white"
             >
               {heading}
             </h2>
@@ -111,16 +106,13 @@ export function OriginStorySection({
                 className="img-team"
               />
             ) : (
-              <div className="aspect-[4/5] bg-prax-charcoal border-2 border-dashed border-prax-graphite flex items-center justify-center">
+              <div className="aspect-[4/5] bg-prax-charcoal flex items-center justify-center">
                 <div className="text-center p-8">
                   <div className="text-prax-silver text-sm mb-2">
                     FOUNDER PORTRAIT
                   </div>
                   <div className="text-prax-stone text-xs">
                     Jack Louii - Portrait or working shot
-                  </div>
-                  <div className="text-prax-stone/60 text-xs mt-2">
-                    Editorial quality, grayscale or desaturated
                   </div>
                 </div>
               </div>

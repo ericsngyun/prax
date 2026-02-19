@@ -10,12 +10,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TEAM GRID SECTION
-   Unified bios, role clarity, educator credibility
-   Video introduction support — hover-to-video on portraits, click for modal
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface TeamMember {
   name: string;
   role: string;
@@ -25,7 +19,7 @@ interface TeamMember {
   philosophy: string;
   portraitSrc: string;
   actionSrc: string;
-  videoSrc?: string; // Video introduction URL
+  videoSrc?: string;
   instagramHandle?: string;
   bookingUrl?: string;
 }
@@ -35,10 +29,6 @@ interface TeamGridSectionProps {
   description?: string;
   members: TeamMember[];
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   VIDEO MODAL — Click-to-expand video introduction
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 function VideoModal({
   isOpen,
@@ -116,7 +106,6 @@ function VideoModal({
         className="relative w-full max-w-3xl aspect-video bg-prax-black rounded-sm overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-prax-black/60 backdrop-blur-sm rounded-full text-prax-white hover:bg-prax-charcoal transition-colors"
@@ -127,7 +116,6 @@ function VideoModal({
           </svg>
         </button>
 
-        {/* Video */}
         <video
           src={videoSrc}
           controls
@@ -140,10 +128,6 @@ function VideoModal({
     </div>
   );
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   TEAM MEMBER CARD — Portrait with hover-to-video
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 function TeamMemberPortrait({
   member,
@@ -172,7 +156,6 @@ function TeamMemberPortrait({
       onMouseLeave={() => setIsHovering(false)}
       onClick={member.videoSrc ? onPlayVideo : undefined}
     >
-      {/* Portrait Image */}
       {member.portraitSrc ? (
         <Image
           src={member.portraitSrc}
@@ -185,18 +168,14 @@ function TeamMemberPortrait({
           }`}
         />
       ) : (
-        <div className="absolute inset-0 flex items-center justify-center border-2 border-dashed border-prax-graphite">
+        <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
           <div className="text-center p-6">
             <div className="text-prax-silver text-sm mb-2">TEAM PORTRAIT</div>
             <div className="text-prax-stone text-xs">{member.name}</div>
-            <div className="text-prax-stone/70 text-xs mt-2">
-              Studio headshot, neutral background, soft contrast
-            </div>
           </div>
         </div>
       )}
 
-      {/* Hover Video Layer */}
       {member.videoSrc && (
         <video
           ref={videoRef}
@@ -211,7 +190,6 @@ function TeamMemberPortrait({
         />
       )}
 
-      {/* Play indicator for video members */}
       {member.videoSrc && (
         <div
           className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
@@ -239,10 +217,6 @@ function TeamMemberPortrait({
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   MAIN COMPONENT
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 export function TeamGridSection({
   heading = 'The Team',
   description = 'Every member holds themselves to the same standard: precision, consistency, and craft.',
@@ -262,15 +236,16 @@ export function TeamGridSection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
+      // Header — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
       gsap.from(descriptionRef.current, {
@@ -279,12 +254,13 @@ export function TeamGridSection({
           start: 'top 80%',
         },
         opacity: 0,
-        y: 20,
+        y: 24,
         duration: 0.8,
         ease: 'power2.out',
       });
 
-      memberRefs.current.forEach((member, i) => {
+      // Members — staggered fade up
+      memberRefs.current.forEach((member) => {
         if (!member) return;
         gsap.from(member, {
           scrollTrigger: {
@@ -292,10 +268,9 @@ export function TeamGridSection({
             start: 'top 85%',
           },
           opacity: 0,
-          y: 40,
-          duration: 0.9,
-          delay: (i % 2) * 0.15,
-          ease: 'power3.out',
+          y: 24,
+          duration: 0.8,
+          ease: 'power2.out',
         });
       });
     }, sectionRef);
@@ -322,7 +297,7 @@ export function TeamGridSection({
           <div className="text-center mb-20 md:mb-24 max-w-3xl mx-auto">
             <h2
               ref={headingRef}
-              className="text-h1 text-prax-white mb-6"
+              className="text-h1 font-light text-prax-white mb-6"
             >
               {heading}
             </h2>
@@ -377,7 +352,6 @@ export function TeamGridSection({
                     index % 2 === 1 ? 'lg:order-2' : 'lg:order-1'
                   }`}
                 >
-                  {/* Main portrait with video hover */}
                   <TeamMemberPortrait
                     member={member}
                     onPlayVideo={
@@ -387,7 +361,6 @@ export function TeamGridSection({
                     }
                   />
 
-                {/* Action shot (optional) */}
                   {member.actionSrc ? (
                     <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden">
                       <Image
@@ -401,7 +374,7 @@ export function TeamGridSection({
                       />
                     </div>
                   ) : (
-                    <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden border-2 border-dashed border-prax-graphite flex items-center justify-center">
+                    <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden flex items-center justify-center">
                       <div className="text-center p-6">
                         <div className="text-prax-silver text-sm mb-2">ACTION B-ROLL</div>
                         <div className="text-prax-stone text-xs">
@@ -418,7 +391,6 @@ export function TeamGridSection({
                     index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'
                   }`}
                 >
-                  {/* Name & Role */}
                   <div>
                     <h3 className="text-h2 text-prax-white font-medium mb-2">
                       {member.name}
@@ -428,7 +400,6 @@ export function TeamGridSection({
                     </p>
                   </div>
 
-                  {/* Quick facts */}
                   {(member.specialty || member.experience) && (
                     <div className="grid grid-cols-2 gap-6 py-6 border-y border-prax-graphite">
                       {member.specialty && (
@@ -454,7 +425,6 @@ export function TeamGridSection({
                     </div>
                   )}
 
-                  {/* Credentials */}
                   {member.credentials.length > 0 && (
                     <div>
                       <div className="text-caption text-prax-silver uppercase tracking-widest mb-3">
@@ -473,7 +443,6 @@ export function TeamGridSection({
                     </div>
                   )}
 
-                  {/* Philosophy */}
                   {member.philosophy && (
                     <div>
                       <div className="text-caption text-prax-silver uppercase tracking-widest mb-3">
@@ -485,7 +454,6 @@ export function TeamGridSection({
                     </div>
                   )}
 
-                  {/* Video intro indicator */}
                   {member.videoSrc && (
                     <button
                       onClick={() =>
@@ -509,14 +477,13 @@ export function TeamGridSection({
                     </button>
                   )}
 
-                  {/* Booking Button */}
                   {member.bookingUrl && (
                     <div className="pt-4">
                       <a
                         href={member.bookingUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn btn-primary w-full text-center"
+                        className="btn btn-primary btn-wipe w-full text-center"
                         data-cursor="hover"
                       >
                         Book with {member.name.split(' ')[0]}
@@ -524,7 +491,6 @@ export function TeamGridSection({
                     </div>
                   )}
 
-                  {/* Instagram Link */}
                   {member.instagramHandle && (
                     <div className="pt-4 border-t border-prax-graphite">
                       <a
@@ -555,7 +521,6 @@ export function TeamGridSection({
         </div>
       </section>
 
-      {/* Video Modal */}
       <VideoModal
         isOpen={videoModal.isOpen}
         onClose={closeVideoModal}

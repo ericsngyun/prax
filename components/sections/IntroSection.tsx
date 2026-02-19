@@ -9,16 +9,10 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   INTRO SECTION — "What is PRAX"
-   Direct, minimal explanation of what PRAX is
-   Museum-quality spacing, editorial typography
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface IntroSectionProps {
   statement: string;
   paragraphs: string[];
-  emphasized?: string; // Optional phrase to emphasize
+  emphasized?: string;
 }
 
 export function IntroSection({
@@ -39,35 +33,35 @@ export function IntroSection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Statement reveal - subtle fade up
+      // Statement — simple fade up
       gsap.from(statementRef.current, {
         scrollTrigger: {
-          trigger: statementRef.current,
-          start: 'top 75%',
+          trigger: sectionRef.current,
+          start: 'top 70%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      // Paragraph stagger - refined timing
-      paragraphRefs.current.forEach((p, i) => {
-        if (!p) return;
-        gsap.from(p, {
+      // Paragraphs — staggered fade up
+      const paragraphs = paragraphRefs.current.filter(Boolean);
+      if (paragraphs.length > 0) {
+        gsap.from(paragraphs, {
           scrollTrigger: {
-            trigger: p,
-            start: 'top 80%',
+            trigger: paragraphs[0],
+            start: 'top 85%',
           },
           opacity: 0,
-          y: 20,
+          y: 24,
+          stagger: 0.1,
           duration: 0.8,
-          delay: i * 0.1,
           ease: 'power2.out',
         });
-      });
+      }
 
-      // Divider scale from center
+      // Divider scaleX from center (intentional accent — keep)
       if (dividerRef.current) {
         gsap.from(dividerRef.current, {
           scrollTrigger: {
@@ -90,17 +84,16 @@ export function IntroSection({
       className="section-padding bg-prax-ink relative"
     >
       <div className="container-prax">
-        {/* Maximum width constraint for reading comfort */}
         <div className="max-w-4xl mx-auto text-center">
-          {/* Statement - Serif, light weight, architectural */}
+          {/* Statement */}
           <h2
             ref={statementRef}
-            className="text-h1 text-prax-white mb-16 md:mb-20"
+            className="text-h1 font-light text-prax-white mb-16 md:mb-20"
           >
             {statement}
           </h2>
 
-          {/* Body paragraphs - Sans serif, generous spacing */}
+          {/* Body paragraphs */}
           <div className="space-y-8 md:space-y-10">
             {paragraphs.map((text, i) => (
               <p

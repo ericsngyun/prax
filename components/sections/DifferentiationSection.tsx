@@ -9,12 +9,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   DIFFERENTIATION SECTION — "Why PRAX"
-   Three pillars: Precision / Education / Design
-   Minimal iconography, architectural spacing, refined grid
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface Pillar {
   number: string;
   title: string;
@@ -60,7 +54,7 @@ export function DifferentiationSection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Label
+      // Label — fade up
       gsap.from(labelRef.current, {
         scrollTrigger: {
           trigger: labelRef.current,
@@ -72,49 +66,33 @@ export function DifferentiationSection({
         ease: 'power2.out',
       });
 
-      // Heading
+      // Heading — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      // Pillars stagger - architectural reveal
-      pillarRefs.current.forEach((pillar, i) => {
-        if (!pillar) return;
-        gsap.from(pillar, {
+      // Pillars — staggered fade up
+      const pillars = pillarRefs.current.filter(Boolean);
+      if (pillars.length > 0) {
+        gsap.from(pillars, {
           scrollTrigger: {
-            trigger: pillar,
+            trigger: pillars[0],
             start: 'top 80%',
           },
           opacity: 0,
-          y: 40,
-          duration: 0.9,
-          delay: i * 0.15,
-          ease: 'power3.out',
+          y: 24,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: 'power2.out',
         });
-
-        // Number separate animation
-        const number = pillar.querySelector('.pillar-number');
-        if (number) {
-          gsap.from(number, {
-            scrollTrigger: {
-              trigger: pillar,
-              start: 'top 80%',
-            },
-            opacity: 0,
-            scale: 0.8,
-            duration: 0.8,
-            delay: i * 0.15 + 0.2,
-            ease: 'back.out(1.2)',
-          });
-        }
-      });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -155,24 +133,23 @@ export function DifferentiationSection({
               }}
               className="relative group"
             >
-              {/* Pillar Card */}
               <div className="relative h-full">
                 {/* Subtle border on hover */}
                 <div className="absolute inset-0 border border-prax-graphite opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative p-8 md:p-10">
-                  {/* Number - Monospace, large */}
-                  <div className="pillar-number text-6xl md:text-7xl font-light text-prax-bone/20 mb-8 font-mono">
+                  {/* Number */}
+                  <div className="pillar-number text-[8rem] md:text-[10rem] font-light text-prax-bone/5 mb-4 font-mono leading-none absolute top-4 right-4 select-none" aria-hidden="true">
                     {pillar.number}
                   </div>
 
-                  {/* Title - Sans bold */}
-                  <h3 className="text-h3 text-prax-white font-medium mb-6 tracking-tight">
+                  {/* Title */}
+                  <h3 className="text-h3 text-prax-white font-medium mb-6 tracking-tight relative z-10">
                     {pillar.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-body text-prax-stone leading-relaxed">
+                  <p className="text-body text-prax-stone leading-relaxed relative z-10">
                     {pillar.description}
                   </p>
 

@@ -9,12 +9,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SERVICES PREVIEW SECTION
-   Trust builder with clear categories and CTAs
-   Per Jack's guidelines: High-End Haircutting / Grooming / Consistency
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface ServicePreview {
   title: string;
   description: string;
@@ -69,12 +63,13 @@ export function ServicesPreviewSection({
   const labelRef = useRef<HTMLSpanElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const serviceRefs = useRef<HTMLDivElement[]>([]);
+  const numberRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Label
+      // Label — fade up
       gsap.from(labelRef.current, {
         scrollTrigger: {
           trigger: labelRef.current,
@@ -86,31 +81,51 @@ export function ServicesPreviewSection({
         ease: 'power2.out',
       });
 
-      // Heading
+      // Heading — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      // Services stagger
-      serviceRefs.current.forEach((service, i) => {
-        if (!service) return;
-        gsap.from(service, {
+      // Services — staggered fade up
+      const services = serviceRefs.current.filter(Boolean);
+      if (services.length > 0) {
+        gsap.from(services, {
           scrollTrigger: {
-            trigger: service,
+            trigger: services[0],
             start: 'top 85%',
           },
           opacity: 0,
-          y: 40,
-          duration: 0.9,
+          y: 24,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: 'power2.out',
+        });
+      }
+
+      // Number counter animation (intentional accent — keep)
+      numberRefs.current.forEach((num, i) => {
+        if (!num) return;
+        const target = i + 1;
+        const obj = { value: 0 };
+        gsap.to(obj, {
+          scrollTrigger: {
+            trigger: num,
+            start: 'top 85%',
+          },
+          value: target,
+          duration: 1.2,
           delay: i * 0.15,
-          ease: 'power3.out',
+          ease: 'power2.out',
+          onUpdate: () => {
+            num.textContent = String(Math.round(obj.value)).padStart(2, '0');
+          },
         });
       });
     }, sectionRef);
@@ -124,7 +139,7 @@ export function ServicesPreviewSection({
       className="section-padding bg-prax-ink"
     >
       <div className="container-prax">
-        {/* Header - Centered */}
+        {/* Header */}
         <div className="text-center mb-20 md:mb-24">
           <span
             ref={labelRef}
@@ -140,7 +155,7 @@ export function ServicesPreviewSection({
           </h2>
         </div>
 
-        {/* Services Grid - Editorial layout */}
+        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
           {services.map((service, index) => (
             <div
@@ -150,11 +165,15 @@ export function ServicesPreviewSection({
               }}
               className="group relative"
             >
-              {/* Service Card */}
-              <div className="relative h-full flex flex-col">
-                {/* Number - Small, subtle */}
-                <div className="text-sm font-mono text-prax-bone/40 mb-8">
-                  {String(index + 1).padStart(2, '0')}
+              <div className="relative h-full flex flex-col border border-transparent hover:border-prax-graphite transition-colors duration-500 p-0 hover:p-6">
+                {/* Number */}
+                <div
+                  ref={(el) => {
+                    if (el) numberRefs.current[index] = el;
+                  }}
+                  className="text-sm font-mono text-prax-bone/40 mb-8"
+                >
+                  00
                 </div>
 
                 {/* Title */}
@@ -167,7 +186,7 @@ export function ServicesPreviewSection({
                   {service.description}
                 </p>
 
-                {/* CTA Link - Minimal */}
+                {/* CTA Link */}
                 <a
                   href={service.cta.href}
                   target={service.cta.href.startsWith('http') ? '_blank' : undefined}
@@ -191,7 +210,7 @@ export function ServicesPreviewSection({
                   </svg>
                 </a>
 
-                {/* Decorative accent - appears on hover */}
+                {/* Decorative accent */}
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-prax-bone/20 group-hover:w-full transition-all duration-700 ease-out" />
               </div>
             </div>

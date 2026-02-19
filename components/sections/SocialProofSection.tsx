@@ -9,15 +9,9 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SOCIAL PROOF SECTION
-   Editorial testimonials, minimal design
-   Think: Kinfolk magazine meets high-end portfolio
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface Testimonial {
   quote: string;
-  author?: string; // Optional, can be anonymous
+  author?: string;
 }
 
 interface SocialProofSectionProps {
@@ -50,33 +44,33 @@ export function SocialProofSection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Heading
+      // Heading — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      // Testimonials subtle fade in
-      testimonialRefs.current.forEach((testimonial, i) => {
-        if (!testimonial) return;
-        gsap.from(testimonial, {
+      // Testimonials — staggered fade up
+      const items = testimonialRefs.current.filter(Boolean);
+      if (items.length > 0) {
+        gsap.from(items, {
           scrollTrigger: {
-            trigger: testimonial,
+            trigger: items[0],
             start: 'top 85%',
           },
           opacity: 0,
-          y: 20,
-          duration: 0.9,
-          delay: i * 0.1,
+          y: 24,
+          stagger: 0.1,
+          duration: 0.8,
           ease: 'power2.out',
         });
-      });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -91,12 +85,12 @@ export function SocialProofSection({
         {/* Heading */}
         <h2
           ref={headingRef}
-          className="text-h2 text-prax-white text-center mb-20 md:mb-24 max-w-3xl mx-auto font-medium"
+          className="text-h2 text-prax-white text-center mb-20 md:mb-24 max-w-3xl mx-auto font-light"
         >
           {heading}
         </h2>
 
-        {/* Testimonials Grid - Editorial layout */}
+        {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <div
@@ -106,9 +100,9 @@ export function SocialProofSection({
               }}
               className="relative group"
             >
-              {/* Quote mark - Serif, subtle */}
-              <div className="text-serif-display text-prax-bone/10 mb-6 leading-none">
-                "
+              {/* Quote mark — decorative */}
+              <div className="text-display text-prax-bone/8 mb-6 leading-none select-none" aria-hidden="true">
+                &ldquo;
               </div>
 
               {/* Quote text */}
@@ -118,10 +112,10 @@ export function SocialProofSection({
                 </p>
               </blockquote>
 
-              {/* Author - Optional */}
+              {/* Author */}
               {testimonial.author && (
                 <cite className="text-caption text-prax-silver not-italic block">
-                  - {testimonial.author}
+                  &mdash; {testimonial.author}
                 </cite>
               )}
 

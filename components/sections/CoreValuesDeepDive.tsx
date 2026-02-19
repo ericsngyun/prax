@@ -9,11 +9,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CORE VALUES DEEP DIVE
-   Precision, Education, Design explained in depth
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface CoreValue {
   number: string;
   title: string;
@@ -33,23 +28,26 @@ export function CoreValuesDeepDive({
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const valueRefs = useRef<HTMLDivElement[]>([]);
+  const dividerRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
+      // Heading — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      valueRefs.current.forEach((value, i) => {
+      // Values — fade up per block
+      valueRefs.current.forEach((value) => {
         if (!value) return;
         gsap.from(value, {
           scrollTrigger: {
@@ -57,10 +55,23 @@ export function CoreValuesDeepDive({
             start: 'top 80%',
           },
           opacity: 0,
-          y: 40,
-          duration: 0.9,
-          delay: i * 0.1,
-          ease: 'power3.out',
+          y: 24,
+          duration: 0.8,
+          ease: 'power2.out',
+        });
+      });
+
+      // Dividers — scaleX from center (intentional accent — keep)
+      dividerRefs.current.forEach((div) => {
+        if (!div) return;
+        gsap.from(div, {
+          scrollTrigger: {
+            trigger: div,
+            start: 'top 90%',
+          },
+          scaleX: 0,
+          duration: 1.2,
+          ease: 'power3.inOut',
         });
       });
     }, sectionRef);
@@ -73,7 +84,7 @@ export function CoreValuesDeepDive({
       <div className="container-prax">
         <h2
           ref={headingRef}
-          className="text-serif-h1 text-prax-white text-center mb-20 md:mb-24"
+          className="text-h1 font-light text-prax-white text-center mb-20 md:mb-24"
         >
           {heading}
         </h2>
@@ -88,12 +99,14 @@ export function CoreValuesDeepDive({
               className="relative"
             >
               {/* Number */}
-              <div className="text-[8rem] md:text-[12rem] font-mono font-light text-prax-bone/5 absolute -top-12 md:-top-16 left-0 leading-none pointer-events-none">
+              <div
+                className="text-[8rem] md:text-[12rem] font-mono font-light text-prax-bone/5 absolute -top-12 md:-top-16 left-0 leading-none pointer-events-none select-none"
+                aria-hidden="true"
+              >
                 {value.number}
               </div>
 
               <div className="relative space-y-6">
-                {/* Title & Subtitle */}
                 <div>
                   <h3 className="text-h2 text-prax-white font-medium mb-2">
                     {value.title}
@@ -103,7 +116,6 @@ export function CoreValuesDeepDive({
                   </p>
                 </div>
 
-                {/* Description paragraphs */}
                 <div className="space-y-4 max-w-3xl">
                   {value.description.map((paragraph, i) => (
                     <p
@@ -116,9 +128,14 @@ export function CoreValuesDeepDive({
                 </div>
               </div>
 
-              {/* Divider */}
+              {/* Divider — scaleX from center */}
               {index < values.length - 1 && (
-                <div className="w-16 h-px bg-prax-bone/20 mt-12 md:mt-16" />
+                <div
+                  ref={(el) => {
+                    if (el) dividerRefs.current[index] = el;
+                  }}
+                  className="w-16 h-px bg-prax-bone/20 mt-12 md:mt-16"
+                />
               )}
             </div>
           ))}

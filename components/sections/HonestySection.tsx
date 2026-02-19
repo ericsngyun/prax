@@ -9,11 +9,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HONESTY SECTION - "Is PRAX Right for You?"
-   Direct, transparent about who we serve
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface HonestySectionProps {
   heading?: string;
   forYouItems: string[];
@@ -34,37 +29,29 @@ export function HonestySection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
+      // Heading — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      gsap.from(forYouRef.current, {
+      // Two columns — staggered fade up
+      gsap.from([forYouRef.current, notForYouRef.current], {
         scrollTrigger: {
           trigger: forYouRef.current,
           start: 'top 80%',
         },
         opacity: 0,
-        x: -30,
-        duration: 0.9,
-        ease: 'power3.out',
-      });
-
-      gsap.from(notForYouRef.current, {
-        scrollTrigger: {
-          trigger: notForYouRef.current,
-          start: 'top 80%',
-        },
-        opacity: 0,
-        x: 30,
-        duration: 0.9,
-        ease: 'power3.out',
+        y: 24,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: 'power2.out',
       });
     }, sectionRef);
 
@@ -75,17 +62,14 @@ export function HonestySection({
     <section ref={sectionRef} className="section-padding bg-prax-black">
       <div className="container-prax">
         <div className="max-w-5xl mx-auto">
-          {/* Heading */}
           <h2
             ref={headingRef}
-            className="text-serif-h1 text-prax-white text-center mb-20 md:mb-24"
+            className="text-h1 font-light text-prax-white text-center mb-20 md:mb-24"
           >
             {heading}
           </h2>
 
-          {/* Two-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            {/* PRAX is for you */}
             <div ref={forYouRef} className="space-y-6">
               <div>
                 <h3 className="text-h3 text-prax-bone font-medium mb-2">
@@ -106,7 +90,6 @@ export function HonestySection({
               </ul>
             </div>
 
-            {/* PRAX is NOT for you */}
             <div ref={notForYouRef} className="space-y-6">
               <div>
                 <h3 className="text-h3 text-prax-silver font-medium mb-2">

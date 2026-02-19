@@ -1,15 +1,9 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { cn, prefersReducedMotion } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { cloudinaryAssets } from '@/lib/cloudinary';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface FooterLink {
   label: string;
@@ -65,34 +59,12 @@ export function Footer({
   columns = defaultColumns,
   showNewsletter = true,
 }: FooterProps) {
-  const footerRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  useEffect(() => {
-    if (!footerRef.current || prefersReducedMotion()) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from(contentRef.current, {
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: 'top 90%',
-        },
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        ease: 'power3.out',
-      });
-    }, footerRef);
-
-    return () => ctx.revert();
-  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate submission
     setTimeout(() => {
       setEmail('');
       setIsSubmitting(false);
@@ -101,10 +73,17 @@ export function Footer({
 
   return (
     <footer
-      ref={footerRef}
-      className="bg-prax-black py-20"
+      className="bg-prax-black py-20 relative overflow-hidden"
     >
-      <div ref={contentRef} className="container-prax">
+      {/* Decorative large PRAX text */}
+      <div
+        className="text-hero text-prax-charcoal select-none pointer-events-none mb-12 md:mb-16 px-4"
+        aria-hidden="true"
+      >
+        PRAX
+      </div>
+
+      <div className="container-prax">
         {/* Newsletter */}
         {showNewsletter && (
           <div className="mb-16 pb-16 border-b border-prax-charcoal">
@@ -121,13 +100,13 @@ export function Footer({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 bg-prax-charcoal text-prax-white px-4 py-3 rounded-sm border border-transparent focus:border-prax-bone focus:outline-none transition-colors"
+                  className="flex-1 bg-prax-charcoal text-prax-white px-4 py-3 rounded-sm border border-transparent focus:border-prax-bone focus:outline-none transition-colors duration-300"
                   required
                 />
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary whitespace-nowrap disabled:opacity-50 w-full sm:w-auto"
+                  className="btn-primary btn-wipe whitespace-nowrap disabled:opacity-50 w-full sm:w-auto"
                 >
                   {isSubmitting ? 'Sending...' : 'Subscribe'}
                 </button>
@@ -171,7 +150,7 @@ export function Footer({
                 className="object-contain"
               />
             </div>
-            <span className="text-2xl md:text-3xl font-bold text-prax-white tracking-tight">
+            <span className="text-2xl md:text-3xl font-light text-prax-white tracking-[0.1em]">
               PRAX
             </span>
           </div>

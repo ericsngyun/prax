@@ -10,12 +10,6 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BEFORE/AFTER GALLERY
-   Horizontal scroll showcasing transformation quality
-   MEDIA NEEDED: 6-8 before/after comparison images
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface BeforeAfterItem {
   beforeSrc: string;
   afterSrc: string;
@@ -45,9 +39,9 @@ export function BeforeAfterGallery({
           start: 'top 85%',
         },
         opacity: 0,
-        y: 30,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
     }, sectionRef);
 
@@ -59,19 +53,19 @@ export function BeforeAfterGallery({
       <div className="container-prax mb-12">
         <h2
           ref={headingRef}
-          className="text-serif-h1 text-prax-white"
+          className="text-h1 font-light text-prax-white"
         >
           {heading}
         </h2>
       </div>
 
-      {/* Horizontal scroll container */}
-      <div className="overflow-x-auto scrollbar-hide">
+      {/* Horizontal scroll container with snap */}
+      <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory" data-cursor="drag">
         <div className="flex gap-8 px-6 md:px-16 pb-4">
           {items.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-[85vw] md:w-[600px] group"
+              className="flex-shrink-0 w-[85vw] md:w-[600px] group snap-center"
             >
               {/* Before/After comparison */}
               <div className="grid grid-cols-2 gap-4 mb-4">
@@ -91,7 +85,7 @@ export function BeforeAfterGallery({
                       className="object-cover"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center border-2 border-dashed border-prax-graphite">
+                    <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
                       <div className="text-center p-6">
                         <div className="text-prax-silver text-sm mb-2">
                           BEFORE PHOTO
@@ -120,7 +114,7 @@ export function BeforeAfterGallery({
                       className="object-cover"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center border-2 border-dashed border-prax-graphite">
+                    <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
                       <div className="text-center p-6">
                         <div className="text-prax-silver text-sm mb-2">
                           AFTER PHOTO

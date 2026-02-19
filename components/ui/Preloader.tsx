@@ -8,33 +8,24 @@ import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   PRELOADER COMPONENT
-   Branded loading experience with PRAX logo animation
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 export function Preloader() {
   const containerRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-  const progressTextRef = useRef<HTMLSpanElement>(null);
+  const counterRef = useRef<HTMLDivElement>(null);
   const [displayProgress, setDisplayProgress] = useState(0);
 
-  const { isLoading, progress, isComplete, setProgress, setComplete } = usePreloaderStore();
+  const { isComplete, setProgress, setComplete } = usePreloaderStore();
 
   // Simulate loading progress
   useEffect(() => {
     if (isComplete) return;
 
     const startTime = Date.now();
-    const minDuration = 2000; // Minimum 2 seconds
-    const maxDuration = 4000; // Maximum 4 seconds
+    const minDuration = 2000;
 
     const updateProgress = () => {
       const elapsed = Date.now() - startTime;
       const naturalProgress = Math.min((elapsed / minDuration) * 100, 100);
-
-      // Ease the progress for a more natural feel
       const easedProgress = easeOutExpo(naturalProgress / 100) * 100;
       setProgress(Math.min(easedProgress, 99));
       setDisplayProgress(Math.floor(easedProgress));
@@ -42,7 +33,6 @@ export function Preloader() {
       if (elapsed < minDuration) {
         requestAnimationFrame(updateProgress);
       } else {
-        // Complete the loading
         setProgress(100);
         setDisplayProgress(100);
         setTimeout(() => setComplete(true), 300);
@@ -56,24 +46,15 @@ export function Preloader() {
   useEffect(() => {
     if (!logoRef.current || prefersReducedMotion()) return;
 
-    const logo = logoRef.current;
-
-    // Initial state - hidden and scaled down
-    gsap.set(logo, {
-      opacity: 0,
-      scale: 0.8,
-    });
-
-    // Fade in and scale up
-    gsap.to(logo, {
+    gsap.set(logoRef.current, { opacity: 0, scale: 0.8 });
+    gsap.to(logoRef.current, {
       opacity: 1,
       scale: 1,
       duration: 1.2,
       ease: 'power2.out',
     });
 
-    // Subtle breathing animation
-    gsap.to(logo, {
+    gsap.to(logoRef.current, {
       scale: 1.05,
       duration: 1.5,
       repeat: -1,
@@ -83,13 +64,13 @@ export function Preloader() {
     });
   }, []);
 
-  // Exit animation when complete
+  // Exit animation — simple opacity fade-out
   useEffect(() => {
     if (!isComplete || !containerRef.current) return;
 
     const container = containerRef.current;
     const logo = logoRef.current;
-    const progress = progressRef.current;
+    const counter = counterRef.current;
 
     if (prefersReducedMotion()) {
       gsap.set(container, { opacity: 0, visibility: 'hidden' });
@@ -98,9 +79,9 @@ export function Preloader() {
 
     const tl = gsap.timeline();
 
-    // Fade out progress
-    if (progress) {
-      tl.to(progress, {
+    // Fade out counter
+    if (counter) {
+      tl.to(counter, {
         opacity: 0,
         y: 20,
         duration: 0.3,
@@ -122,14 +103,13 @@ export function Preloader() {
       );
     }
 
-    // Slide up curtain
+    // Simple opacity fade-out
     tl.to(container, {
-      clipPath: 'inset(0% 0% 100% 0%)',
-      duration: 0.8,
-      ease: 'power3.inOut',
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.inOut',
     });
 
-    // Hide container
     tl.set(container, { visibility: 'hidden' });
   }, [isComplete]);
 
@@ -140,7 +120,6 @@ export function Preloader() {
         'fixed inset-0 z-[10001] bg-prax-black flex flex-col items-center justify-center',
         isComplete && 'pointer-events-none'
       )}
-      style={{ clipPath: 'inset(0% 0% 0% 0%)' }}
       aria-hidden={isComplete}
     >
       {/* Logo */}
@@ -154,8 +133,8 @@ export function Preloader() {
         />
       </div>
 
-      {/* Progress */}
-      <div ref={progressRef} className="mt-12 flex flex-col items-center gap-4">
+      {/* Progress counter — large display text */}
+      <div ref={counterRef} className="mt-12 flex flex-col items-center gap-4">
         {/* Progress bar */}
         <div className="w-48 h-px bg-prax-graphite overflow-hidden">
           <div
@@ -164,12 +143,9 @@ export function Preloader() {
           />
         </div>
 
-        {/* Progress text */}
-        <span
-          ref={progressTextRef}
-          className="text-label text-prax-silver tabular-nums"
-        >
-          {displayProgress}%
+        {/* Progress text — larger for impact */}
+        <span className="text-display font-light text-prax-silver/40 tabular-nums">
+          {displayProgress}
         </span>
       </div>
 
@@ -181,11 +157,6 @@ export function Preloader() {
   );
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   PRELOADER WRAPPER
-   Wraps content and shows preloader on initial load
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 interface PreloaderWrapperProps {
   children: React.ReactNode;
 }
@@ -195,10 +166,8 @@ export function PreloaderWrapper({ children }: PreloaderWrapperProps) {
   const [hasShown, setHasShown] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Only run on client to prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
-    // Check if preloader has been shown this session
     if (sessionStorage.getItem('preloaderShown')) {
       setHasShown(true);
       usePreloaderStore.getState().setComplete(true);
@@ -206,14 +175,12 @@ export function PreloaderWrapper({ children }: PreloaderWrapperProps) {
   }, []);
 
   useEffect(() => {
-    // Mark preloader as shown for this session
     if (isComplete && !hasShown) {
       sessionStorage.setItem('preloaderShown', 'true');
       setHasShown(true);
     }
   }, [isComplete, hasShown]);
 
-  // During SSR and initial hydration, render children without preloader
   if (!mounted) {
     return <>{children}</>;
   }
@@ -233,7 +200,6 @@ export function PreloaderWrapper({ children }: PreloaderWrapperProps) {
   );
 }
 
-// Easing function
 function easeOutExpo(x: number): number {
   return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
 }

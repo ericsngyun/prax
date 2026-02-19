@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ImageReveal } from '@/components/ui/ImageReveal';
@@ -10,12 +9,6 @@ import { prefersReducedMotion } from '@/lib/utils';
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   FOUNDER SECTION
-   Authority without ego - Think: Jony Ive, Rick Owens, Raf Simons
-   Split layout: Portrait + Philosophy
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 interface FounderSectionProps {
   heading: string;
@@ -48,35 +41,35 @@ export function FounderSection({
     if (!sectionRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Heading
+      // Heading — fade up
       gsap.from(headingRef.current, {
         scrollTrigger: {
-          trigger: headingRef.current,
-          start: 'top 75%',
+          trigger: sectionRef.current,
+          start: 'top 70%',
         },
         opacity: 0,
-        y: 40,
-        duration: 1,
-        ease: 'power3.out',
+        y: 24,
+        duration: 0.8,
+        ease: 'power2.out',
       });
 
-      // Philosophy paragraphs
-      philosophyRefs.current.forEach((p, i) => {
-        if (!p) return;
-        gsap.from(p, {
+      // Philosophy paragraphs — staggered fade up
+      const paragraphs = philosophyRefs.current.filter(Boolean);
+      if (paragraphs.length > 0) {
+        gsap.from(paragraphs, {
           scrollTrigger: {
-            trigger: p,
+            trigger: paragraphs[0],
             start: 'top 80%',
           },
           opacity: 0,
-          y: 30,
-          duration: 0.9,
-          delay: i * 0.1,
+          y: 24,
+          stagger: 0.1,
+          duration: 0.8,
           ease: 'power2.out',
         });
-      });
+      }
 
-      // Founder card
+      // Founder card — fade up
       if (founderCardRef.current) {
         gsap.from(founderCardRef.current, {
           scrollTrigger: {
@@ -84,9 +77,9 @@ export function FounderSection({
             start: 'top 80%',
           },
           opacity: 0,
-          y: 40,
-          duration: 1,
-          ease: 'power3.out',
+          y: 24,
+          duration: 0.8,
+          ease: 'power2.out',
         });
       }
     }, sectionRef);
@@ -100,12 +93,12 @@ export function FounderSection({
       className="section-padding-lg bg-prax-charcoal relative"
     >
       <div className="container-prax">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-20 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-20 lg:gap-24 items-start">
           {/* Left: Philosophy */}
           <div>
             <h2
               ref={headingRef}
-              className="text-h1 text-prax-white mb-12 md:mb-16"
+              className="text-h1 font-light text-prax-white mb-12 md:mb-16"
             >
               {heading}
             </h2>
@@ -127,7 +120,7 @@ export function FounderSection({
             {/* Divider */}
             <div className="w-16 h-px bg-prax-bone my-12 md:my-16" />
 
-            {/* Founder Info Card - Minimal */}
+            {/* Founder Info Card */}
             <div
               ref={founderCardRef}
               className="space-y-4"
@@ -144,8 +137,8 @@ export function FounderSection({
             </div>
           </div>
 
-          {/* Right: Portrait */}
-          <div className="lg:order-last order-first">
+          {/* Right: Portrait — asymmetric offset for editorial feel */}
+          <div className="lg:order-last order-first lg:mt-24">
             <ImageReveal
               src={imageSrc}
               alt={imageAlt}

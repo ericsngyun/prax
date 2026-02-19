@@ -40,45 +40,65 @@ export function PortfolioSection({
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  const baseSpeed = useRef(1);
+  const currentSpeed = useRef(1);
 
   useEffect(() => {
     if (!sectionRef.current || !marqueeRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Header animation
+      // Header — simple fade up
       gsap.from(headerRef.current, {
         scrollTrigger: {
           trigger: headerRef.current,
           start: 'top 85%',
         },
         opacity: 0,
-        y: 40,
+        y: 24,
         duration: 0.8,
-        ease: 'power3.out',
+        ease: 'power2.out',
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  // Separate effect for marquee animation (CSS-based for smoothness)
+  // Marquee with scroll-velocity sensitivity (functional — keep)
   useEffect(() => {
     if (!marqueeRef.current || prefersReducedMotion()) return;
 
     const marqueeInner = marqueeRef.current;
-    const marqueeWidth = marqueeInner.scrollWidth / 2; // Half because we duplicate
+    const marqueeWidth = marqueeInner.scrollWidth / 2;
 
     let animationId: number;
-    let startTime: number;
-    const duration = 40000; // 40 seconds for full loop
+    let position = 0;
+    let lastScrollY = window.scrollY;
+    let lastTime = performance.now();
 
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      const progress = (elapsed % duration) / duration;
-      const x = -progress * marqueeWidth;
+    // Track scroll velocity
+    const handleScroll = () => {
+      const now = performance.now();
+      const dt = now - lastTime;
+      if (dt > 0) {
+        const scrollDelta = Math.abs(window.scrollY - lastScrollY);
+        const velocity = scrollDelta / dt;
+        currentSpeed.current = 1 + Math.min(velocity * 8, 2);
+        lastScrollY = window.scrollY;
+        lastTime = now;
+      }
+    };
 
-      marqueeInner.style.transform = `translate3d(${x}px, 0, 0)`;
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    const animate = () => {
+      currentSpeed.current += (baseSpeed.current - currentSpeed.current) * 0.05;
+
+      position -= 0.5 * currentSpeed.current;
+      if (Math.abs(position) >= marqueeWidth) {
+        position += marqueeWidth;
+      }
+
+      marqueeInner.style.transform = `translate3d(${position}px, 0, 0)`;
       animationId = requestAnimationFrame(animate);
     };
 
@@ -86,8 +106,56 @@ export function PortfolioSection({
 
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const renderItem = (item: PortfolioItem, index: number, keyPrefix: string) => (
+    <div
+      key={`${keyPrefix}-${index}`}
+      className="portfolio-item flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative"
+    >
+      <span className="absolute -top-8 left-0 text-label text-prax-bone opacity-60">
+        {formatNumber(index + 1)}
+      </span>
+
+      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-prax-charcoal">
+        {item.src ? (
+          <>
+            <Image
+              src={item.src}
+              alt={item.alt}
+              fill
+              sizes="400px"
+              quality={85}
+              loading="lazy"
+              className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-prax-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+              {item.title && (
+                <h3 className="text-body-lg font-medium text-prax-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  {item.title}
+                </h3>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
+            <div className="text-center px-6">
+              <div className="text-body text-prax-white/60 mb-2">
+                {item.title || 'Portfolio Image'}
+              </div>
+              {item.note && (
+                <div className="text-caption text-prax-stone/60">
+                  {item.note}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 
   return (
     <section
@@ -102,128 +170,25 @@ export function PortfolioSection({
         <span className="text-label text-prax-bone uppercase tracking-widest block mb-4">
           {label}
         </span>
-        <h2 className="text-display font-bold text-prax-white tracking-tight">
+        <h2 className="text-display text-prax-white tracking-tight">
           {heading}
         </h2>
       </div>
 
       {/* Marquee Container */}
       <div className="relative">
+        {/* Edge fade masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-prax-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-prax-black to-transparent z-10 pointer-events-none" />
 
         {/* Infinite Marquee */}
         <div
           ref={marqueeRef}
           className="flex gap-6 md:gap-8 will-change-transform"
+          data-cursor="drag"
         >
-          {/* First set of items */}
-          {items.map((item, index) => (
-            <div
-              key={`first-${index}`}
-              className="portfolio-item flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative"
-            >
-              {/* Number */}
-              <span className="absolute -top-8 left-0 text-label text-prax-bone opacity-60">
-                {formatNumber(index + 1)}
-              </span>
-
-              {/* Image Container */}
-              <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-prax-charcoal">
-                {item.src ? (
-                  <>
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      sizes="400px"
-                      quality={85}
-                      loading="lazy"
-                      className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
-                    />
-
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                      {item.title && (
-                        <h3 className="text-body-lg font-medium text-prax-white">
-                          {item.title}
-                        </h3>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center border-2 border-dashed border-prax-graphite bg-gradient-to-b from-prax-charcoal/40 to-prax-ink/80">
-                    <div className="text-center px-6">
-                      <div className="text-label text-prax-bone/60 mb-3">
-                        Placeholder
-                      </div>
-                      <div className="text-body text-prax-white mb-2">
-                        {item.title || 'Portfolio Image'}
-                      </div>
-                      {item.note && (
-                        <div className="text-caption text-prax-stone">
-                          {item.note}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-
-          {/* Duplicate set for seamless loop */}
-          {items.map((item, index) => (
-            <div
-              key={`second-${index}`}
-              className="portfolio-item flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative"
-            >
-              {/* Number */}
-              <span className="absolute -top-8 left-0 text-label text-prax-bone opacity-60">
-                {formatNumber(index + 1)}
-              </span>
-
-              {/* Image Container */}
-              <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-prax-charcoal">
-                {item.src ? (
-                  <>
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      sizes="400px"
-                      quality={85}
-                      loading="lazy"
-                      className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.02]"
-                    />
-
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-prax-ink/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                      {item.title && (
-                        <h3 className="text-body-lg font-medium text-prax-white">
-                          {item.title}
-                        </h3>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center border-2 border-dashed border-prax-graphite bg-gradient-to-b from-prax-charcoal/40 to-prax-ink/80">
-                    <div className="text-center px-6">
-                      <div className="text-label text-prax-bone/60 mb-3">
-                        Placeholder
-                      </div>
-                      <div className="text-body text-prax-white mb-2">
-                        {item.title || 'Portfolio Image'}
-                      </div>
-                      {item.note && (
-                        <div className="text-caption text-prax-stone">
-                          {item.note}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+          {items.map((item, index) => renderItem(item, index, 'first'))}
+          {items.map((item, index) => renderItem(item, index, 'second'))}
         </div>
       </div>
     </section>
