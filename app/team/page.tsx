@@ -1,7 +1,9 @@
 import { TeamGridSection } from '@/components/sections/TeamGridSection';
 import { TeamValuesSection } from '@/components/sections/TeamValuesSection';
+import { StatsSection } from '@/components/sections/StatsSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
+import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 import { footerColumns } from '@/lib/footerConfig';
 
@@ -14,21 +16,11 @@ export const metadata = {
 export default function TeamPage() {
   return (
     <main className="min-h-screen pt-20 md:pt-24">
-      {/* Hero */}
-      <section className="section-padding-lg bg-prax-black">
-        <div className="container-prax max-w-5xl mx-auto">
-          <div className="mb-8">
-            <span className="text-label text-prax-silver">The Team</span>
-          </div>
-          <h1 className="text-h1 md:text-display text-prax-white mb-10 max-w-4xl">
-            Meet the Artists
-          </h1>
-          <p className="text-body-lg md:text-h4 text-prax-stone leading-relaxed max-w-2xl">
-            Every member of the PRAX team holds themselves to the same standard:
-            precision, consistency, and an uncompromising commitment to craft.
-          </p>
-        </div>
-      </section>
+      <InnerPageHero
+        label="The Team"
+        headline="Meet the Artists"
+        description="Every member of the PRAX team holds themselves to the same standard: precision, consistency, and an uncompromising commitment to craft."
+      />
 
       {/* Team Grid */}
       <TeamGridSection
@@ -148,36 +140,13 @@ export default function TeamPage() {
       />
 
       {/* Educator Credibility */}
-      <section className="section-padding bg-prax-ink">
-        <div className="container-prax max-w-5xl mx-auto">
-          <div className="grid grid-cols-3 gap-8 md:gap-16">
-            <div className="text-center md:text-left">
-              <div className="text-display-sm md:text-display text-prax-bone font-light mb-2">
-                500+
-              </div>
-              <div className="text-caption md:text-body-sm text-prax-silver">
-                Barbers trained worldwide
-              </div>
-            </div>
-            <div className="text-center md:text-left">
-              <div className="text-display-sm md:text-display text-prax-bone font-light mb-2">
-                7
-              </div>
-              <div className="text-caption md:text-body-sm text-prax-silver">
-                Cities with PRAX programs
-              </div>
-            </div>
-            <div className="text-center md:text-left">
-              <div className="text-display-sm md:text-display text-prax-bone font-light mb-2">
-                12+
-              </div>
-              <div className="text-caption md:text-body-sm text-prax-silver">
-                Years combined experience
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <StatsSection
+        stats={[
+          { value: 500, suffix: '+', label: 'Barbers trained worldwide' },
+          { value: 7, label: 'Cities with PRAX programs' },
+          { value: 12, suffix: '+', label: 'Years combined experience' },
+        ]}
+      />
 
       {/* CTA */}
       <CTASection

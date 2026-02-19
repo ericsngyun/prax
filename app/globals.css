@@ -32,7 +32,6 @@
      ═══════════════════════════════════════════════════════════════════════════ */
 
   --font-family-sans: var(--font-sans);
-  --font-family-serif: var(--font-serif);
 
   /* Fluid Type Scale */
   --text-hero: clamp(4.5rem, 15vw, 15rem);
@@ -186,14 +185,14 @@ html.lenis body {
   font-size: var(--text-hero);
   line-height: var(--leading-none);
   letter-spacing: var(--tracking-tightest);
-  font-weight: 900;
+  font-weight: 300;
 }
 
 .text-display {
   font-size: var(--text-display);
   line-height: var(--leading-tighter);
   letter-spacing: var(--tracking-tighter);
-  font-weight: 700;
+  font-weight: 300;
 }
 
 .text-h1 {
@@ -529,39 +528,54 @@ html.lenis body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   SERIF TYPOGRAPHY (EDITORIAL)
+   CLIP-PATH REVEAL ANIMATIONS
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.text-serif-hero {
-  font-family: var(--font-serif);
-  font-size: var(--text-hero);
-  line-height: var(--leading-none);
-  letter-spacing: var(--tracking-tighter);
-  font-weight: 300;
+.clip-reveal-up {
+  clip-path: inset(100% 0 0 0);
 }
 
-.text-serif-display {
-  font-family: var(--font-serif);
-  font-size: var(--text-display);
-  line-height: var(--leading-tighter);
-  letter-spacing: var(--tracking-tight);
-  font-weight: 400;
+.clip-reveal-down {
+  clip-path: inset(0 0 100% 0);
 }
 
-.text-serif-h1 {
-  font-family: var(--font-serif);
-  font-size: var(--text-h1);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-tight);
-  font-weight: 500;
+.clip-reveal-left {
+  clip-path: inset(0 100% 0 0);
 }
 
-.text-serif-h2 {
-  font-family: var(--font-serif);
-  font-size: var(--text-h2);
-  line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-normal);
-  font-weight: 500;
+.clip-reveal-right {
+  clip-path: inset(0 0 0 100%);
+}
+
+.clip-reveal-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+/* Button wipe hover effect */
+.btn-wipe {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-wipe::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-prax-bone);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--duration-normal) var(--ease-out);
+  z-index: -1;
+}
+
+.btn-wipe:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-wipe:hover {
+  color: var(--color-prax-ink);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

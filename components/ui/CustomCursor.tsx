@@ -3,54 +3,57 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { useCursorStore, CursorVariant } from '@/lib/store';
-import { cn } from '@/lib/utils';
+import { cn, lerp } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   CUSTOM CURSOR
-   A context-aware cursor with multiple states and smooth animations
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const cursorDotRef = useRef<HTMLDivElement>(null);
   const cursorRingRef = useRef<HTMLDivElement>(null);
   const cursorTextRef = useRef<HTMLDivElement>(null);
-  const positionRef = useRef({ x: 0, y: 0 });
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const ringPosRef = useRef({ x: 0, y: 0 });
+  const rafRef = useRef<number>(0);
   const isTouch = useRef(false);
 
   const { variant, text, isVisible } = useCursorStore();
 
-  // Check for touch device
   useEffect(() => {
     isTouch.current = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   }, []);
 
-  // Mouse move handler
+  // Mouse move — track position
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    positionRef.current = { x: e.clientX, y: e.clientY };
+    mouseRef.current = { x: e.clientX, y: e.clientY };
 
+    // Dot follows immediately
     if (cursorRef.current && !prefersReducedMotion()) {
-      // Main cursor follows immediately
-      gsap.to(cursorRef.current, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0,
-      });
-
-      // Ring follows with slight delay for trailing effect
-      if (cursorRingRef.current) {
-        gsap.to(cursorRingRef.current, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.15,
-          ease: 'power2.out',
-        });
-      }
+      cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
     }
   }, []);
 
-  // Handle cursor entering/leaving window
+  // Ring follows with lerp for organic trailing
+  useEffect(() => {
+    if (isTouch.current || prefersReducedMotion()) return;
+
+    const animate = () => {
+      ringPosRef.current.x = lerp(ringPosRef.current.x, mouseRef.current.x, 0.08);
+      ringPosRef.current.y = lerp(ringPosRef.current.y, mouseRef.current.y, 0.08);
+
+      if (cursorRingRef.current) {
+        cursorRingRef.current.style.transform = `translate(${ringPosRef.current.x}px, ${ringPosRef.current.y}px) translate(-50%, -50%)`;
+      }
+
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    rafRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
   const handleMouseEnter = useCallback(() => {
     if (cursorRef.current) {
       gsap.to(cursorRef.current, { opacity: 1, duration: 0.3 });
@@ -69,7 +72,6 @@ export function CustomCursor() {
     }
   }, []);
 
-  // Set up event listeners
   useEffect(() => {
     if (isTouch.current || prefersReducedMotion()) return;
 
@@ -89,10 +91,9 @@ export function CustomCursor() {
     if (!cursorDotRef.current || !cursorRingRef.current || prefersReducedMotion()) return;
 
     const dot = cursorDotRef.current;
-    const ring = cursorRingRef.current;
+    const ring = cursorRingRef.current.querySelector('div')!;
     const textEl = cursorTextRef.current;
 
-    // Reset text visibility
     if (textEl) {
       gsap.to(textEl, { opacity: 0, scale: 0.8, duration: 0.2 });
     }
@@ -100,19 +101,19 @@ export function CustomCursor() {
     switch (variant) {
       case 'default':
         gsap.to(dot, { scale: 1, opacity: 1, duration: 0.3, ease: 'power2.out' });
-        gsap.to(ring, { scale: 1, opacity: 0.5, duration: 0.3, ease: 'power2.out' });
+        gsap.to(ring, { width: 40, height: 40, opacity: 0.5, duration: 0.3, ease: 'power2.out' });
         break;
 
       case 'hover':
         gsap.to(dot, { scale: 0.5, opacity: 1, duration: 0.3, ease: 'back.out(2)' });
-        gsap.to(ring, { scale: 1.5, opacity: 1, duration: 0.3, ease: 'back.out(2)' });
+        gsap.to(ring, { width: 60, height: 60, opacity: 1, duration: 0.3, ease: 'back.out(2)' });
         break;
 
       case 'text':
       case 'view':
       case 'drag':
         gsap.to(dot, { scale: 0, opacity: 0, duration: 0.2 });
-        gsap.to(ring, { scale: 2.5, opacity: 1, duration: 0.3, ease: 'back.out(1.5)' });
+        gsap.to(ring, { width: 80, height: 80, opacity: 1, duration: 0.3, ease: 'back.out(1.5)' });
         if (textEl) {
           gsap.to(textEl, { opacity: 1, scale: 1, duration: 0.3, delay: 0.1 });
         }
@@ -120,13 +121,13 @@ export function CustomCursor() {
 
       case 'link':
         gsap.to(dot, { scale: 0.3, opacity: 1, duration: 0.3 });
-        gsap.to(ring, { scale: 1.8, opacity: 0.8, duration: 0.3, ease: 'back.out(2)' });
+        gsap.to(ring, { width: 60, height: 60, opacity: 0.8, duration: 0.3, ease: 'back.out(2)' });
         break;
 
       case 'arrow-left':
       case 'arrow-right':
         gsap.to(dot, { scale: 0, opacity: 0, duration: 0.2 });
-        gsap.to(ring, { scale: 2, opacity: 1, duration: 0.3 });
+        gsap.to(ring, { width: 70, height: 70, opacity: 1, duration: 0.3 });
         if (textEl) {
           gsap.to(textEl, { opacity: 1, scale: 1, duration: 0.3, delay: 0.1 });
         }
@@ -134,12 +135,11 @@ export function CustomCursor() {
 
       case 'hidden':
         gsap.to(dot, { scale: 0, opacity: 0, duration: 0.2 });
-        gsap.to(ring, { scale: 0, opacity: 0, duration: 0.2 });
+        gsap.to(ring, { width: 0, height: 0, opacity: 0, duration: 0.2 });
         break;
     }
   }, [variant]);
 
-  // Don't render on touch devices or reduced motion
   if (typeof window !== 'undefined' && (isTouch.current || prefersReducedMotion())) {
     return null;
   }
@@ -162,22 +162,22 @@ export function CustomCursor() {
 
   return (
     <>
-      {/* Main cursor container */}
+      {/* Main cursor container (dot) */}
       <div
         ref={cursorRef}
         className={cn(
           'fixed top-0 left-0 z-[10000] pointer-events-none mix-blend-difference',
           !isVisible && 'opacity-0'
         )}
-        style={{ transform: 'translate(-50%, -50%)' }}
+        style={{ willChange: 'transform' }}
       >
-        {/* Center dot */}
+        {/* Center dot — refined 6px */}
         <div
           ref={cursorDotRef}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-prax-white rounded-full"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-prax-white rounded-full"
         />
 
-        {/* Cursor text (for view/drag states) */}
+        {/* Cursor text */}
         <div
           ref={cursorTextRef}
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-prax-white text-[11px] font-medium tracking-wider uppercase whitespace-nowrap opacity-0"
@@ -186,16 +186,16 @@ export function CustomCursor() {
         </div>
       </div>
 
-      {/* Trailing ring */}
+      {/* Trailing ring — lerp-based following */}
       <div
         ref={cursorRingRef}
         className={cn(
           'fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference',
           !isVisible && 'opacity-0'
         )}
-        style={{ transform: 'translate(-50%, -50%)' }}
+        style={{ willChange: 'transform' }}
       >
-        <div className="w-10 h-10 border border-prax-white/50 rounded-full opacity-50" />
+        <div className="w-10 h-10 border border-prax-white/50 rounded-full opacity-50 -translate-x-1/2 -translate-y-1/2 transition-[width,height] duration-200" />
       </div>
     </>
   );
@@ -203,7 +203,6 @@ export function CustomCursor() {
 
 /* ═══════════════════════════════════════════════════════════════════════════
    CURSOR INTERACTION HOOK
-   Use this hook to easily set cursor states on hover
    ═══════════════════════════════════════════════════════════════════════════ */
 
 export function useCursor() {
@@ -226,7 +225,6 @@ export function useCursor() {
 
 /* ═══════════════════════════════════════════════════════════════════════════
    CURSOR HOVER WRAPPER
-   Wrap interactive elements to automatically change cursor state
    ═══════════════════════════════════════════════════════════════════════════ */
 
 interface CursorHoverProps {

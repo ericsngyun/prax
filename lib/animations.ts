@@ -619,3 +619,125 @@ export function staggerCards(
     delay: options?.delay ?? 0,
   });
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CLIP-PATH REVEAL ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * Clip-path reveal — element slides into view from a direction
+ */
+export function clipReveal(
+  element: HTMLElement | HTMLElement[],
+  options?: {
+    direction?: 'up' | 'down' | 'left' | 'right';
+    delay?: number;
+    duration?: number;
+    stagger?: number;
+    scrollTrigger?: ScrollTrigger.Vars;
+  }
+) {
+  if (prefersReducedMotion()) {
+    gsap.set(element, { clipPath: 'inset(0 0 0 0)' });
+    return;
+  }
+
+  const dir = options?.direction ?? 'up';
+  const clipStart = {
+    up: 'inset(100% 0 0 0)',
+    down: 'inset(0 0 100% 0)',
+    left: 'inset(0 100% 0 0)',
+    right: 'inset(0 0 0 100%)',
+  }[dir];
+
+  gsap.set(element, { clipPath: clipStart });
+
+  const config: gsap.TweenVars = {
+    clipPath: 'inset(0 0 0 0)',
+    duration: options?.duration ?? duration.slowest,
+    ease: 'power4.inOut',
+    delay: options?.delay ?? 0,
+    stagger: options?.stagger ?? 0,
+  };
+
+  if (options?.scrollTrigger) {
+    config.scrollTrigger = options.scrollTrigger;
+  }
+
+  return gsap.to(element, config);
+}
+
+/**
+ * Line-by-line reveal from overflow-hidden masks
+ * Wraps each line in an overflow-hidden container and translates up
+ */
+export function lineReveal(
+  elements: HTMLElement | HTMLElement[] | NodeListOf<Element>,
+  options?: {
+    delay?: number;
+    stagger?: number;
+    duration?: number;
+    scrollTrigger?: ScrollTrigger.Vars;
+  }
+) {
+  if (prefersReducedMotion()) {
+    gsap.set(elements, { y: 0 });
+    return;
+  }
+
+  gsap.set(elements, { y: '105%' });
+
+  const config: gsap.TweenVars = {
+    y: '0%',
+    duration: options?.duration ?? 1,
+    ease: 'power4.out',
+    stagger: options?.stagger ?? 0.12,
+    delay: options?.delay ?? 0,
+  };
+
+  if (options?.scrollTrigger) {
+    config.scrollTrigger = options.scrollTrigger;
+  }
+
+  return gsap.to(elements, config);
+}
+
+/**
+ * Counter animation — animates a number from 0 to target
+ */
+export function counterAnimation(
+  element: HTMLElement,
+  target: number,
+  options?: {
+    duration?: number;
+    prefix?: string;
+    suffix?: string;
+    delay?: number;
+    scrollTrigger?: ScrollTrigger.Vars;
+  }
+) {
+  if (prefersReducedMotion()) {
+    element.textContent = `${options?.prefix ?? ''}${target}${options?.suffix ?? ''}`;
+    return;
+  }
+
+  const obj = { value: 0 };
+  const prefix = options?.prefix ?? '';
+  const suffix = options?.suffix ?? '';
+
+  const config: gsap.TweenVars = {
+    value: target,
+    duration: options?.duration ?? 2,
+    ease: 'power2.out',
+    delay: options?.delay ?? 0,
+    onUpdate: () => {
+      element.textContent = `${prefix}${Math.round(obj.value)}${suffix}`;
+    },
+  };
+
+  if (options?.scrollTrigger) {
+    config.scrollTrigger = options.scrollTrigger;
+  }
+
+  return gsap.to(obj, config);
+}

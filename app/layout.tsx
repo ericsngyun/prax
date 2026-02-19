@@ -12,6 +12,11 @@ import { BookButton } from '@/components/ui/BookButton';
 const sohneSans = localFont({
   src: [
     {
+      path: '../public/fonts/sohne-font-family/TestSohne-Leicht-BF663d89cd4952e.otf',
+      weight: '300',
+      style: 'normal',
+    },
+    {
       path: '../public/fonts/sohne-font-family/TestSohne-Buch-BF663d89cd32e6a.otf',
       weight: '400',
       style: 'normal',
@@ -35,35 +40,6 @@ const sohneSans = localFont({
   variable: '--font-sans',
   display: 'swap',
   preload: true,
-  fallback: ['system-ui', 'sans-serif'],
-});
-
-const sohneSerif = localFont({
-  src: [
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Buch-BF663d89cd32e6a.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Halbfett-BF663d89cd2d67b.otf',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Fett-BF663d89cca89ff.otf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Extrafett-BF663d89cc9f2c0.otf',
-      weight: '800',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-serif',
-  display: 'swap',
-  preload: false,
   fallback: ['system-ui', 'sans-serif'],
 });
 
@@ -128,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sohneSans.variable} ${sohneSerif.variable}`}>
+    <html lang="en" className={sohneSans.variable}>
       <body className="bg-prax-ink text-prax-white font-sans antialiased cursor-custom">
         <LenisProvider>
           <PreloaderWrapper>

@@ -5,6 +5,7 @@ import { ExperienceTimelineSection } from '@/components/sections/ExperienceTimel
 import { BeforeAfterGallery } from '@/components/sections/BeforeAfterGallery';
 import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
+import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { footerColumns } from '@/lib/footerConfig';
 
 export const metadata = {
@@ -16,20 +17,11 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <main className="min-h-screen pt-20 md:pt-24">
-      {/* Hero — Left-aligned, structured */}
-      <section className="section-padding-lg bg-prax-black">
-        <div className="container-prax max-w-5xl mx-auto">
-          <div className="mb-8">
-            <span className="text-label text-prax-silver">Services</span>
-          </div>
-          <h1 className="text-h1 md:text-display text-prax-white mb-10 max-w-4xl">
-            Built, Not Rushed
-          </h1>
-          <p className="text-body-lg md:text-h4 text-prax-stone max-w-2xl leading-relaxed">
-            Clear service categories. Transparent expectations. Direct booking.
-          </p>
-        </div>
-      </section>
+      <InnerPageHero
+        label="Services"
+        headline="Built, Not Rushed"
+        description="Clear service categories. Transparent expectations. Direct booking."
+      />
 
       {/* Service Tiers */}
       <ServiceTiersSection
@@ -195,7 +187,7 @@ export default function ServicesPage() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="relative aspect-[4/5] bg-prax-charcoal border-2 border-dashed border-prax-graphite flex items-center justify-center"
+                className="relative aspect-[4/5] bg-prax-charcoal flex items-center justify-center"
               >
                 <div className="text-center px-6">
                   <div className="text-label text-prax-bone/60 mb-3">

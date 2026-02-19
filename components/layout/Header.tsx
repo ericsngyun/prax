@@ -103,7 +103,17 @@ export function Header() {
         )}
       >
         <div className="container-prax">
-          <div className="flex items-center justify-end h-12 md:h-14">
+          <div className="flex items-center justify-between h-12 md:h-14">
+            {/* Wordmark */}
+            <Link
+              href="/"
+              className="text-prax-white text-lg md:text-xl font-light tracking-[0.15em] hover:text-prax-bone transition-colors duration-300"
+              onMouseEnter={() => onEnter('link')}
+              onMouseLeave={onLeave}
+            >
+              PRAX
+            </Link>
+
             <div className="flex items-center gap-3 md:gap-4 rounded-full border border-prax-graphite/70 bg-prax-ink/60 backdrop-blur-xl px-4 md:px-5 py-2">
               {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center gap-5">
