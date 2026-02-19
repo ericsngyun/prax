@@ -93,40 +93,34 @@ export default function HomePage() {
         heading="Portfolio"
         items={[
           {
-            src: '',
+            src: cloudinaryAssets.portfolio01,
             alt: 'Studio cut - side profile',
             title: 'Studio Cut — Side Profile',
-            note: 'Clean lighting, neutral background, sharp silhouette',
           },
           {
-            src: '',
+            src: cloudinaryAssets.portfolio03,
             alt: 'Close-up detailing - scissor work',
             title: 'Close-Up Detailing',
-            note: 'Hands + tools, shallow depth of field',
           },
           {
-            src: '',
+            src: cloudinaryAssets.portfolio04,
             alt: 'Finished haircut - front view',
             title: 'Finished Look — Front View',
-            note: 'Model expression neutral, high contrast',
           },
           {
-            src: '',
+            src: cloudinaryAssets.portfolio05,
             alt: 'Texture and movement shot',
             title: 'Texture + Movement',
-            note: 'Natural motion, mid-length styling',
           },
           {
-            src: '',
-            alt: 'Blonding or color result',
+            src: cloudinaryAssets.portfolio06,
+            alt: 'Color work result',
             title: 'Color Work',
-            note: 'Even tone, refined finish, no distractions',
           },
           {
-            src: '',
+            src: cloudinaryAssets.portfolio07,
             alt: 'Studio environment b-roll',
             title: 'Studio Atmosphere',
-            note: 'Wide shot, minimalist interior, soft lighting',
           },
         ]}
       />

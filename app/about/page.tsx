@@ -1,8 +1,10 @@
 import { OriginStorySection } from '@/components/sections/OriginStorySection';
 import { CoreValuesDeepDive } from '@/components/sections/CoreValuesDeepDive';
 import { StudioSpaceSection } from '@/components/sections/StudioSpaceSection';
+import { PraxStandardSection } from '@/components/sections/PraxStandardSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
+import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 import { footerColumns } from '@/lib/footerConfig';
 
@@ -15,22 +17,11 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main className="min-h-screen pt-20 md:pt-24">
-      {/* Hero — Left-aligned, structured */}
-      <section className="section-padding-lg bg-prax-black">
-        <div className="container-prax max-w-5xl mx-auto">
-          <div className="mb-8">
-            <span className="text-label text-prax-silver">About</span>
-          </div>
-          <h1 className="text-h1 md:text-display text-prax-white mb-10 max-w-4xl">
-            Built on Craft, Not Hype
-          </h1>
-          <p className="text-body-lg md:text-h4 text-prax-stone leading-relaxed max-w-2xl">
-            PRAX was founded to raise the standard of men&apos;s haircutting —
-            emphasizing discipline, precision, and education over speed or
-            volume.
-          </p>
-        </div>
-      </section>
+      <InnerPageHero
+        label="About"
+        headline="Built on Craft, Not Hype"
+        description="PRAX was founded to raise the standard of men's haircutting — emphasizing discipline, precision, and education over speed or volume."
+      />
 
       {/* Origin Story */}
       <OriginStorySection
@@ -41,7 +32,7 @@ export default function AboutPage() {
           'What started as a single chair in Los Angeles has grown into a global education platform, teaching barbers in 7 cities worldwide the same principles: clarity, structure, and mastery of fundamentals.',
           'Today, PRAX serves both clients and students — offering precision haircuts in our LA studio, and world-class education for barbers who want to elevate their craft.',
         ]}
-        founderImageSrc={cloudinaryAssets.teamJack}
+        founderImageSrc={cloudinaryAssets.philosophyImage}
         founderImageAlt="Jack Louii - PRAX Founder"
       />
 
@@ -124,36 +115,7 @@ export default function AboutPage() {
       />
 
       {/* The PRAX Standard */}
-      <section className="section-padding bg-prax-black">
-        <div className="container-prax max-w-5xl mx-auto">
-          <h2 className="text-h1 text-prax-white mb-16 text-center">
-            The PRAX Standard
-          </h2>
-          <p className="text-body-lg text-prax-stone leading-relaxed text-center mb-16">
-            Every service. Every class. Every interaction.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-            <div className="text-center">
-              <div className="text-h2 text-prax-bone mb-3">Precision</div>
-              <div className="text-body text-prax-silver">
-                Intention in every cut
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-h2 text-prax-bone mb-3">Consistency</div>
-              <div className="text-body text-prax-silver">
-                Reliable results, every time
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-h2 text-prax-bone mb-3">Education</div>
-              <div className="text-body text-prax-silver">
-                Elevating the industry
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PraxStandardSection />
 
       {/* CTA */}
       <CTASection
