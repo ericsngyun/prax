@@ -40,8 +40,6 @@ export function LenisProvider({ children }: LenisProviderProps) {
       touchMultiplier: isMobile ? 1.2 : 1.5,
       // Better touch sync on mobile
       syncTouch: isMobile,
-      // Slightly increase resistance on mobile
-      touchInertiaMultiplier: isMobile ? 25 : 35,
       autoRaf: false,
     });
 
