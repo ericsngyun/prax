@@ -121,7 +121,7 @@ export function HeroSection({
           {/* Centered logo image */}
           <div ref={logoRef}>
             <Image
-              src="/images/prax-logo-white.png"
+              src="/images/prax-logo-x.png"
               alt=""
               width={320}
               height={320}
