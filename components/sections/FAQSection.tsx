@@ -34,22 +34,22 @@ const defaultItems: FAQItem[] = [
       'Yes. When booking online, you can select your preferred artist. Each team member holds themselves to the same standard of precision and craft.',
   },
   {
-    question: 'What if I don't like my haircut?',
+    question: 'What if I don\'t like my haircut?',
     answer:
-      'We stand behind our work. If you're not satisfied, contact us within 7 days and we'll make it right. Our goal is precision, consistency, and your confidence.',
+      'We stand behind our work. If you\'re not satisfied, contact us within 7 days and we\'ll make it right. Our goal is precision, consistency, and your confidence.',
   },
   {
     question: 'Do you accept walk-ins?',
     answer:
-      'No. PRAX operates by appointment only to ensure each client receives our full attention and time. This allows us to deliver the level of craft we're known for.',
+      'No. PRAX operates by appointment only to ensure each client receives our full attention and time. This allows us to deliver the level of craft we\'re known for.',
   },
   {
     question: 'Where are you located?',
     answer:
-      'We're based in Los Angeles, California. Our studio is designed for focus and calm—a space that reflects the precision of our work.',
+      'We\'re based in Los Angeles, California. Our studio is designed for focus and calm—a space that reflects the precision of our work.',
   },
   {
-    question: 'What's included in the Signature Cut?',
+    question: 'What\'s included in the Signature Cut?',
     answer:
       'Every Signature Cut includes consultation, precision cutting, detailing, styling, product recommendations, and maintenance guidance. Approximately 60-75 minutes.',
   },
