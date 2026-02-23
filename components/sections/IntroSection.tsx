@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
+import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -32,20 +33,22 @@ export function IntroSection({
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
+    const config = getMobileAnimationConfig();
+
     const ctx = gsap.context(() => {
-      // Statement — simple fade up
+      // Statement — simple fade up (mobile-optimized)
       gsap.from(statementRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 70%',
         },
         opacity: 0,
-        y: 24,
-        duration: 0.8,
-        ease: 'power2.out',
+        y: config.yOffset,
+        duration: config.duration * 2,
+        ease: config.ease,
       });
 
-      // Paragraphs — staggered fade up
+      // Paragraphs — staggered fade up (mobile-optimized)
       const paragraphs = paragraphRefs.current.filter(Boolean);
       if (paragraphs.length > 0) {
         gsap.from(paragraphs, {
@@ -54,14 +57,14 @@ export function IntroSection({
             start: 'top 85%',
           },
           opacity: 0,
-          y: 24,
-          stagger: 0.1,
-          duration: 0.8,
-          ease: 'power2.out',
+          y: config.yOffset,
+          stagger: config.stagger,
+          duration: config.duration * 2,
+          ease: config.ease,
         });
       }
 
-      // Divider scaleX from center (intentional accent — keep)
+      // Divider scaleX from center (intentional accent — keep but faster on mobile)
       if (dividerRef.current) {
         gsap.from(dividerRef.current, {
           scrollTrigger: {
@@ -69,7 +72,7 @@ export function IntroSection({
             start: 'top 85%',
           },
           scaleX: 0,
-          duration: 1.4,
+          duration: config.duration * 3.5, // Faster on mobile, still deliberate
           ease: 'power3.inOut',
         });
       }

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
+import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -68,32 +69,34 @@ export function ServicesPreviewSection({
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
+    const config = getMobileAnimationConfig();
+
     const ctx = gsap.context(() => {
-      // Label — fade up
+      // Label — fade up (mobile-optimized)
       gsap.from(labelRef.current, {
         scrollTrigger: {
           trigger: labelRef.current,
           start: 'top 80%',
         },
         opacity: 0,
-        y: 20,
-        duration: 0.6,
-        ease: 'power2.out',
+        y: config.yOffset,
+        duration: config.duration * 1.5,
+        ease: config.ease,
       });
 
-      // Heading — fade up
+      // Heading — fade up (mobile-optimized)
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 24,
-        duration: 0.8,
-        ease: 'power2.out',
+        y: config.yOffset,
+        duration: config.duration * 2,
+        ease: config.ease,
       });
 
-      // Services — staggered fade up
+      // Services — staggered fade up (mobile-optimized)
       const services = serviceRefs.current.filter(Boolean);
       if (services.length > 0) {
         gsap.from(services, {
@@ -102,14 +105,14 @@ export function ServicesPreviewSection({
             start: 'top 85%',
           },
           opacity: 0,
-          y: 24,
-          stagger: 0.1,
-          duration: 0.8,
-          ease: 'power2.out',
+          y: config.yOffset,
+          stagger: config.stagger,
+          duration: config.duration * 2,
+          ease: config.ease,
         });
       }
 
-      // Number counter animation (intentional accent — keep)
+      // Number counter animation (intentional accent — keep, slightly faster on mobile)
       numberRefs.current.forEach((num, i) => {
         if (!num) return;
         const target = i + 1;
@@ -120,7 +123,7 @@ export function ServicesPreviewSection({
             start: 'top 85%',
           },
           value: target,
-          duration: 1.2,
+          duration: config.duration * 3, // Faster on mobile
           delay: i * 0.15,
           ease: 'power2.out',
           onUpdate: () => {
@@ -163,21 +166,21 @@ export function ServicesPreviewSection({
               ref={(el) => {
                 if (el) serviceRefs.current[index] = el;
               }}
-              className="group relative"
+              className="group relative service-card"
             >
-              <div className="relative h-full flex flex-col border border-transparent hover:border-prax-graphite transition-colors duration-500 p-0 hover:p-6">
+              <div className="relative h-full flex flex-col p-6 md:p-8 border border-prax-graphite/30 hover:border-prax-bone/40 transition-all duration-500 bg-prax-charcoal/0 hover:bg-prax-charcoal/30">
                 {/* Number */}
                 <div
                   ref={(el) => {
                     if (el) numberRefs.current[index] = el;
                   }}
-                  className="text-sm font-mono text-prax-bone/40 mb-8"
+                  className="text-sm font-mono text-prax-bone/60 group-hover:text-prax-bone transition-colors duration-500 mb-8"
                 >
                   00
                 </div>
 
                 {/* Title */}
-                <h3 className="text-h3 text-prax-white font-medium mb-6 tracking-tight">
+                <h3 className="text-h3 text-prax-white font-medium mb-6 tracking-tight group-hover:text-prax-bone transition-colors duration-500">
                   {service.title}
                 </h3>
 
@@ -191,8 +194,7 @@ export function ServicesPreviewSection({
                   href={service.cta.href}
                   target={service.cta.href.startsWith('http') ? '_blank' : undefined}
                   rel={service.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-prax-bone hover:text-prax-white transition-colors duration-300 group/link"
-                  data-cursor="link"
+                  className="inline-flex items-center gap-2 text-body-sm font-medium text-prax-bone hover:text-prax-white transition-colors duration-300 group/link cursor-pointer"
                 >
                   <span>{service.cta.text}</span>
                   <svg
@@ -210,8 +212,11 @@ export function ServicesPreviewSection({
                   </svg>
                 </a>
 
-                {/* Decorative accent */}
-                <div className="absolute bottom-0 left-0 w-0 h-px bg-prax-bone/20 group-hover:w-full transition-all duration-700 ease-out" />
+                {/* Decorative accent line - bottom */}
+                <div className="absolute bottom-0 left-0 w-0 h-px bg-prax-bone group-hover:w-full transition-all duration-700 ease-out" />
+
+                {/* Decorative accent line - top (subtle) */}
+                <div className="absolute top-0 left-0 w-full h-px bg-prax-bone opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
               </div>
             </div>
           ))}

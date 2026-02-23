@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
+import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
+import { revealWithBlur } from '@/lib/animations';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -163,7 +165,7 @@ function TeamMemberPortrait({
           fill
           sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 600px"
           quality={80}
-          className={`object-cover img-team transition-opacity duration-500 ${
+          className={`team-portrait-img object-cover img-team transition-opacity duration-500 ${
             isHovering && member.videoSrc ? 'opacity-0' : 'opacity-100'
           }`}
         />
@@ -235,17 +237,19 @@ export function TeamGridSection({
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
+    const config = getMobileAnimationConfig();
+
     const ctx = gsap.context(() => {
-      // Header — fade up
+      // Header — fade up (mobile-optimized)
       gsap.from(headingRef.current, {
         scrollTrigger: {
           trigger: headingRef.current,
           start: 'top 75%',
         },
         opacity: 0,
-        y: 24,
-        duration: 0.8,
-        ease: 'power2.out',
+        y: config.yOffset,
+        duration: config.duration * 2, // Slightly slower for headings
+        ease: config.ease,
       });
 
       gsap.from(descriptionRef.current, {
@@ -254,9 +258,9 @@ export function TeamGridSection({
           start: 'top 80%',
         },
         opacity: 0,
-        y: 24,
-        duration: 0.8,
-        ease: 'power2.out',
+        y: config.yOffset,
+        duration: config.duration * 2,
+        ease: config.ease,
       });
 
       // Members — staggered fade up
@@ -268,10 +272,20 @@ export function TeamGridSection({
             start: 'top 85%',
           },
           opacity: 0,
-          y: 24,
-          duration: 0.8,
-          ease: 'power2.out',
+          y: config.yOffset,
+          duration: config.duration * 2,
+          ease: config.ease,
         });
+
+        // Subtle blur reveal on portrait images (luxury brand pattern)
+        // Only on desktop for performance - very subtle
+        const portraitImg = member.querySelector('.team-portrait-img');
+        if (portraitImg && window.innerWidth >= 768) {
+          revealWithBlur(portraitImg as HTMLElement, {
+            scrollTrigger: true,
+            blurAmount: 8, // Subtle - not aggressive
+          });
+        }
       });
     }, sectionRef);
 
@@ -321,8 +335,7 @@ export function TeamGridSection({
                   <a
                     key={member.name}
                     href={`#team-${index + 1}`}
-                    className="text-body-sm text-prax-stone hover:text-prax-white transition-colors duration-300"
-                    data-cursor="link"
+                    className="text-body-sm text-prax-stone hover:text-prax-white transition-colors duration-300 cursor-pointer"
                   >
                     <span className="text-prax-silver mr-2">
                       {String(index + 1).padStart(2, '0')}
@@ -459,8 +472,7 @@ export function TeamGridSection({
                       onClick={() =>
                         openVideoModal(member.videoSrc!, member.name)
                       }
-                      className="inline-flex items-center gap-3 text-body-sm text-prax-bone hover:text-prax-white transition-colors duration-300 group/vid"
-                      data-cursor="hover"
+                      className="inline-flex items-center gap-3 text-body-sm text-prax-bone hover:text-prax-white transition-colors duration-300 group/vid cursor-pointer"
                     >
                       <div className="w-8 h-8 rounded-full border border-prax-bone/40 flex items-center justify-center group-hover/vid:border-prax-white/60 transition-colors">
                         <svg
@@ -483,8 +495,7 @@ export function TeamGridSection({
                         href={member.bookingUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn btn-primary btn-wipe w-full text-center"
-                        data-cursor="hover"
+                        className="btn btn-primary btn-wipe w-full text-center cursor-pointer"
                       >
                         Book with {member.name.split(' ')[0]}
                       </a>
@@ -497,8 +508,7 @@ export function TeamGridSection({
                         href={`https://www.instagram.com/${member.instagramHandle}/`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-body-sm text-prax-bone hover:text-prax-white transition-colors duration-300 group/ig"
-                        data-cursor="link"
+                        className="inline-flex items-center gap-2 text-body-sm text-prax-bone hover:text-prax-white transition-colors duration-300 group/ig cursor-pointer"
                       >
                         <svg
                           className="w-5 h-5"

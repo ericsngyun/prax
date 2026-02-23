@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion, formatNumber } from '@/lib/utils';
+import { tiltCardOnHover } from '@/lib/animations';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -60,6 +61,22 @@ export function PortfolioSection({
       });
     }, sectionRef);
 
+    // Subtle 3D tilt on portfolio items (desktop only, very minimal)
+    if (window.innerWidth >= 768) {
+      const portfolioItems = sectionRef.current.querySelectorAll('.portfolio-item-tilt');
+      const cleanupFunctions: (() => void)[] = [];
+
+      portfolioItems.forEach((item) => {
+        const cleanup = tiltCardOnHover(item as HTMLElement, { strength: 2 }); // Very subtle - 2deg max
+        if (cleanup) cleanupFunctions.push(cleanup);
+      });
+
+      return () => {
+        ctx.revert();
+        cleanupFunctions.forEach(cleanup => cleanup());
+      };
+    }
+
     return () => ctx.revert();
   }, []);
 
@@ -113,7 +130,7 @@ export function PortfolioSection({
   const renderItem = (item: PortfolioItem, index: number, keyPrefix: string) => (
     <div
       key={`${keyPrefix}-${index}`}
-      className="portfolio-item flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative"
+      className="portfolio-item portfolio-item-tilt flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative"
     >
       <span className="absolute -top-8 left-0 text-label text-prax-bone opacity-60">
         {formatNumber(index + 1)}
@@ -185,7 +202,6 @@ export function PortfolioSection({
         <div
           ref={marqueeRef}
           className="flex gap-6 md:gap-8 will-change-transform"
-          data-cursor="drag"
         >
           {items.map((item, index) => renderItem(item, index, 'first'))}
           {items.map((item, index) => renderItem(item, index, 'second'))}

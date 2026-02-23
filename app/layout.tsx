@@ -3,7 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { LenisProvider } from '@/components/providers/LenisProvider';
 import { Header } from '@/components/layout/Header';
-import { CustomCursor } from '@/components/ui/CustomCursor';
+// import { CustomCursor } from '@/components/ui/CustomCursor'; // Disabled - using default cursor
 import { PreloaderWrapper } from '@/components/ui/Preloader';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { BookButton } from '@/components/ui/BookButton';
@@ -105,7 +105,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={sohneSans.variable}>
-      <body className="bg-prax-ink text-prax-white font-sans antialiased cursor-custom">
+      <body className="bg-prax-ink text-prax-white font-sans antialiased">
         <LenisProvider>
           <PreloaderWrapper>
             <Header />
@@ -113,8 +113,8 @@ export default function RootLayout({
           </PreloaderWrapper>
           <ScrollProgress />
         </LenisProvider>
-        {/* Custom Cursor */}
-        <CustomCursor />
+        {/* Custom Cursor - Disabled for cleaner minimal experience */}
+        {/* <CustomCursor /> */}
         {/* Fixed Book Button */}
         <BookButton />
         {/* Noise Overlay */}

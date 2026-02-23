@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { VideoBackground } from '@/components/ui/VideoBackground';
 import { prefersReducedMotion } from '@/lib/utils';
+import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -39,15 +40,18 @@ export function HeroSection({
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
+    const config = getMobileAnimationConfig();
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
     const ctx = gsap.context(() => {
-      // Simple entrance timeline — opacity fades only
-      const tl = gsap.timeline({ delay: 0.6 });
+      // Simple entrance timeline — mobile-optimized
+      const tl = gsap.timeline({ delay: isMobile ? 0.3 : 0.6 });
 
       // Logo fades in
       tl.from(logoRef.current, {
         opacity: 0,
-        duration: 1,
-        ease: 'power2.out',
+        duration: config.duration * 2.5, // Still slower for logo impact
+        ease: config.ease,
       });
 
       // Kicker fades in with delay
@@ -55,9 +59,9 @@ export function HeroSection({
         kickerRef.current,
         {
           opacity: 0,
-          y: 10,
-          duration: 0.8,
-          ease: 'power2.out',
+          y: isMobile ? 8 : 10,
+          duration: config.duration * 2,
+          ease: config.ease,
         },
         '-=0.4'
       );
@@ -67,24 +71,26 @@ export function HeroSection({
         bottomBlockRef.current,
         {
           opacity: 0,
-          y: 24,
-          duration: 0.8,
-          ease: 'power2.out',
+          y: config.yOffset,
+          duration: config.duration * 2,
+          ease: config.ease,
         },
         '-=0.4'
       );
 
-      // Scroll: simple opacity fade (no blur)
-      gsap.to(contentRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: '60% top',
-          scrub: true,
-        },
-        opacity: 0,
-        ease: 'none',
-      });
+      // Scroll: simple opacity fade (no blur) - skip on mobile for performance
+      if (!isMobile) {
+        gsap.to(contentRef.current, {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: '60% top',
+            scrub: true,
+          },
+          opacity: 0,
+          ease: 'none',
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -149,8 +155,7 @@ export function HeroSection({
                 href={primaryCTA.href}
                 target={primaryCTA.href.startsWith('http') ? '_blank' : undefined}
                 rel={primaryCTA.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="btn btn-primary text-body-sm"
-                data-cursor="hover"
+                className="btn btn-primary text-body-sm cursor-pointer"
               >
                 {primaryCTA.text}
               </a>

@@ -741,3 +741,219 @@ export function counterAnimation(
 
   return gsap.to(obj, config);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AWWWARDS-LEVEL SIGNATURE ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * Magnetic Text Reveal — Characters reveal with scroll-linked opacity
+ * Premium effect used in award-winning sites
+ */
+export function magneticTextReveal(
+  element: HTMLElement,
+  options?: {
+    speed?: number;
+    staggerDelay?: number;
+  }
+) {
+  if (prefersReducedMotion()) return;
+
+  const chars = element.querySelectorAll('.char');
+  if (chars.length === 0) return;
+
+  gsap.set(chars, { opacity: 0.3 });
+
+  return gsap.to(chars, {
+    scrollTrigger: {
+      trigger: element,
+      start: 'top 60%',
+      end: 'top 40%',
+      scrub: 1,
+    },
+    opacity: 1,
+    duration: 1,
+    stagger: 0.02,
+    ease: 'none',
+  });
+}
+
+/**
+ * SVG Path Draw Animation — Animated stroke reveal
+ * Signature animation on premium sites
+ */
+export function drawSVGPath(
+  svgElement: SVGPathElement,
+  options?: {
+    duration?: number;
+    delay?: number;
+    scrollTrigger?: boolean;
+  }
+) {
+  if (prefersReducedMotion()) {
+    gsap.set(svgElement, { strokeDashoffset: 0 });
+    return;
+  }
+
+  const length = svgElement.getTotalLength();
+  gsap.set(svgElement, {
+    strokeDasharray: length,
+    strokeDashoffset: length,
+  });
+
+  const config: gsap.TweenVars = {
+    strokeDashoffset: 0,
+    duration: options?.duration ?? 2,
+    ease: 'power2.inOut',
+    delay: options?.delay ?? 0,
+  };
+
+  if (options?.scrollTrigger) {
+    config.scrollTrigger = {
+      trigger: svgElement,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse',
+    };
+  }
+
+  return gsap.to(svgElement, config);
+}
+
+/**
+ * Blur-to-Sharp Image Reveal — Premium image entrance
+ * Used by luxury brands for sophisticated reveals
+ */
+export function revealWithBlur(
+  element: HTMLElement,
+  options?: {
+    scrollTrigger?: boolean;
+    blurAmount?: number;
+  }
+) {
+  if (prefersReducedMotion()) {
+    gsap.set(element, { filter: 'blur(0px)', opacity: 1 });
+    return;
+  }
+
+  const blurAmount = options?.blurAmount ?? 20;
+  gsap.set(element, { filter: `blur(${blurAmount}px)`, opacity: 0 });
+
+  const config: gsap.TweenVars = {
+    filter: 'blur(0px)',
+    opacity: 1,
+    duration: duration.slowest,
+    ease: ease.inOut,
+  };
+
+  if (options?.scrollTrigger) {
+    config.scrollTrigger = {
+      trigger: element,
+      start: 'top 80%',
+      toggleActions: 'play none none reverse',
+    };
+  }
+
+  return gsap.to(element, config);
+}
+
+/**
+ * 3D Tilt Card Effect — Interactive depth on hover (Desktop only)
+ * Premium micro-interaction for cards/images
+ */
+export function tiltCardOnHover(card: HTMLElement, options?: { strength?: number }) {
+  // Skip on mobile/touch devices
+  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+    return;
+  }
+
+  if (prefersReducedMotion()) return;
+
+  const strength = options?.strength ?? 5;
+
+  const handleMouseMove = (e: MouseEvent) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+    gsap.to(card, {
+      rotateX: y * strength * -1,
+      rotateY: x * strength,
+      transformPerspective: 1000,
+      duration: 0.5,
+      ease: 'power2.out',
+    });
+  };
+
+  const handleMouseLeave = () => {
+    gsap.to(card, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.5,
+      ease: 'power2.out',
+    });
+  };
+
+  card.addEventListener('mousemove', handleMouseMove);
+  card.addEventListener('mouseleave', handleMouseLeave);
+
+  // Return cleanup function
+  return () => {
+    card.removeEventListener('mousemove', handleMouseMove);
+    card.removeEventListener('mouseleave', handleMouseLeave);
+  };
+}
+
+/**
+ * Spotlight Card Effect — Mouse-following gradient overlay
+ * Premium hover effect for cards/sections
+ */
+export function spotlightCard(card: HTMLElement) {
+  // Skip on mobile/touch devices
+  if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) {
+    return;
+  }
+
+  if (prefersReducedMotion()) return;
+
+  const handleMouseMove = (e: MouseEvent) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
+  };
+
+  card.addEventListener('mousemove', handleMouseMove);
+
+  // Return cleanup function
+  return () => {
+    card.removeEventListener('mousemove', handleMouseMove);
+  };
+}
+
+/**
+ * Staggered Line Reveal — Navigation/list items entrance
+ * Common pattern in award-winning sites
+ */
+export function staggeredLineReveal(
+  elements: HTMLElement[] | NodeListOf<Element>,
+  options?: {
+    delay?: number;
+    stagger?: number;
+  }
+) {
+  if (prefersReducedMotion()) {
+    gsap.set(elements, { y: 0, opacity: 1 });
+    return;
+  }
+
+  return gsap.from(elements, {
+    y: 20,
+    opacity: 0,
+    stagger: options?.stagger ?? 0.08,
+    duration: 0.6,
+    ease: ease.out,
+    delay: options?.delay ?? 0,
+  });
+}

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigationStore } from '@/lib/store';
-import { useCursor } from '@/components/ui/CustomCursor';
+// import { useCursor } from '@/components/ui/CustomCursor'; // Disabled - using default cursor
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
 
@@ -28,10 +28,11 @@ const navLinks = [
 
 export function Header() {
   const headerRef = useRef<HTMLElement>(null);
+  const navRef = useRef<HTMLElement>(null);
   const lastScrollY = useRef(0);
   const [isHidden, setIsHidden] = useState(false);
   const { isMenuOpen, toggleMenu } = useNavigationStore();
-  const { onEnter, onLeave } = useCursor();
+  // const { onEnter, onLeave } = useCursor(); // Disabled - using default cursor
   const scrollStopTimeout = useRef<number | null>(null);
 
   // Handle scroll behavior - hide on scroll down, show on scroll up
@@ -94,6 +95,28 @@ export function Header() {
     };
   }, [isMenuOpen]);
 
+  // Subtle navigation entrance animation (desktop only, on mount)
+  useEffect(() => {
+    if (!navRef.current || prefersReducedMotion()) return;
+    if (typeof window === 'undefined' || window.innerWidth < 768) return;
+
+    const links = navRef.current.querySelectorAll('a');
+
+    // Ensure links are visible first, then animate
+    gsap.set(links, { opacity: 1, y: 0 });
+
+    // Only animate if on desktop and animations are enabled
+    gsap.from(links, {
+      opacity: 0,
+      y: -8,
+      duration: 0.5,
+      stagger: 0.06,
+      ease: 'power2.out',
+      delay: 0.3,
+      clearProps: 'all', // Clear props after animation completes
+    });
+  }, []);
+
   return (
     <>
       <header
@@ -108,22 +131,18 @@ export function Header() {
             <Link
               href="/"
               className="text-prax-white text-lg md:text-xl font-light tracking-[0.15em] hover:text-prax-bone transition-colors duration-300"
-              onMouseEnter={() => onEnter('link')}
-              onMouseLeave={onLeave}
             >
               PRAX
             </Link>
 
             <div className="flex items-center gap-3 md:gap-4 rounded-full border border-prax-graphite/70 bg-prax-ink/60 backdrop-blur-xl px-4 md:px-5 py-2">
               {/* Desktop Navigation */}
-              <nav className="hidden md:flex items-center gap-5">
+              <nav ref={navRef} className="hidden md:flex items-center gap-5">
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-body-sm text-prax-stone hover:text-prax-white transition-colors duration-300"
-                    onMouseEnter={() => onEnter('link')}
-                    onMouseLeave={onLeave}
+                    className="text-body-sm text-prax-white hover:text-prax-bone transition-colors duration-300 opacity-100 cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -133,9 +152,7 @@ export function Header() {
               {/* Mobile Menu Toggle */}
               <button
                 onClick={toggleMenu}
-                className="relative z-10 md:hidden px-2 py-1 text-body-sm tracking-wide text-prax-white"
-                onMouseEnter={() => onEnter('hover')}
-                onMouseLeave={onLeave}
+                className="relative z-10 md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-body-sm tracking-wide text-prax-white hover:text-prax-bone transition-colors duration-300 cursor-pointer"
                 aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={isMenuOpen}
               >
@@ -165,7 +182,7 @@ interface MobileMenuProps {
 function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
-  const { onEnter, onLeave } = useCursor();
+  // const { onEnter, onLeave } = useCursor(); // Disabled - using default cursor
 
   useEffect(() => {
     if (!menuRef.current || !linksRef.current || prefersReducedMotion()) return;
@@ -219,52 +236,48 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       style={{ clipPath: 'inset(0% 0% 100% 0%)' }}
       aria-hidden={!isOpen}
     >
-      <div className="container-prax">
-        <div className="absolute top-6 right-6">
+      <div className="container-prax relative">
+        <div className="absolute top-0 right-0 md:top-6 md:right-6">
           <button
             onClick={onClose}
-            className="text-body-sm tracking-wide text-prax-white hover:text-prax-bone transition-colors"
-            onMouseEnter={() => onEnter('hover')}
-            onMouseLeave={onLeave}
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-body-sm tracking-wide text-prax-white hover:text-prax-bone transition-colors cursor-pointer"
             aria-label="Close menu"
           >
             Close
           </button>
         </div>
-        <nav ref={linksRef} className="flex flex-col gap-6">
+        <nav ref={linksRef} className="flex flex-col gap-4 md:gap-6">
           {navLinks.map((link, index) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="text-display-sm text-prax-white hover:text-prax-bone transition-colors"
-              onMouseEnter={() => onEnter('link')}
-              onMouseLeave={onLeave}
+              className="flex items-baseline gap-3 md:gap-4 group cursor-pointer"
             >
-              <span className="text-prax-silver text-label mr-4">
+              <span className="text-label text-prax-bone opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0">
                 {String(index + 1).padStart(2, '0')}
               </span>
-              {link.label}
+              <span className="text-h2 md:text-display-sm text-prax-white group-hover:text-prax-bone transition-colors leading-tight">
+                {link.label}
+              </span>
             </Link>
           ))}
 
-          <div className="pt-8 mt-8 border-t border-prax-graphite">
-            <div className="text-body-sm text-prax-silver">
-              Appointments are booked through the hero CTA.
-            </div>
+          <div className="pt-6 mt-6 border-t border-prax-graphite">
+            <p className="text-body text-prax-stone max-w-md">
+              Ready to book? Scroll to the top and click "Book an Appointment" or use the floating button.
+            </p>
           </div>
         </nav>
 
         {/* Social links */}
-        <div className="absolute bottom-12 left-0 right-0 container-prax">
-          <div className="flex gap-6 text-prax-silver text-body-sm">
+        <div className="absolute bottom-8 md:bottom-12 left-0 right-0 container-prax">
+          <div className="flex gap-8 text-prax-stone text-body-sm">
             <a
               href="https://www.instagram.com/praxhair/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-prax-white transition-colors"
-              onMouseEnter={() => onEnter('link')}
-              onMouseLeave={onLeave}
+              className="hover:text-prax-white transition-colors min-h-[44px] flex items-center cursor-pointer"
             >
               Instagram
             </a>
@@ -272,9 +285,7 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               href="https://www.tiktok.com/@praxhair"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-prax-white transition-colors"
-              onMouseEnter={() => onEnter('link')}
-              onMouseLeave={onLeave}
+              className="hover:text-prax-white transition-colors min-h-[44px] flex items-center cursor-pointer"
             >
               TikTok
             </a>

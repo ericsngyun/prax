@@ -60,7 +60,7 @@ export function BeforeAfterGallery({
       </div>
 
       {/* Horizontal scroll container with snap */}
-      <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory" data-cursor="drag">
+      <div className="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
         <div className="flex gap-8 px-6 md:px-16 pb-4">
           {items.map((item, index) => (
             <div

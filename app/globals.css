@@ -113,6 +113,55 @@
   --z-modal: 300;
   --z-popover: 400;
   --z-toast: 500;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SHADOWS — Depth System
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --shadow-subtle: 0 4px 12px oklch(0 0 0 / 0.08);
+  --shadow-medium: 0 8px 24px oklch(0 0 0 / 0.12), 0 16px 40px oklch(0 0 0 / 0.08);
+  --shadow-strong: 0 20px 40px oklch(0 0 0 / 0.4);
+  --shadow-glow-white: 0 0 20px oklch(1 0 0 / 0.1), 0 0 40px oklch(1 0 0 / 0.05);
+  --shadow-glow-bone: 0 0 20px oklch(0.93 0.01 90 / 0.15), 0 0 40px oklch(0.93 0.01 90 / 0.1);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     ICON SIZES
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --size-icon-xs: 16px;
+  --size-icon-sm: 20px;
+  --size-icon-md: 24px;
+  --size-icon-lg: 32px;
+  --size-icon-xl: 40px;
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     TOUCH TARGETS (Mobile Optimization)
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --touch-target-min: 44px;    /* WCAG 2.5.5 Level AAA minimum */
+  --touch-target-comfortable: 48px;
+  --touch-target-large: 56px;
+  --touch-spacing: 8px;         /* Minimum spacing between touch targets */
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     TRANSITION PRESETS
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --transition-fast: all var(--duration-fast) var(--ease-out);
+  --transition-normal: all var(--duration-normal) var(--ease-out);
+  --transition-slow: all var(--duration-slow) var(--ease-out);
+  --transition-color: color var(--duration-normal) var(--ease-out);
+  --transition-opacity: opacity var(--duration-normal) var(--ease-out);
+  --transition-transform: transform var(--duration-normal) var(--ease-out);
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     FOCUS STATES
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --focus-ring: 2px solid var(--color-prax-white);
+  --focus-ring-offset: 2px;
+  --focus-ring-bone: 2px solid var(--color-prax-bone);
+  --focus-shadow: 0 0 0 3px oklch(0.93 0.01 90 / 0.2);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -414,10 +463,12 @@ html.lenis body {
   font-size: var(--text-body-sm);
   font-weight: 500;
   letter-spacing: var(--tracking-wide);
-  transition: all var(--duration-normal) var(--ease-out);
+  transition: var(--transition-normal);
   cursor: pointer;
   border: none;
   outline: none;
+  min-height: var(--touch-target-min);
+  position: relative;
 }
 
 .btn-primary {
@@ -429,7 +480,18 @@ html.lenis body {
 
 .btn-primary:hover {
   background: var(--color-prax-bone);
-  box-shadow: 0 0 20px oklch(1 0 0 / 0.08), 0 0 40px oklch(1 0 0 / 0.04);
+  box-shadow: var(--shadow-glow-white);
+  transform: scale(1.02);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-subtle);
+}
+
+.btn-primary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .btn-secondary {
@@ -443,6 +505,17 @@ html.lenis body {
 .btn-secondary:hover {
   background: oklch(1 0 0 / 0.05);
   border-color: oklch(1 0 0 / 0.4);
+  transform: scale(1.02);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+  background: oklch(1 0 0 / 0.08);
+}
+
+.btn-secondary:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .btn-ghost {
@@ -453,6 +526,15 @@ html.lenis body {
 
 .btn-ghost:hover {
   color: var(--color-prax-bone);
+}
+
+.btn-ghost:active {
+  color: var(--color-prax-stone);
+}
+
+.btn-ghost:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -731,6 +813,78 @@ html.lenis body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE-SPECIFIC TOUCH FEEDBACK (Pointer: Coarse)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (pointer: coarse) {
+  /* Enhanced touch feedback for cards */
+  .service-card:active,
+  .team-member:active,
+  .portfolio-item:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Touch feedback for links */
+  a:active {
+    opacity: 0.7;
+  }
+
+  /* Ensure minimum touch target sizes */
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role="button"] {
+    min-height: var(--touch-target-min);
+    min-width: var(--touch-target-min);
+  }
+
+  /* Remove hover states on touch devices (prevent sticky hovers) */
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
+
+  /* Active states replace hover on touch */
+  .btn-primary:active {
+    background: var(--color-prax-bone);
+    box-shadow: var(--shadow-glow-bone);
+  }
+
+  .btn-secondary:active {
+    border-color: var(--color-prax-bone);
+    background: oklch(1 0 0 / 0.1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GRAIN TEXTURE OVERLAY (Premium Feel)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
+/* Reduce grain on mobile for performance */
+@media (max-width: 768px) {
+  body::before {
+    opacity: 0.02;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    RESPONSIVE ADJUSTMENTS
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -751,6 +905,22 @@ html.lenis body {
   .section-padding-lg {
     padding-top: clamp(5rem, 12vh, 8rem);
     padding-bottom: clamp(5rem, 12vh, 8rem);
+  }
+
+  /* Optimize container padding for mobile */
+  .container-prax {
+    padding-left: clamp(1rem, 4vw, 1.5rem);
+    padding-right: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  /* Reduce animation complexity on mobile */
+  * {
+    animation-duration: 0.4s !important;
+  }
+
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
   }
 }
 

@@ -95,13 +95,18 @@ export function Footer({
                 Subscribe for updates on new courses, events, and exclusive content.
               </p>
               <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <label htmlFor="newsletter-email" className="sr-only">
+                  Email address
+                </label>
                 <input
+                  id="newsletter-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
-                  className="flex-1 bg-prax-charcoal text-prax-white px-4 py-3 rounded-sm border border-transparent focus:border-prax-bone focus:outline-none transition-colors duration-300"
+                  className="flex-1 bg-prax-charcoal text-prax-white text-base px-4 py-3 rounded-sm border border-transparent focus:border-prax-bone focus:outline-none focus:shadow-[0_0_0_3px_oklch(0.93_0.01_90/0.2)] transition-all duration-300 min-h-[48px]"
                   required
+                  autoComplete="email"
                 />
                 <button
                   type="submit"

@@ -24,14 +24,24 @@ export function LenisProvider({ children }: LenisProviderProps) {
       return;
     }
 
+    // Detect mobile device
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
     const lenis = new Lenis({
-      duration: 1.4,
+      // Faster duration on mobile for more responsive feel
+      duration: isMobile ? 1.0 : 1.4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      smoothWheel: true,
+      // Disable smooth wheel on mobile (native scroll feel)
+      smoothWheel: !isMobile,
       wheelMultiplier: 0.8,
-      touchMultiplier: 1.5,
+      // More responsive touch on mobile
+      touchMultiplier: isMobile ? 1.2 : 1.5,
+      // Better touch sync on mobile
+      syncTouch: isMobile,
+      // Slightly increase resistance on mobile
+      touchInertiaMultiplier: isMobile ? 25 : 35,
       autoRaf: false,
     });
 

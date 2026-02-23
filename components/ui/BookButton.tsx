@@ -25,12 +25,18 @@ export function BookButton() {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        'btn btn-primary fixed bottom-8 right-8 z-[var(--z-toast)] shadow-2xl transition-all duration-500',
+        'btn btn-primary fixed z-[500] transition-all duration-500 cursor-pointer',
+        // Larger touch target
+        'min-h-[56px] px-8',
+        // Mobile: centered bottom (thumb-friendly)
+        'bottom-6 left-1/2 -translate-x-1/2',
+        // Desktop: bottom-right with no transform
+        'md:bottom-8 md:left-auto md:right-8 md:translate-x-0',
+        // Visibility state
         isVisible
-          ? 'opacity-100 translate-y-0 pointer-events-auto'
-          : 'opacity-0 translate-y-4 pointer-events-none'
+          ? 'opacity-100 pointer-events-auto'
+          : 'opacity-0 pointer-events-none translate-y-4'
       )}
-      data-cursor="hover"
     >
       Book Now
     </a>
