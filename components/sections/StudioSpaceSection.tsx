@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
+import { revealWithBlur } from '@/lib/animations';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -67,6 +68,19 @@ export function StudioSpaceSection({
     return () => ctx.revert();
   }, []);
 
+  // Image reveal animations
+  useEffect(() => {
+    if (!sectionRef.current || prefersReducedMotion()) return;
+
+    const studioImages = sectionRef.current.querySelectorAll('.studio-img');
+    studioImages.forEach((img) => {
+      revealWithBlur(img as HTMLElement, {
+        scrollTrigger: true,
+        blurAmount: 8, // Subtle blur like team page
+      });
+    });
+  }, []);
+
   return (
     <section ref={sectionRef} className="section-padding bg-prax-ink">
       <div className="container-prax">
@@ -113,7 +127,7 @@ export function StudioSpaceSection({
                         sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                         quality={85}
                         loading="lazy"
-                        className="object-cover transition-all duration-700 group-hover:scale-[1.03] group-hover:grayscale"
+                        className="studio-img object-cover transition-all duration-700 group-hover:scale-[1.03] group-hover:grayscale"
                       />
                     </div>
                     {image.caption && (

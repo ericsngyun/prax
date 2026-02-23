@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
+import { revealWithBlur } from '@/lib/animations';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -48,6 +49,19 @@ export function BeforeAfterGallery({
     return () => ctx.revert();
   }, []);
 
+  // Image reveal animations
+  useEffect(() => {
+    if (!sectionRef.current || prefersReducedMotion()) return;
+
+    const galleryImages = sectionRef.current.querySelectorAll('.before-after-img');
+    galleryImages.forEach((img) => {
+      revealWithBlur(img as HTMLElement, {
+        scrollTrigger: true,
+        blurAmount: 8, // Subtle blur like team page
+      });
+    });
+  }, []);
+
   return (
     <section ref={sectionRef} className="py-20 md:py-24 bg-prax-black overflow-hidden">
       <div className="container-prax mb-12">
@@ -82,7 +96,7 @@ export function BeforeAfterGallery({
                       sizes="(max-width: 768px) 40vw, 300px"
                       quality={85}
                       loading="lazy"
-                      className="object-cover"
+                      className="before-after-img object-cover"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
@@ -111,7 +125,7 @@ export function BeforeAfterGallery({
                       sizes="(max-width: 768px) 40vw, 300px"
                       quality={85}
                       loading="lazy"
-                      className="object-cover"
+                      className="before-after-img object-cover"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">

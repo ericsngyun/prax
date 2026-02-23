@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion, formatNumber } from '@/lib/utils';
-import { tiltCardOnHover } from '@/lib/animations';
+import { tiltCardOnHover, revealWithBlur } from '@/lib/animations';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -80,6 +80,19 @@ export function PortfolioSection({
     return () => ctx.revert();
   }, []);
 
+  // Image reveal animations
+  useEffect(() => {
+    if (!sectionRef.current || prefersReducedMotion()) return;
+
+    const portfolioImages = sectionRef.current.querySelectorAll('.portfolio-img');
+    portfolioImages.forEach((img) => {
+      revealWithBlur(img as HTMLElement, {
+        scrollTrigger: true,
+        blurAmount: 8, // Subtle blur like team page
+      });
+    });
+  }, []);
+
   // Marquee with scroll-velocity sensitivity (functional — keep)
   useEffect(() => {
     if (!marqueeRef.current || prefersReducedMotion()) return;
@@ -146,7 +159,7 @@ export function PortfolioSection({
               sizes="400px"
               quality={85}
               loading="lazy"
-              className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+              className="portfolio-img object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-prax-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
               {item.title && (

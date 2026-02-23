@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { staggerReveal } from '@/lib/animations';
+import { staggerReveal, revealWithBlur } from '@/lib/animations';
 import { cn, prefersReducedMotion } from '@/lib/utils';
 
 if (typeof window !== 'undefined') {
@@ -78,6 +78,19 @@ export function TeamSection({
     return () => ctx.revert();
   }, []);
 
+  // Image reveal animations
+  useEffect(() => {
+    if (!sectionRef.current || prefersReducedMotion()) return;
+
+    const teamImages = sectionRef.current.querySelectorAll('.team-member-img');
+    teamImages.forEach((img) => {
+      revealWithBlur(img as HTMLElement, {
+        scrollTrigger: true,
+        blurAmount: 8, // Subtle blur like team page
+      });
+    });
+  }, []);
+
   return (
     <section
       ref={sectionRef}
@@ -113,7 +126,7 @@ export function TeamSection({
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   quality={80}
                   loading="lazy"
-                  className="object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-[1.03]"
+                  className="team-member-img object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-[1.03]"
                 />
 
                 {/* Hover Overlay */}
