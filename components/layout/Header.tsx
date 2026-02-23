@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigationStore } from '@/lib/store';
@@ -130,9 +131,16 @@ export function Header() {
             {/* Wordmark */}
             <Link
               href="/"
-              className="text-prax-white text-lg md:text-xl font-light tracking-[0.15em] hover:text-prax-bone transition-colors duration-300"
+              className="relative block hover:opacity-80 transition-opacity duration-300 cursor-pointer"
             >
-              PRAX
+              <Image
+                src="/images/prax-text-logo.png"
+                alt="PRAX"
+                width={80}
+                height={24}
+                priority
+                className="h-5 md:h-6 w-auto"
+              />
             </Link>
 
             <div className="flex items-center gap-3 md:gap-4 rounded-full border border-prax-graphite/70 bg-prax-ink/60 backdrop-blur-xl px-4 md:px-5 py-2">
