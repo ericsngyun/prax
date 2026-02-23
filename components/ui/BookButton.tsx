@@ -29,13 +29,13 @@ export function BookButton() {
         // Larger touch target
         'min-h-[56px] px-8',
         // Mobile: centered bottom (thumb-friendly)
-        'bottom-6 left-1/2 -translate-x-1/2',
-        // Desktop: bottom-right with no transform
-        'md:bottom-8 md:left-auto md:right-8 md:translate-x-0',
-        // Visibility state
+        'bottom-6 left-1/2',
+        // Desktop: bottom-right
+        'md:bottom-8 md:left-auto md:right-8',
+        // Visibility state with transforms
         isVisible
-          ? 'opacity-100 pointer-events-auto'
-          : 'opacity-0 pointer-events-none translate-y-4'
+          ? 'opacity-100 pointer-events-auto -translate-x-1/2 md:translate-x-0'
+          : 'opacity-0 pointer-events-none -translate-x-1/2 translate-y-4 md:translate-x-0'
       )}
     >
       Book Now
