@@ -63,7 +63,7 @@ All three pages built with professional, minimal design matching homepage qualit
 **Route:** `https://yoursite.com/about`
 
 ### Sections Built:
-1. **Hero** - "Built on Craft, Not Hype"
+1. **Hero** - "Built on craft, and curated design"
 2. **Origin Story** - Why PRAX exists (Jack's vision)
 3. **Core Values Deep Dive** - 3 values explained in depth
    - Precision as a Value

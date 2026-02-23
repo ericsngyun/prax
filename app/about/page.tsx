@@ -19,7 +19,7 @@ export default function AboutPage() {
     <main className="min-h-screen pt-20 md:pt-24">
       <InnerPageHero
         label="About"
-        headline="Built on Craft, Not Hype"
+        headline="Built on craft, and curated design"
         description="PRAX was founded to raise the standard of men's haircutting — emphasizing discipline, precision, and education over speed or volume."
       />
 

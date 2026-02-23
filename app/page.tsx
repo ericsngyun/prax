@@ -127,7 +127,7 @@ export default function HomePage() {
 
       {/* 7. Founder Section */}
       <FounderSection
-        heading="Built on Craft, Not Hype"
+        heading="Built on craft, and curated design"
         philosophy={[
           'PRAX was founded to raise the standard of men\'s haircutting — emphasizing discipline, precision, and education over speed or volume.',
           'The studio operates with the same principles we teach: clarity, structure, and mastery of fundamentals.',
