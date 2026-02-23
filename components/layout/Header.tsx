@@ -134,7 +134,7 @@ export function Header() {
               className="relative block hover:opacity-80 transition-opacity duration-300 cursor-pointer"
             >
               <Image
-                src="/images/prax-text-logo.png"
+                src="https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771808559/prax-text-logo_zdkdmr.png"
                 alt="PRAX"
                 width={80}
                 height={24}
