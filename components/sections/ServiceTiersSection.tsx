@@ -157,11 +157,9 @@ export function ServiceTiersSection({
 
                 <a
                   href={tier.bookingHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="block w-full text-center btn btn-secondary btn-wipe hover:bg-prax-bone/5 cursor-pointer"
                 >
-                  Book Now
+                  View Team
                 </a>
               </div>
 

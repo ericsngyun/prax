@@ -26,11 +26,11 @@ export default function ServicesPage() {
       {/* Service Tiers */}
       <ServiceTiersSection
         heading="Choose Your Service"
-        description="Every service is built around precision, consistency, and long-term results."
+        description="Custom experiences designed by PRAX. Pricing varies by artist—view our team to learn more and book."
         tiers={[
           {
             name: 'Signature Cut',
-            price: '$150',
+            price: 'Custom',
             duration: '60-75 min',
             description:
               'Our foundational service. Tailored haircut designed around your head shape, hair behavior, and personal style.',
@@ -41,12 +41,11 @@ export default function ServicesPage() {
               'Product recommendations',
               'Maintenance guidance',
             ],
-            bookingHref:
-              'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+            bookingHref: '/team',
           },
           {
             name: 'Grooming Package',
-            price: '$200',
+            price: 'Custom',
             duration: '90 min',
             description:
               'Complete grooming experience. Haircut plus beard sculpting, detailing, and finishing.',
@@ -57,12 +56,11 @@ export default function ServicesPage() {
               'Face grooming and cleanup',
               'Premium product application',
             ],
-            bookingHref:
-              'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+            bookingHref: '/team',
           },
           {
             name: 'Consultation',
-            price: '$50',
+            price: 'Custom',
             duration: '30 min',
             description:
               'Not sure what you need? Start here. In-depth consultation to assess your hair and plan your style direction.',
@@ -73,8 +71,7 @@ export default function ServicesPage() {
               'Product suggestions',
               'Credit toward first service',
             ],
-            bookingHref:
-              'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+            bookingHref: '/team',
           },
         ]}
       />
@@ -92,8 +89,6 @@ export default function ServicesPage() {
         notForYouItems={[
           'You need a quick, walk-in service',
           'You are looking for the cheapest option',
-          'You prefer trendy styles over structural design',
-          'You want to be in and out in 20 minutes',
         ]}
       />
 
@@ -131,21 +126,21 @@ export default function ServicesPage() {
           {
             step: '01',
             title: 'Consultation',
-            duration: '10-15 min',
+            duration: '10 min',
             description:
               'We start by understanding your hair, lifestyle, and goals. This is not rushed. We assess head shape, hair texture, growth patterns, and maintenance capacity.',
           },
           {
             step: '02',
             title: 'Cutting',
-            duration: '30-40 min',
+            duration: '20 min',
             description:
               'Precision work. Every section is measured, cut with intention, and checked for balance. We work methodically, not quickly.',
           },
           {
             step: '03',
             title: 'Detailing',
-            duration: '10-15 min',
+            duration: '10 min',
             description:
               'Final refinements. Edge work, texture adjustments, and ensuring every angle is clean. This is where the difference shows.',
           },
