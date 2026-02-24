@@ -59,17 +59,6 @@ export function Footer({
   columns = defaultColumns,
   showNewsletter = true,
 }: FooterProps) {
-  const [email, setEmail] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setEmail('');
-      setIsSubmitting(false);
-    }, 1000);
-  };
 
   return (
     <footer
@@ -84,41 +73,6 @@ export function Footer({
       </div>
 
       <div className="container-prax">
-        {/* Newsletter */}
-        {showNewsletter && (
-          <div className="mb-10 pb-10 md:mb-16 md:pb-16 border-b border-prax-charcoal">
-            <div className="max-w-xl">
-              <h3 className="text-title font-bold text-prax-white mb-4">
-                Stay in the loop
-              </h3>
-              <p className="text-body text-prax-stone mb-6">
-                Subscribe for updates on new courses, events, and exclusive content.
-              </p>
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <label htmlFor="newsletter-email" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="newsletter-email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="flex-1 bg-prax-charcoal text-prax-white text-base px-4 py-3 rounded-sm border border-transparent focus:border-prax-bone focus:outline-none focus:shadow-[0_0_0_3px_oklch(0.93_0.01_90/0.2)] transition-all duration-300 min-h-[48px]"
-                  required
-                  autoComplete="email"
-                />
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn-primary btn-wipe whitespace-nowrap disabled:opacity-50 w-full sm:w-auto"
-                >
-                  {isSubmitting ? 'Sending...' : 'Subscribe'}
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
 
         {/* Navigation Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 mb-10 md:mb-16">
@@ -146,18 +100,14 @@ export function Footer({
         {/* Bottom */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-prax-charcoal">
           {/* Logo */}
-          <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10 md:w-12 md:h-12">
-              <Image
-                src={cloudinaryAssets.logo}
-                alt="PRAX"
-                fill
-                className="object-contain"
-              />
-            </div>
-            <span className="text-2xl md:text-3xl font-light text-prax-white tracking-[0.1em]">
-              PRAX
-            </span>
+          <div className="flex items-center">
+            <Image
+              src="https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771808559/prax-text-logo_zdkdmr.png"
+              alt="PRAX"
+              width={120}
+              height={36}
+              className="h-7 md:h-8 w-auto"
+            />
           </div>
 
           {/* Copyright */}
