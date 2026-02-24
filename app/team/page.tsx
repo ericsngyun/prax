@@ -92,7 +92,7 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: '', // Portrait to be provided
-            actionSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771906378/Screenshot_2026-02-23_at_8.12.51_PM_ikw4o5.png',
+            actionSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771906340/Screenshot_2026-02-23_at_8.12.10_PM_nswdr2.png',
             videoSrc: '', // Video intro — to be provided
             instagramHandle: 'jaredtphan',
             bookingUrl: '',
