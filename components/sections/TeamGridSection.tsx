@@ -21,6 +21,7 @@ interface TeamMember {
   philosophy: string;
   portraitSrc: string;
   actionSrc: string;
+  actionSrcPosition?: string; // CSS object-position value (e.g., 'top', '50% 20%')
   videoSrc?: string;
   instagramHandle?: string;
   bookingUrl?: string;
@@ -384,6 +385,7 @@ export function TeamGridSection({
                         quality={80}
                         loading="lazy"
                         className="object-cover img-portfolio"
+                        style={member.actionSrcPosition ? { objectPosition: member.actionSrcPosition } : undefined}
                       />
                     </div>
                   ) : (
