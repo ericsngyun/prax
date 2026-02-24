@@ -37,7 +37,7 @@ export default function TeamPage() {
             philosophy:
               'Precision is not about perfection—it is about intention. Every cut should be designed to maintain structure as it grows. That is the standard.',
             portraitSrc: cloudinaryAssets.teamJack,
-            actionSrc: '',
+            actionSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771907588/PRAXxSTMNT-Event-42_1_zoznww.jpg',
             videoSrc: '', // Jack's video intro — to be provided
             instagramHandle: 'jacklouii',
             bookingUrl:
