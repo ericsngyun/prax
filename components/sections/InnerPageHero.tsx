@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { prefersReducedMotion } from '@/lib/utils';
 
@@ -8,9 +9,10 @@ interface InnerPageHeroProps {
   label: string;
   headline: string;
   description: string;
+  backgroundImage?: string;
 }
 
-export function InnerPageHero({ label, headline, description }: InnerPageHeroProps) {
+export function InnerPageHero({ label, headline, description, backgroundImage }: InnerPageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -32,8 +34,26 @@ export function InnerPageHero({ label, headline, description }: InnerPageHeroPro
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding-lg bg-prax-black">
-      <div ref={contentRef} className="container-prax max-w-5xl mx-auto">
+    <section ref={sectionRef} className={`section-padding-lg ${backgroundImage ? 'relative' : 'bg-prax-black'}`}>
+      {backgroundImage && (
+        <>
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={backgroundImage}
+              alt=""
+              fill
+              priority
+              quality={90}
+              className="object-cover"
+            />
+          </div>
+          {/* Overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-prax-black/60 via-prax-black/70 to-prax-black z-[1]" />
+        </>
+      )}
+
+      <div ref={contentRef} className={`container-prax max-w-5xl mx-auto ${backgroundImage ? 'relative z-10' : ''}`}>
         <div className="mb-8">
           <span className="text-label text-prax-silver">
             {label}

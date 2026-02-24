@@ -20,6 +20,7 @@ export default function TeamPage() {
         label="The Team"
         headline="Meet the Artists"
         description="Every member of the PRAX team holds themselves to the same standard: precision, consistency, and an uncompromising commitment to craft."
+        backgroundImage="https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771905931/DSC06685_custv3.jpg"
       />
 
       {/* Team Grid */}
