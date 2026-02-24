@@ -43,6 +43,7 @@ export function PortfolioSection({
   const marqueeRef = useRef<HTMLDivElement>(null);
   const baseSpeed = useRef(1);
   const currentSpeed = useRef(1);
+  const isPaused = useRef(false);
 
   useEffect(() => {
     if (!sectionRef.current || !marqueeRef.current || prefersReducedMotion()) return;
@@ -123,20 +124,37 @@ export function PortfolioSection({
     const animate = () => {
       currentSpeed.current += (baseSpeed.current - currentSpeed.current) * 0.05;
 
-      position -= 0.5 * currentSpeed.current;
-      if (Math.abs(position) >= marqueeWidth) {
-        position += marqueeWidth;
+      // Only animate if not paused
+      if (!isPaused.current) {
+        position -= 0.5 * currentSpeed.current;
+        if (Math.abs(position) >= marqueeWidth) {
+          position += marqueeWidth;
+        }
+        marqueeInner.style.transform = `translate3d(${position}px, 0, 0)`;
       }
 
-      marqueeInner.style.transform = `translate3d(${position}px, 0, 0)`;
       animationId = requestAnimationFrame(animate);
     };
+
+    // Pause on hover
+    const handleMouseEnter = () => {
+      isPaused.current = true;
+    };
+
+    const handleMouseLeave = () => {
+      isPaused.current = false;
+    };
+
+    marqueeInner.addEventListener('mouseenter', handleMouseEnter);
+    marqueeInner.addEventListener('mouseleave', handleMouseLeave);
 
     animationId = requestAnimationFrame(animate);
 
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
       window.removeEventListener('scroll', handleScroll);
+      marqueeInner.removeEventListener('mouseenter', handleMouseEnter);
+      marqueeInner.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 
@@ -159,15 +177,8 @@ export function PortfolioSection({
               sizes="400px"
               quality={85}
               loading="lazy"
-              className="portfolio-img object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.03]"
+              className="portfolio-img object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-prax-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-              {item.title && (
-                <h3 className="text-body-lg font-medium text-prax-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  {item.title}
-                </h3>
-              )}
-            </div>
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
