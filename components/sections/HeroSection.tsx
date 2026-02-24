@@ -29,7 +29,7 @@ export function HeroSection({
   primaryCTA = { text: 'Book an Appointment', href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null' },
   secondaryCTA = { text: 'View Our Work', href: '#work' },
   videoSrc = '/videos/hero-bg.mp4',
-  videoPoster = '/images/hero-poster.jpg',
+  videoPoster,
 }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
