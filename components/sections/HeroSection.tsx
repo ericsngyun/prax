@@ -115,7 +115,7 @@ export function HeroSection({
       {/* Content */}
       <div
         ref={contentRef}
-        className="relative z-10 h-full container-prax px-6 pt-16 md:pt-20 pb-16 md:pb-20"
+        className="relative z-10 h-full container-prax pt-16 md:pt-20 pb-10 md:pb-20"
       >
         <div className="h-full relative flex flex-col items-center justify-center">
           {/* Centered logo image */}
@@ -126,7 +126,7 @@ export function HeroSection({
               width={320}
               height={320}
               priority
-              className="w-44 sm:w-56 md:w-72 lg:w-80 h-auto"
+              className="w-36 sm:w-48 md:w-72 lg:w-80 h-auto"
             />
             <span className="sr-only">{headline}</span>
           </div>
@@ -134,18 +134,18 @@ export function HeroSection({
           {/* Kicker — centered below logo */}
           <p
             ref={kickerRef}
-            className="text-label text-prax-bone/80 tracking-[0.3em] mt-6 md:mt-8 text-center"
+            className="text-label text-prax-bone/80 tracking-[0.2em] md:tracking-[0.3em] mt-5 md:mt-8 text-center max-w-[280px] sm:max-w-none"
           >
             {kicker}
           </p>
 
-          {/* Bottom-right anchored block */}
+          {/* Bottom block — centered on mobile, right-aligned on desktop */}
           <div
             ref={bottomBlockRef}
-            className="absolute bottom-0 right-0 flex flex-col items-end gap-6 md:gap-8"
+            className="absolute bottom-0 left-0 right-0 md:left-auto flex flex-col items-center md:items-end gap-5 md:gap-8"
           >
             <p
-              className="text-body md:text-body-lg text-prax-stone/80 max-w-md text-right leading-relaxed"
+              className="text-body-sm md:text-body-lg text-prax-stone/80 max-w-sm md:max-w-md text-center md:text-right leading-relaxed"
             >
               {subheadline}
             </p>

@@ -26,10 +26,10 @@ export function BookButton() {
       rel="noopener noreferrer"
       className={cn(
         'btn btn-primary fixed z-[500] transition-all duration-500 cursor-pointer',
-        // Larger touch target
-        'min-h-[56px] px-8',
+        // Touch-friendly sizing
+        'min-h-[48px] px-6 text-caption md:min-h-[56px] md:px-8 md:text-body-sm',
         // Mobile: centered bottom (thumb-friendly)
-        'bottom-6 left-1/2',
+        'bottom-5 left-1/2',
         // Desktop: bottom-right
         'md:bottom-8 md:left-auto md:right-8',
         // Visibility state with transforms
