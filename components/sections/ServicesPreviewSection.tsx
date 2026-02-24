@@ -143,10 +143,10 @@ export function ServicesPreviewSection({
     >
       <div className="container-prax">
         {/* Header */}
-        <div className="text-center mb-20 md:mb-24">
+        <div className="text-center mb-12 md:mb-24">
           <span
             ref={labelRef}
-            className="text-label text-prax-bone uppercase tracking-widest block mb-6"
+            className="text-label text-prax-bone uppercase tracking-widest block mb-4 md:mb-6"
           >
             {label}
           </span>

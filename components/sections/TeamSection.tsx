@@ -98,7 +98,7 @@ export function TeamSection({
     >
       <div className="container-prax">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-10 md:mb-16">
           <span className="text-label text-prax-bone uppercase tracking-widest block mb-4">
             {label}
           </span>

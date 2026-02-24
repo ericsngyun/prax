@@ -830,15 +830,13 @@ html.lenis body {
     opacity: 0.7;
   }
 
-  /* Ensure minimum touch target sizes */
+  /* Ensure minimum touch target sizes for interactive controls */
   button,
-  a,
   input,
   select,
   textarea,
   [role="button"] {
     min-height: var(--touch-target-min);
-    min-width: var(--touch-target-min);
   }
 
   /* Remove hover states on touch devices (prevent sticky hovers) */
@@ -909,8 +907,8 @@ body::before {
 
   /* Optimize container padding for mobile */
   .container-prax {
-    padding-left: clamp(1rem, 4vw, 1.5rem);
-    padding-right: clamp(1rem, 4vw, 1.5rem);
+    padding-left: clamp(1.25rem, 5vw, 1.75rem);
+    padding-right: clamp(1.25rem, 5vw, 1.75rem);
   }
 
   /* Reduce animation complexity on mobile */

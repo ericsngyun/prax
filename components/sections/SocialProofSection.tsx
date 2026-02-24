@@ -85,13 +85,13 @@ export function SocialProofSection({
         {/* Heading */}
         <h2
           ref={headingRef}
-          className="text-h2 text-prax-white text-center mb-20 md:mb-24 max-w-3xl mx-auto font-light"
+          className="text-h2 text-prax-white text-center mb-12 md:mb-24 max-w-3xl mx-auto font-light"
         >
           {heading}
         </h2>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -126,7 +126,7 @@ export function SocialProofSection({
         </div>
 
         {/* Subtle divider */}
-        <div className="w-16 h-px bg-prax-bone/20 mx-auto mt-20 md:mt-24" />
+        <div className="w-16 h-px bg-prax-bone/20 mx-auto mt-12 md:mt-24" />
       </div>
     </section>
   );

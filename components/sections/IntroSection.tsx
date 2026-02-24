@@ -91,13 +91,13 @@ export function IntroSection({
           {/* Statement */}
           <h2
             ref={statementRef}
-            className="text-h1 font-light text-prax-white mb-16 md:mb-20"
+            className="text-h1 font-light text-prax-white mb-10 md:mb-20"
           >
             {statement}
           </h2>
 
           {/* Body paragraphs */}
-          <div className="space-y-8 md:space-y-10">
+          <div className="space-y-6 md:space-y-10">
             {paragraphs.map((text, i) => (
               <p
                 key={i}
@@ -114,7 +114,7 @@ export function IntroSection({
           {/* Subtle divider */}
           <div
             ref={dividerRef}
-            className="w-16 h-px bg-prax-bone mx-auto mt-16 md:mt-24"
+            className="w-16 h-px bg-prax-bone mx-auto mt-10 md:mt-24"
           />
         </div>
       </div>

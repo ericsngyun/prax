@@ -108,10 +108,10 @@ export function DifferentiationSection({
 
       <div className="container-prax relative z-10">
         {/* Header */}
-        <div className="text-center mb-20 md:mb-28">
+        <div className="text-center mb-12 md:mb-28">
           <span
             ref={labelRef}
-            className="text-label text-prax-bone uppercase tracking-widest block mb-6"
+            className="text-label text-prax-bone uppercase tracking-widest block mb-4 md:mb-6"
           >
             {label}
           </span>
@@ -124,7 +124,7 @@ export function DifferentiationSection({
         </div>
 
         {/* Three Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-8 lg:gap-16 max-w-7xl mx-auto">
           {pillars.map((pillar, index) => (
             <div
               key={index}
@@ -137,9 +137,9 @@ export function DifferentiationSection({
                 {/* Subtle border on hover */}
                 <div className="absolute inset-0 border border-prax-graphite opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative p-8 md:p-10">
+                <div className="relative p-6 md:p-10">
                   {/* Number */}
-                  <div className="pillar-number text-[8rem] md:text-[10rem] font-light text-prax-bone/5 mb-4 font-mono leading-none absolute top-4 right-4 select-none" aria-hidden="true">
+                  <div className="pillar-number text-[5rem] md:text-[10rem] font-light text-prax-bone/5 mb-4 font-mono leading-none absolute top-2 right-3 md:top-4 md:right-4 select-none" aria-hidden="true">
                     {pillar.number}
                   </div>
 

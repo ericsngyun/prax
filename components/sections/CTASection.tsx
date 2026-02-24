@@ -110,13 +110,13 @@ export function CTASection({
         {/* Decorative Line */}
         <div
           ref={decorativeLineRef}
-          className="w-px h-20 bg-prax-bone mx-auto mb-16"
+          className="w-px h-12 md:h-20 bg-prax-bone mx-auto mb-10 md:mb-16"
         />
 
         {/* Headline */}
         <h2
           ref={headingRef}
-          className="text-display text-prax-white mb-6 max-w-4xl mx-auto"
+          className="text-display text-prax-white mb-4 md:mb-6 max-w-4xl mx-auto"
         >
           {headline}
         </h2>
@@ -124,7 +124,7 @@ export function CTASection({
         {/* Description */}
         <p
           ref={descriptionRef}
-          className="text-body-lg text-prax-stone max-w-2xl mx-auto mb-12"
+          className="text-body-lg text-prax-stone max-w-2xl mx-auto mb-8 md:mb-12"
         >
           {description}
         </p>

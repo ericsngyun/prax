@@ -82,9 +82,9 @@ export function LocationSection({
       <div className="container-prax">
         <div className="max-w-5xl mx-auto">
           {/* Header */}
-          <div ref={headerRef} className="text-center mb-16 md:mb-20">
+          <div ref={headerRef} className="text-center mb-10 md:mb-20">
             <span
-              className="text-label text-prax-bone uppercase tracking-widest block mb-6"
+              className="text-label text-prax-bone uppercase tracking-widest block mb-4 md:mb-6"
             >
               {label}
             </span>
@@ -101,7 +101,7 @@ export function LocationSection({
           </div>
 
           {/* Details Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
             {/* Address */}
             <div
               ref={(el) => {

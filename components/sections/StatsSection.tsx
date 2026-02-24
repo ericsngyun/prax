@@ -67,7 +67,7 @@ export function StatsSection({ stats }: StatsSectionProps) {
   return (
     <section ref={sectionRef} className="section-padding bg-prax-ink">
       <div className="container-prax max-w-5xl mx-auto">
-        <div className="grid grid-cols-3 gap-8 md:gap-16">
+        <div className="grid grid-cols-3 gap-4 md:gap-16">
           {stats.map((stat, i) => (
             <div key={i} className="text-center md:text-left">
               <div className="text-display-sm md:text-display text-prax-bone font-light mb-2">

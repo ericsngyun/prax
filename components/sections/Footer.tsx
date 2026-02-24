@@ -73,11 +73,11 @@ export function Footer({
 
   return (
     <footer
-      className="bg-prax-black py-20 relative overflow-hidden"
+      className="bg-prax-black py-12 md:py-20 relative overflow-hidden"
     >
       {/* Decorative large PRAX text */}
       <div
-        className="text-hero text-prax-charcoal select-none pointer-events-none mb-12 md:mb-16 px-4"
+        className="text-display md:text-hero text-prax-charcoal select-none pointer-events-none mb-8 md:mb-16 px-4"
         aria-hidden="true"
       >
         PRAX
@@ -86,7 +86,7 @@ export function Footer({
       <div className="container-prax">
         {/* Newsletter */}
         {showNewsletter && (
-          <div className="mb-16 pb-16 border-b border-prax-charcoal">
+          <div className="mb-10 pb-10 md:mb-16 md:pb-16 border-b border-prax-charcoal">
             <div className="max-w-xl">
               <h3 className="text-title font-bold text-prax-white mb-4">
                 Stay in the loop
@@ -121,7 +121,7 @@ export function Footer({
         )}
 
         {/* Navigation Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 mb-10 md:mb-16">
           {columns.map((column, i) => (
             <div key={i}>
               <h4 className="text-label text-prax-bone uppercase tracking-widest mb-4">

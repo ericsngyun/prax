@@ -121,7 +121,7 @@ export function FAQSection({
     <section ref={sectionRef} className="section-padding bg-prax-ink">
       <div className="container-prax">
         {/* Header */}
-        <div ref={headerRef} className="max-w-3xl mx-auto mb-16 md:mb-20">
+        <div ref={headerRef} className="max-w-3xl mx-auto mb-10 md:mb-20">
           <span className="text-label text-prax-bone uppercase tracking-widest block mb-4">
             {label}
           </span>
@@ -200,7 +200,7 @@ function FAQItem({ question, answer, isOpen, onClick, number }: FAQItemProps) {
     <div className="faq-item border-t border-prax-graphite last:border-b">
       <button
         onClick={onClick}
-        className="w-full py-6 flex items-center justify-between gap-6 text-left group hover:bg-prax-charcoal/20 transition-colors duration-300 px-6 md:px-8"
+        className="w-full py-5 md:py-6 flex items-center justify-between gap-4 md:gap-6 text-left group hover:bg-prax-charcoal/20 transition-colors duration-300 px-4 md:px-8"
         aria-expanded={isOpen}
       >
         {/* Number */}
@@ -228,7 +228,7 @@ function FAQItem({ question, answer, isOpen, onClick, number }: FAQItemProps) {
 
       {/* Answer (Accordion Content) */}
       <div ref={contentRef} className="h-0 overflow-hidden">
-        <div className="px-6 md:px-8 pb-6 md:pl-[5.5rem]">
+        <div className="px-4 md:px-8 pb-5 md:pb-6 md:pl-[5.5rem]">
           <p
             ref={answerRef}
             className="text-body text-prax-stone leading-relaxed opacity-0"
