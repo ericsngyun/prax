@@ -9,6 +9,7 @@ import { useNavigationStore } from '@/lib/store';
 // import { useCursor } from '@/components/ui/CustomCursor'; // Disabled - using default cursor
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
+import { cloudinaryAssets } from '@/lib/cloudinary';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -134,11 +135,12 @@ export function Header() {
               className="relative block hover:opacity-80 transition-opacity duration-300 cursor-pointer"
             >
               <Image
-                src="https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771808559/prax-text-logo_zdkdmr.png"
+                src={cloudinaryAssets.textLogo}
                 alt="PRAX"
-                width={80}
+                width={186}
                 height={24}
                 priority
+                quality={100}
                 className="h-5 md:h-6 w-auto"
               />
             </Link>

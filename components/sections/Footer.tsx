@@ -48,8 +48,8 @@ const defaultColumns: FooterColumn[] = [
   {
     title: 'Connect',
     links: [
-      { label: 'Instagram', href: 'https://instagram.com' },
-      { label: 'YouTube', href: 'https://youtube.com' },
+      { label: 'Instagram', href: 'https://www.instagram.com/praxhair/' },
+      { label: 'TikTok', href: 'https://www.tiktok.com/@praxhair' },
       { label: 'Contact', href: '#contact' },
     ],
   },
@@ -102,10 +102,11 @@ export function Footer({
           {/* Logo */}
           <div className="flex items-center">
             <Image
-              src="https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771808559/prax-text-logo_zdkdmr.png"
+              src={cloudinaryAssets.textLogo}
               alt="PRAX"
-              width={120}
-              height={36}
+              width={248}
+              height={32}
+              quality={100}
               className="h-7 md:h-8 w-auto"
             />
           </div>

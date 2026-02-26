@@ -22,6 +22,7 @@ export function getCloudinaryUrl(
 export const cloudinaryAssets = {
   // Brand
   logo: getCloudinaryUrl('prax_logo_cdbskt', 'image', 'f_auto,q_auto,w_400'),
+  textLogo: getCloudinaryUrl('prax-text-logo_zdkdmr', 'image', 'f_png,q_100,w_500'),
 
   // Team portraits (optimized for 800px max width, quality 80)
   teamEdward: getCloudinaryUrl('team_edward_vlvez4', 'image', 'f_auto,q_80,w_1200'),
