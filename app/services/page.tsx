@@ -126,28 +126,24 @@ export default function ServicesPage() {
           {
             step: '01',
             title: 'Consultation',
-            duration: '10 min',
             description:
               'We start by understanding your hair, lifestyle, and goals. This is not rushed. We assess head shape, hair texture, growth patterns, and maintenance capacity.',
           },
           {
             step: '02',
             title: 'Cutting',
-            duration: '20 min',
             description:
               'Precision work. Every section is measured, cut with intention, and checked for balance. We work methodically, not quickly.',
           },
           {
             step: '03',
             title: 'Detailing',
-            duration: '10 min',
             description:
               'Final refinements. Edge work, texture adjustments, and ensuring every angle is clean. This is where the difference shows.',
           },
           {
             step: '04',
             title: 'Styling & Guidance',
-            duration: '10 min',
             description:
               'We show you how to maintain your haircut at home. Product recommendations, styling techniques, and when to return for your next appointment.',
           },

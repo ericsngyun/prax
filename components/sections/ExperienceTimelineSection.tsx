@@ -12,7 +12,6 @@ if (typeof window !== 'undefined') {
 interface TimelineStep {
   step: string;
   title: string;
-  duration: string;
   description: string;
 }
 
@@ -86,14 +85,14 @@ export function ExperienceTimelineSection({
     <section ref={sectionRef} className="section-padding bg-prax-ink">
       <div className="container-prax">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-20 md:mb-24 max-w-3xl mx-auto">
+        <div ref={headerRef} className="text-center mb-12 md:mb-20 max-w-3xl mx-auto px-4">
           <h2
-            className="text-h1 font-light text-prax-white mb-6"
+            className="text-h2 md:text-h1 font-light text-prax-white mb-4 md:mb-6"
           >
             {heading}
           </h2>
           <p
-            className="text-body-lg text-prax-stone leading-relaxed"
+            className="text-base md:text-body-lg text-prax-stone leading-relaxed"
           >
             {description}
           </p>
@@ -105,45 +104,42 @@ export function ExperienceTimelineSection({
             {/* Vertical line — scroll-linked scaleY */}
             <div
               ref={timelineLineRef}
-              className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-prax-graphite"
+              className="absolute left-6 translate-x-[23px] md:translate-x-0 md:left-1/2 top-0 bottom-0 w-px bg-prax-graphite"
             />
 
             {/* Steps */}
-            <div className="space-y-16 md:space-y-20">
+            <div className="space-y-12 md:space-y-20">
               {steps.map((step, index) => (
                 <div
                   key={index}
                   ref={(el) => {
                     if (el) stepRefs.current[index] = el;
                   }}
-                  className={`relative flex items-start gap-8 md:gap-12 ${
+                  className={`relative flex items-start gap-6 md:gap-12 ${
                     index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
                 >
                   {/* Number indicator */}
                   <div
-                    className="absolute left-8 md:left-1/2 md:-translate-x-1/2 w-16 h-16 rounded-full bg-prax-charcoal border-2 border-prax-bone flex items-center justify-center"
+                    className="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-12 h-12 md:w-16 md:h-16 rounded-full bg-prax-charcoal border-2 border-prax-bone flex items-center justify-center flex-shrink-0"
                   >
-                    <span className="text-prax-bone font-mono font-medium">
+                    <span className="text-sm md:text-base text-prax-bone font-mono font-medium">
                       {step.step}
                     </span>
                   </div>
 
                   {/* Content */}
                   <div
-                    className={`flex-1 pl-24 md:pl-0 ${
+                    className={`flex-1 pl-20 md:pl-0 ${
                       index % 2 === 0
                         ? 'md:pr-16 md:text-right'
                         : 'md:pl-16 md:text-left'
                     }`}
                   >
-                    <div className="inline-block text-label text-prax-bone uppercase tracking-widest mb-3">
-                      {step.duration}
-                    </div>
-                    <h3 className="text-h3 text-prax-white font-medium mb-4">
+                    <h3 className="text-xl md:text-h3 text-prax-white font-medium mb-3 md:mb-4">
                       {step.title}
                     </h3>
-                    <p className="text-body text-prax-stone leading-relaxed max-w-md">
+                    <p className="text-base md:text-body text-prax-stone leading-relaxed md:max-w-md">
                       {step.description}
                     </p>
                   </div>
