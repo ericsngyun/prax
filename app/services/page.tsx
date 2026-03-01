@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen pt-20 md:pt-24">
+    <main className="min-h-screen">
       <InnerPageHero
         label="Services"
         headline="Built, Not Rushed"

@@ -114,7 +114,7 @@ export function AcademyContent() {
   }, []);
 
   return (
-    <main className="min-h-screen pt-20 md:pt-24">
+    <main className="min-h-screen">
       {/* Hero */}
       <InnerPageHero
         label="Academy"

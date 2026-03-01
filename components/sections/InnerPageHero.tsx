@@ -34,7 +34,7 @@ export function InnerPageHero({ label, headline, description, backgroundImage }:
   }, []);
 
   return (
-    <section ref={sectionRef} className={`section-padding-lg ${backgroundImage ? 'relative' : 'bg-prax-black'}`}>
+    <section ref={sectionRef} className={`relative min-h-screen flex items-center ${backgroundImage ? '' : 'bg-prax-black'} pb-16 md:pb-20`}>
       {backgroundImage && (
         <>
           {/* Background Image */}
@@ -48,12 +48,12 @@ export function InnerPageHero({ label, headline, description, backgroundImage }:
               className="object-cover"
             />
           </div>
-          {/* Overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-prax-black/60 via-prax-black/70 to-prax-black z-[1]" />
+          {/* Overlay for readability - extends to top of viewport */}
+          <div className="absolute inset-0 bg-gradient-to-b from-prax-black/40 via-prax-black/60 to-prax-black z-[1]" />
         </>
       )}
 
-      <div ref={contentRef} className={`container-prax max-w-5xl mx-auto ${backgroundImage ? 'relative z-10' : ''}`}>
+      <div ref={contentRef} className={`container-prax max-w-5xl mx-auto pt-32 md:pt-40 ${backgroundImage ? 'relative z-10' : ''}`}>
         <div className="mb-8">
           <span className="text-label text-prax-silver">
             {label}
