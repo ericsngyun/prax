@@ -29,7 +29,7 @@ const defaultServices: ServiceItem[] = [
   },
   {
     title: 'The Academy',
-    description: 'In-person education programs across 7 cities worldwide. Learn from master craftsmen and elevate your technique to the next level.',
+    description: 'In-person education programs across 12+ cities worldwide. Learn from master craftsmen and elevate your technique to the next level.',
   },
   {
     title: 'PRAX Online',

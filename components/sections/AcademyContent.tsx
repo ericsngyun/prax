@@ -125,9 +125,9 @@ export function AcademyContent() {
       {/* Stats — counter animations (intentional — keep) */}
       <StatsSection
         stats={[
-          { value: 500, suffix: '+', label: 'Barbers Trained' },
-          { value: 7, label: 'Cities Worldwide' },
-          { value: 12, suffix: '+', label: 'Years Teaching' },
+          { value: 1000, suffix: '+', label: 'Students Trained' },
+          { value: 12, suffix: '+', label: 'Cities Worldwide' },
+          { value: 6, suffix: '+', label: 'Years Teaching' },
         ]}
       />
 

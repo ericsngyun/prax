@@ -27,9 +27,9 @@ export default function AboutPage() {
       <OriginStorySection
         heading="Why PRAX Exists"
         story={[
-          'In 2012, Jack Louii recognized a gap in the industry: too many barbers prioritized speed over structure, trends over fundamentals, and volume over quality.',
+          'In 2018, Jack Louii recognized a gap in the industry: too many barbers prioritized speed over structure, trends over fundamentals, and volume over quality.',
           'PRAX was founded as a response — a studio that would operate differently. One that valued precision, educated its team to the highest standards, and built haircuts designed to last.',
-          'What started as a single chair in Los Angeles has grown into a global education platform, teaching barbers in 7 cities worldwide the same principles: clarity, structure, and mastery of fundamentals.',
+          'What started as a single chair in Los Angeles has grown into a global education platform, teaching barbers in 12+ cities worldwide the same principles: clarity, structure, and mastery of fundamentals.',
           'Today, PRAX serves both clients and students — offering precision haircuts in our LA studio, and world-class education for barbers who want to elevate their craft.',
         ]}
         founderImageSrc={cloudinaryAssets.philosophyImage}
