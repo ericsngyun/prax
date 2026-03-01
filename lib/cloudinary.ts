@@ -26,9 +26,11 @@ export const cloudinaryAssets = {
 
   // Team portraits (optimized for 800px max width, quality 80)
   teamEdward: getCloudinaryUrl('team_edward_vlvez4', 'image', 'f_auto,q_80,w_1200'),
-  teamGavin: getCloudinaryUrl('team_gavin_boqci5', 'image', 'f_auto,q_80,w_1200'),
-  teamJack: getCloudinaryUrl('team_jack_hdrea7', 'image', 'f_auto,q_80,w_1200'),
-  teamSteven: getCloudinaryUrl('team_steven_xb4m6t', 'image', 'f_auto,q_80,w_1200'),
+  teamGavin: getCloudinaryUrl('PRAXxSTMNT-Event-9_apdeyi', 'image', 'f_auto,q_80,w_1200'),
+  teamJack: getCloudinaryUrl('PRAXxSTMNT-Event-29_hxxcjn', 'image', 'f_auto,q_80,w_1200'),
+  teamSteven: getCloudinaryUrl('PRAXxSTMNT-Event-12_iwdkre', 'image', 'f_auto,q_80,w_1200'),
+  teamJared: getCloudinaryUrl('RenderedImage_caryjl', 'image', 'f_auto,q_80,w_1200'),
+  teamAriel: getCloudinaryUrl('IMG_8140_Original_eq0epb', 'image', 'f_auto,q_80,w_1200'),
 
   // Portfolio images (optimized for portfolio grid, quality 85)
   portfolio01: getCloudinaryUrl('image_01_idn021', 'image', 'f_auto,q_85,w_1200'),

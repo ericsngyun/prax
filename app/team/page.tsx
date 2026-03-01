@@ -79,7 +79,7 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: '',
+            portraitSrc: cloudinaryAssets.teamAriel,
             actionSrc: '',
             videoSrc: '', // Video intro — to be provided
             instagramHandle: 'aridonnel',
@@ -92,7 +92,7 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: '', // Portrait to be provided
+            portraitSrc: cloudinaryAssets.teamJared,
             actionSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771906340/Screenshot_2026-02-23_at_8.12.10_PM_nswdr2.png',
             videoSrc: '', // Video intro — to be provided
             instagramHandle: 'jaredtphan',
