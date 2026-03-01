@@ -22,6 +22,7 @@ interface TeamMember {
   portraitSrc: string;
   actionSrc: string;
   actionSrcPosition?: string; // CSS object-position value (e.g., 'top', '50% 20%')
+  workSamples?: string[]; // Array of work sample image URLs
   videoSrc?: string;
   instagramHandle?: string;
   bookingUrl?: string;
@@ -396,6 +397,28 @@ export function TeamGridSection({
                           Hands at work, clipper detail, or client angle
                         </div>
                       </div>
+                    </div>
+                  )}
+
+                  {/* Work Samples Grid */}
+                  {member.workSamples && member.workSamples.length > 0 && (
+                    <div className="grid grid-cols-2 gap-4">
+                      {member.workSamples.map((workSrc, workIndex) => (
+                        <div
+                          key={workIndex}
+                          className="relative aspect-[3/4] bg-prax-charcoal overflow-hidden rounded-sm"
+                        >
+                          <Image
+                            src={workSrc}
+                            alt={`${member.name} work sample ${workIndex + 1}`}
+                            fill
+                            sizes="(max-width: 768px) 45vw, (max-width: 1024px) 22vw, 300px"
+                            quality={85}
+                            loading="lazy"
+                            className="object-cover img-portfolio"
+                          />
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>

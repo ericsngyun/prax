@@ -39,6 +39,12 @@ export default function TeamPage() {
             portraitSrc: cloudinaryAssets.teamJack,
             actionSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771907588/PRAXxSTMNT-Event-42_1_zoznww.jpg',
             actionSrcPosition: 'center 30%', // Show more of the top of the image
+            workSamples: [
+              cloudinaryAssets.jackWork01,
+              cloudinaryAssets.jackWork02,
+              cloudinaryAssets.jackWork03,
+              cloudinaryAssets.jackWork04,
+            ],
             videoSrc: '', // Jack's video intro — to be provided
             instagramHandle: 'jacklouii',
             bookingUrl:
@@ -53,6 +59,12 @@ export default function TeamPage() {
             philosophy: '',
             portraitSrc: cloudinaryAssets.teamGavin,
             actionSrc: '',
+            workSamples: [
+              cloudinaryAssets.gavinWork01,
+              cloudinaryAssets.gavinWork02,
+              cloudinaryAssets.gavinWork03,
+              cloudinaryAssets.gavinWork04,
+            ],
             videoSrc: '', // Gavin's video intro — to be provided
             instagramHandle: 'gavinblond',
             bookingUrl:
@@ -67,6 +79,12 @@ export default function TeamPage() {
             philosophy: '',
             portraitSrc: cloudinaryAssets.teamSteven,
             actionSrc: '',
+            workSamples: [
+              cloudinaryAssets.stevenWork01,
+              cloudinaryAssets.stevenWork02,
+              cloudinaryAssets.stevenWork03,
+              cloudinaryAssets.stevenWork04,
+            ],
             videoSrc: '', // Steven's video intro — to be provided
             instagramHandle: 'steventaotran',
             bookingUrl:
@@ -81,6 +99,11 @@ export default function TeamPage() {
             philosophy: '',
             portraitSrc: cloudinaryAssets.teamAriel,
             actionSrc: '',
+            workSamples: [
+              cloudinaryAssets.arielWork01,
+              cloudinaryAssets.arielWork02,
+              cloudinaryAssets.arielWork03,
+            ],
             videoSrc: '', // Video intro — to be provided
             instagramHandle: 'aridonnel',
             bookingUrl: '',
@@ -94,6 +117,10 @@ export default function TeamPage() {
             philosophy: '',
             portraitSrc: cloudinaryAssets.teamJared,
             actionSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771906340/Screenshot_2026-02-23_at_8.12.10_PM_nswdr2.png',
+            workSamples: [
+              cloudinaryAssets.jaredWork01,
+              cloudinaryAssets.jaredWork02,
+            ],
             videoSrc: '', // Video intro — to be provided
             instagramHandle: 'jaredtphan',
             bookingUrl: '',

@@ -6,6 +6,7 @@ import { BeforeAfterGallery } from '@/components/sections/BeforeAfterGallery';
 import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
+import { cloudinaryAssets } from '@/lib/cloudinary';
 import { footerColumns } from '@/lib/footerConfig';
 
 export const metadata = {
@@ -201,12 +202,12 @@ export default function ServicesPage() {
       <BeforeAfterGallery
         heading="Results Speak"
         items={[
-          { beforeSrc: '', afterSrc: '', title: 'Precision Fade', service: 'Signature Cut' },
-          { beforeSrc: '', afterSrc: '', title: 'Textured Crop', service: 'Signature Cut' },
-          { beforeSrc: '', afterSrc: '', title: 'Classic Taper', service: 'Signature Cut' },
-          { beforeSrc: '', afterSrc: '', title: 'Modern Pompadour', service: 'Grooming Package' },
-          { beforeSrc: '', afterSrc: '', title: 'Beard Sculpting', service: 'Grooming Package' },
-          { beforeSrc: '', afterSrc: '', title: 'Structural Cut', service: 'Signature Cut' },
+          {
+            beforeSrc: cloudinaryAssets.beforeAfter01Before,
+            afterSrc: cloudinaryAssets.beforeAfter01After,
+            title: 'Precision Fade',
+            service: 'Signature Cut'
+          },
         ]}
       />
 

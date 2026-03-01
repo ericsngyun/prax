@@ -98,9 +98,19 @@ export default function HomePage() {
             title: 'Studio Cut — Side Profile',
           },
           {
+            src: cloudinaryAssets.jackWork01,
+            alt: 'Jack - Precision cut',
+            title: 'Precision Cut',
+          },
+          {
             src: cloudinaryAssets.portfolio03,
             alt: 'Close-up detailing - scissor work',
             title: 'Close-Up Detailing',
+          },
+          {
+            src: cloudinaryAssets.gavinWork01,
+            alt: 'Gavin - Textured fade',
+            title: 'Textured Fade',
           },
           {
             src: cloudinaryAssets.portfolio04,
@@ -108,9 +118,29 @@ export default function HomePage() {
             title: 'Finished Look — Front View',
           },
           {
+            src: cloudinaryAssets.stevenWork01,
+            alt: 'Steven - Modern style',
+            title: 'Modern Style',
+          },
+          {
+            src: cloudinaryAssets.jackWork02,
+            alt: 'Jack - Clean lines',
+            title: 'Clean Lines',
+          },
+          {
             src: cloudinaryAssets.portfolio05,
             alt: 'Texture and movement shot',
             title: 'Texture + Movement',
+          },
+          {
+            src: cloudinaryAssets.jaredWork01,
+            alt: 'Jared - Detail work',
+            title: 'Detail Work',
+          },
+          {
+            src: cloudinaryAssets.gavinWork02,
+            alt: 'Gavin - Finished result',
+            title: 'Finished Result',
           },
           {
             src: cloudinaryAssets.portfolio06,
@@ -118,9 +148,44 @@ export default function HomePage() {
             title: 'Color Work',
           },
           {
+            src: cloudinaryAssets.arielWork01,
+            alt: 'Ariel - Precision styling',
+            title: 'Precision Styling',
+          },
+          {
+            src: cloudinaryAssets.stevenWork02,
+            alt: 'Steven - Side profile',
+            title: 'Side Profile',
+          },
+          {
+            src: cloudinaryAssets.jackWork03,
+            alt: 'Jack - Structured cut',
+            title: 'Structured Cut',
+          },
+          {
             src: cloudinaryAssets.portfolio07,
             alt: 'Studio environment b-roll',
             title: 'Studio Atmosphere',
+          },
+          {
+            src: cloudinaryAssets.gavinWork03,
+            alt: 'Gavin - Classic look',
+            title: 'Classic Look',
+          },
+          {
+            src: cloudinaryAssets.arielWork02,
+            alt: 'Ariel - Textured finish',
+            title: 'Textured Finish',
+          },
+          {
+            src: cloudinaryAssets.jaredWork02,
+            alt: 'Jared - Sharp edges',
+            title: 'Sharp Edges',
+          },
+          {
+            src: cloudinaryAssets.stevenWork03,
+            alt: 'Steven - Fade work',
+            title: 'Fade Work',
           },
         ]}
       />
