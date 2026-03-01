@@ -96,7 +96,7 @@ export default function ServicesPage() {
       {/* What Makes PRAX Different */}
       <DifferentiationSection
         label="What Makes PRAX Different"
-        heading="Built on Structure, Not Trends"
+        heading="Built on Structure, and curated design"
         pillars={[
           {
             number: '01',
