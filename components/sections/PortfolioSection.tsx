@@ -218,10 +218,6 @@ export function PortfolioSection({
 
       {/* Marquee Container */}
       <div className="relative">
-        {/* Edge fade masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-r from-prax-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 md:w-40 bg-gradient-to-l from-prax-black to-transparent z-10 pointer-events-none" />
-
         {/* Infinite Marquee */}
         <div
           ref={marqueeRef}
