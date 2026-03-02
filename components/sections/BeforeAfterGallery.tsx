@@ -114,13 +114,22 @@ export function BeforeAfterGallery({
             </div>
           </div>
 
-          {/* Caption */}
-          <div className="text-center space-y-2">
-            <h3 className="text-h3 text-prax-white font-medium">
-              {item.title}
-            </h3>
-            <p className="text-body text-prax-stone">
-              {item.service}
+          {/* Transformation Highlight */}
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-6 mb-4">
+              <div className="h-px flex-1 bg-prax-graphite" />
+              <svg
+                className="w-6 h-6 text-prax-bone/60"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+              <div className="h-px flex-1 bg-prax-graphite" />
+            </div>
+            <p className="text-body-lg text-prax-stone leading-relaxed">
+              Precision cutting designed to maintain structure as it grows. Built for consistency, not just the first day.
             </p>
           </div>
         </div>

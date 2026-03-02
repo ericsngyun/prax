@@ -72,6 +72,11 @@ export const cloudinaryAssets = {
   beforeAfter01Before: getCloudinaryUrl('IMG_5371_xwg8oh', 'image', 'f_auto,q_85,w_1200'),
   beforeAfter01After: getCloudinaryUrl('IMG_5372_nlryw8', 'image', 'f_auto,q_85,w_1200'),
 
+  // Experience timeline process images
+  processConsultation: getCloudinaryUrl('Screenshot_2026-03-01_at_9.29.34_PM_a8k4be', 'image', 'f_auto,q_85,w_1200'),
+  processCutting: getCloudinaryUrl('Screenshot_2026-03-01_at_9.30.05_PM_je4vld', 'image', 'f_auto,q_85,w_1200'),
+  processDetailing: getCloudinaryUrl('Screenshot_2026-03-01_at_9.30.44_PM_bymkyu', 'image', 'f_auto,q_85,w_1200'),
+
   // Content images
   philosophyImage: getCloudinaryUrl('image_02_egyihk', 'image', 'f_auto,q_85,w_1920'),
 
