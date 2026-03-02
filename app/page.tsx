@@ -70,19 +70,19 @@ export default function HomePage() {
 
       {/* 5. Social Proof */}
       <SocialProofSection
-        heading="Trusted by Clients Who Expect More"
+        heading="Rated 5 Stars — Trusted by Clients Who Expect More"
         testimonials={[
           {
-            quote: "I've never had a haircut that grew out this well.",
-            author: 'Client, Los Angeles',
+            quote: "After letting my hair grow out for 5 months, I wanted to try a middle part flow. I'd seen videos of Jack cutting the hair of some of the best barbers in LA, so I figured this was the place to go. He didn't disappoint—the cut turned out amazing! It looks great, feels great, and is exactly what I wanted. Couldn't be happier.",
+            author: 'Clay Morton',
           },
           {
-            quote: 'PRAX feels more like a design studio than a barbershop.',
-            author: 'Client, Beverly Hills',
+            quote: "These guys are the best! Ari and Jack are both really cool guys but have tons of knowledge about hair. Ari was the one who cut my hair and he answered all my questions and even gave me more insight regarding my hair and how to style it. I definitely will be coming back and if you're looking for people who you can trust with your hair, this is forsure the spot.",
+            author: 'Arya V',
           },
           {
-            quote: 'The attention to detail is unmatched. Every visit is consistent.',
-            author: 'Client, West Hollywood',
+            quote: "Gavin always gives me the best cuts. Really skilled with scissors and actually listens to what style you want. This place is a gem especially for curly hair.",
+            author: 'Parker Wenguer',
           },
         ]}
       />
