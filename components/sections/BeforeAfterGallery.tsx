@@ -62,6 +62,73 @@ export function BeforeAfterGallery({
     });
   }, []);
 
+  // Single item layout (centered, featured)
+  if (items.length === 1) {
+    const item = items[0];
+    return (
+      <section ref={sectionRef} className="section-padding bg-prax-black">
+        <div className="container-prax max-w-5xl mx-auto">
+          <h2
+            ref={headingRef}
+            className="text-h1 font-light text-prax-white text-center mb-16 md:mb-20"
+          >
+            {heading}
+          </h2>
+
+          {/* Featured Before/After */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8">
+            {/* Before */}
+            <div className="relative aspect-[3/4] bg-prax-charcoal overflow-hidden rounded-sm">
+              <div className="absolute top-4 left-4 z-10 text-label text-prax-bone bg-prax-black/70 px-4 py-2 backdrop-blur-sm rounded-sm">
+                BEFORE
+              </div>
+              {item.beforeSrc && (
+                <Image
+                  src={item.beforeSrc}
+                  alt={`${item.title} - Before`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={90}
+                  loading="lazy"
+                  className="before-after-img object-cover"
+                />
+              )}
+            </div>
+
+            {/* After */}
+            <div className="relative aspect-[3/4] bg-prax-charcoal overflow-hidden rounded-sm">
+              <div className="absolute top-4 left-4 z-10 text-label text-prax-bone bg-prax-black/70 px-4 py-2 backdrop-blur-sm rounded-sm">
+                AFTER
+              </div>
+              {item.afterSrc && (
+                <Image
+                  src={item.afterSrc}
+                  alt={`${item.title} - After`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={90}
+                  loading="lazy"
+                  className="before-after-img object-cover"
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Caption */}
+          <div className="text-center space-y-2">
+            <h3 className="text-h3 text-prax-white font-medium">
+              {item.title}
+            </h3>
+            <p className="text-body text-prax-stone">
+              {item.service}
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Multiple items layout (horizontal scroll)
   return (
     <section ref={sectionRef} className="py-20 md:py-24 bg-prax-black overflow-hidden">
       <div className="container-prax mb-12">
