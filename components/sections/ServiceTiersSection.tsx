@@ -127,15 +127,7 @@ export function ServiceTiersSection({
                 </h3>
 
                 <div className="flex items-baseline gap-3 mb-6">
-                  <span
-                    ref={(el) => {
-                      if (el) priceRefs.current[index] = el;
-                    }}
-                    className="text-h2 text-prax-bone font-light"
-                  >
-                    {tier.price}
-                  </span>
-                  <span className="text-body text-prax-silver">
+                  <span className="text-body-lg text-prax-bone uppercase tracking-wider">
                     {tier.duration}
                   </span>
                 </div>
