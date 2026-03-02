@@ -139,13 +139,13 @@ export function StudioSpaceSection({
                     )}
                   </>
                 ) : (
-                  <div className={`${isFeature ? 'aspect-[16/9]' : 'aspect-[4/5]'} flex items-center justify-center p-6 bg-prax-charcoal`}>
+                  <div className={`${isFeature ? 'aspect-[16/9]' : 'aspect-[4/5]'} flex items-center justify-center p-6 bg-prax-charcoal border border-prax-graphite/30`}>
                     <div className="text-center">
-                      <div className="text-prax-silver/60 text-sm mb-2">
-                        {image.alt}
+                      <div className="text-h3 text-prax-bone/40 font-light mb-3">
+                        Coming Soon
                       </div>
-                      <div className="text-prax-stone/40 text-xs">
-                        {image.caption || 'Interior or detail shot'}
+                      <div className="text-body-sm text-prax-stone/60">
+                        New location opening soon
                       </div>
                     </div>
                   </div>

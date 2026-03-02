@@ -376,7 +376,7 @@ export function TeamGridSection({
                     }
                   />
 
-                  {member.actionSrc ? (
+                  {member.actionSrc && (
                     <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden">
                       <Image
                         src={member.actionSrc}
@@ -388,15 +388,6 @@ export function TeamGridSection({
                         className="object-cover img-portfolio"
                         style={member.actionSrcPosition ? { objectPosition: member.actionSrcPosition } : undefined}
                       />
-                    </div>
-                  ) : (
-                    <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden flex items-center justify-center">
-                      <div className="text-center p-6">
-                        <div className="text-prax-silver text-sm mb-2">ACTION B-ROLL</div>
-                        <div className="text-prax-stone text-xs">
-                          Hands at work, clipper detail, or client angle
-                        </div>
-                      </div>
                     </div>
                   )}
 
