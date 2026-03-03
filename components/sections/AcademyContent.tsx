@@ -173,11 +173,6 @@ export function AcademyContent() {
                   loading="lazy"
                   className="object-cover transition-all duration-700 group-hover:scale-[1.03]"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-prax-black/80 via-prax-black/40 to-transparent p-6">
-                  <div className="text-body-lg text-prax-white font-medium">
-                    {item.title}
-                  </div>
-                </div>
               </div>
             ))}
           </div>
