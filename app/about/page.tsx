@@ -21,6 +21,7 @@ export default function AboutPage() {
         label="About"
         headline="Built on craft, and curated design"
         description="PRAX was founded to raise the standard of men's haircutting — emphasizing discipline, precision, and education over speed or volume."
+        videoSrc={cloudinaryAssets.aboutVideo}
       />
 
       {/* Origin Story */}
