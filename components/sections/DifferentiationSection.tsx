@@ -108,7 +108,7 @@ export function DifferentiationSection({
 
       <div className="container-prax relative z-10">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-28">
+        <div className="text-center mb-12 md:mb-20 max-w-4xl mx-auto">
           <span
             ref={labelRef}
             className="text-label text-prax-bone uppercase tracking-widest block mb-4 md:mb-6"
@@ -117,7 +117,7 @@ export function DifferentiationSection({
           </span>
           <h2
             ref={headingRef}
-            className="text-display text-prax-white"
+            className="text-h2 md:text-h1 font-light text-prax-white"
           >
             {heading}
           </h2>
