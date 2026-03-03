@@ -136,7 +136,7 @@ export function AcademyContent() {
 
       {/* Visuals */}
       <section className="section-padding bg-prax-ink">
-        <div className="container-prax max-w-6xl mx-auto">
+        <div className="container-prax max-w-7xl mx-auto">
           <div className="mb-12 md:mb-16">
             <span className="text-label text-prax-silver mb-4 block">
               Academy Visuals
@@ -145,30 +145,26 @@ export function AcademyContent() {
               Inside the Classroom
             </h2>
           </div>
-          <div ref={visualsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div ref={visualsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
-              {
-                title: 'Live Demonstration',
-                imageSrc: cloudinaryAssets.academyClassroom01,
-              },
-              {
-                title: 'Technique Close-Up',
-                imageSrc: cloudinaryAssets.academyClassroom02,
-              },
-              {
-                title: 'Student Work',
-                imageSrc: cloudinaryAssets.academyClassroom03,
-              },
-            ].map((item) => (
+              cloudinaryAssets.academyClassroom01,
+              cloudinaryAssets.academyClassroom02,
+              cloudinaryAssets.academyClassroom03,
+              cloudinaryAssets.academyClassroom04,
+              cloudinaryAssets.academyClassroom05,
+              cloudinaryAssets.academyClassroom06,
+              cloudinaryAssets.academyClassroom07,
+              cloudinaryAssets.academyClassroom08,
+            ].map((imageSrc, index) => (
               <div
-                key={item.title}
+                key={index}
                 className="relative aspect-[4/5] bg-prax-charcoal overflow-hidden rounded-sm group"
               >
                 <Image
-                  src={item.imageSrc}
-                  alt={item.title}
+                  src={imageSrc}
+                  alt={`Classroom scene ${index + 1}`}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   quality={85}
                   loading="lazy"
                   className="object-cover transition-all duration-700 group-hover:scale-[1.03]"

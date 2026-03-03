@@ -78,9 +78,14 @@ export const cloudinaryAssets = {
   processDetailing: getCloudinaryUrl('Screenshot_2026-03-01_at_9.30.44_PM_bymkyu', 'image', 'f_auto,q_85,w_1200'),
 
   // Academy classroom images
-  academyClassroom01: getCloudinaryUrl('Screenshot_2026-03-01_at_9.23.48_PM_p5ejts', 'image', 'f_auto,q_85,w_1200'),
-  academyClassroom02: getCloudinaryUrl('Screenshot_2026-03-01_at_9.31.50_PM_qi4smi', 'image', 'f_auto,q_85,w_1200'),
-  academyClassroom03: getCloudinaryUrl('Screenshot_2026-03-01_at_9.25.28_PM_owut6q', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom01: getCloudinaryUrl('DSC05494_ieuo7z', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom02: getCloudinaryUrl('DSC05410_ftp8ad', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom03: getCloudinaryUrl('DSC05443_wzotnm', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom04: getCloudinaryUrl('DSC05507_lllr0d', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom05: getCloudinaryUrl('DSC05464_fwgwln', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom06: getCloudinaryUrl('DSC05420_pv8bgc', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom07: getCloudinaryUrl('DSC05460_aljec1', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom08: getCloudinaryUrl('DSC05448_jtyltx', 'image', 'f_auto,q_85,w_1200'),
 
   // Content images
   philosophyImage: getCloudinaryUrl('image_02_egyihk', 'image', 'f_auto,q_85,w_1920'),
