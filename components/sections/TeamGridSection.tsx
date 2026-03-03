@@ -288,6 +288,18 @@ export function TeamGridSection({
             blurAmount: 8, // Subtle - not aggressive
           });
         }
+
+        // Blur reveal on work sample images (in unison)
+        // Only on desktop for performance
+        const workSampleImgs = member.querySelectorAll('.team-work-sample');
+        if (workSampleImgs.length > 0 && window.innerWidth >= 768) {
+          workSampleImgs.forEach((img) => {
+            revealWithBlur(img as HTMLElement, {
+              scrollTrigger: true,
+              blurAmount: 8, // Subtle - consistent with portraits
+            });
+          });
+        }
       });
     }, sectionRef);
 
@@ -406,7 +418,7 @@ export function TeamGridSection({
                             sizes="(max-width: 768px) 45vw, (max-width: 1024px) 22vw, 300px"
                             quality={85}
                             loading="lazy"
-                            className="object-cover img-portfolio"
+                            className="object-cover img-portfolio team-work-sample"
                           />
                         </div>
                       ))}
