@@ -8,6 +8,7 @@ import { StatsSection } from '@/components/sections/StatsSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
 import { footerColumns } from '@/lib/footerConfig';
+import { cloudinaryAssets } from '@/lib/cloudinary';
 import { prefersReducedMotion } from '@/lib/utils';
 
 if (typeof window !== 'undefined') {
@@ -120,6 +121,7 @@ export function AcademyContent() {
         label="Academy"
         headline="Elevate Your Craft"
         description="PRAX Academy teaches the same precision methodology we use in our studio. Structure, discipline, and fundamentals — not trends."
+        videoSrc={cloudinaryAssets.academyVideo}
       />
 
       {/* Stats — counter animations (intentional — keep) */}

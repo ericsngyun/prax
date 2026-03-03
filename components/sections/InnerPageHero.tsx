@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
+import { VideoBackground } from '@/components/ui/VideoBackground';
 import { prefersReducedMotion } from '@/lib/utils';
 
 interface InnerPageHeroProps {
@@ -10,9 +11,11 @@ interface InnerPageHeroProps {
   headline: string;
   description: string;
   backgroundImage?: string;
+  videoSrc?: string;
+  videoPoster?: string;
 }
 
-export function InnerPageHero({ label, headline, description, backgroundImage }: InnerPageHeroProps) {
+export function InnerPageHero({ label, headline, description, backgroundImage, videoSrc, videoPoster }: InnerPageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -33,9 +36,22 @@ export function InnerPageHero({ label, headline, description, backgroundImage }:
     return () => ctx.revert();
   }, []);
 
+  const hasBackground = backgroundImage || videoSrc;
+
   return (
-    <section ref={sectionRef} className={`relative min-h-screen flex items-center ${backgroundImage ? '' : 'bg-prax-black'} pb-16 md:pb-20`}>
-      {backgroundImage && (
+    <section ref={sectionRef} className={`relative min-h-screen flex items-center ${hasBackground ? '' : 'bg-prax-black'} pb-16 md:pb-20`}>
+      {/* Video Background */}
+      {videoSrc && (
+        <VideoBackground
+          src={videoSrc}
+          poster={videoPoster}
+          scaleOnScroll={false}
+          overlayClassName="bg-gradient-to-b from-prax-black/40 via-prax-black/60 to-prax-black"
+        />
+      )}
+
+      {/* Image Background (fallback if no video) */}
+      {!videoSrc && backgroundImage && (
         <>
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
@@ -53,7 +69,7 @@ export function InnerPageHero({ label, headline, description, backgroundImage }:
         </>
       )}
 
-      <div ref={contentRef} className={`container-prax max-w-5xl mx-auto pt-32 md:pt-40 ${backgroundImage ? 'relative z-10' : ''}`}>
+      <div ref={contentRef} className={`container-prax max-w-5xl mx-auto pt-32 md:pt-40 ${hasBackground ? 'relative z-10' : ''}`}>
         <div className="mb-8">
           <span className="text-label text-prax-silver">
             {label}

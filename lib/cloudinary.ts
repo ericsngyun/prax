@@ -82,4 +82,5 @@ export const cloudinaryAssets = {
 
   // Videos (optimized for web delivery)
   heroVideo: getCloudinaryUrl('hero-bg_iun7ay', 'video', 'f_auto,q_auto,w_1920'),
+  academyVideo: getCloudinaryUrl('academy-prax_unh9ay', 'video', 'f_auto,q_auto,w_1920'),
 };
