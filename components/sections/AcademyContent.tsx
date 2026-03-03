@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
@@ -133,7 +134,7 @@ export function AcademyContent() {
         ]}
       />
 
-      {/* Visuals Placeholder */}
+      {/* Visuals */}
       <section className="section-padding bg-prax-ink">
         <div className="container-prax max-w-6xl mx-auto">
           <div className="mb-12 md:mb-16">
@@ -148,27 +149,33 @@ export function AcademyContent() {
             {[
               {
                 title: 'Live Demonstration',
-                note: 'Instructor cutting, students watching, wide angle',
+                imageSrc: cloudinaryAssets.academyClassroom01,
               },
               {
                 title: 'Technique Close-Up',
-                note: 'Hands + sectioning, sharp focus, neutral background',
+                imageSrc: cloudinaryAssets.academyClassroom02,
               },
               {
                 title: 'Student Work',
-                note: 'Before/after or final result, consistent lighting',
+                imageSrc: cloudinaryAssets.academyClassroom03,
               },
             ].map((item) => (
               <div
                 key={item.title}
-                className="relative aspect-[4/5] bg-prax-charcoal flex items-center justify-center"
+                className="relative aspect-[4/5] bg-prax-charcoal overflow-hidden rounded-sm group"
               >
-                <div className="text-center px-6">
-                  <div className="text-body text-prax-white mb-2">
+                <Image
+                  src={item.imageSrc}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  quality={85}
+                  loading="lazy"
+                  className="object-cover transition-all duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-prax-black/80 via-prax-black/40 to-transparent p-6">
+                  <div className="text-body-lg text-prax-white font-medium">
                     {item.title}
-                  </div>
-                  <div className="text-caption text-prax-stone">
-                    {item.note}
                   </div>
                 </div>
               </div>

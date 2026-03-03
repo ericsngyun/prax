@@ -77,6 +77,11 @@ export const cloudinaryAssets = {
   processCutting: getCloudinaryUrl('Screenshot_2026-03-01_at_9.30.05_PM_je4vld', 'image', 'f_auto,q_85,w_1200'),
   processDetailing: getCloudinaryUrl('Screenshot_2026-03-01_at_9.30.44_PM_bymkyu', 'image', 'f_auto,q_85,w_1200'),
 
+  // Academy classroom images
+  academyClassroom01: getCloudinaryUrl('Screenshot_2026-03-01_at_9.23.48_PM_p5ejts', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom02: getCloudinaryUrl('Screenshot_2026-03-01_at_9.31.50_PM_qi4smi', 'image', 'f_auto,q_85,w_1200'),
+  academyClassroom03: getCloudinaryUrl('Screenshot_2026-03-01_at_9.25.28_PM_owut6q', 'image', 'f_auto,q_85,w_1200'),
+
   // Content images
   philosophyImage: getCloudinaryUrl('image_02_egyihk', 'image', 'f_auto,q_85,w_1920'),
 
