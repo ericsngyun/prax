@@ -84,6 +84,7 @@ export const cloudinaryAssets = {
 
   // Content images
   philosophyImage: getCloudinaryUrl('image_02_egyihk', 'image', 'f_auto,q_85,w_1920'),
+  servicesHeroImage: getCloudinaryUrl('DSC02662_1_zstxlc', 'image', 'f_auto,q_90,w_1920'),
 
   // Videos (optimized for web delivery)
   heroVideo: getCloudinaryUrl('hero-bg_iun7ay', 'video', 'f_auto,q_auto,w_1920'),

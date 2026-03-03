@@ -23,6 +23,7 @@ export default function ServicesPage() {
         label="Services"
         headline="Built, Not Rushed"
         description="Clear service categories. Transparent expectations. Direct booking."
+        backgroundImage={cloudinaryAssets.servicesHeroImage}
       />
 
       {/* Service Tiers */}
