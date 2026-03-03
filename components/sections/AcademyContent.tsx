@@ -276,6 +276,7 @@ export function AcademyContent() {
       <CTASection
         headline="Ready to Raise Your Standard?"
         description="Applications for upcoming classes are open. Limited seats per session to maintain quality."
+        showPrimaryButton={false}
       />
 
       {/* Footer */}
