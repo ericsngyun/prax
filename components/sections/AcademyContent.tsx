@@ -274,7 +274,7 @@ export function AcademyContent() {
 
       {/* CTA */}
       <CTASection
-        headline="Ready to Level Up?"
+        headline="Ready to Raise Your Standard?"
         description="Applications for upcoming classes are open. Limited seats per session to maintain quality."
       />
 
