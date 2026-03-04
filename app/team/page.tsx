@@ -132,7 +132,7 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: '',
+            portraitSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1772508153/DSC05741_hojyxk.jpg',
             actionSrc: '',
             videoSrc: '', // Video intro — to be provided
             instagramHandle: 'mysticalasian',
