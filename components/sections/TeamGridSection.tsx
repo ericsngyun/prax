@@ -167,7 +167,7 @@ function TeamMemberPortrait({
           fill
           sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 600px"
           quality={80}
-          className={`team-portrait-img object-cover img-team transition-opacity duration-500 ${
+          className={`team-portrait-img object-cover transition-opacity duration-500 ${
             isHovering && member.videoSrc ? 'opacity-0' : 'opacity-100'
           }`}
         />

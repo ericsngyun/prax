@@ -401,13 +401,7 @@ html.lenis body {
 }
 
 .img-team {
-  filter: grayscale(100%) contrast(1.05);
   transition: filter var(--duration-slow) var(--ease-out);
-}
-
-.group:hover .img-team,
-.img-team:hover {
-  filter: grayscale(0%) contrast(1);
 }
 
 /* Text Reveal Mask */
@@ -756,13 +750,11 @@ html.lenis body {
 }
 
 .team-member img {
-  filter: grayscale(100%) contrast(1.05);
   transition: filter var(--duration-slow) var(--ease-out),
               transform var(--duration-slow) var(--ease-out);
 }
 
 .team-member:hover img {
-  filter: grayscale(0%) contrast(1);
   transform: scale(1.05);
 }
 

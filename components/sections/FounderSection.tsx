@@ -148,7 +148,7 @@ export function FounderSection({
               direction="right"
               showFrame={false}
               containerClassName="aspect-[4/5]"
-              className="img-team"
+              className=""
             />
           </div>
         </div>

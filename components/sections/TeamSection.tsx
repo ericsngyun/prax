@@ -126,7 +126,7 @@ export function TeamSection({
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   quality={80}
                   loading="lazy"
-                  className="team-member-img object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-[1.03]"
+                  className="team-member-img object-cover transition-all duration-1000 group-hover:scale-[1.03]"
                 />
 
                 {/* Hover Overlay */}

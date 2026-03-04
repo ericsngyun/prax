@@ -103,7 +103,7 @@ export function OriginStorySection({
                 direction="right"
                 showFrame={false}
                 containerClassName="aspect-[4/5]"
-                className="img-team"
+                className=""
               />
             ) : (
               <div className="aspect-[4/5] bg-prax-charcoal flex items-center justify-center">

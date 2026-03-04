@@ -127,7 +127,7 @@ export function StudioSpaceSection({
                         sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
                         quality={85}
                         loading="lazy"
-                        className="studio-img object-cover transition-all duration-700 group-hover:scale-[1.03] group-hover:grayscale"
+                        className="studio-img object-cover transition-all duration-700 group-hover:scale-[1.03]"
                       />
                     </div>
                     {image.caption && (
