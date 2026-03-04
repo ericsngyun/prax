@@ -216,6 +216,12 @@ export default function HomePage() {
           'Saturday: 9am - 6pm',
           'Sunday - Monday: Closed',
         ]}
+        upcomingLocations={[
+          {
+            name: 'PRAX Arcadia',
+            city: 'Arcadia, CA',
+          },
+        ]}
       />
 
       {/* 9. Final CTA */}

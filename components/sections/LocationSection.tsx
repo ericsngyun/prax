@@ -9,6 +9,12 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+interface UpcomingLocation {
+  name: string;
+  city: string;
+  status?: string;
+}
+
 interface LocationSectionProps {
   label?: string;
   heading: string;
@@ -18,6 +24,7 @@ interface LocationSectionProps {
   hours?: string[];
   showMap?: boolean;
   mapEmbedUrl?: string;
+  upcomingLocations?: UpcomingLocation[];
 }
 
 export function LocationSection({
@@ -33,6 +40,7 @@ export function LocationSection({
   ],
   showMap = false,
   mapEmbedUrl,
+  upcomingLocations = [],
 }: LocationSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -150,6 +158,40 @@ export function LocationSection({
               </p>
             </div>
           </div>
+
+          {/* Upcoming Locations */}
+          {upcomingLocations.length > 0 && (
+            <div
+              ref={(el) => {
+                if (el) detailRefs.current[3] = el;
+              }}
+              className="mt-12 md:mt-16 pt-8 md:pt-12 border-t border-prax-graphite/40"
+            >
+              <h3 className="text-label text-prax-bone uppercase tracking-widest mb-6">
+                Coming Soon
+              </h3>
+              <div className="space-y-6">
+                {upcomingLocations.map((location, i) => (
+                  <div
+                    key={i}
+                    className="group flex items-center justify-between p-6 md:p-8 border border-dashed border-prax-graphite/60 hover:border-prax-bone/30 transition-all duration-500"
+                  >
+                    <div>
+                      <p className="text-h4 text-prax-white font-medium mb-1">
+                        {location.name}
+                      </p>
+                      <p className="text-body text-prax-stone">
+                        {location.city}
+                      </p>
+                    </div>
+                    <span className="text-label text-prax-bone uppercase tracking-widest border border-prax-bone/20 px-4 py-2 group-hover:border-prax-bone/40 transition-colors duration-500">
+                      {location.status || 'Coming Soon'}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Optional Map */}
           {showMap && mapEmbedUrl && (
