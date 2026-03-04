@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import { ServiceTiersSection } from '@/components/sections/ServiceTiersSection';
+import { ServiceMenuSection } from '@/components/sections/ServiceMenuSection';
+import { ProcessGallerySection } from '@/components/sections/ProcessGallerySection';
 import { HonestySection } from '@/components/sections/HonestySection';
 import { DifferentiationSection } from '@/components/sections/DifferentiationSection';
 import { ExperienceTimelineSection } from '@/components/sections/ExperienceTimelineSection';
@@ -26,57 +26,74 @@ export default function ServicesPage() {
         backgroundImage={cloudinaryAssets.servicesHeroImage}
       />
 
-      {/* Service Tiers */}
-      <ServiceTiersSection
-        heading="Choose Your Service"
-        description="Custom experiences designed by PRAX. Pricing varies by artist—view our team to learn more and book."
-        tiers={[
+      {/* Service Menu */}
+      <ServiceMenuSection
+        heading="Service Menu"
+        description="Pricing varies by artist and experience level. All services include consultation."
+        categories={[
           {
-            name: 'Signature Cut',
-            price: 'Custom',
-            duration: '60-75 min',
-            description:
-              'Our foundational service. Tailored haircut designed around your head shape, hair behavior, and personal style.',
-            includes: [
-              'Consultation and style analysis',
-              'Precision cutting and detailing',
-              'Styling and finishing',
-              'Product recommendations',
-              'Maintenance guidance',
+            category: 'Cuts',
+            description: 'Precision haircuts built around your head shape and hair behavior.',
+            items: [
+              {
+                name: 'Haircut',
+                price: '$65 – $125',
+                duration: '60–75 min',
+                note: 'Includes consultation, precision cut, styling, and product recommendations',
+              },
+              {
+                name: 'Haircut & Beard',
+                price: '$80 – $150',
+                duration: '60–90 min',
+                note: 'Full haircut plus beard sculpting, hot towel, and face grooming',
+              },
             ],
-            bookingHref: '/team',
           },
           {
-            name: 'Grooming Package',
-            price: 'Custom',
-            duration: '90 min',
-            description:
-              'Complete grooming experience. Haircut plus beard sculpting, detailing, and finishing.',
-            includes: [
-              'Everything in Signature Cut',
-              'Beard trim and shaping',
-              'Hot towel treatment',
-              'Face grooming and cleanup',
-              'Premium product application',
+            category: 'Color',
+            description: 'Creative color services. Currently available with select artists.',
+            items: [
+              {
+                name: 'Color Only (Short Hair)',
+                price: 'From $350',
+                duration: '~3 hrs',
+              },
+              {
+                name: 'Buzz Cut + Color',
+                price: 'From $375',
+                duration: '~3 hrs',
+              },
+              {
+                name: 'Highlights + Haircut',
+                price: 'From $400',
+                duration: '~3 hrs',
+              },
+              {
+                name: 'Cut & Color (Short Hair)',
+                price: 'From $550',
+                duration: '~4.5 hrs',
+              },
+              {
+                name: 'Cut & Color (Mid Length)',
+                price: 'From $575',
+                duration: '~5 hrs',
+              },
             ],
-            bookingHref: '/team',
           },
           {
-            name: 'Consultation',
-            price: 'Custom',
-            duration: '30 min',
-            description:
-              'Not sure what you need? Start here. In-depth consultation to assess your hair and plan your style direction.',
-            includes: [
-              'Hair and scalp analysis',
-              'Style recommendations',
-              'Maintenance plan',
-              'Product suggestions',
-              'Credit toward first service',
+            category: 'Education',
+            description: 'Private training inside PRAX Academy.',
+            items: [
+              {
+                name: '1-on-1 Academy Session',
+                price: '$1,600',
+                duration: '8 hrs',
+                note: 'Personalized private class — details sent via text after booking',
+              },
             ],
-            bookingHref: '/team',
           },
         ]}
+        footnote="Prices reflect current Squire booking rates and may vary by artist. Book through our team page to see individual pricing."
       />
 
       {/* Honesty Section */}
@@ -154,54 +171,13 @@ export default function ServicesPage() {
       />
 
       {/* The Process in Detail */}
-      <section className="section-padding bg-prax-ink">
-        <div className="container-prax max-w-6xl mx-auto">
-          <div className="mb-12 md:mb-16">
-            <span className="text-label text-prax-silver mb-4 block">
-              Visuals
-            </span>
-            <h2 className="text-h2 md:text-h1 text-prax-white">
-              The Process in Detail
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {[
-              {
-                title: 'Consultation',
-                imageSrc: cloudinaryAssets.processConsultation,
-              },
-              {
-                title: 'Precision Cutting',
-                imageSrc: cloudinaryAssets.processCutting,
-              },
-              {
-                title: 'Detailing',
-                imageSrc: cloudinaryAssets.processDetailing,
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="relative aspect-[4/5] bg-prax-charcoal overflow-hidden rounded-sm group"
-              >
-                <Image
-                  src={item.imageSrc}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  quality={85}
-                  loading="lazy"
-                  className="object-cover transition-all duration-700 group-hover:scale-[1.03]"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-prax-black/80 via-prax-black/40 to-transparent p-6">
-                  <div className="text-body-lg text-prax-white font-medium">
-                    {item.title}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProcessGallerySection
+        items={[
+          { title: 'Consultation', imageSrc: cloudinaryAssets.processConsultation },
+          { title: 'Precision Cutting', imageSrc: cloudinaryAssets.processCutting },
+          { title: 'Detailing', imageSrc: cloudinaryAssets.processDetailing },
+        ]}
+      />
 
       {/* Before/After Gallery */}
       <BeforeAfterGallery

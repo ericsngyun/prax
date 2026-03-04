@@ -94,22 +94,26 @@ export function ServiceTiersSection({
     return () => ctx.revert();
   }, [tiers]);
 
+  const hasHeader = heading || description;
+
   return (
-    <section ref={sectionRef} className="section-padding bg-prax-ink">
+    <section ref={sectionRef} className="section-padding pb-0 bg-prax-ink">
       <div className="container-prax">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-20 md:mb-24 max-w-3xl mx-auto">
-          <h2
-            className="text-h1 font-light text-prax-white mb-6"
-          >
-            {heading}
-          </h2>
-          <p
-            className="text-body-lg text-prax-stone leading-relaxed"
-          >
-            {description}
-          </p>
-        </div>
+        {hasHeader && (
+          <div ref={headerRef} className="text-center mb-20 md:mb-24 max-w-3xl mx-auto">
+            <h2
+              className="text-h1 font-light text-prax-white mb-6"
+            >
+              {heading}
+            </h2>
+            <p
+              className="text-body-lg text-prax-stone leading-relaxed"
+            >
+              {description}
+            </p>
+          </div>
+        )}
 
         {/* Service Tiers Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
@@ -127,7 +131,10 @@ export function ServiceTiersSection({
                 </h3>
 
                 <div className="flex items-baseline gap-3 mb-6">
-                  <span className="text-body-lg text-prax-bone uppercase tracking-wider">
+                  <span className="text-h4 text-prax-bone font-medium">
+                    {tier.price}
+                  </span>
+                  <span className="text-body-sm text-prax-silver">
                     {tier.duration}
                   </span>
                 </div>
