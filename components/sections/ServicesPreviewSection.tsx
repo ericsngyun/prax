@@ -41,7 +41,7 @@ const defaultServices: ServicePreview[] = [
       'Clean finishes, refined styling, and products selected to support your haircut beyond the chair.',
     cta: {
       text: 'Learn More',
-      href: '#services',
+      href: '/services',
     },
   },
   {
@@ -50,7 +50,7 @@ const defaultServices: ServicePreview[] = [
       'We prioritize haircuts that grow out well and maintain structure over time.',
     cta: {
       text: 'See Our Work',
-      href: '#work',
+      href: '/team',
     },
   },
 ];
