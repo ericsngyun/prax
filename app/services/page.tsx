@@ -29,7 +29,7 @@ export default function ServicesPage() {
       {/* Service Menu */}
       <ServiceMenuSection
         heading="Service Menu"
-        description="Pricing varies by artist and experience level. All services include consultation."
+        description="All services include consultation."
         categories={[
           {
             category: 'Cuts',
@@ -37,58 +37,15 @@ export default function ServicesPage() {
             items: [
               {
                 name: 'Haircut',
-                price: '$65 – $125',
+                price: '$70 – $125',
                 duration: '60–75 min',
                 note: 'Includes consultation, precision cut, styling, and product recommendations',
               },
               {
                 name: 'Haircut & Beard',
-                price: '$80 – $150',
+                price: '$90 – $150',
                 duration: '60–90 min',
                 note: 'Full haircut plus beard sculpting, hot towel, and face grooming',
-              },
-            ],
-          },
-          {
-            category: 'Color',
-            description: 'Creative color services. Currently available with select artists.',
-            items: [
-              {
-                name: 'Color Only (Short Hair)',
-                price: 'From $350',
-                duration: '~3 hrs',
-              },
-              {
-                name: 'Buzz Cut + Color',
-                price: 'From $375',
-                duration: '~3 hrs',
-              },
-              {
-                name: 'Highlights + Haircut',
-                price: 'From $400',
-                duration: '~3 hrs',
-              },
-              {
-                name: 'Cut & Color (Short Hair)',
-                price: 'From $550',
-                duration: '~4.5 hrs',
-              },
-              {
-                name: 'Cut & Color (Mid Length)',
-                price: 'From $575',
-                duration: '~5 hrs',
-              },
-            ],
-          },
-          {
-            category: 'Education',
-            description: 'Private training inside PRAX Academy.',
-            items: [
-              {
-                name: '1-on-1 Academy Session',
-                price: '$1,600',
-                duration: '8 hrs',
-                note: 'Personalized private class — details sent via text after booking',
               },
             ],
           },

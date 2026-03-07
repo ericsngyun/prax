@@ -25,7 +25,35 @@ interface ServicesPreviewSectionProps {
   services?: ServicePreview[];
 }
 
-const defaultServices: ServicePreview[] = [];
+const defaultServices: ServicePreview[] = [
+  {
+    title: 'High-End Haircutting',
+    description:
+      'Tailored haircuts designed around head shape, hair behavior, and personal style.',
+    cta: {
+      text: 'Book Your Haircut',
+      href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+    },
+  },
+  {
+    title: 'Grooming & Styling',
+    description:
+      'Clean finishes, refined styling, and products selected to support your haircut beyond the chair.',
+    cta: {
+      text: 'Learn More',
+      href: '/services',
+    },
+  },
+  {
+    title: 'Consistency-Driven Results',
+    description:
+      'We prioritize haircuts that grow out well and maintain structure over time.',
+    cta: {
+      text: 'See Our Work',
+      href: '/team',
+    },
+  },
+];
 
 export function ServicesPreviewSection({
   label = 'Services',
@@ -130,25 +158,68 @@ export function ServicesPreviewSection({
           </h2>
         </div>
 
-        {/* Pricing */}
-        <div className="max-w-lg mx-auto text-center">
-          <div className="space-y-4 mb-10">
-            <p className="text-h3 text-prax-white font-light tracking-wide">
-              $70 - $125 Haircut
-            </p>
-            <p className="text-h3 text-prax-white font-light tracking-wide">
-              $90 - $150 Haircut & Beard
-            </p>
-          </div>
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              ref={(el) => {
+                if (el) serviceRefs.current[index] = el;
+              }}
+              className="group relative service-card"
+            >
+              <div className="relative h-full flex flex-col p-6 md:p-8 border border-prax-graphite/30 hover:border-prax-bone/40 transition-all duration-500 bg-prax-charcoal/0 hover:bg-prax-charcoal/30">
+                {/* Number */}
+                <div
+                  ref={(el) => {
+                    if (el) numberRefs.current[index] = el;
+                  }}
+                  className="text-sm font-mono text-prax-bone/60 group-hover:text-prax-bone transition-colors duration-500 mb-8"
+                >
+                  00
+                </div>
 
-          <a
-            href="https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary text-body-sm cursor-pointer inline-block"
-          >
-            Book with Team
-          </a>
+                {/* Title */}
+                <h3 className="text-h3 text-prax-white font-medium mb-6 tracking-tight group-hover:text-prax-bone transition-colors duration-500">
+                  {service.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-body text-prax-stone leading-relaxed mb-8 flex-grow">
+                  {service.description}
+                </p>
+
+                {/* CTA Link */}
+                <a
+                  href={service.cta.href}
+                  target={service.cta.href.startsWith('http') ? '_blank' : undefined}
+                  rel={service.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="inline-flex items-center gap-2 text-body-sm font-medium text-prax-bone hover:text-prax-white transition-colors duration-300 group/link cursor-pointer"
+                >
+                  <span>{service.cta.text}</span>
+                  <svg
+                    className="w-4 h-4 transition-transform duration-300 group-hover/link:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+
+                {/* Decorative accent line - bottom */}
+                <div className="absolute bottom-0 left-0 w-0 h-px bg-prax-bone group-hover:w-full transition-all duration-700 ease-out" />
+
+                {/* Decorative accent line - top (subtle) */}
+                <div className="absolute top-0 left-0 w-full h-px bg-prax-bone opacity-0 group-hover:opacity-20 transition-opacity duration-700" />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
