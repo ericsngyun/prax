@@ -139,6 +139,19 @@ export function HeroSection({
             {kicker}
           </p>
 
+          {/* Relocation Notice */}
+          <div className="mt-8 md:mt-12 text-center">
+            <p className="text-body-sm text-prax-bone/50 tracking-[0.15em] uppercase mb-1.5">
+              Relocation Coming Soon
+            </p>
+            <p className="text-body text-prax-stone/70 font-light mb-0.5">
+              Prax Arcadia
+            </p>
+            <p className="text-body-sm text-prax-stone/50">
+              Arcadia, CA
+            </p>
+          </div>
+
           {/* Bottom block — centered on mobile, right-aligned on desktop */}
           <div
             ref={bottomBlockRef}

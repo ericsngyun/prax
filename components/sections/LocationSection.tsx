@@ -144,26 +144,11 @@ export function LocationSection({
             </div>
           </div>
 
-          {/* Accessibility Note */}
-          <div
-            ref={(el) => {
-              if (el) detailRefs.current[2] = el;
-            }}
-            className="mt-12 md:mt-16 pt-8 md:pt-12 border-t border-prax-graphite/40"
-          >
-            <div className="flex items-start gap-3">
-              <div className="w-1.5 h-1.5 bg-prax-bone rounded-full mt-2.5 flex-shrink-0" />
-              <p className="text-body text-prax-stone leading-relaxed">
-                Our studio is <span className="text-prax-white">ADA compliant and fully wheelchair accessible</span>. We are committed to providing an inclusive, welcoming environment for all clients.
-              </p>
-            </div>
-          </div>
-
           {/* Upcoming Locations */}
           {upcomingLocations.length > 0 && (
             <div
               ref={(el) => {
-                if (el) detailRefs.current[3] = el;
+                if (el) detailRefs.current[2] = el;
               }}
               className="mt-12 md:mt-16 pt-8 md:pt-12 border-t border-prax-graphite/40"
             >
