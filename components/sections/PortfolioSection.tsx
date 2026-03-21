@@ -81,20 +81,38 @@ export function PortfolioSection({
     return () => ctx.revert();
   }, []);
 
-  // Image reveal animations
+  // Image reveal animations - deferred and optimized
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
 
+    // Use Intersection Observer to only animate images when they're near viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const img = entry.target as HTMLElement;
+            // Only apply animation if not already animated
+            if (!img.dataset.animated) {
+              img.dataset.animated = 'true';
+              revealWithBlur(img, {
+                scrollTrigger: true,
+                blurAmount: 8,
+              });
+            }
+            observer.unobserve(img);
+          }
+        });
+      },
+      { rootMargin: '50px', threshold: 0.1 }
+    );
+
     const portfolioImages = sectionRef.current.querySelectorAll('.portfolio-img');
-    portfolioImages.forEach((img) => {
-      revealWithBlur(img as HTMLElement, {
-        scrollTrigger: true,
-        blurAmount: 8, // Subtle blur like team page
-      });
-    });
+    portfolioImages.forEach((img) => observer.observe(img));
+
+    return () => observer.disconnect();
   }, []);
 
-  // Marquee with scroll-velocity sensitivity (functional — keep)
+  // Marquee with scroll-velocity sensitivity (optimized)
   useEffect(() => {
     if (!marqueeRef.current || prefersReducedMotion()) return;
 
@@ -105,27 +123,51 @@ export function PortfolioSection({
     let position = 0;
     let lastScrollY = window.scrollY;
     let lastTime = performance.now();
+    let isIntersecting = false;
+    let scrollThrottleId: number | null = null;
 
-    // Track scroll velocity
+    // Intersection Observer - only run animation when section is visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isIntersecting = entry.isIntersecting;
+          if (!isIntersecting && animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = 0;
+          } else if (isIntersecting && !animationId) {
+            animationId = requestAnimationFrame(animate);
+          }
+        });
+      },
+      { rootMargin: '100px' }
+    );
+
+    observer.observe(marqueeInner);
+
+    // Throttled scroll velocity tracking - only update every 50ms
     const handleScroll = () => {
-      const now = performance.now();
-      const dt = now - lastTime;
-      if (dt > 0) {
-        const scrollDelta = Math.abs(window.scrollY - lastScrollY);
-        const velocity = scrollDelta / dt;
-        currentSpeed.current = 1 + Math.min(velocity * 8, 2);
-        lastScrollY = window.scrollY;
-        lastTime = now;
-      }
+      if (scrollThrottleId !== null) return;
+
+      scrollThrottleId = window.requestAnimationFrame(() => {
+        const now = performance.now();
+        const dt = now - lastTime;
+        if (dt > 0) {
+          const scrollDelta = Math.abs(window.scrollY - lastScrollY);
+          const velocity = scrollDelta / dt;
+          currentSpeed.current = 1 + Math.min(velocity * 8, 2);
+          lastScrollY = window.scrollY;
+          lastTime = now;
+        }
+        scrollThrottleId = null;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     const animate = () => {
-      currentSpeed.current += (baseSpeed.current - currentSpeed.current) * 0.05;
-
-      // Only animate if not paused
-      if (!isPaused.current) {
+      // Only animate if visible and not paused
+      if (isIntersecting && !isPaused.current) {
+        currentSpeed.current += (baseSpeed.current - currentSpeed.current) * 0.05;
         position -= 0.5 * currentSpeed.current;
         if (Math.abs(position) >= marqueeWidth) {
           position += marqueeWidth;
@@ -133,7 +175,9 @@ export function PortfolioSection({
         marqueeInner.style.transform = `translate3d(${position}px, 0, 0)`;
       }
 
-      animationId = requestAnimationFrame(animate);
+      if (isIntersecting) {
+        animationId = requestAnimationFrame(animate);
+      }
     };
 
     // Pause on hover
@@ -148,20 +192,23 @@ export function PortfolioSection({
     marqueeInner.addEventListener('mouseenter', handleMouseEnter);
     marqueeInner.addEventListener('mouseleave', handleMouseLeave);
 
+    // Start animation if initially visible
     animationId = requestAnimationFrame(animate);
 
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
+      if (scrollThrottleId !== null) cancelAnimationFrame(scrollThrottleId);
       window.removeEventListener('scroll', handleScroll);
       marqueeInner.removeEventListener('mouseenter', handleMouseEnter);
       marqueeInner.removeEventListener('mouseleave', handleMouseLeave);
+      observer.disconnect();
     };
   }, []);
 
   const renderItem = (item: PortfolioItem, index: number, keyPrefix: string) => (
     <div
       key={`${keyPrefix}-${index}`}
-      className="portfolio-item portfolio-item-tilt flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative"
+      className="portfolio-item portfolio-item-tilt flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative transform-gpu"
     >
       <span className="absolute -top-8 left-0 text-label text-prax-bone opacity-60">
         {formatNumber(index + 1)}
@@ -174,9 +221,11 @@ export function PortfolioSection({
               src={item.src}
               alt={item.alt}
               fill
-              sizes="400px"
-              quality={85}
+              sizes="(max-width: 640px) 280px, (max-width: 768px) 350px, 400px"
+              quality={75}
               loading="lazy"
+              placeholder="blur"
+              blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUzMyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjUzMyIgZmlsbD0iIzFhMWExYSIvPjwvc3ZnPg=="
               className="portfolio-img object-cover"
             />
           </>

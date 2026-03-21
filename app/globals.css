@@ -678,6 +678,8 @@ html.lenis body {
 
 .portfolio-item {
   will-change: transform, opacity;
+  content-visibility: auto;
+  contain-intrinsic-size: 400px 533px; /* aspect-ratio 3:4 */
 }
 
 .portfolio-item::after {
