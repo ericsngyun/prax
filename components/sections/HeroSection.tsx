@@ -7,6 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { VideoBackground } from '@/components/ui/VideoBackground';
 import { prefersReducedMotion } from '@/lib/utils';
 import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
+import { cloudinaryAssets } from '@/lib/cloudinary';
+import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -121,11 +123,14 @@ export function HeroSection({
           {/* Centered logo image */}
           <div ref={logoRef}>
             <Image
-              src="https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771808514/prax-logo-x_qxhivx.png"
+              src={cloudinaryAssets.logoX}
               alt=""
               width={320}
               height={320}
               priority
+              quality={85}
+              placeholder="blur"
+              blurDataURL={blurPlaceholders.black}
               className="w-36 sm:w-48 md:w-72 lg:w-80 h-auto"
             />
             <span className="sr-only">{headline}</span>

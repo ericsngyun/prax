@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { VideoBackground } from '@/components/ui/VideoBackground';
 import { prefersReducedMotion } from '@/lib/utils';
+import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 interface InnerPageHeroProps {
   label: string;
@@ -60,7 +61,9 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
               alt=""
               fill
               priority
-              quality={90}
+              quality={75}
+              placeholder="blur"
+              blurDataURL={blurPlaceholders.darkGradient}
               className="object-cover"
             />
           </div>

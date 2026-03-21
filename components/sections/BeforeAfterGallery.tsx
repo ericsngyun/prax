@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
 import { revealWithBlur } from '@/lib/animations';
+import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -88,8 +89,10 @@ export function BeforeAfterGallery({
                   alt={`${item.title} - Before`}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={90}
+                  quality={80}
                   loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={blurPlaceholders.portrait}
                   className="before-after-img object-cover"
                 />
               )}
@@ -106,8 +109,10 @@ export function BeforeAfterGallery({
                   alt={`${item.title} - After`}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  quality={90}
+                  quality={80}
                   loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={blurPlaceholders.portrait}
                   className="before-after-img object-cover"
                 />
               )}
@@ -170,7 +175,7 @@ export function BeforeAfterGallery({
                       alt={`${item.title} - Before`}
                       fill
                       sizes="(max-width: 768px) 40vw, 300px"
-                      quality={85}
+                      quality={80}
                       loading="lazy"
                       className="before-after-img object-cover"
                     />
@@ -199,7 +204,7 @@ export function BeforeAfterGallery({
                       alt={`${item.title} - After`}
                       fill
                       sizes="(max-width: 768px) 40vw, 300px"
-                      quality={85}
+                      quality={80}
                       loading="lazy"
                       className="before-after-img object-cover"
                     />

@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
 import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
 import { revealWithBlur } from '@/lib/animations';
+import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -166,7 +167,9 @@ function TeamMemberPortrait({
           alt={member.name}
           fill
           sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 600px"
-          quality={80}
+          quality={75}
+          placeholder="blur"
+          blurDataURL={blurPlaceholders.portrait}
           className={`team-portrait-img object-cover transition-opacity duration-500 ${
             isHovering && member.videoSrc ? 'opacity-0' : 'opacity-100'
           }`}
@@ -395,7 +398,7 @@ export function TeamGridSection({
                         alt={`${member.name} working`}
                         fill
                         sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 600px"
-                        quality={80}
+                        quality={75}
                         loading="lazy"
                         className="object-cover img-portfolio"
                         style={member.actionSrcPosition ? { objectPosition: member.actionSrcPosition } : undefined}
@@ -416,7 +419,7 @@ export function TeamGridSection({
                             alt={`${member.name} work sample ${workIndex + 1}`}
                             fill
                             sizes="(max-width: 768px) 45vw, (max-width: 1024px) 22vw, 300px"
-                            quality={85}
+                            quality={75}
                             loading="lazy"
                             className="object-cover img-portfolio team-work-sample"
                           />

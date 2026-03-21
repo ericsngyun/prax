@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { staggerReveal, revealWithBlur } from '@/lib/animations';
 import { cn, prefersReducedMotion } from '@/lib/utils';
+import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -124,8 +125,10 @@ export function TeamSection({
                   alt={member.name}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  quality={80}
+                  quality={75}
                   loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={blurPlaceholders.portrait}
                   className="team-member-img object-cover transition-all duration-1000 group-hover:scale-[1.03]"
                 />
 

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { revealWithBlur } from '@/lib/animations';
 import { prefersReducedMotion } from '@/lib/utils';
+import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 interface ProcessItem {
   title: string;
@@ -57,8 +58,10 @@ export function ProcessGallerySection({
                 alt={item.title}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                quality={85}
+                quality={75}
                 loading="lazy"
+                placeholder="blur"
+                blurDataURL={blurPlaceholders.charcoal}
                 className="process-img object-cover transition-all duration-700 group-hover:scale-[1.03]"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-prax-black/80 via-prax-black/40 to-transparent p-6">

@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
 import { revealWithBlur } from '@/lib/animations';
+import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -125,8 +126,10 @@ export function StudioSpaceSection({
                         alt={image.alt}
                         fill
                         sizes={isFeature ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'}
-                        quality={85}
+                        quality={75}
                         loading="lazy"
+                        placeholder="blur"
+                        blurDataURL={blurPlaceholders.charcoal}
                         className="studio-img object-cover transition-all duration-700 group-hover:scale-[1.03]"
                       />
                     </div>

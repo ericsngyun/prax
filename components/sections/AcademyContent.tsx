@@ -11,6 +11,7 @@ import { Footer } from '@/components/sections/Footer';
 import { footerColumns } from '@/lib/footerConfig';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 import { prefersReducedMotion } from '@/lib/utils';
+import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -165,8 +166,10 @@ export function AcademyContent() {
                   alt={`Classroom scene ${index + 1}`}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  quality={85}
+                  quality={75}
                   loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={blurPlaceholders.charcoal}
                   className="object-cover transition-all duration-700 group-hover:scale-[1.03]"
                 />
               </div>
