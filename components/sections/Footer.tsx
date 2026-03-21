@@ -106,7 +106,7 @@ export function Footer({
               alt="PRAX"
               width={248}
               height={32}
-              quality={100}
+              quality={90}
               className="h-7 md:h-8 w-auto"
             />
           </div>

@@ -140,7 +140,7 @@ export function Header() {
                 width={186}
                 height={24}
                 priority
-                quality={100}
+                quality={90}
                 className="h-5 md:h-6 w-auto"
               />
             </Link>

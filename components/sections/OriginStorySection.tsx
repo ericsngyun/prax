@@ -99,7 +99,7 @@ export function OriginStorySection({
                 alt={founderImageAlt}
                 width={800}
                 height={1000}
-                quality={80}
+                quality={75}
                 direction="right"
                 showFrame={false}
                 containerClassName="aspect-[4/5]"

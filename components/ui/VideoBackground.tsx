@@ -119,6 +119,7 @@ export function VideoBackground({
           muted
           loop
           playsInline
+          preload="metadata"
           poster={poster}
         >
           {webmSrc && <source src={webmSrc} type="video/webm" />}
