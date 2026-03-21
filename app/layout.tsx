@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 import { LenisProvider } from '@/components/providers/LenisProvider';
+import { ServiceWorkerProvider } from '@/components/providers/ServiceWorkerProvider';
 import { Header } from '@/components/layout/Header';
 // import { CustomCursor } from '@/components/ui/CustomCursor'; // Disabled - using default cursor
 import { PreloaderWrapper } from '@/components/ui/Preloader';
@@ -44,6 +45,7 @@ const sohneSans = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://prax.studio'),
   title: {
     default: 'PRAX — Precision Haircuts for Men Who Care About Detail',
     template: '%s | PRAX',
@@ -62,6 +64,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'PRAX Studio' }],
   creator: 'PRAX Studio',
+  manifest: '/manifest.json',
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -72,10 +75,11 @@ export const metadata: Metadata = {
       'High-end grooming studio in Los Angeles. Precision haircuts executed with discipline, design, and intention.',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'PRAX — Precision Grooming Studio',
+        type: 'image/jpeg',
       },
     ],
   },
@@ -83,11 +87,20 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'PRAX — Precision Haircuts',
     description: 'High-end grooming studio in Los Angeles. Built, not rushed.',
-    images: ['/images/og-image.jpg'],
+    images: ['/og-image.jpg'],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 };
 
@@ -106,6 +119,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={sohneSans.variable}>
       <body className="bg-prax-ink text-prax-white font-sans antialiased">
+        <ServiceWorkerProvider />
         <LenisProvider>
           <PreloaderWrapper>
             <Header />
