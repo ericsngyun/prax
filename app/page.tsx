@@ -21,7 +21,7 @@ export default function HomePage() {
         subheadline="High-end grooming studio in Los Angeles. Executed with discipline, design, and intention."
         primaryCTA={{
           text: 'Book an Appointment',
-          href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+          href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7',
         }}
         secondaryCTA={{ text: 'View Our Work', href: '/team' }}
         videoSrc={cloudinaryAssets.heroVideo}
@@ -209,12 +209,11 @@ export default function HomePage() {
         label="Visit Us"
         heading="Located in Los Angeles"
         description="A calm, focused environment designed for clients who value quality and consistency."
-        address="123 Main Street"
-        city="Los Angeles, CA 90001"
+        address="1752 W Adams Blvd #206"
+        city="Los Angeles, CA 90018"
         hours={[
-          'Tuesday - Friday: 10am - 7pm',
-          'Saturday: 9am - 6pm',
-          'Sunday - Monday: Closed',
+          'Monday - Saturday: 10am - 9pm',
+          'Sunday: Closed',
         ]}
         upcomingLocations={[
           {

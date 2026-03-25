@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -24,7 +24,6 @@ interface TeamMember {
   actionSrc: string;
   actionSrcPosition?: string; // CSS object-position value (e.g., 'top', '50% 20%')
   workSamples?: string[]; // Array of work sample image URLs
-  videoSrc?: string;
   instagramHandle?: string;
   bookingUrl?: string;
 }
@@ -35,131 +34,14 @@ interface TeamGridSectionProps {
   members: TeamMember[];
 }
 
-function VideoModal({
-  isOpen,
-  onClose,
-  videoSrc,
-  memberName,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-  videoSrc: string;
-  memberName: string;
-}) {
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (!overlayRef.current || !contentRef.current) return;
-
-    if (isOpen) {
-      gsap.to(overlayRef.current, {
-        opacity: 1,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-      gsap.fromTo(
-        contentRef.current,
-        { scale: 0.95, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.4, ease: 'power3.out', delay: 0.1 }
-      );
-    }
-  }, [isOpen]);
-
-  const handleClose = useCallback(() => {
-    if (!overlayRef.current || !contentRef.current) {
-      onClose();
-      return;
-    }
-    gsap.to(contentRef.current, {
-      scale: 0.95,
-      opacity: 0,
-      duration: 0.2,
-      ease: 'power2.in',
-    });
-    gsap.to(overlayRef.current, {
-      opacity: 0,
-      duration: 0.3,
-      ease: 'power2.in',
-      delay: 0.1,
-      onComplete: onClose,
-    });
-  }, [onClose]);
-
-  if (!isOpen) return null;
-
-  return (
-    <div
-      ref={overlayRef}
-      className="fixed inset-0 z-[2000] flex items-center justify-center p-6"
-      style={{ opacity: 0, backgroundColor: 'oklch(0.05 0 0 / 0.92)' }}
-      onClick={handleClose}
-    >
-      <div
-        ref={contentRef}
-        className="relative w-full max-w-3xl aspect-video bg-prax-black rounded-sm overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-prax-black/60 backdrop-blur-sm rounded-full text-prax-white hover:bg-prax-charcoal transition-colors"
-          aria-label="Close video"
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </button>
-
-        <video
-          src={videoSrc}
-          controls
-          autoPlay
-          playsInline
-          className="w-full h-full object-cover"
-          aria-label={`Video introduction by ${memberName}`}
-        />
-      </div>
-    </div>
-  );
-}
-
 function TeamMemberPortrait({
   member,
-  onPlayVideo,
 }: {
   member: TeamMember;
-  onPlayVideo?: () => void;
 }) {
-  const [isHovering, setIsHovering] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (!videoRef.current || !member.videoSrc) return;
-    if (isHovering) {
-      videoRef.current.play().catch(() => {});
-    } else {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  }, [isHovering, member.videoSrc]);
-
   return (
     <div
-      className="relative aspect-[3/4] bg-prax-charcoal overflow-hidden group cursor-pointer"
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-      onClick={member.videoSrc ? onPlayVideo : undefined}
+      className="relative aspect-[3/4] bg-prax-charcoal overflow-hidden group"
     >
       {member.portraitSrc ? (
         <Image
@@ -170,53 +52,13 @@ function TeamMemberPortrait({
           quality={75}
           placeholder="blur"
           blurDataURL={blurPlaceholders.portrait}
-          className={`team-portrait-img object-cover transition-opacity duration-500 ${
-            isHovering && member.videoSrc ? 'opacity-0' : 'opacity-100'
-          }`}
+          className="team-portrait-img object-cover"
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
           <div className="text-center p-6">
             <div className="text-prax-silver text-sm mb-2">TEAM PORTRAIT</div>
             <div className="text-prax-stone text-xs">{member.name}</div>
-          </div>
-        </div>
-      )}
-
-      {member.videoSrc && (
-        <video
-          ref={videoRef}
-          src={member.videoSrc}
-          muted
-          loop
-          playsInline
-          preload="none"
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-            isHovering ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
-      )}
-
-      {member.videoSrc && (
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
-            isHovering ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <div className="w-14 h-14 rounded-full bg-prax-white/15 backdrop-blur-sm flex items-center justify-center border border-prax-white/20">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              className="ml-0.5"
-            >
-              <path
-                d="M6 4L16 10L6 16V4Z"
-                fill="currentColor"
-                className="text-prax-white"
-              />
-            </svg>
           </div>
         </div>
       )}
@@ -233,11 +75,6 @@ export function TeamGridSection({
   const headingRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const memberRefs = useRef<HTMLDivElement[]>([]);
-  const [videoModal, setVideoModal] = useState<{
-    isOpen: boolean;
-    videoSrc: string;
-    memberName: string;
-  }>({ isOpen: false, videoSrc: '', memberName: '' });
 
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
@@ -309,17 +146,6 @@ export function TeamGridSection({
     return () => ctx.revert();
   }, []);
 
-  const openVideoModal = useCallback(
-    (videoSrc: string, memberName: string) => {
-      setVideoModal({ isOpen: true, videoSrc, memberName });
-    },
-    []
-  );
-
-  const closeVideoModal = useCallback(() => {
-    setVideoModal({ isOpen: false, videoSrc: '', memberName: '' });
-  }, []);
-
   return (
     <>
       <section ref={sectionRef} className="section-padding bg-prax-ink">
@@ -382,14 +208,7 @@ export function TeamGridSection({
                     index % 2 === 1 ? 'lg:order-2' : 'lg:order-1'
                   }`}
                 >
-                  <TeamMemberPortrait
-                    member={member}
-                    onPlayVideo={
-                      member.videoSrc
-                        ? () => openVideoModal(member.videoSrc!, member.name)
-                        : undefined
-                    }
-                  />
+                  <TeamMemberPortrait member={member} />
 
                   {member.actionSrc && (
                     <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden">
@@ -498,28 +317,6 @@ export function TeamGridSection({
                     </div>
                   )}
 
-                  {member.videoSrc && (
-                    <button
-                      onClick={() =>
-                        openVideoModal(member.videoSrc!, member.name)
-                      }
-                      className="inline-flex items-center gap-3 text-body-sm text-prax-bone hover:text-prax-white transition-colors duration-300 group/vid cursor-pointer"
-                    >
-                      <div className="w-8 h-8 rounded-full border border-prax-bone/40 flex items-center justify-center group-hover/vid:border-prax-white/60 transition-colors">
-                        <svg
-                          width="10"
-                          height="10"
-                          viewBox="0 0 10 10"
-                          fill="currentColor"
-                          className="ml-0.5"
-                        >
-                          <path d="M2 1L8 5L2 9V1Z" />
-                        </svg>
-                      </div>
-                      Watch Introduction
-                    </button>
-                  )}
-
                   {member.bookingUrl && (
                     <div className="pt-4">
                       <a
@@ -562,12 +359,6 @@ export function TeamGridSection({
         </div>
       </section>
 
-      <VideoModal
-        isOpen={videoModal.isOpen}
-        onClose={closeVideoModal}
-        videoSrc={videoModal.videoSrc}
-        memberName={videoModal.memberName}
-      />
     </>
   );
 }

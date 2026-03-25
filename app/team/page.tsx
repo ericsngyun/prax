@@ -45,7 +45,7 @@ export default function TeamPage() {
               cloudinaryAssets.jackWork03,
               cloudinaryAssets.jackWork04,
             ],
-            videoSrc: '', // Jack's video intro — to be provided
+
             instagramHandle: 'jacklouii',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
@@ -65,7 +65,7 @@ export default function TeamPage() {
               cloudinaryAssets.gavinWork03,
               cloudinaryAssets.gavinWork04,
             ],
-            videoSrc: '', // Gavin's video intro — to be provided
+
             instagramHandle: 'gavinblond',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/gavin-ly-1/services',
@@ -85,7 +85,7 @@ export default function TeamPage() {
               cloudinaryAssets.stevenWork03,
               cloudinaryAssets.stevenWork04,
             ],
-            videoSrc: '', // Steven's video intro — to be provided
+
             instagramHandle: 'steventaotran',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
@@ -104,7 +104,7 @@ export default function TeamPage() {
               cloudinaryAssets.arielWork02,
               cloudinaryAssets.arielWork03,
             ],
-            videoSrc: '', // Video intro — to be provided
+
             instagramHandle: 'aridonnel',
             bookingUrl: '',
           },
@@ -121,7 +121,7 @@ export default function TeamPage() {
               cloudinaryAssets.jaredWork01,
               cloudinaryAssets.jaredWork02,
             ],
-            videoSrc: '', // Video intro — to be provided
+
             instagramHandle: 'jaredtphan',
             bookingUrl: '',
           },
@@ -134,7 +134,7 @@ export default function TeamPage() {
             philosophy: '',
             portraitSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1772508153/DSC05741_hojyxk.jpg',
             actionSrc: '',
-            videoSrc: '', // Video intro — to be provided
+
             instagramHandle: 'mysticalasian',
             bookingUrl: '',
           },

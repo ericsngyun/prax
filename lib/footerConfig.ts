@@ -13,7 +13,7 @@ export const footerColumns = [
       },
       {
         label: 'Book Appointment',
-        href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+        href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7',
       },
     ],
   },
@@ -38,7 +38,7 @@ export const footerColumns = [
     links: [
       { label: 'Instagram', href: 'https://www.instagram.com/praxhair/' },
       { label: 'TikTok', href: 'https://www.tiktok.com/@praxhair' },
-      { label: 'Contact', href: '#contact' },
+      { label: 'Contact', href: 'https://www.instagram.com/praxhair/' },
     ],
   },
 ];

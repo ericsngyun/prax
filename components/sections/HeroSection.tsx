@@ -28,7 +28,7 @@ export function HeroSection({
   headline = 'PRAX',
   kicker = 'Precision Haircuts for Men Who Care About Detail',
   subheadline = 'High-end grooming studio in Los Angeles. Executed with discipline, design, and intention.',
-  primaryCTA = { text: 'Book an Appointment', href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null' },
+  primaryCTA = { text: 'Book an Appointment', href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7' },
   secondaryCTA = { text: 'View Our Work', href: '#work' },
   videoSrc = '/videos/hero-bg.mp4',
   videoPoster,
@@ -124,7 +124,7 @@ export function HeroSection({
           <div ref={logoRef}>
             <Image
               src={cloudinaryAssets.logoX}
-              alt=""
+              alt="PRAX Studio logo"
               width={320}
               height={320}
               priority

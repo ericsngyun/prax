@@ -21,7 +21,7 @@ export function BookButton() {
 
   return (
     <a
-      href="https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null"
+      href="https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7"
       target="_blank"
       rel="noopener noreferrer"
       className={cn(

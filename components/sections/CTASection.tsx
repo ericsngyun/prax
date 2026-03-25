@@ -24,7 +24,7 @@ export function CTASection({
   headline = 'Book With Confidence',
   description = 'If you\'re looking for a high-end haircut executed with precision and care, PRAX is for you.',
   primaryButtonText = 'Book an Appointment',
-  primaryButtonHref = 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+  primaryButtonHref = 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7',
   secondaryButtonText,
   secondaryButtonHref,
   showPrimaryButton = true,

@@ -32,7 +32,7 @@ const defaultServices: ServicePreview[] = [
       'Tailored haircuts designed around head shape, hair behavior, and personal style.',
     cta: {
       text: 'Book Your Haircut',
-      href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7?platform=widget&gclid=null',
+      href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7',
     },
   },
   {
