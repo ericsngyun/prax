@@ -116,6 +116,7 @@ export function VideoBackground({
           playsInline
           preload="metadata"
           poster={poster}
+          aria-hidden="true"
         >
           {webmSrc && <source src={webmSrc} type="video/webm" />}
           <source src={src} type="video/mp4" />
