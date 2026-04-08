@@ -125,7 +125,7 @@ export default function AboutPage() {
       />
 
       {/* Footer */}
-      <Footer showNewsletter columns={footerColumns} />
+      <Footer columns={footerColumns} />
     </main>
   );
 }

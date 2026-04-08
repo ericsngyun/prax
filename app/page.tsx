@@ -228,7 +228,7 @@ export default function HomePage() {
       <CTASection />
 
       {/* Footer */}
-      <Footer showNewsletter columns={footerColumns} />
+      <Footer columns={footerColumns} />
     </main>
   );
 }

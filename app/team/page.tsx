@@ -184,7 +184,7 @@ export default function TeamPage() {
       />
 
       {/* Footer */}
-      <Footer showNewsletter columns={footerColumns} />
+      <Footer columns={footerColumns} />
     </main>
   );
 }

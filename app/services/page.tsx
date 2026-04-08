@@ -156,7 +156,7 @@ export default function ServicesPage() {
       />
 
       {/* Footer */}
-      <Footer showNewsletter columns={footerColumns} />
+      <Footer columns={footerColumns} />
     </main>
   );
 }

@@ -303,7 +303,7 @@ export function AcademyContent() {
       />
 
       {/* Footer */}
-      <Footer showNewsletter columns={footerColumns} />
+      <Footer columns={footerColumns} />
     </main>
   );
 }

@@ -3,7 +3,7 @@
    Centralized footer links used across all pages
    ═══════════════════════════════════════════════════════════════════════════ */
 
-import { BOOKING_URL } from '@/lib/constants';
+import { BOOKING_URL, SOCIAL_LINKS } from '@/lib/constants';
 
 export const footerColumns = [
   {
@@ -24,7 +24,7 @@ export const footerColumns = [
     links: [
       { label: 'Team', href: '/team' },
       { label: 'About', href: '/about' },
-      { label: 'Location', href: '/about#studio' },
+      { label: 'Location', href: '/about' },
     ],
   },
   {
@@ -38,9 +38,9 @@ export const footerColumns = [
   {
     title: 'Connect',
     links: [
-      { label: 'Instagram', href: 'https://www.instagram.com/praxhair/' },
-      { label: 'TikTok', href: 'https://www.tiktok.com/@praxhair' },
-      { label: 'Contact', href: 'https://www.instagram.com/praxhair/' },
+      { label: 'Instagram', href: SOCIAL_LINKS.instagram },
+      { label: 'TikTok', href: SOCIAL_LINKS.tiktok },
+      { label: 'Contact', href: SOCIAL_LINKS.instagram },
     ],
   },
 ];

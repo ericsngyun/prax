@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 
 interface FooterLink {
@@ -15,49 +14,10 @@ interface FooterColumn {
 }
 
 interface FooterProps {
-  columns?: FooterColumn[];
-  showNewsletter?: boolean;
+  columns: FooterColumn[];
 }
 
-const defaultColumns: FooterColumn[] = [
-  {
-    title: 'Studio',
-    links: [
-      { label: 'Book Appointment', href: '#book' },
-      { label: 'Our Work', href: '#work' },
-      { label: 'Location', href: '#location' },
-    ],
-  },
-  {
-    title: 'Academy',
-    links: [
-      { label: 'In-Person Classes', href: '#classes' },
-      { label: 'Online Courses', href: '#courses' },
-      { label: 'Workshops', href: '#workshops' },
-    ],
-  },
-  {
-    title: 'About',
-    links: [
-      { label: 'Our Story', href: '#story' },
-      { label: 'Team', href: '#team' },
-      { label: 'Press', href: '#press' },
-    ],
-  },
-  {
-    title: 'Connect',
-    links: [
-      { label: 'Instagram', href: 'https://www.instagram.com/praxhair/' },
-      { label: 'TikTok', href: 'https://www.tiktok.com/@praxhair' },
-      { label: 'Contact', href: '#contact' },
-    ],
-  },
-];
-
-export function Footer({
-  columns = defaultColumns,
-  showNewsletter = true,
-}: FooterProps) {
+export function Footer({ columns }: FooterProps) {
 
   return (
     <footer
@@ -81,16 +41,20 @@ export function Footer({
                 {column.title}
               </h4>
               <ul className="space-y-3">
-                {column.links.map((link, j) => (
-                  <li key={j}>
-                    <a
-                      href={link.href}
-                      className="text-body text-prax-stone hover:text-prax-white transition-colors link-underline"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {column.links.map((link) => {
+                  const isExternal = link.href.startsWith('http');
+                  return (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        className="text-body text-prax-stone hover:text-prax-white transition-colors link-underline"
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
