@@ -56,18 +56,13 @@ async function registerServiceWorker() {
                 newWorker.state === 'installed' &&
                 navigator.serviceWorker.controller
               ) {
-                // New service worker available
-                console.log('[SW] New version available. Reload to update.');
+                // New service worker available — skip waiting and auto-reload
+                console.log('[SW] New version available. Reloading...');
+                newWorker.postMessage({ type: 'SKIP_WAITING' });
+              }
 
-                // Optionally show update notification to user
-                if (
-                  window.confirm(
-                    'A new version of PRAX is available. Reload to update?'
-                  )
-                ) {
-                  newWorker.postMessage({ type: 'SKIP_WAITING' });
-                  window.location.reload();
-                }
+              if (newWorker.state === 'activated') {
+                window.location.reload();
               }
             });
           }
