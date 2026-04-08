@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { ServiceMenuSection } from '@/components/sections/ServiceMenuSection';
 import { ProcessGallerySection } from '@/components/sections/ProcessGallerySection';
 import { HonestySection } from '@/components/sections/HonestySection';
@@ -5,12 +6,10 @@ import { DifferentiationSection } from '@/components/sections/DifferentiationSec
 import { ExperienceTimelineSection } from '@/components/sections/ExperienceTimelineSection';
 import { BeforeAfterGallery } from '@/components/sections/BeforeAfterGallery';
 import { CTASection } from '@/components/sections/CTASection';
-import { Footer } from '@/components/sections/Footer';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { cloudinaryAssets } from '@/lib/cloudinary';
-import { footerColumns } from '@/lib/footerConfig';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Services',
   description:
     'Precision haircuts, grooming, and styling. Built, not rushed. Los Angeles.',
@@ -155,8 +154,6 @@ export default function ServicesPage() {
         description="If you are looking for precision haircuts executed with discipline and care, PRAX is for you."
       />
 
-      {/* Footer */}
-      <Footer columns={footerColumns} />
     </main>
   );
 }

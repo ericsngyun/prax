@@ -7,9 +7,7 @@ import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { FounderSection } from '@/components/sections/FounderSection';
 import { LocationSection } from '@/components/sections/LocationSection';
 import { CTASection } from '@/components/sections/CTASection';
-import { Footer } from '@/components/sections/Footer';
 import { cloudinaryAssets } from '@/lib/cloudinary';
-import { footerColumns } from '@/lib/footerConfig';
 import { BOOKING_URL } from '@/lib/constants';
 
 export default function HomePage() {
@@ -227,8 +225,6 @@ export default function HomePage() {
       {/* 9. Final CTA */}
       <CTASection />
 
-      {/* Footer */}
-      <Footer columns={footerColumns} />
     </main>
   );
 }

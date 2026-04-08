@@ -1,13 +1,12 @@
+import type { Metadata } from 'next';
 import { TeamGridSection } from '@/components/sections/TeamGridSection';
 import { TeamValuesSection } from '@/components/sections/TeamValuesSection';
 import { StatsSection } from '@/components/sections/StatsSection';
 import { CTASection } from '@/components/sections/CTASection';
-import { Footer } from '@/components/sections/Footer';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { cloudinaryAssets } from '@/lib/cloudinary';
-import { footerColumns } from '@/lib/footerConfig';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Team',
   description:
     'Meet the PRAX team. Master barbers and educators committed to precision and craft.',
@@ -183,8 +182,6 @@ export default function TeamPage() {
         description="Book with any of our artists. Every member delivers the same PRAX standard."
       />
 
-      {/* Footer */}
-      <Footer columns={footerColumns} />
     </main>
   );
 }

@@ -1,14 +1,13 @@
+import type { Metadata } from 'next';
 import { OriginStorySection } from '@/components/sections/OriginStorySection';
 import { CoreValuesDeepDive } from '@/components/sections/CoreValuesDeepDive';
 import { StudioSpaceSection } from '@/components/sections/StudioSpaceSection';
 import { PraxStandardSection } from '@/components/sections/PraxStandardSection';
 import { CTASection } from '@/components/sections/CTASection';
-import { Footer } from '@/components/sections/Footer';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { cloudinaryAssets } from '@/lib/cloudinary';
-import { footerColumns } from '@/lib/footerConfig';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'About',
   description:
     'PRAX was founded to raise the standard of men\'s haircutting — emphasizing discipline, precision, and education over speed or volume.',
@@ -124,8 +123,6 @@ export default function AboutPage() {
         description="If you value precision, consistency, and long-term results, PRAX is for you."
       />
 
-      {/* Footer */}
-      <Footer columns={footerColumns} />
     </main>
   );
 }

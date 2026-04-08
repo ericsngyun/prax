@@ -6,6 +6,8 @@ import { ServiceWorkerProvider } from '@/components/providers/ServiceWorkerProvi
 import { Header } from '@/components/layout/Header';
 import { PreloaderWrapper } from '@/components/ui/Preloader';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
+import { Footer } from '@/components/sections/Footer';
+import { footerColumns } from '@/lib/footerConfig';
 
 // Söhne — Minimalist sans-serif with editorial polish
 const sohneSans = localFont({
@@ -122,6 +124,7 @@ export default function RootLayout({
           <PreloaderWrapper>
             <Header />
             {children}
+            <Footer columns={footerColumns} />
           </PreloaderWrapper>
           <ScrollProgress />
         </LenisProvider>

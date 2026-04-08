@@ -6,8 +6,6 @@ import { AcademyProgramsSection } from '@/components/sections/AcademyProgramsSec
 import { SkoolCommunitySection } from '@/components/sections/SkoolCommunitySection';
 import { AcademyPhilosophySection } from '@/components/sections/AcademyPhilosophySection';
 import { CTASection } from '@/components/sections/CTASection';
-import { Footer } from '@/components/sections/Footer';
-import { footerColumns } from '@/lib/footerConfig';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 
 export const metadata: Metadata = {
@@ -87,7 +85,6 @@ export default function AcademyPage() {
         description="Applications for upcoming classes are open. Limited seats per session to maintain quality."
         showPrimaryButton={false}
       />
-      <Footer columns={footerColumns} />
     </main>
   );
 }
