@@ -676,7 +676,6 @@ html.lenis body {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .portfolio-item {
-  will-change: transform, opacity;
   content-visibility: auto;
   contain-intrinsic-size: 400px 533px; /* aspect-ratio 3:4 */
 }
@@ -703,7 +702,6 @@ html.lenis body {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .magnetic-btn {
-  will-change: transform;
 }
 
 .magnetic-btn::before {
@@ -747,7 +745,6 @@ html.lenis body {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .team-member {
-  will-change: transform, opacity;
 }
 
 .team-member img {
@@ -764,7 +761,6 @@ html.lenis body {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .service-card {
-  will-change: transform;
 }
 
 .service-card::before {
@@ -794,7 +790,6 @@ html.lenis body {
 }
 
 .video-container video {
-  will-change: transform, opacity;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -802,7 +797,6 @@ html.lenis body {
    ═══════════════════════════════════════════════════════════════════════════ */
 
 [data-scroll-wrapper] {
-  will-change: transform;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -999,7 +993,6 @@ html.lenis body {
 
 .tilt-card {
   transform-style: preserve-3d;
-  will-change: transform;
 }
 
 .tilt-card-inner {
@@ -1075,5 +1068,4 @@ html.lenis body {
     var(--color-prax-white)
   );
   transform-origin: left;
-  will-change: transform;
 }
