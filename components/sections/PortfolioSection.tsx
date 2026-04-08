@@ -95,8 +95,8 @@ export function PortfolioSection({
             if (!img.dataset.animated) {
               img.dataset.animated = 'true';
               revealWithBlur(img, {
-                scrollTrigger: true,
-                blurAmount: 8,
+                trigger: img,
+                start: 'top 85%',
               });
             }
             observer.unobserve(img);

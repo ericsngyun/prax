@@ -216,40 +216,48 @@ export function textReveal(
 }
 
 /**
- * Blur-to-Sharp Image Reveal — Premium image entrance
- * Used by luxury brands for sophisticated reveals
+ * GPU-accelerated reveal using opacity + scale instead of filter:blur()
+ * filter:blur() triggers paint on every frame; opacity+scale are compositor-only
  */
 export function revealWithBlur(
-  element: HTMLElement,
-  options?: {
-    scrollTrigger?: boolean;
-    blurAmount?: number;
-  }
+  element: gsap.TweenTarget,
+  options: {
+    trigger?: gsap.DOMTarget;
+    start?: string;
+    duration?: number;
+    delay?: number;
+    y?: number;
+    scale?: number;
+  } = {}
 ) {
   if (prefersReducedMotion()) {
-    gsap.set(element, { filter: 'blur(0px)', opacity: 1 });
+    gsap.set(element, { opacity: 1 });
     return;
   }
 
-  const blurAmount = options?.blurAmount ?? 20;
-  gsap.set(element, { filter: `blur(${blurAmount}px)`, opacity: 0 });
+  const {
+    trigger = element as gsap.DOMTarget,
+    start = 'top 85%',
+    duration: dur = duration.slow,
+    delay = 0,
+    y = 30,
+    scale = 0.97,
+  } = options;
 
-  const config: gsap.TweenVars = {
-    filter: 'blur(0px)',
-    opacity: 1,
-    duration: duration.slowest,
-    ease: ease.inOut,
-  };
-
-  if (options?.scrollTrigger) {
-    config.scrollTrigger = {
-      trigger: element,
-      start: 'top 80%',
-      toggleActions: 'play none none reverse',
-    };
-  }
-
-  return gsap.to(element, config);
+  return gsap.from(element, {
+    scrollTrigger: {
+      trigger,
+      start,
+      toggleActions: 'play none none none',
+    },
+    opacity: 0,
+    y,
+    scale,
+    duration: dur,
+    delay,
+    ease: ease.out,
+    clearProps: 'transform',
+  });
 }
 
 /**

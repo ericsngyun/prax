@@ -30,8 +30,8 @@ export function ProcessGallerySection({
     const images = sectionRef.current.querySelectorAll('.process-img');
     images.forEach((img) => {
       revealWithBlur(img as HTMLElement, {
-        scrollTrigger: true,
-        blurAmount: 8,
+        trigger: img as HTMLElement,
+        start: 'top 85%',
       });
     });
   }, []);

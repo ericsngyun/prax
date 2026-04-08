@@ -76,8 +76,8 @@ export function StudioSpaceSection({
     const studioImages = sectionRef.current.querySelectorAll('.studio-img');
     studioImages.forEach((img) => {
       revealWithBlur(img as HTMLElement, {
-        scrollTrigger: true,
-        blurAmount: 8, // Subtle blur like team page
+        trigger: img as HTMLElement,
+        start: 'top 85%',
       });
     });
   }, []);

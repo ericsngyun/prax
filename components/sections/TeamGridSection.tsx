@@ -124,8 +124,8 @@ export function TeamGridSection({
         const portraitImg = member.querySelector('.team-portrait-img');
         if (portraitImg && window.innerWidth >= 768) {
           revealWithBlur(portraitImg as HTMLElement, {
-            scrollTrigger: true,
-            blurAmount: 8, // Subtle - not aggressive
+            trigger: portraitImg as HTMLElement,
+            start: 'top 85%',
           });
         }
 
@@ -135,8 +135,8 @@ export function TeamGridSection({
         if (workSampleImgs.length > 0 && window.innerWidth >= 768) {
           workSampleImgs.forEach((img) => {
             revealWithBlur(img as HTMLElement, {
-              scrollTrigger: true,
-              blurAmount: 8, // Subtle - consistent with portraits
+              trigger: img as HTMLElement,
+              start: 'top 85%',
             });
           });
         }
