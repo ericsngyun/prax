@@ -21,7 +21,7 @@ export function Preloader() {
     if (isComplete) return;
 
     const startTime = Date.now();
-    const minDuration = 2000;
+    const minDuration = 500;
 
     const updateProgress = () => {
       const elapsed = Date.now() - startTime;
@@ -168,7 +168,12 @@ export function PreloaderWrapper({ children }: PreloaderWrapperProps) {
 
   useEffect(() => {
     setMounted(true);
-    if (sessionStorage.getItem('preloaderShown')) {
+    try {
+      if (sessionStorage.getItem('preloaderShown')) {
+        setHasShown(true);
+        usePreloaderStore.getState().setComplete(true);
+      }
+    } catch {
       setHasShown(true);
       usePreloaderStore.getState().setComplete(true);
     }
@@ -176,7 +181,11 @@ export function PreloaderWrapper({ children }: PreloaderWrapperProps) {
 
   useEffect(() => {
     if (isComplete && !hasShown) {
-      sessionStorage.setItem('preloaderShown', 'true');
+      try {
+        sessionStorage.setItem('preloaderShown', 'true');
+      } catch {
+        // Ignore — private browsing
+      }
       setHasShown(true);
     }
   }, [isComplete, hasShown]);
