@@ -46,7 +46,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
     lenisRef.current = lenis;
 
     // Make lenis available globally for scrollTo utility
-    (window as Window & { lenis?: Lenis }).lenis = lenis;
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
 
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
@@ -62,7 +62,7 @@ export function LenisProvider({ children }: LenisProviderProps) {
       lenis.destroy();
       lenisRef.current = null;
       gsap.ticker.remove(rafCallback);
-      delete (window as Window & { lenis?: Lenis }).lenis;
+      delete (window as unknown as { lenis?: Lenis }).lenis;
     };
   }, []);
 
