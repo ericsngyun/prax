@@ -4,10 +4,8 @@ import './globals.css';
 import { LenisProvider } from '@/components/providers/LenisProvider';
 import { ServiceWorkerProvider } from '@/components/providers/ServiceWorkerProvider';
 import { Header } from '@/components/layout/Header';
-// import { CustomCursor } from '@/components/ui/CustomCursor'; // Disabled - using default cursor
 import { PreloaderWrapper } from '@/components/ui/Preloader';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
-// import { BookButton } from '@/components/ui/BookButton'; // Removed - header has booking link
 
 // Söhne — Minimalist sans-serif with editorial polish
 const sohneSans = localFont({
@@ -127,10 +125,6 @@ export default function RootLayout({
           </PreloaderWrapper>
           <ScrollProgress />
         </LenisProvider>
-        {/* Custom Cursor - Disabled for cleaner minimal experience */}
-        {/* <CustomCursor /> */}
-        {/* Fixed Book Button - Removed (header has booking link) */}
-        {/* <BookButton /> */}
         {/* Noise Overlay */}
         <div className="noise-overlay" aria-hidden="true" />
       </body>

@@ -17,41 +17,9 @@ export function formatNumber(num: number, digits = 2): string {
 }
 
 /**
- * Clamp a value between min and max
- */
-export function clamp(value: number, min: number, max: number): number {
-  return Math.min(Math.max(value, min), max);
-}
-
-/**
- * Linear interpolation
- */
-export function lerp(start: number, end: number, factor: number): number {
-  return start + (end - start) * factor;
-}
-
-/**
- * Map a value from one range to another
- */
-export function mapRange(
-  value: number,
-  inMin: number,
-  inMax: number,
-  outMin: number,
-  outMax: number
-): number {
-  return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
-}
-
-/**
- * Check if code is running on client side
- */
-export const isClient = typeof window !== 'undefined';
-
-/**
  * Check if reduced motion is preferred
  */
 export function prefersReducedMotion(): boolean {
-  if (!isClient) return false;
+  if (typeof window === 'undefined') return false;
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }

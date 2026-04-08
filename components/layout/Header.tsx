@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigationStore } from '@/lib/store';
-// import { useCursor } from '@/components/ui/CustomCursor'; // Disabled - using default cursor
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
 import { cloudinaryAssets } from '@/lib/cloudinary';
@@ -34,7 +33,6 @@ export function Header() {
   const lastScrollY = useRef(0);
   const [isHidden, setIsHidden] = useState(false);
   const { isMenuOpen, toggleMenu } = useNavigationStore();
-  // const { onEnter, onLeave } = useCursor(); // Disabled - using default cursor
   const scrollStopTimeout = useRef<number | null>(null);
 
   // Handle scroll behavior - hide on scroll down, show on scroll up
@@ -192,7 +190,6 @@ interface MobileMenuProps {
 function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
-  // const { onEnter, onLeave } = useCursor(); // Disabled - using default cursor
 
   useEffect(() => {
     if (!menuRef.current || !linksRef.current || prefersReducedMotion()) return;
