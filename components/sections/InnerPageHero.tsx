@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
+import { gsap } from '@/lib/gsap';
 import { VideoBackground } from '@/components/ui/VideoBackground';
 import { prefersReducedMotion } from '@/lib/utils';
 import { blurPlaceholders } from '@/lib/blurPlaceholder';

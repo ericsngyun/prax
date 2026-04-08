@@ -2,8 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { StatsSection } from '@/components/sections/StatsSection';
 import { CTASection } from '@/components/sections/CTASection';
@@ -12,10 +11,6 @@ import { footerColumns } from '@/lib/footerConfig';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 import { prefersReducedMotion } from '@/lib/utils';
 import { blurPlaceholders } from '@/lib/blurPlaceholder';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const programs = [
   {

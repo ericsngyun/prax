@@ -3,16 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { useNavigationStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
 import { cloudinaryAssets } from '@/lib/cloudinary';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 /* ═══════════════════════════════════════════════════════════════════════════
    HEADER COMPONENT

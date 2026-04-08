@@ -1,13 +1,7 @@
 'use client';
 
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { prefersReducedMotion } from './utils';
-
-// Register plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 /* ═══════════════════════════════════════════════════════════════════════════
    ANIMATION TOKENS

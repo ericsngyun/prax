@@ -2,16 +2,11 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { prefersReducedMotion } from '@/lib/utils';
 import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
 import { revealWithBlur } from '@/lib/animations';
 import { blurPlaceholders } from '@/lib/blurPlaceholder';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 interface TeamMember {
   name: string;

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { gsap } from 'gsap';
+import { gsap } from '@/lib/gsap';
 import { usePreloaderStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
