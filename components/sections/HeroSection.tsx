@@ -134,7 +134,7 @@ export function HeroSection({
               blurDataURL={blurPlaceholders.black}
               className="w-36 sm:w-48 md:w-72 lg:w-80 h-auto"
             />
-            <span className="sr-only">{headline}</span>
+            <h1 className="sr-only">{headline}</h1>
           </div>
 
           {/* Kicker — centered below logo */}
