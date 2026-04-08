@@ -10,6 +10,7 @@ import { CTASection } from '@/components/sections/CTASection';
 import { Footer } from '@/components/sections/Footer';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 import { footerColumns } from '@/lib/footerConfig';
+import { BOOKING_URL } from '@/lib/constants';
 
 export default function HomePage() {
   return (
@@ -21,7 +22,7 @@ export default function HomePage() {
         subheadline="High-end grooming studio in Los Angeles. Executed with discipline, design, and intention."
         primaryCTA={{
           text: 'Book an Appointment',
-          href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7',
+          href: BOOKING_URL,
         }}
         secondaryCTA={{ text: 'View Our Work', href: '/team' }}
         videoSrc={cloudinaryAssets.heroVideo}

@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
+import { BOOKING_URL } from '@/lib/constants';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -36,7 +37,7 @@ export function ServiceMenuSection({
   description,
   categories,
   footnote,
-  bookingHref = 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7',
+  bookingHref = BOOKING_URL,
   bookingLabel = 'Book an Appointment',
 }: ServiceMenuSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);

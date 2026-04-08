@@ -9,6 +9,7 @@ import { prefersReducedMotion } from '@/lib/utils';
 import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
 import { cloudinaryAssets } from '@/lib/cloudinary';
 import { blurPlaceholders } from '@/lib/blurPlaceholder';
+import { BOOKING_URL } from '@/lib/constants';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -28,7 +29,7 @@ export function HeroSection({
   headline = 'PRAX',
   kicker = 'Precision Haircuts for Men Who Care About Detail',
   subheadline = 'High-end grooming studio in Los Angeles. Executed with discipline, design, and intention.',
-  primaryCTA = { text: 'Book an Appointment', href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7' },
+  primaryCTA = { text: 'Book an Appointment', href: BOOKING_URL },
   secondaryCTA = { text: 'View Our Work', href: '#work' },
   videoSrc = '/videos/hero-bg.mp4',
   videoPoster,

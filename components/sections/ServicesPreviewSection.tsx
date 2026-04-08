@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { prefersReducedMotion } from '@/lib/utils';
 import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
+import { BOOKING_URL } from '@/lib/constants';
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -32,7 +33,7 @@ const defaultServices: ServicePreview[] = [
       'Tailored haircuts designed around head shape, hair behavior, and personal style.',
     cta: {
       text: 'Book Your Haircut',
-      href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7',
+      href: BOOKING_URL,
     },
   },
   {

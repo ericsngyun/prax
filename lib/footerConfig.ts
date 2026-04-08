@@ -3,6 +3,8 @@
    Centralized footer links used across all pages
    ═══════════════════════════════════════════════════════════════════════════ */
 
+import { BOOKING_URL } from '@/lib/constants';
+
 export const footerColumns = [
   {
     title: 'Services',
@@ -13,7 +15,7 @@ export const footerColumns = [
       },
       {
         label: 'Book Appointment',
-        href: 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7',
+        href: BOOKING_URL,
       },
     ],
   },
