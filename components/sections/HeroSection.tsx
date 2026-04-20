@@ -140,17 +140,22 @@ export function HeroSection({
             {kicker}
           </p>
 
-          {/* Relocation Notice */}
-          <div className="mt-8 md:mt-12 text-center">
-            <p className="text-body-sm text-prax-bone/50 tracking-[0.15em] uppercase mb-1.5">
-              Relocation Coming Soon
+          {/* Important Announcement */}
+          <div className="mt-8 md:mt-12 text-center max-w-2xl mx-auto">
+            <p className="text-body-sm text-prax-bone/60 tracking-[0.15em] uppercase mb-3">
+              Important Update
             </p>
-            <p className="text-body text-prax-stone/70 font-light mb-0.5">
-              Prax Arcadia
-            </p>
-            <p className="text-body-sm text-prax-stone/50">
-              Arcadia, CA
-            </p>
+            <div className="space-y-3 text-prax-stone/80">
+              <p className="text-body-sm md:text-body font-light leading-relaxed">
+                Starting <span className="text-prax-bone/90 font-normal">April 20th</span>, bookings at our West Adams studio will be closed as we transition to our new space.
+              </p>
+              <p className="text-body-sm md:text-body font-light leading-relaxed">
+                We will pause all bookings from <span className="text-prax-bone/90 font-normal">April 20th through May 5th</span> while we finalize the shop and prepare for opening.
+              </p>
+              <p className="text-body-sm md:text-body font-light leading-relaxed">
+                Our soft opening at the new <span className="text-prax-bone/90 font-normal">Prax Arcadia</span> location begins <span className="text-prax-bone/90 font-normal">May 6th</span>, and bookings will resume starting that date.
+              </p>
+            </div>
           </div>
 
           {/* Bottom block — centered on mobile, right-aligned on desktop */}
