@@ -8,6 +8,7 @@
 
 import { readFileSync, existsSync } from 'fs';
 import { extname, basename } from 'path';
+import { parseArgs } from 'node:util';
 
 export type MediaType = 'image' | 'video';
 
@@ -26,3 +27,80 @@ export const IMAGE_EXTENSIONS = new Set([
 export const VIDEO_EXTENSIONS = new Set([
   '.mp4', '.mov', '.webm', '.m4v',
 ]);
+
+/**
+ * Convert a filename or path into a camelCase asset key.
+ * Strips directory and extension. Splits on non-alphanumeric.
+ * Lowercases the first segment, capitalizes subsequent segments.
+ * Prefixes with "asset" if the result would start with a digit.
+ *
+ * Throws if the result is empty.
+ */
+export function toCamelCaseKey(filenameOrPath: string): string {
+  const filename = basename(filenameOrPath);
+  if (/^\.[a-zA-Z0-9]+$/.test(filename)) {
+    throw new Error(`Cannot derive key from "${filenameOrPath}" — filename is just an extension`);
+  }
+
+  const stem = basename(filenameOrPath, extname(filenameOrPath));
+  const parts = stem.split(/[^a-zA-Z0-9]+/).filter(Boolean);
+
+  if (parts.length === 0) {
+    throw new Error(`Cannot derive key from "${filenameOrPath}" — no alphanumerics`);
+  }
+
+  const camel = parts
+    .map((p, i) => (i === 0 ? p.toLowerCase() : p[0].toUpperCase() + p.slice(1).toLowerCase()))
+    .join('');
+
+  return /^[0-9]/.test(camel) ? `asset${camel[0].toUpperCase()}${camel.slice(1)}` : camel;
+}
+
+/**
+ * Detect "image" or "video" from file extension.
+ * Throws if the extension isn't in either whitelist.
+ */
+export function detectMediaType(filenameOrPath: string): MediaType {
+  const ext = extname(filenameOrPath).toLowerCase();
+  if (IMAGE_EXTENSIONS.has(ext)) return 'image';
+  if (VIDEO_EXTENSIONS.has(ext)) return 'video';
+  throw new Error(
+    `Cannot detect media type for "${filenameOrPath}" (extension "${ext}"). ` +
+    `Supported images: ${[...IMAGE_EXTENSIONS].join(', ')}. ` +
+    `Supported videos: ${[...VIDEO_EXTENSIONS].join(', ')}.`
+  );
+}
+
+/**
+ * Parse an array of CLI arguments (positional + flags).
+ * Throws on missing required positional or invalid --type value.
+ */
+export function parseAddAssetArgs(argv: string[]): ParsedArgs {
+  const { values, positionals } = parseArgs({
+    args: argv,
+    allowPositionals: true,
+    options: {
+      key: { type: 'string' },
+      type: { type: 'string' },
+      force: { type: 'boolean', default: false },
+      'dry-run': { type: 'boolean', default: false },
+    },
+  });
+
+  if (positionals.length === 0) {
+    throw new Error('Missing required argument: <file-path>');
+  }
+
+  const type = values.type;
+  if (type !== undefined && type !== 'image' && type !== 'video') {
+    throw new Error(`--type must be "image" or "video", got "${type}"`);
+  }
+
+  return {
+    filePath: positionals[0],
+    key: values.key,
+    type: type as MediaType | undefined,
+    force: values.force ?? false,
+    dryRun: values['dry-run'] ?? false,
+  };
+}
