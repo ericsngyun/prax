@@ -5,7 +5,7 @@ import { StudioSpaceSection } from '@/components/sections/StudioSpaceSection';
 import { PraxStandardSection } from '@/components/sections/PraxStandardSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -20,7 +20,7 @@ export default function AboutPage() {
         label="About"
         headline="Built on craft, and curated design"
         description="PRAX was founded to raise the standard of men's haircutting — emphasizing discipline, precision, and education over speed or volume."
-        videoSrc={cloudinaryAssets.aboutVideo}
+        videoSrc={assets.aboutVideo}
       />
 
       {/* Origin Story */}
@@ -32,7 +32,7 @@ export default function AboutPage() {
           'What started as a single chair in Los Angeles has grown into a global education platform, teaching barbers in 12+ cities worldwide the same principles: clarity, structure, and mastery of fundamentals.',
           'Today, PRAX serves both clients and students — offering precision haircuts in our LA studio, and world-class education for barbers who want to elevate their craft.',
         ]}
-        founderImageSrc={cloudinaryAssets.philosophyImage}
+        founderImageSrc={assets.philosophyImage}
         founderImageAlt="Jack Louii - PRAX Founder"
       />
 

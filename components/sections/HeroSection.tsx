@@ -6,7 +6,7 @@ import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { VideoBackground } from '@/components/ui/VideoBackground';
 import { prefersReducedMotion } from '@/lib/utils';
 import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 import { blurPlaceholders } from '@/lib/blurPlaceholder';
 import { BOOKING_URL } from '@/lib/constants';
 
@@ -119,7 +119,7 @@ export function HeroSection({
           {/* Centered logo image */}
           <div ref={logoRef}>
             <Image
-              src={cloudinaryAssets.logoX}
+              src={assets.logoX}
               alt="PRAX Studio logo"
               width={320}
               height={320}

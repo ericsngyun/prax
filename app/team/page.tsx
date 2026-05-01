@@ -4,7 +4,7 @@ import { TeamValuesSection } from '@/components/sections/TeamValuesSection';
 import { StatsSection } from '@/components/sections/StatsSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 export const metadata: Metadata = {
   title: 'Team',
@@ -19,7 +19,7 @@ export default function TeamPage() {
         label="The Team"
         headline="Meet the Artists"
         description="Every member of the PRAX team holds themselves to the same standard: precision, consistency, and an uncompromising commitment to craft."
-        backgroundImage="https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771905931/DSC06685_custv3.jpg"
+        backgroundImage={assets.teamHeroBackground}
       />
 
       {/* Team Grid */}
@@ -35,14 +35,14 @@ export default function TeamPage() {
             credentials: [],
             philosophy:
               'Precision is not about perfection—it is about intention. Every cut should be designed to maintain structure as it grows. That is the standard.',
-            portraitSrc: cloudinaryAssets.teamJack,
-            actionSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771907588/PRAXxSTMNT-Event-42_1_zoznww.jpg',
+            portraitSrc: assets.teamJack,
+            actionSrc: assets.teamJackAction,
             actionSrcPosition: 'center 30%', // Show more of the top of the image
             workSamples: [
-              cloudinaryAssets.jackWork01,
-              cloudinaryAssets.jackWork02,
-              cloudinaryAssets.jackWork03,
-              cloudinaryAssets.jackWork04,
+              assets.jackWork01,
+              assets.jackWork02,
+              assets.jackWork03,
+              assets.jackWork04,
             ],
 
             instagramHandle: 'jacklouii',
@@ -56,13 +56,13 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: cloudinaryAssets.teamGavin,
+            portraitSrc: assets.teamGavin,
             actionSrc: '',
             workSamples: [
-              cloudinaryAssets.gavinWork01,
-              cloudinaryAssets.gavinWork02,
-              cloudinaryAssets.gavinWork03,
-              cloudinaryAssets.gavinWork04,
+              assets.gavinWork01,
+              assets.gavinWork02,
+              assets.gavinWork03,
+              assets.gavinWork04,
             ],
 
             instagramHandle: 'gavinblond',
@@ -76,13 +76,13 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: cloudinaryAssets.teamSteven,
+            portraitSrc: assets.teamSteven,
             actionSrc: '',
             workSamples: [
-              cloudinaryAssets.stevenWork01,
-              cloudinaryAssets.stevenWork02,
-              cloudinaryAssets.stevenWork03,
-              cloudinaryAssets.stevenWork04,
+              assets.stevenWork01,
+              assets.stevenWork02,
+              assets.stevenWork03,
+              assets.stevenWork04,
             ],
 
             instagramHandle: 'steventaotran',
@@ -96,12 +96,12 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: cloudinaryAssets.teamAriel,
+            portraitSrc: assets.teamAriel,
             actionSrc: '',
             workSamples: [
-              cloudinaryAssets.arielWork01,
-              cloudinaryAssets.arielWork02,
-              cloudinaryAssets.arielWork03,
+              assets.arielWork01,
+              assets.arielWork02,
+              assets.arielWork03,
             ],
 
             instagramHandle: 'aridonnel',
@@ -114,11 +114,11 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: cloudinaryAssets.teamJared,
-            actionSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1771906340/Screenshot_2026-02-23_at_8.12.10_PM_nswdr2.png',
+            portraitSrc: assets.teamJared,
+            actionSrc: assets.teamJaredAction,
             workSamples: [
-              cloudinaryAssets.jaredWork01,
-              cloudinaryAssets.jaredWork02,
+              assets.jaredWork01,
+              assets.jaredWork02,
             ],
 
             instagramHandle: 'jaredtphan',
@@ -131,7 +131,7 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: 'https://res.cloudinary.com/dpc0d4a7s/image/upload/v1772508153/DSC05741_hojyxk.jpg',
+            portraitSrc: assets.teamBrandon,
             actionSrc: '',
 
             instagramHandle: 'mysticalasian',

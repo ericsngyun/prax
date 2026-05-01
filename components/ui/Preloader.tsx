@@ -6,7 +6,7 @@ import { gsap } from '@/lib/gsap';
 import { usePreloaderStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 export function Preloader() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -125,7 +125,7 @@ export function Preloader() {
       {/* Logo */}
       <div ref={logoRef} className="relative w-56 h-56 md:w-80 md:h-80">
         <Image
-          src={cloudinaryAssets.logo}
+          src={assets.logo}
           alt="PRAX"
           fill
           className="object-contain"

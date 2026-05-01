@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 interface FooterLink {
   label: string;
@@ -65,7 +65,7 @@ export function Footer({ columns }: FooterProps) {
           {/* Logo */}
           <div className="flex items-center">
             <Image
-              src={cloudinaryAssets.textLogo}
+              src={assets.textLogo}
               alt="PRAX"
               width={248}
               height={32}

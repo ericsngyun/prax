@@ -7,7 +7,7 @@ import { ExperienceTimelineSection } from '@/components/sections/ExperienceTimel
 import { BeforeAfterGallery } from '@/components/sections/BeforeAfterGallery';
 import { CTASection } from '@/components/sections/CTASection';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -22,7 +22,7 @@ export default function ServicesPage() {
         label="Services"
         headline="Built, Not Rushed"
         description="Clear service categories. Transparent expectations. Direct booking."
-        backgroundImage={cloudinaryAssets.servicesHeroImage}
+        backgroundImage={assets.servicesHeroImage}
       />
 
       {/* Service Menu */}
@@ -129,9 +129,9 @@ export default function ServicesPage() {
       {/* The Process in Detail */}
       <ProcessGallerySection
         items={[
-          { title: 'Consultation', imageSrc: cloudinaryAssets.processConsultation },
-          { title: 'Precision Cutting', imageSrc: cloudinaryAssets.processCutting },
-          { title: 'Detailing', imageSrc: cloudinaryAssets.processDetailing },
+          { title: 'Consultation', imageSrc: assets.processConsultation },
+          { title: 'Precision Cutting', imageSrc: assets.processCutting },
+          { title: 'Detailing', imageSrc: assets.processDetailing },
         ]}
       />
 
@@ -140,8 +140,8 @@ export default function ServicesPage() {
         heading="Results Speak"
         items={[
           {
-            beforeSrc: cloudinaryAssets.beforeAfter01Before,
-            afterSrc: cloudinaryAssets.beforeAfter01After,
+            beforeSrc: assets.beforeAfter01Before,
+            afterSrc: assets.beforeAfter01After,
             title: 'Precision Fade',
             service: 'Signature Cut'
           },

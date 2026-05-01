@@ -6,7 +6,7 @@ import { AcademyProgramsSection } from '@/components/sections/AcademyProgramsSec
 import { SkoolCommunitySection } from '@/components/sections/SkoolCommunitySection';
 import { AcademyPhilosophySection } from '@/components/sections/AcademyPhilosophySection';
 import { CTASection } from '@/components/sections/CTASection';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 export const metadata: Metadata = {
   title: 'Academy',
@@ -56,7 +56,7 @@ export default function AcademyPage() {
         label="Academy"
         headline="Elevate Your Craft"
         description="PRAX Academy teaches the same precision methodology we use in our studio. Structure, discipline, and fundamentals — not trends."
-        videoSrc={cloudinaryAssets.academyVideo}
+        videoSrc={assets.academyVideo}
       />
       <StatsSection
         stats={[
@@ -67,14 +67,14 @@ export default function AcademyPage() {
       />
       <ClassroomGallerySection
         images={[
-          cloudinaryAssets.academyClassroom01,
-          cloudinaryAssets.academyClassroom02,
-          cloudinaryAssets.academyClassroom03,
-          cloudinaryAssets.academyClassroom04,
-          cloudinaryAssets.academyClassroom05,
-          cloudinaryAssets.academyClassroom06,
-          cloudinaryAssets.academyClassroom07,
-          cloudinaryAssets.academyClassroom08,
+          assets.academyClassroom01,
+          assets.academyClassroom02,
+          assets.academyClassroom03,
+          assets.academyClassroom04,
+          assets.academyClassroom05,
+          assets.academyClassroom06,
+          assets.academyClassroom07,
+          assets.academyClassroom08,
         ]}
       />
       <AcademyProgramsSection programs={programs} />

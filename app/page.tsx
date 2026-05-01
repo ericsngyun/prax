@@ -7,7 +7,7 @@ import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { FounderSection } from '@/components/sections/FounderSection';
 import { LocationSection } from '@/components/sections/LocationSection';
 import { CTASection } from '@/components/sections/CTASection';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 import { BOOKING_URL } from '@/lib/constants';
 
 export default function HomePage() {
@@ -23,7 +23,7 @@ export default function HomePage() {
           href: BOOKING_URL,
         }}
         secondaryCTA={{ text: 'View Our Work', href: '/team' }}
-        videoSrc={cloudinaryAssets.heroVideo}
+        videoSrc={assets.heroVideo}
       />
 
       {/* 2. Intro Section */}
@@ -92,97 +92,97 @@ export default function HomePage() {
         heading="Portfolio"
         items={[
           {
-            src: cloudinaryAssets.portfolio01,
+            src: assets.portfolio01,
             alt: 'Studio cut - side profile',
             title: 'Studio Cut — Side Profile',
           },
           {
-            src: cloudinaryAssets.jackWork01,
+            src: assets.jackWork01,
             alt: 'Jack - Precision cut',
             title: 'Precision Cut',
           },
           {
-            src: cloudinaryAssets.portfolio03,
+            src: assets.portfolio03,
             alt: 'Close-up detailing - scissor work',
             title: 'Close-Up Detailing',
           },
           {
-            src: cloudinaryAssets.gavinWork01,
+            src: assets.gavinWork01,
             alt: 'Gavin - Textured fade',
             title: 'Textured Fade',
           },
           {
-            src: cloudinaryAssets.portfolio04,
+            src: assets.portfolio04,
             alt: 'Finished haircut - front view',
             title: 'Finished Look — Front View',
           },
           {
-            src: cloudinaryAssets.stevenWork01,
+            src: assets.stevenWork01,
             alt: 'Steven - Modern style',
             title: 'Modern Style',
           },
           {
-            src: cloudinaryAssets.jackWork02,
+            src: assets.jackWork02,
             alt: 'Jack - Clean lines',
             title: 'Clean Lines',
           },
           {
-            src: cloudinaryAssets.portfolio05,
+            src: assets.portfolio05,
             alt: 'Texture and movement shot',
             title: 'Texture + Movement',
           },
           {
-            src: cloudinaryAssets.jaredWork01,
+            src: assets.jaredWork01,
             alt: 'Jared - Detail work',
             title: 'Detail Work',
           },
           {
-            src: cloudinaryAssets.gavinWork02,
+            src: assets.gavinWork02,
             alt: 'Gavin - Finished result',
             title: 'Finished Result',
           },
           {
-            src: cloudinaryAssets.portfolio06,
+            src: assets.portfolio06,
             alt: 'Color work result',
             title: 'Color Work',
           },
           {
-            src: cloudinaryAssets.arielWork01,
+            src: assets.arielWork01,
             alt: 'Ariel - Precision styling',
             title: 'Precision Styling',
           },
           {
-            src: cloudinaryAssets.stevenWork02,
+            src: assets.stevenWork02,
             alt: 'Steven - Side profile',
             title: 'Side Profile',
           },
           {
-            src: cloudinaryAssets.jackWork03,
+            src: assets.jackWork03,
             alt: 'Jack - Structured cut',
             title: 'Structured Cut',
           },
           {
-            src: cloudinaryAssets.portfolio07,
+            src: assets.portfolio07,
             alt: 'Studio environment b-roll',
             title: 'Studio Atmosphere',
           },
           {
-            src: cloudinaryAssets.gavinWork03,
+            src: assets.gavinWork03,
             alt: 'Gavin - Classic look',
             title: 'Classic Look',
           },
           {
-            src: cloudinaryAssets.arielWork02,
+            src: assets.arielWork02,
             alt: 'Ariel - Textured finish',
             title: 'Textured Finish',
           },
           {
-            src: cloudinaryAssets.jaredWork02,
+            src: assets.jaredWork02,
             alt: 'Jared - Sharp edges',
             title: 'Sharp Edges',
           },
           {
-            src: cloudinaryAssets.stevenWork03,
+            src: assets.stevenWork03,
             alt: 'Steven - Fade work',
             title: 'Fade Work',
           },
@@ -199,7 +199,7 @@ export default function HomePage() {
         founderName="Jack Louii"
         founderTitle="Founder & Lead Artist"
         founderBio="Raised the standard for precision haircutting through discipline, education, and an uncompromising commitment to craft."
-        imageSrc={cloudinaryAssets.teamJack}
+        imageSrc={assets.teamJack}
         imageAlt="Jack Louii - PRAX Founder"
       />
 
