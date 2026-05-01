@@ -104,3 +104,69 @@ export function parseAddAssetArgs(argv: string[]): ParsedArgs {
     dryRun: values['dry-run'] ?? false,
   };
 }
+
+/** Match an entry like `  someKey: 'https://...',` returning the key name. */
+const ENTRY_REGEX = /^\s+([a-zA-Z][a-zA-Z0-9]*)\s*:\s*['"]/gm;
+
+const MANUAL_SECTION_HEADER = '  // Manually added (via add-asset)';
+
+/**
+ * Extract every top-level key name from the `assets` object literal in the file content.
+ * Order matches source order.
+ */
+export function listExistingKeys(fileContent: string): string[] {
+  const keys: string[] = [];
+  for (const match of fileContent.matchAll(ENTRY_REGEX)) {
+    keys.push(match[1]);
+  }
+  return keys;
+}
+
+/**
+ * Insert a new {key: url} entry into the `assets` object literal in fileContent.
+ * Uses an "// Manually added (via add-asset)" subsection placed just before
+ * the closing `} as const;`. Creates the subsection if absent.
+ *
+ * Options.force=true allows overwriting an existing key (replaces its value
+ * in-place, regardless of which section the key lives in).
+ *
+ * Returns the new file content. Throws if the key exists and force is false.
+ */
+export function patchAssetsFile(
+  fileContent: string,
+  key: string,
+  url: string,
+  options: { force?: boolean } = {}
+): string {
+  const force = options.force ?? false;
+  const existingKeys = listExistingKeys(fileContent);
+
+  if (existingKeys.includes(key)) {
+    if (!force) {
+      throw new Error(
+        `Asset key "${key}" already exists in lib/assets.ts. ` +
+        `Use --force to overwrite, or pick a different --key.`
+      );
+    }
+    // Replace the existing entry's URL in place
+    const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const replaceRegex = new RegExp(`(${escapedKey}\\s*:\\s*)['"][^'"]*['"]`);
+    return fileContent.replace(replaceRegex, `$1'${url}'`);
+  }
+
+  const newEntry = `  ${key}: '${url}',`;
+
+  if (fileContent.includes(MANUAL_SECTION_HEADER)) {
+    // Append before the closing brace (lands at the end of the manual section)
+    return fileContent.replace(
+      /\n\} as const;/,
+      `\n${newEntry}\n} as const;`
+    );
+  }
+
+  // Create the manual section just before the closing brace
+  return fileContent.replace(
+    /\n\} as const;/,
+    `\n\n${MANUAL_SECTION_HEADER}\n${newEntry}\n} as const;`
+  );
+}
