@@ -91,6 +91,3 @@ export const assets = {
   academyVideo: '',
   aboutVideo: '',
 } as const;
-
-// Re-export for backward compatibility during migration cutover
-export const cloudinaryAssets = assets;
