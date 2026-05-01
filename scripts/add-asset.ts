@@ -6,9 +6,12 @@
  *                                   [--force] [--dry-run]
  */
 
-import { readFileSync, existsSync } from 'fs';
-import { extname, basename } from 'path';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { extname, basename, join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { parseArgs } from 'node:util';
+import { execSync } from 'child_process';
+import { put } from '@vercel/blob';
 
 export type MediaType = 'image' | 'video';
 
@@ -169,4 +172,99 @@ export function patchAssetsFile(
     /\n\} as const;/,
     `\n\n${MANUAL_SECTION_HEADER}\n${newEntry}\n} as const;`
   );
+}
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ASSETS_FILE = join(__dirname, '..', 'lib', 'assets.ts');
+
+/**
+ * Upload a file to Vercel Blob with a stable filename prax/<key>.<ext>.
+ * Stable filename + addRandomSuffix:false means re-uploads with --force
+ * overwrite cleanly.
+ */
+async function uploadToBlob(
+  filePath: string,
+  key: string,
+  type: MediaType
+): Promise<string> {
+  const bytes = readFileSync(filePath);
+  const ext = extname(filePath).toLowerCase();
+  const blobPath = `prax/${key}${ext}`;
+  const contentType =
+    type === 'video'
+      ? `video/${ext.slice(1)}`
+      : `image/${ext === '.jpg' ? 'jpeg' : ext.slice(1)}`;
+
+  const { url } = await put(blobPath, bytes, {
+    access: 'public',
+    contentType,
+    addRandomSuffix: false,
+  });
+
+  return url;
+}
+
+async function main(): Promise<void> {
+  const args = parseAddAssetArgs(process.argv.slice(2));
+
+  if (!existsSync(args.filePath)) {
+    console.error(`File not found: ${args.filePath}`);
+    process.exit(1);
+  }
+
+  const type = args.type ?? detectMediaType(args.filePath);
+  const key = args.key ?? toCamelCaseKey(args.filePath);
+
+  const currentAssets = readFileSync(ASSETS_FILE, 'utf-8');
+  const keyExists = listExistingKeys(currentAssets).includes(key);
+
+  if (keyExists && !args.force) {
+    console.error(
+      `Asset key "${key}" already exists in lib/assets.ts. ` +
+      `Use --force to overwrite, or pass --key <name> to choose a different key.`
+    );
+    process.exit(1);
+  }
+
+  console.log(`File:    ${args.filePath}`);
+  console.log(`Type:    ${type}`);
+  console.log(`Key:     ${key}${keyExists ? ' (will overwrite)' : ''}`);
+
+  if (args.dryRun) {
+    console.log('\n[--dry-run] No upload performed, lib/assets.ts not modified.');
+    return;
+  }
+
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('BLOB_READ_WRITE_TOKEN is required for upload. Set it in .env.local.');
+    process.exit(1);
+  }
+
+  console.log('\nUploading to Vercel Blob...');
+  const url = await uploadToBlob(args.filePath, key, type);
+  console.log(`Uploaded: ${url}`);
+
+  const patched = patchAssetsFile(currentAssets, key, url, { force: args.force });
+  writeFileSync(ASSETS_FILE, patched, 'utf-8');
+  console.log(`Patched: ${ASSETS_FILE}`);
+
+  try {
+    const diff = execSync(`git diff --color ${ASSETS_FILE}`, { encoding: 'utf-8' });
+    if (diff) {
+      console.log('\nDiff:');
+      console.log(diff);
+    }
+  } catch {
+    // git may not be available or file may be outside a repo — non-fatal
+  }
+
+  console.log('\nDone. Review the diff above, then `git add` and commit when satisfied.');
+}
+
+// Run main() only when this file is executed directly (not when imported by tests)
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    console.error(err instanceof Error ? err.message : err);
+    process.exit(1);
+  });
 }
