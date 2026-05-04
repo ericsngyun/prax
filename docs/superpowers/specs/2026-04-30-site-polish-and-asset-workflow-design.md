@@ -29,10 +29,14 @@ The work decomposes into three sub-projects. Each gets its own implementation pl
 │ Sub-project 2: Responsive audit    │    │ Sub-project 3: Asset workflow CLI│
 │   + polish                         │    │   pnpm add-asset <path>          │
 │   (5 pages × 13 viewports)         │    │   — independent of audit         │
-└────────────────────────────────────┘    └──────────────────────────────────┘
+│                                    │    └──────────────────────────────────┘
+│   ↳ Sub-project 4: Brand alignment │
+│     (FadeIn IO, pill nav, palette  │
+│      consolidation, --font-mono)   │
+└────────────────────────────────────┘
 ```
 
-Sub-project 3 has no functional dependency on sub-project 2. They can run in parallel once sub-project 1 lands.
+Sub-project 3 has no functional dependency on sub-project 2. They can run in parallel once sub-project 1 lands. Sub-project 4 nests inside sub-project 2 — it executes after fix-waves but before final Lighthouse verification.
 
 ---
 
@@ -214,6 +218,40 @@ Real upload to Blob is not tested in CI — exercised via manual `--dry-run`.
 - **No automatic blur placeholder generation** — `lib/blurPlaceholder.ts` provides reusable preset placeholders; new assets reuse them.
 - **No batch upload** — single file per invocation. Loop in shell if needed.
 - **No deletion** — Vercel dashboard or a future `pnpm remove-asset` if it becomes painful.
+
+---
+
+## Sub-project 4: Brand alignment refinements
+
+**Plan:** `docs/superpowers/plans/2026-05-04-brand-alignment-refinements.md`
+
+### Goal
+
+Refine the existing "Ink & Bone" design system on the marketing site so it shares clear visual DNA with the `prax-academy` repo without losing the editorial/serif voice that distinguishes the studio site.
+
+### Decision (2026-05-04)
+
+After surveying both repos: **the main site's "Ink & Bone" system is the foundation** — Cormorant Garamond + PP Neue Montreal + OKLCH palette stay. The academy site, when its content is built out, adopts the same fonts/palette while keeping its minimalist layout — different "voices" within one brand kit.
+
+Rationale: serif gravitas fits a premium hair studio (Aesop, Hermès, Loewe territory); flat hex + Inter is generic startup. The main site has hundreds of hours of polish in this direction; academy is a hand-off draft at v0.1.0.
+
+### Refinements (borrow from academy)
+
+1. **Lighter animations.** Replace per-section GSAP fade-ups with the academy's `FadeIn` IntersectionObserver pattern (~30 LOC). Keep GSAP only for genuine scroll-pinned, scrubbed, or sequenced moments where it earns its keep.
+2. **Floating-pill nav.** Port academy's centered floating nav with frosted-glass-on-scroll, adapted to Ink & Bone tokens.
+3. **Palette consolidation.** OKLCH "Ink & Bone" has 8 named shades; in practice maybe 5–6 do real work. Audit usage, merge near-duplicates, remove unused.
+4. **Mono accent.** Add IBM Plex Mono as `--font-mono` for technical labels (timestamps, counts, code-style metadata) — gives a typographic register the main site currently lacks.
+
+### Out of scope (per spec)
+
+- Font migration (Cormorant Garamond + PP Neue Montreal stay)
+- Palette migration (OKLCH "Ink & Bone" stays as the foundation)
+- Lenis removal (smooth scroll is a global behavior, kept)
+- Modifying the academy repo (that's separate future work)
+
+### Timing
+
+Executes during sub-project 2's polish phase, AFTER fix-waves 1–5 (tasks 8–13 of the audit plan) but BEFORE final Lighthouse verification. Estimated 5–8 hours of focused work.
 
 ---
 
