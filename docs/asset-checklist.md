@@ -8,24 +8,53 @@ Working doc — tick each box as you replace placeholders with real assets from 
 
 ---
 
-## File specs (request from photographer if needed)
+## Universal format rules
 
-- **Images:** JPEG, sRGB 8-bit, 2400 px on long edge, quality 90+, no pre-compression. Aim for 1–3 MB; 8 MB hard cap.
-- **Videos:** H.264 1080p (1920×1080 max), ~3 Mbps, no audio track, ≤15 sec for hero loops. Aim for <8 MB.
+Apply to every image regardless of category. Following these makes Next.js Image optimization work as designed.
+
+| | Spec |
+|---|---|
+| **Format (photos)** | JPEG, sRGB 8-bit, quality 90+ at export. Don't pre-convert to WebP/AVIF — Next.js does it at serve time, better than your export will. |
+| **Format (logos / transparency)** | PNG (24-bit RGBA), or SVG if available. Skip JPEG for logos — bg color bakes in. |
+| **Skip** | HEIC (convert to JPEG first), Adobe RGB, 16-bit color, pre-sharpening, pre-compression |
+| **Resolution** | 2400 px on the long edge for photos. Matches Next.js's max device width (1920 × DPR-2 buffer). More is wasted. |
+| **Quality** | JPEG q90+, no aggressive sharpening, no pre-compression — trust Next.js |
+| **Metadata** | Strip EXIF if your export tool offers it. Smaller files, removes embedded GPS/camera data. |
+| **File size** | Typical 1–3 MB; 8 MB hard cap |
+
+**Videos:** H.264, 1920×1080 (1080p), ~3 Mbps target bitrate, **no audio track**, ≤15 sec for hero loops, ≤8 MB. Strip audio with:
+
+```bash
+ffmpeg -i input.mp4 -an -c:v libx264 -b:v 3M -movflags +faststart output.mp4
+```
+
+`-movflags +faststart` puts the metadata at the front so the video starts playing during download instead of after.
+
+---
+
+## Why aspect ratios matter here
+
+Every consumer component uses Next.js `<Image fill>` with `object-cover`. That means **your image gets cropped to fit the displayed aspect ratio**. Deliver at the right ratio and nothing important gets cut. Deliver at the wrong ratio and faces/key elements get truncated.
+
+Composition rule for portraits with `object-cover`: **keep the face / key subject in the upper third of the frame**. Bottom is what gets cropped on narrow viewports.
 
 ---
 
 ## Brand (3)
 
-| ✓ | Key | What's needed | Aspect |
-|---|-----|---------------|--------|
-| [ ] | `logo` | PRAX square mark — used in Header & Footer | square |
-| [ ] | `logoX` | PRAX "X" mark — large hero accent | square |
-| [ ] | `textLogo` | PRAX wordmark (text-only logo) | landscape, wide |
+Logos display as inline `<Image>` with explicit width/height, not full-bleed. Transparent PNG or SVG required so they sit on the dark site background.
 
-## Team portraits (6)
+| ✓ | Key | Aspect / Dimensions | Purpose |
+|---|-----|---------------------|---------|
+| [ ] | `logo` | square 1:1 — **800×800 PNG (transparent)** | PRAX symbol mark — Preloader |
+| [ ] | `logoX` | square 1:1 — **800×800 PNG (transparent)** | PRAX "X" mark — large hero accent (HeroSection renders at 320×320) |
+| [ ] | `textLogo` | wide ~8:1 — **1600×200 PNG (transparent)** or SVG | Wordmark — Header (renders 186×24) and Footer (renders 248×32). Generous horizontal padding inside the asset. |
 
-Editorial portraits, consistent lighting, dark/neutral background. Used in `/team` and as homepage references.
+## Team portraits (7)
+
+Editorial portraits, consistent lighting, dark/neutral background. Renders at **3:4 portrait** with `object-cover`. Face in the **upper third** so cropping doesn't decapitate anyone on mobile.
+
+**Deliver at: 1800×2400 (3:4 portrait), JPEG q90+**
 
 | ✓ | Key | Person | Role |
 |---|-----|--------|------|
@@ -39,15 +68,17 @@ Editorial portraits, consistent lighting, dark/neutral background. Used in `/tea
 
 ## Team — additional (3)
 
-| ✓ | Key | What's needed | Aspect |
-|---|-----|---------------|--------|
-| [ ] | `teamHeroBackground` | Wide landscape — `/team` hero background, atmospheric studio shot | landscape, wide |
-| [ ] | `teamJackAction` | Jack working — candid, in motion | landscape |
-| [ ] | `teamJaredAction` | Jared working — candid, in motion | landscape |
+| ✓ | Key | Aspect / Dimensions | Notes |
+|---|-----|---------------------|-------|
+| [ ] | `teamHeroBackground` | wide 16:9 or 21:9 — **2400×1350** (or 2400×1029 for 21:9) | `/team` page hero background. Atmospheric studio shot. Subject centered with breathing room — text overlays the center. |
+| [ ] | `teamJackAction` | 16:9 landscape — **2400×1350** | Jack mid-cut, candid. Horizontal motion. Renders in TeamGridSection action-shot tile. |
+| [ ] | `teamJaredAction` | 16:9 landscape — **2400×1350** | Jared mid-cut, candid. Same as above. |
 
 ## Portfolio — homepage marquee (6)
 
-Hero portfolio shots that scroll horizontally on the homepage. Best work, varied subjects.
+Hero portfolio shots that scroll horizontally on the homepage. Renders at **3:4 portrait** with `object-cover`. Use your strongest finished work — these are the first thing visitors see.
+
+**Deliver at: 1800×2400 (3:4 portrait), JPEG q90+**
 
 | ✓ | Key |
 |---|-----|
@@ -58,9 +89,11 @@ Hero portfolio shots that scroll horizontally on the homepage. Best work, varied
 | [ ] | `portfolio06` |
 | [ ] | `portfolio07` |
 
-## Per-stylist work samples — `/team`
+## Per-stylist work samples — `/team` (18)
 
-Cut/style detail shots, ideally each stylist's best 2–5.
+Cut/style detail shots, each stylist's best work. Renders at **3:4 portrait** with `object-cover` in a sub-grid under the stylist's portrait card.
+
+**Deliver at: 1800×2400 (3:4 portrait), JPEG q90+**
 
 | ✓ | Key |
 |---|-----|
@@ -85,52 +118,64 @@ Cut/style detail shots, ideally each stylist's best 2–5.
 
 ## Before / After — `/services` (2)
 
-Same client, two shots, framed identically. Show the transformation.
+Same client, two shots, **framed identically** (same distance, same angle, same lighting). Renders at **3:4 portrait** with `object-cover`.
+
+**Deliver at: 1800×2400 (3:4 portrait), JPEG q90+**
 
 | ✓ | Key | What's needed |
 |---|-----|---------------|
-| [ ] | `beforeAfter01Before` | BEFORE shot — same client as After |
-| [ ] | `beforeAfter01After` | AFTER shot — same client as Before |
+| [ ] | `beforeAfter01Before` | BEFORE shot — must match `beforeAfter01After` framing |
+| [ ] | `beforeAfter01After` | AFTER shot — must match `beforeAfter01Before` framing |
 
 ## Process — `/services` (3)
 
-Three steps of the cut experience.
+Three steps of the cut experience. Renders at **4:5 portrait** (slightly taller than 3:4) with `object-cover`.
+
+**Deliver at: 1920×2400 (4:5 portrait), JPEG q90+**
 
 | ✓ | Key | What's needed |
 |---|-----|---------------|
-| [ ] | `processConsultation` | Step 1 — consultation in progress |
-| [ ] | `processCutting` | Step 2 — precision cutting |
-| [ ] | `processDetailing` | Step 3 — final detailing |
+| [ ] | `processConsultation` | Step 1 — consultation in progress (client + barber, conversation framing) |
+| [ ] | `processCutting` | Step 2 — precision cutting (close-ish on hands + scissors) |
+| [ ] | `processDetailing` | Step 3 — final detailing (last touches, mirror reveal moment) |
 
 ## Academy classroom — `/academy` (8)
 
-Teaching environment shots — classroom, students, instruction in progress.
+Teaching environment shots. Renders at **4:5 portrait** with `object-cover` in a grid.
 
-| ✓ | Key |
-|---|-----|
-| [ ] | `academyClassroom01` |
-| [ ] | `academyClassroom02` |
-| [ ] | `academyClassroom03` |
-| [ ] | `academyClassroom04` |
-| [ ] | `academyClassroom05` |
-| [ ] | `academyClassroom06` |
-| [ ] | `academyClassroom07` |
-| [ ] | `academyClassroom08` |
+**Deliver at: 1920×2400 (4:5 portrait), JPEG q90+**
+
+| ✓ | Key | Suggested subject |
+|---|-----|-------------------|
+| [ ] | `academyClassroom01` | Wide classroom view (sets the scene) |
+| [ ] | `academyClassroom02` | Instructor demoing on a model |
+| [ ] | `academyClassroom03` | Students working at stations |
+| [ ] | `academyClassroom04` | Close on tools / hands-on detail |
+| [ ] | `academyClassroom05` | Group critique / discussion moment |
+| [ ] | `academyClassroom06` | Student practicing on mannequin |
+| [ ] | `academyClassroom07` | Whiteboard / theory moment |
+| [ ] | `academyClassroom08` | Energy shot (laughter, candid) |
+
+(Subject suggestions are a hint, not a hard spec — pick whatever 8 best images you have that vary tonally.)
 
 ## Content (2)
 
-| ✓ | Key | What's needed | Page |
-|---|-----|---------------|------|
-| [ ] | `philosophyImage` | Founder portrait, editorial framing | `/about` |
-| [ ] | `servicesHeroImage` | Studio interior, hero background | `/services` |
+| ✓ | Key | Aspect / Dimensions | Page | Notes |
+|---|-----|---------------------|------|-------|
+| [ ] | `philosophyImage` | 4:5 portrait — **1920×2400** | `/about` | Founder portrait, editorial framing, breathing room around subject |
+| [ ] | `servicesHeroImage` | wide 16:9 or 21:9 — **2400×1350** | `/services` | Studio interior, hero background. Subject centered, text overlays so leave space. |
 
 ## Videos (3)
 
-| ✓ | Key | What's needed | Length |
-|---|-----|---------------|--------|
-| [ ] | `heroVideo` | Homepage hero background loop, 1080p, no audio | ≤15 s |
-| [ ] | `academyVideo` | `/academy` hero background loop | ≤15 s |
-| [ ] | `aboutVideo` | `/about` hero background loop | ≤15 s |
+**All deliver:** H.264 MP4, 1920×1080, ~3 Mbps, no audio, ≤15 sec, ≤8 MB. Use `ffmpeg -an -movflags +faststart` (see Universal rules above).
+
+| ✓ | Key | Page |
+|---|-----|------|
+| [ ] | `heroVideo` | Homepage hero background loop |
+| [ ] | `academyVideo` | `/academy` hero background loop |
+| [ ] | `aboutVideo` | `/about` hero background loop |
+
+**Loop tip:** start and end frames should be visually similar so the loop point is invisible. Slow camera moves loop better than fast cuts.
 
 ---
 
@@ -163,11 +208,11 @@ git push
 
 ## Suggested order of attack
 
-1. **High-leverage first:** `logo`, `logoX`, `textLogo`, all 7 team portraits, `heroVideo`. Once these land, the homepage and team page already feel real.
-2. **Process + before/after:** 5 keys, makes `/services` feel real.
-3. **Per-stylist work samples:** 18 keys but they all have the same spec, fast batch.
-4. **Academy classroom:** 8 keys.
-5. **Videos for /academy and /about:** the remaining 2 video slots.
+1. **High-leverage first** (~12 keys): `logo`, `logoX`, `textLogo`, all 7 team portraits, `heroVideo`, `philosophyImage`. Once these land, the homepage, team page, and about page feel real.
+2. **`/services` content** (~5 keys): `servicesHeroImage`, 3 process shots, `beforeAfter01Before/After` pair.
+3. **Per-stylist work samples** (18 keys, same spec, fast batch).
+4. **Academy** (~9 keys): 8 classroom + `academyVideo`.
+5. **`aboutVideo`** — last loop video.
 
 ## When you're done
 
