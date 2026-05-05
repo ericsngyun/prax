@@ -6,6 +6,41 @@ Working doc — tick each box as you replace placeholders with real assets from 
 **Local working folder:** suggested `~/Downloads/prax-assets/` (or anywhere outside the repo)
 **Tool:** `pnpm add-asset <file> --key <key> --force`
 
+## Blob folder layout
+
+`add-asset` auto-derives the Blob folder from the key prefix (no flags needed). Final paths look like `prax/<folder>/<key>.<ext>`. Nine folders, 55 assets total:
+
+| Folder | Count | Contents |
+|---|---|---|
+| `prax/brand/` | 3 | `logo`, `logoX`, `textLogo` |
+| `prax/team/` | 10 | 7 portraits + 2 action shots + `teamHeroBackground` |
+| `prax/portfolio/` | 6 | homepage marquee originals (`portfolio01,03–07`) |
+| `prax/work-samples/` | 18 | per-stylist work (`{jack,gavin,steven,jared,ariel}Work*`) |
+| `prax/before-after/` | 2 | `beforeAfter01Before/After` |
+| `prax/process/` | 3 | `processConsultation`, `processCutting`, `processDetailing` |
+| `prax/academy/` | 8 | `academyClassroom01–08` |
+| `prax/editorial/` | 2 | `philosophyImage`, `servicesHeroImage` |
+| `prax/videos/` | 3 | `heroVideo`, `academyVideo`, `aboutVideo` |
+
+The `videos/` rule wins over page-prefix rules, so `academyVideo` lands in `videos/`, not `academy/`. Routing logic lives in `folderForKey` in `scripts/add-asset.ts`.
+
+## Local working folder layout
+
+Mirror the Blob structure under `~/Downloads/prax-assets/`. Name each file exactly as its key (e.g. `teamJack.jpg`) so the batch loop below picks the key up automatically.
+
+```
+~/Downloads/prax-assets/
+├── brand/{logo,logoX,textLogo}.png
+├── team/{teamJack,teamGavin,teamEdward,teamSteven,teamJared,teamAriel,teamBrandon,teamHeroBackground,teamJackAction,teamJaredAction}.jpg
+├── portfolio/portfolio0{1,3,4,5,6,7}.jpg
+├── work-samples/{jack,gavin,steven,jared,ariel}Work0X.jpg
+├── before-after/beforeAfter01{Before,After}.jpg
+├── process/process{Consultation,Cutting,Detailing}.jpg
+├── academy/academyClassroom0{1..8}.jpg
+├── editorial/{philosophyImage,servicesHeroImage}.jpg
+└── videos/{hero,academy,about}Video.mp4
+```
+
 ---
 
 ## Universal format rules
@@ -189,14 +224,17 @@ pnpm add-asset /path/to/downloaded-file.jpg --key teamJack --force
 
 The `--force` is required because every key currently has a placeholder value, so add-asset would otherwise refuse the overwrite.
 
-Batch tip — if you've named your downloaded files to match the keys (e.g. `teamJack.jpg`):
+Batch tip — once each file is named to match its key (e.g. `teamJack.jpg`), recurse through the local folder layout above:
 
 ```bash
-for f in ~/Downloads/prax-assets/*.{jpg,png,mp4}; do
+shopt -s globstar nullglob
+for f in ~/Downloads/prax-assets/**/*.{jpg,jpeg,png,mp4,mov,webm}; do
   key=$(basename "$f" | sed 's/\.[^.]*$//')
   pnpm add-asset "$f" --key "$key" --force
 done
 ```
+
+You can also batch one folder at a time (e.g. `~/Downloads/prax-assets/team/*.jpg`) — the Blob folder is derived from the key, not from the local path, so directory structure on disk is purely organizational.
 
 After each batch, commit and push so Vercel can preview-deploy:
 

@@ -32,6 +32,33 @@ export const VIDEO_EXTENSIONS = new Set([
 ]);
 
 /**
+ * Map an asset key to its blob folder. First match wins.
+ * The Video$ rule sits above the page-prefix rules so e.g. academyVideo
+ * routes to videos/ rather than academy/.
+ */
+const FOLDER_RULES: Array<[RegExp, string]> = [
+  [/Video$/, 'videos'],
+  [/^(logoX?|textLogo)$/, 'brand'],
+  [/^team/, 'team'],
+  [/^portfolio/, 'portfolio'],
+  [/Work\d/, 'work-samples'],
+  [/^beforeAfter/, 'before-after'],
+  [/^process/, 'process'],
+  [/^academy/, 'academy'],
+];
+
+/**
+ * Resolve the blob folder for a key. Returns 'editorial' when no rule matches —
+ * a fallback for one-off images like philosophyImage and servicesHeroImage.
+ */
+export function folderForKey(key: string): string {
+  for (const [pattern, folder] of FOLDER_RULES) {
+    if (pattern.test(key)) return folder;
+  }
+  return 'editorial';
+}
+
+/**
  * Convert a filename or path into a camelCase asset key.
  * Strips directory and extension. Splits on non-alphanumeric.
  * Lowercases the first segment, capitalizes subsequent segments.
@@ -178,7 +205,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ASSETS_FILE = join(__dirname, '..', 'lib', 'assets.ts');
 
 /**
- * Upload a file to Vercel Blob with a stable filename prax/<key>.<ext>.
+ * Upload a file to Vercel Blob with a stable filename prax/<folder>/<key>.<ext>.
+ * The folder is auto-derived from the key (see folderForKey).
  * Stable filename + addRandomSuffix:false means re-uploads with --force
  * overwrite cleanly.
  */
@@ -189,7 +217,7 @@ async function uploadToBlob(
 ): Promise<string> {
   const bytes = readFileSync(filePath);
   const ext = extname(filePath).toLowerCase();
-  const blobPath = `prax/${key}${ext}`;
+  const blobPath = `prax/${folderForKey(key)}/${key}${ext}`;
   const contentType =
     type === 'video'
       ? `video/${ext.slice(1)}`
@@ -229,6 +257,7 @@ async function main(): Promise<void> {
   console.log(`File:    ${args.filePath}`);
   console.log(`Type:    ${type}`);
   console.log(`Key:     ${key}${keyExists ? ' (will overwrite)' : ''}`);
+  console.log(`Folder:  prax/${folderForKey(key)}/`);
 
   if (args.dryRun) {
     console.log('\n[--dry-run] No upload performed, lib/assets.ts not modified.');
