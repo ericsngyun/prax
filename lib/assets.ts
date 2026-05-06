@@ -9,9 +9,9 @@ import { makeImagePlaceholder } from './placeholders';
 
 export const assets = {
   // Brand
-  logo: makeImagePlaceholder({ label: 'PRAX Logo', context: 'Square mark · Header & Footer' }),
-  logoX: makeImagePlaceholder({ label: 'PRAX Logo X', context: 'Hero accent · Large display' }),
-  textLogo: makeImagePlaceholder({ label: 'PRAX Wordmark', context: 'Text-only logo · Header alt' }),
+  logo: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/brand/logo.png',
+  logoX: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/brand/logoX.png',
+  textLogo: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/brand/textLogo.png',
 
   // Team portraits
   teamGavin: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamGavin.jpg',
