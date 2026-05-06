@@ -1,11 +1,11 @@
-// Auto-generated initial state with placeholder values.
-// Replace each placeholder with a real Vercel Blob URL by running:
+// Vercel Blob URLs for every static asset on the site.
+//
+// To add or replace one, run:
 //   pnpm add-asset <file> --key <key> --force
 //
-// New (additional) keys are appended automatically by add-asset under the
-// `// Manually added (via add-asset)` section near the bottom.
-
-import { makeImagePlaceholder } from './placeholders';
+// Existing keys get their URL overwritten in place. New keys land in a
+// `// Manually added (via add-asset)` section at the bottom — move them
+// into the right category section by hand if you care about file order.
 
 export const assets = {
   // Brand
