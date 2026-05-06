@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Brainstorming companion (transient mockups)
 .superpowers/
+
+# Claude Code local settings (machine-specific; may contain secrets)
+.claude/settings.local.json
