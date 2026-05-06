@@ -229,6 +229,44 @@ test('patchAssetsFile: replaces value when force=true', () => {
   assert.doesNotMatch(result, /logo: 'https:\/\/abc\.public\.blob\.vercel-storage\.com\/prax\/logo\.jpg'/);
 });
 
+test('listExistingKeys: includes keys with function-call values', () => {
+  const fixture = `export const assets = {
+  logo: makeImagePlaceholder({ label: 'X', context: 'Y' }),
+  hero: '',
+  teamJack: 'https://blob.example/jack.jpg',
+} as const;`;
+  assert.deepEqual(listExistingKeys(fixture), ['logo', 'hero', 'teamJack']);
+});
+
+test('patchAssetsFile: force overwrites a placeholder function call', () => {
+  const fixture = `export const assets = {
+  teamJack: makeImagePlaceholder({ label: 'Jack', context: 'Team · Portrait' }),
+} as const;`;
+  const result = patchAssetsFile(fixture, 'teamJack', 'https://blob.example/jack.jpg', { force: true });
+  assert.match(result, /teamJack: 'https:\/\/blob\.example\/jack\.jpg',/);
+  assert.doesNotMatch(result, /makeImagePlaceholder/);
+});
+
+test('patchAssetsFile: force overwrites an empty-string value', () => {
+  const fixture = `export const assets = {
+  heroVideo: '',
+} as const;`;
+  const result = patchAssetsFile(fixture, 'heroVideo', 'https://blob.example/hero.mp4', { force: true });
+  assert.match(result, /heroVideo: 'https:\/\/blob\.example\/hero\.mp4',/);
+});
+
+test('patchAssetsFile: preserves blank lines between sections after overwrite', () => {
+  const fixture = `export const assets = {
+  // Group A
+  alpha: makeImagePlaceholder({ label: 'A', context: 'X' }),
+
+  // Group B
+  beta: makeImagePlaceholder({ label: 'B', context: 'Y' }),
+} as const;`;
+  const result = patchAssetsFile(fixture, 'alpha', 'https://blob.example/a.jpg', { force: true });
+  assert.match(result, /alpha: 'https:\/\/blob\.example\/a\.jpg',\n\n  \/\/ Group B/);
+});
+
 test('patchAssetsFile: preserves cloudinaryAssets re-export line', () => {
   const result = patchAssetsFile(FIXTURE_BASE, 'newPhoto', 'https://blob.example/x.jpg');
   assert.match(result, /export const cloudinaryAssets = assets;/);

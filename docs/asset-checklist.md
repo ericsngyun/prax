@@ -31,7 +31,7 @@ Mirror the Blob structure under `~/Downloads/prax-assets/`. Name each file exact
 ```
 ~/Downloads/prax-assets/
 ├── brand/{logo,logoX,textLogo}.png
-├── team/{teamJack,teamGavin,teamEdward,teamSteven,teamJared,teamAriel,teamBrandon,teamHeroBackground,teamJackAction,teamJaredAction}.jpg
+├── team/{teamJack,teamGavin,teamSteven,teamJared,teamAriel,teamBrandon,teamHeroBackground,teamJackAction,teamJaredAction}.jpg
 ├── portfolio/portfolio0{1,3,4,5,6,7}.jpg
 ├── work-samples/{jack,gavin,steven,jared,ariel}Work0X.jpg
 ├── before-after/beforeAfter01{Before,After}.jpg
@@ -85,7 +85,7 @@ Logos display as inline `<Image>` with explicit width/height, not full-bleed. Tr
 | [ ] | `logoX` | square 1:1 — **800×800 PNG (transparent)** | PRAX "X" mark — large hero accent (HeroSection renders at 320×320) |
 | [ ] | `textLogo` | wide ~8:1 — **1600×200 PNG (transparent)** or SVG | Wordmark — Header (renders 186×24) and Footer (renders 248×32). Generous horizontal padding inside the asset. |
 
-## Team portraits (7)
+## Team portraits (6)
 
 Editorial portraits, consistent lighting, dark/neutral background. Renders at **3:4 portrait** with `object-cover`. Face in the **upper third** so cropping doesn't decapitate anyone on mobile.
 
@@ -95,7 +95,6 @@ Editorial portraits, consistent lighting, dark/neutral background. Renders at **
 |---|-----|--------|------|
 | [ ] | `teamJack` | Jack Louii | Founder & Lead Artist |
 | [ ] | `teamGavin` | Gavin Chen | Master Barber |
-| [ ] | `teamEdward` | Edward Santos | Senior Stylist |
 | [ ] | `teamSteven` | Steven Park | Color Specialist |
 | [ ] | `teamJared` | Jared Phan | Artist |
 | [ ] | `teamAriel` | Ariel | Artist |

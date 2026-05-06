@@ -14,48 +14,47 @@ export const assets = {
   textLogo: makeImagePlaceholder({ label: 'PRAX Wordmark', context: 'Text-only logo · Header alt' }),
 
   // Team portraits
-  teamEdward: makeImagePlaceholder({ label: 'Edward Santos', context: 'Team · Senior Stylist · Portrait' }),
-  teamGavin: makeImagePlaceholder({ label: 'Gavin Chen', context: 'Team · Master Barber · Portrait' }),
-  teamJack: makeImagePlaceholder({ label: 'Jack Louii', context: 'Team · Founder & Lead Artist · Portrait' }),
-  teamSteven: makeImagePlaceholder({ label: 'Steven Park', context: 'Team · Color Specialist · Portrait' }),
-  teamJared: makeImagePlaceholder({ label: 'Jared Phan', context: 'Team · Artist · Portrait' }),
-  teamAriel: makeImagePlaceholder({ label: 'Ariel', context: 'Team · Artist · Portrait' }),
+  teamGavin: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamGavin.jpg',
+  teamJack: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamJack.jpg',
+  teamSteven: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamSteven.jpg',
+  teamJared: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamJared.jpg',
+  teamAriel: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamAriel.jpg',
 
   // Portfolio (homepage marquee)
-  portfolio01: makeImagePlaceholder({ label: 'Portfolio 01', context: 'Homepage marquee · Hero portfolio shot' }),
-  portfolio03: makeImagePlaceholder({ label: 'Portfolio 03', context: 'Homepage marquee' }),
-  portfolio04: makeImagePlaceholder({ label: 'Portfolio 04', context: 'Homepage marquee' }),
-  portfolio05: makeImagePlaceholder({ label: 'Portfolio 05', context: 'Homepage marquee' }),
-  portfolio06: makeImagePlaceholder({ label: 'Portfolio 06', context: 'Homepage marquee' }),
-  portfolio07: makeImagePlaceholder({ label: 'Portfolio 07', context: 'Homepage marquee' }),
+  portfolio01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio01.jpg',
+  portfolio03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio03.jpg',
+  portfolio04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio04.jpg',
+  portfolio05: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio05.jpg',
+  portfolio06: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio06.jpg',
+  portfolio07: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio07.jpg',
 
   // Jack's work (5 images)
-  jackWork01: makeImagePlaceholder({ label: "Jack's Work 01", context: '/team · Jack work sample · Cut/style detail' }),
-  jackWork02: makeImagePlaceholder({ label: "Jack's Work 02", context: '/team · Jack work sample · Cut/style detail' }),
-  jackWork03: makeImagePlaceholder({ label: "Jack's Work 03", context: '/team · Jack work sample · Cut/style detail' }),
-  jackWork04: makeImagePlaceholder({ label: "Jack's Work 04", context: '/team · Jack work sample · Cut/style detail' }),
-  jackWork05: makeImagePlaceholder({ label: "Jack's Work 05", context: '/team · Jack work sample · Cut/style detail' }),
+  jackWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork01.jpg',
+  jackWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork02.jpg',
+  jackWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork03.jpg',
+  jackWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork04.jpg',
+  jackWork05: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork05.jpg',
 
   // Gavin's work (4 images)
-  gavinWork01: makeImagePlaceholder({ label: "Gavin's Work 01", context: '/team · Gavin work sample' }),
-  gavinWork02: makeImagePlaceholder({ label: "Gavin's Work 02", context: '/team · Gavin work sample' }),
-  gavinWork03: makeImagePlaceholder({ label: "Gavin's Work 03", context: '/team · Gavin work sample' }),
-  gavinWork04: makeImagePlaceholder({ label: "Gavin's Work 04", context: '/team · Gavin work sample' }),
+  gavinWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork01.jpg',
+  gavinWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork02.jpg',
+  gavinWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork03.jpg',
+  gavinWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork04.jpg',
 
   // Steven's work (4 images)
-  stevenWork01: makeImagePlaceholder({ label: "Steven's Work 01", context: '/team · Steven work sample' }),
-  stevenWork02: makeImagePlaceholder({ label: "Steven's Work 02", context: '/team · Steven work sample' }),
-  stevenWork03: makeImagePlaceholder({ label: "Steven's Work 03", context: '/team · Steven work sample' }),
-  stevenWork04: makeImagePlaceholder({ label: "Steven's Work 04", context: '/team · Steven work sample' }),
+  stevenWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork01.jpg',
+  stevenWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork02.jpg',
+  stevenWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork03.jpg',
+  stevenWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork04.jpg',
 
   // Jared's work (2 images)
-  jaredWork01: makeImagePlaceholder({ label: "Jared's Work 01", context: '/team · Jared work sample' }),
-  jaredWork02: makeImagePlaceholder({ label: "Jared's Work 02", context: '/team · Jared work sample' }),
+  jaredWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork01.jpg',
+  jaredWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork02.jpg',
 
   // Ariel's work (3 images)
-  arielWork01: makeImagePlaceholder({ label: "Ariel's Work 01", context: '/team · Ariel work sample' }),
-  arielWork02: makeImagePlaceholder({ label: "Ariel's Work 02", context: '/team · Ariel work sample' }),
-  arielWork03: makeImagePlaceholder({ label: "Ariel's Work 03", context: '/team · Ariel work sample' }),
+  arielWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork01.jpg',
+  arielWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork02.jpg',
+  arielWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork03.jpg',
 
   // Before/After (services page)
   beforeAfter01Before: makeImagePlaceholder({ label: 'Before/After 01 — Before', context: '/services · Same-client BEFORE shot' }),
@@ -77,17 +76,17 @@ export const assets = {
   academyClassroom08: makeImagePlaceholder({ label: 'Academy Classroom 08', context: '/academy · Classroom gallery' }),
 
   // Content
-  philosophyImage: makeImagePlaceholder({ label: 'Philosophy Image', context: '/about · Founder portrait · Editorial framing' }),
-  servicesHeroImage: makeImagePlaceholder({ label: 'Services Hero', context: '/services · Hero background · Studio interior' }),
+  philosophyImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/philosophyImage.jpg',
+  servicesHeroImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/servicesHeroImage.jpg',
 
   // Team page inline (was hard-coded URLs in app/team/page.tsx)
-  teamHeroBackground: makeImagePlaceholder({ label: 'Team Hero Background', context: '/team · Hero section bg · Wide landscape' }),
-  teamJackAction: makeImagePlaceholder({ label: 'Jack — Action shot', context: '/team · Jack working' }),
-  teamJaredAction: makeImagePlaceholder({ label: 'Jared — Action shot', context: '/team · Jared working' }),
-  teamBrandon: makeImagePlaceholder({ label: 'Brandon Latung', context: 'Team · Intern Artist · Portrait' }),
+  teamHeroBackground: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamHeroBackground.jpg',
+  teamJackAction: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamJackAction.jpg',
+  teamJaredAction: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamJaredAction.jpg',
+  teamBrandon: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamBrandon.jpg',
 
   // Videos (placeholders show dark gradient via VideoBackground; replace via pnpm add-asset)
-  heroVideo: '',
+  heroVideo: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/videos/heroVideo.mp4',
   academyVideo: '',
   aboutVideo: '',
 } as const;

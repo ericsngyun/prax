@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "migrate:blob": "tsx scripts/migrate-to-blob.ts",
-    "add-asset": "tsx scripts/add-asset.ts",
+    "add-asset": "tsx --env-file-if-exists=.env.local scripts/add-asset.ts",
     "test:add-asset": "tsx --test scripts/add-asset.test.ts"
   },
   "dependencies": {

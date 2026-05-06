@@ -135,8 +135,14 @@ export function parseAddAssetArgs(argv: string[]): ParsedArgs {
   };
 }
 
-/** Match an entry like `  someKey: 'https://...',` returning the key name. */
-const ENTRY_REGEX = /^\s+([a-zA-Z][a-zA-Z0-9]*)\s*:\s*['"]/gm;
+/**
+ * Match any top-level entry line and capture the key. Handles all value
+ * shapes we put in lib/assets.ts:
+ *   key: 'https://...',
+ *   key: '',
+ *   key: makeImagePlaceholder({ ... }),
+ */
+const ENTRY_REGEX = /^\s+([a-zA-Z][a-zA-Z0-9]*)\s*:/gm;
 
 const MANUAL_SECTION_HEADER = '  // Manually added (via add-asset)';
 
@@ -178,10 +184,13 @@ export function patchAssetsFile(
         `Use --force to overwrite, or pick a different --key.`
       );
     }
-    // Replace the existing entry's URL in place
+    // Replace the existing entry's value in place. Matches the whole line
+    // body (string literal, empty string, or function call) up to the comma.
+    // Uses [ \t]* (not \s*) at the tail because \s matches newlines and would
+    // greedily eat the blank line between sections.
     const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const replaceRegex = new RegExp(`(${escapedKey}\\s*:\\s*)['"][^'"]*['"]`);
-    return fileContent.replace(replaceRegex, `$1'${url}'`);
+    const replaceRegex = new RegExp(`^([ \\t]+${escapedKey}[ \\t]*:[ \\t]*).*,[ \\t]*$`, 'm');
+    return fileContent.replace(replaceRegex, `$1'${url}',`);
   }
 
   const newEntry = `  ${key}: '${url}',`;
@@ -227,6 +236,7 @@ async function uploadToBlob(
     access: 'public',
     contentType,
     addRandomSuffix: false,
+    allowOverwrite: true,
   });
 
   return url;
