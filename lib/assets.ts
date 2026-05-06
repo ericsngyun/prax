@@ -101,6 +101,7 @@ export const assets = {
   servicesHeroImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/servicesHeroImage.jpg',
   aboutHeroBackground: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/aboutHeroBackground.jpg',
   academyHeroBackground: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/academy/academyHeroBackground.jpg',
+  ctaBackground: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/ctaBackground.jpg',
 
   // Team page inline (was hard-coded URLs in app/team/page.tsx)
   teamHeroBackground: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamHeroBackground.jpg',
