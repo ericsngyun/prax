@@ -98,7 +98,8 @@ export default function TeamPage() {
               assets.arielWork04,
             ],
             instagramHandle: 'aridonnel',
-            bookingUrl: '',
+            bookingUrl:
+              'https://getsquire.com/booking/book/prax-arcadia/barber/ariel-30/services',
           },
           {
             name: 'Jared Phan',
@@ -115,7 +116,8 @@ export default function TeamPage() {
               assets.jaredWork04,
             ],
             instagramHandle: 'jaredtphan',
-            bookingUrl: '',
+            bookingUrl:
+              'https://getsquire.com/booking/book/prax-arcadia/barber/jared-phan-2/services',
           },
           {
             name: 'Brandon Latung',
