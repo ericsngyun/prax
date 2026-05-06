@@ -91,101 +91,25 @@ export default function HomePage() {
         label="Selected Work"
         heading="Portfolio"
         items={[
-          {
-            src: assets.portfolio01,
-            alt: 'Studio cut - side profile',
-            title: 'Studio Cut — Side Profile',
-          },
-          {
-            src: assets.jackWork01,
-            alt: 'Jack - Precision cut',
-            title: 'Precision Cut',
-          },
-          {
-            src: assets.portfolio03,
-            alt: 'Close-up detailing - scissor work',
-            title: 'Close-Up Detailing',
-          },
-          {
-            src: assets.gavinWork01,
-            alt: 'Gavin - Textured fade',
-            title: 'Textured Fade',
-          },
-          {
-            src: assets.portfolio04,
-            alt: 'Finished haircut - front view',
-            title: 'Finished Look — Front View',
-          },
-          {
-            src: assets.stevenWork01,
-            alt: 'Steven - Modern style',
-            title: 'Modern Style',
-          },
-          {
-            src: assets.jackWork02,
-            alt: 'Jack - Clean lines',
-            title: 'Clean Lines',
-          },
-          {
-            src: assets.portfolio05,
-            alt: 'Texture and movement shot',
-            title: 'Texture + Movement',
-          },
-          {
-            src: assets.jaredWork01,
-            alt: 'Jared - Detail work',
-            title: 'Detail Work',
-          },
-          {
-            src: assets.gavinWork02,
-            alt: 'Gavin - Finished result',
-            title: 'Finished Result',
-          },
-          {
-            src: assets.portfolio06,
-            alt: 'Color work result',
-            title: 'Color Work',
-          },
-          {
-            src: assets.arielWork01,
-            alt: 'Ariel - Precision styling',
-            title: 'Precision Styling',
-          },
-          {
-            src: assets.stevenWork02,
-            alt: 'Steven - Side profile',
-            title: 'Side Profile',
-          },
-          {
-            src: assets.jackWork03,
-            alt: 'Jack - Structured cut',
-            title: 'Structured Cut',
-          },
-          {
-            src: assets.portfolio07,
-            alt: 'Studio environment b-roll',
-            title: 'Studio Atmosphere',
-          },
-          {
-            src: assets.gavinWork03,
-            alt: 'Gavin - Classic look',
-            title: 'Classic Look',
-          },
-          {
-            src: assets.arielWork02,
-            alt: 'Ariel - Textured finish',
-            title: 'Textured Finish',
-          },
-          {
-            src: assets.jaredWork02,
-            alt: 'Jared - Sharp edges',
-            title: 'Sharp Edges',
-          },
-          {
-            src: assets.stevenWork03,
-            alt: 'Steven - Fade work',
-            title: 'Fade Work',
-          },
+          { src: assets.portfolio01, alt: 'Editorial portrait', title: 'Editorial 01' },
+          { src: assets.portfolio02, alt: 'Editorial portrait', title: 'Editorial 02' },
+          { src: assets.portfolio03, alt: 'Editorial portrait', title: 'Editorial 03' },
+          { src: assets.portfolio04, alt: 'Editorial portrait', title: 'Editorial 04' },
+          { src: assets.portfolio05, alt: 'Editorial portrait', title: 'Editorial 05' },
+          { src: assets.portfolio06, alt: 'Editorial portrait', title: 'Editorial 06' },
+          { src: assets.portfolio07, alt: 'Editorial portrait', title: 'Editorial 07' },
+          { src: assets.portfolio08, alt: 'Editorial portrait', title: 'Editorial 08' },
+          { src: assets.portfolio09, alt: 'Editorial portrait', title: 'Editorial 09' },
+          { src: assets.portfolio10, alt: 'Editorial portrait', title: 'Editorial 10' },
+          { src: assets.portfolio11, alt: 'Editorial portrait', title: 'Editorial 11' },
+          { src: assets.portfolio12, alt: 'Editorial portrait', title: 'Editorial 12' },
+          { src: assets.portfolio13, alt: 'Editorial portrait', title: 'Editorial 13' },
+          { src: assets.portfolio14, alt: 'Editorial portrait', title: 'Editorial 14' },
+          { src: assets.portfolio15, alt: 'Editorial portrait', title: 'Editorial 15' },
+          { src: assets.portfolio16, alt: 'Editorial portrait', title: 'Editorial 16' },
+          { src: assets.portfolio17, alt: 'Editorial portrait', title: 'Editorial 17' },
+          { src: assets.portfolio18, alt: 'Editorial portrait', title: 'Editorial 18' },
+          { src: assets.portfolio19, alt: 'Editorial portrait', title: 'Editorial 19' },
         ]}
       />
 

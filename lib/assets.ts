@@ -20,13 +20,26 @@ export const assets = {
   teamJared: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamJared.jpg',
   teamAriel: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamAriel.jpg',
 
-  // Portfolio (homepage marquee)
+  // Portfolio (homepage marquee — non-team editorial shots)
   portfolio01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio01.jpg',
+  portfolio02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio02.jpg',
   portfolio03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio03.jpg',
   portfolio04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio04.jpg',
   portfolio05: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio05.jpg',
   portfolio06: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio06.jpg',
   portfolio07: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio07.jpg',
+  portfolio08: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio08.jpg',
+  portfolio09: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio09.jpg',
+  portfolio10: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio10.jpg',
+  portfolio11: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio11.jpg',
+  portfolio12: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio12.jpg',
+  portfolio13: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio13.jpg',
+  portfolio14: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio14.jpg',
+  portfolio15: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio15.jpg',
+  portfolio16: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio16.jpg',
+  portfolio17: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio17.jpg',
+  portfolio18: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio18.jpg',
+  portfolio19: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio19.jpg',
 
   // Jack's work (5 images)
   jackWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork01.jpg',
