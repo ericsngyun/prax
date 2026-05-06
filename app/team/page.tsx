@@ -54,7 +54,6 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.teamGavin,
-            portraitPosition: 'center 25%',
             workSamples: [
               assets.gavinWork01,
               assets.gavinWork02,

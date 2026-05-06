@@ -14,7 +14,7 @@ export const assets = {
   textLogo: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/brand/textLogo.png',
 
   // Team portraits
-  teamGavin: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamGavin.jpg',
+  teamGavin: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamGavin.jpg?v=eb8bc6140d7913a15c0bac453ff2eaf6',
   teamJack: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamJack.jpg',
   teamSteven: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamSteven.jpg',
   teamJared: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamJared.jpg',
