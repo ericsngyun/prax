@@ -77,14 +77,10 @@ export const assets = {
   brandonWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/brandonWork03.jpg',
   brandonWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/brandonWork04.jpg',
 
-  // Before/After (services page)
-  beforeAfter01Before: makeImagePlaceholder({ label: 'Before/After 01 — Before', context: '/services · Same-client BEFORE shot' }),
-  beforeAfter01After: makeImagePlaceholder({ label: 'Before/After 01 — After', context: '/services · Same-client AFTER shot' }),
-
   // Process (services page)
-  processConsultation: makeImagePlaceholder({ label: 'Process: Consultation', context: '/services · Step 1 · Consultation in progress' }),
-  processCutting: makeImagePlaceholder({ label: 'Process: Cutting', context: '/services · Step 2 · Precision cutting' }),
-  processDetailing: makeImagePlaceholder({ label: 'Process: Detailing', context: '/services · Step 3 · Final detailing' }),
+  processConsultation: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/process/processConsultation.jpg?v=c6aec8b21db1b9c1c7db63d089221fd9',
+  processCutting: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/process/processCutting.jpg?v=fa7ec800d78b3aad12bbf57ce992e1fb',
+  processDetailing: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/process/processDetailing.jpg?v=4b0c51c972b7656d521c9a1a255c207e',
 
   // Content
   philosophyImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/philosophyImage.jpg',
