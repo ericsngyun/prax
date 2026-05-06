@@ -72,6 +72,7 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.teamSteven,
+            portraitPosition: 'center 25%',
             workSamples: [
               assets.stevenWork01,
               assets.stevenWork02,

@@ -16,6 +16,8 @@ interface TeamMember {
   credentials: string[];
   philosophy: string;
   portraitSrc: string;
+  /** CSS object-position for the portrait crop. Default 'center center'. */
+  portraitPosition?: string;
   workSamples?: string[];
   instagramHandle?: string;
   bookingUrl?: string;
@@ -46,6 +48,7 @@ function TeamMemberPortrait({
           placeholder="blur"
           blurDataURL={blurPlaceholders.portrait}
           className="team-portrait-img object-cover"
+          style={member.portraitPosition ? { objectPosition: member.portraitPosition } : undefined}
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
