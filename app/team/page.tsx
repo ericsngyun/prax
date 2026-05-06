@@ -36,15 +36,12 @@ export default function TeamPage() {
             philosophy:
               'Precision is not about perfection—it is about intention. Every cut should be designed to maintain structure as it grows. That is the standard.',
             portraitSrc: assets.teamJack,
-            actionSrc: assets.teamJackAction,
-            actionSrcPosition: 'center 30%', // Show more of the top of the image
             workSamples: [
               assets.jackWork01,
               assets.jackWork02,
               assets.jackWork03,
               assets.jackWork04,
             ],
-
             instagramHandle: 'jacklouii',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
@@ -57,14 +54,12 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.teamGavin,
-            actionSrc: '',
             workSamples: [
               assets.gavinWork01,
               assets.gavinWork02,
               assets.gavinWork03,
               assets.gavinWork04,
             ],
-
             instagramHandle: 'gavinblond',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/gavin-ly-1/services',
@@ -77,14 +72,12 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.teamSteven,
-            actionSrc: '',
             workSamples: [
               assets.stevenWork01,
               assets.stevenWork02,
               assets.stevenWork03,
               assets.stevenWork04,
             ],
-
             instagramHandle: 'steventaotran',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
@@ -97,13 +90,12 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.teamAriel,
-            actionSrc: '',
             workSamples: [
               assets.arielWork01,
               assets.arielWork02,
               assets.arielWork03,
+              assets.arielWork04,
             ],
-
             instagramHandle: 'aridonnel',
             bookingUrl: '',
           },
@@ -115,12 +107,12 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.teamJared,
-            actionSrc: assets.teamJaredAction,
             workSamples: [
               assets.jaredWork01,
               assets.jaredWork02,
+              assets.jaredWork03,
+              assets.jaredWork04,
             ],
-
             instagramHandle: 'jaredtphan',
             bookingUrl: '',
           },
@@ -132,8 +124,12 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.teamBrandon,
-            actionSrc: '',
-
+            workSamples: [
+              assets.brandonWork01,
+              assets.brandonWork02,
+              assets.brandonWork03,
+              assets.brandonWork04,
+            ],
             instagramHandle: 'mysticalasian',
             bookingUrl: '',
           },

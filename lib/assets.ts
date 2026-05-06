@@ -41,12 +41,11 @@ export const assets = {
   portfolio18: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio18.jpg',
   portfolio19: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio19.jpg',
 
-  // Jack's work (5 images)
+  // Jack's work (4 images)
   jackWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork01.jpg',
   jackWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork02.jpg',
   jackWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork03.jpg',
   jackWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork04.jpg',
-  jackWork05: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork05.jpg',
 
   // Gavin's work (4 images)
   gavinWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork01.jpg',
@@ -60,14 +59,23 @@ export const assets = {
   stevenWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork03.jpg',
   stevenWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork04.jpg',
 
-  // Jared's work (2 images)
+  // Jared's work (4 images)
   jaredWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork01.jpg',
   jaredWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork02.jpg',
+  jaredWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork03.jpg',
+  jaredWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork04.jpg',
 
-  // Ariel's work (3 images)
+  // Ariel's work (4 images)
   arielWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork01.jpg',
   arielWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork02.jpg',
   arielWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork03.jpg',
+  arielWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork04.jpg',
+
+  // Brandon's work (4 images)
+  brandonWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/brandonWork01.jpg',
+  brandonWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/brandonWork02.jpg',
+  brandonWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/brandonWork03.jpg',
+  brandonWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/brandonWork04.jpg',
 
   // Before/After (services page)
   beforeAfter01Before: makeImagePlaceholder({ label: 'Before/After 01 — Before', context: '/services · Same-client BEFORE shot' }),
