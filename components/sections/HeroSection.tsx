@@ -140,85 +140,50 @@ export function HeroSection({
             {kicker}
           </p>
 
-          {/* Important Update — Arcadia Relocation Card */}
-          <div className="mt-7 md:mt-10 w-full max-w-[22rem] md:max-w-lg">
-            <div className="relative border border-prax-bone/15 bg-prax-black/40 backdrop-blur-sm px-6 py-5 md:px-8 md:py-6">
+          {/* New Location — subtle address chip */}
+          <div className="mt-7 md:mt-10 flex justify-center">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=142+E+Huntington+Drive+Arcadia+CA+91006"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center gap-2.5 md:gap-3 border border-prax-bone/15 bg-prax-black/40 backdrop-blur-sm px-3.5 py-2 md:px-4 md:py-2.5 hover:border-prax-bone/35 transition-colors duration-300"
+            >
               {/* Editorial corner ticks */}
-              <span className="absolute -top-px -left-px w-2.5 h-2.5 border-t border-l border-prax-bone/70" aria-hidden="true" />
-              <span className="absolute -top-px -right-px w-2.5 h-2.5 border-t border-r border-prax-bone/70" aria-hidden="true" />
-              <span className="absolute -bottom-px -left-px w-2.5 h-2.5 border-b border-l border-prax-bone/70" aria-hidden="true" />
-              <span className="absolute -bottom-px -right-px w-2.5 h-2.5 border-b border-r border-prax-bone/70" aria-hidden="true" />
+              <span className="absolute -top-px -left-px w-1.5 h-1.5 border-t border-l border-prax-bone/60" aria-hidden="true" />
+              <span className="absolute -top-px -right-px w-1.5 h-1.5 border-t border-r border-prax-bone/60" aria-hidden="true" />
+              <span className="absolute -bottom-px -left-px w-1.5 h-1.5 border-b border-l border-prax-bone/60" aria-hidden="true" />
+              <span className="absolute -bottom-px -right-px w-1.5 h-1.5 border-b border-r border-prax-bone/60" aria-hidden="true" />
 
-              {/* Label with flanking rules */}
-              <div className="flex items-center justify-center gap-3">
-                <span className="h-px w-6 md:w-8 bg-prax-bone/30" aria-hidden="true" />
-                <span className="text-label text-prax-bone/75 tracking-[0.3em] uppercase">
-                  Important Update
+              <svg
+                className="w-3 h-3 md:w-3.5 md:h-3.5 text-prax-bone/65 shrink-0"
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M8 1.5c-2.8 0-5 2.2-5 5 0 3.75 5 8 5 8s5-4.25 5-8c0-2.8-2.2-5-5-5z"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
+                <circle cx="8" cy="6.5" r="1.4" stroke="currentColor" strokeWidth="1" />
+              </svg>
+
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2 leading-tight">
+                <span className="text-label text-prax-bone/50 tracking-[0.2em] uppercase">
+                  Now Open
                 </span>
-                <span className="h-px w-6 md:w-8 bg-prax-bone/30" aria-hidden="true" />
+                <address className="not-italic text-caption md:text-body-sm text-prax-bone leading-snug">
+                  142 E Huntington Dr, Arcadia
+                </address>
               </div>
 
-              {/* Timeline copy */}
-              <div className="mt-4 md:mt-5 space-y-2.5 text-center text-body-sm md:text-body text-prax-stone/85 font-light leading-relaxed">
-                <p>
-                  Starting{' '}
-                  <span className="text-prax-bone font-normal">April 20th</span>
-                  , bookings at our West Adams studio will be closed as we transition to our new space.
-                </p>
-                <p>
-                  We will pause all bookings from{' '}
-                  <span className="text-prax-bone font-normal">April 20th through May 5th</span>{' '}
-                  while we finalize the shop and prepare for opening.
-                </p>
-                <p>
-                  Our soft opening at the new{' '}
-                  <span className="text-prax-bone font-normal">Prax Arcadia</span>{' '}
-                  location begins{' '}
-                  <span className="text-prax-bone font-normal">May 6th</span>
-                  , and bookings will resume starting that date.
-                </p>
-              </div>
-
-              {/* Divider */}
-              <div className="mt-5 h-px bg-prax-bone/10" />
-
-              {/* New address block */}
-              <div className="mt-4 flex flex-col items-center gap-3 md:flex-row md:justify-between md:gap-4">
-                <div className="flex items-start gap-2.5">
-                  <svg
-                    className="mt-[3px] w-3.5 h-3.5 text-prax-bone/65 shrink-0"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M8 1.5c-2.8 0-5 2.2-5 5 0 3.75 5 8 5 8s5-4.25 5-8c0-2.8-2.2-5-5-5z"
-                      stroke="currentColor"
-                      strokeWidth="1"
-                    />
-                    <circle cx="8" cy="6.5" r="1.4" stroke="currentColor" strokeWidth="1" />
-                  </svg>
-                  <div className="text-center md:text-left">
-                    <p className="text-label text-prax-bone/45 tracking-[0.2em] uppercase mb-0.5">
-                      New Location
-                    </p>
-                    <address className="not-italic text-caption md:text-body-sm text-prax-bone leading-snug">
-                      142 E Huntington Drive
-                      <span className="block text-prax-stone">Arcadia, CA 91006</span>
-                    </address>
-                  </div>
-                </div>
-
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=142+E+Huntington+Drive+Arcadia+CA+91006"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-label text-prax-bone/80 tracking-[0.25em] uppercase border-b border-prax-bone/30 pb-0.5 hover:text-prax-bone hover:border-prax-bone transition-colors"
-                >
-                  Get Directions →
-                </a>
-              </div>
-            </div>
+              <span
+                className="text-caption text-prax-bone/65 group-hover:text-prax-bone group-hover:translate-x-0.5 transition-all duration-300 ml-0.5 md:ml-1"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </a>
           </div>
 
           {/* Bottom block — centered on mobile, right-aligned on desktop */}
