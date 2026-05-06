@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { StatsSection } from '@/components/sections/StatsSection';
-import { ClassroomGallerySection } from '@/components/sections/ClassroomGallerySection';
+import { TeachingPrinciplesSection } from '@/components/sections/TeachingPrinciplesSection';
 import { AcademyProgramsSection } from '@/components/sections/AcademyProgramsSection';
 import { SkoolCommunitySection } from '@/components/sections/SkoolCommunitySection';
 import { AcademyPhilosophySection } from '@/components/sections/AcademyPhilosophySection';
 import { CTASection } from '@/components/sections/CTASection';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 export const metadata: Metadata = {
   title: 'Academy',
@@ -56,7 +56,8 @@ export default function AcademyPage() {
         label="Academy"
         headline="Elevate Your Craft"
         description="PRAX Academy teaches the same precision methodology we use in our studio. Structure, discipline, and fundamentals — not trends."
-        videoSrc={cloudinaryAssets.academyVideo}
+        videoSrc={assets.academyVideo}
+        backgroundImage={assets.academyHeroBackground}
       />
       <StatsSection
         stats={[
@@ -65,18 +66,7 @@ export default function AcademyPage() {
           { value: 6, suffix: '+', label: 'Years Teaching' },
         ]}
       />
-      <ClassroomGallerySection
-        images={[
-          cloudinaryAssets.academyClassroom01,
-          cloudinaryAssets.academyClassroom02,
-          cloudinaryAssets.academyClassroom03,
-          cloudinaryAssets.academyClassroom04,
-          cloudinaryAssets.academyClassroom05,
-          cloudinaryAssets.academyClassroom06,
-          cloudinaryAssets.academyClassroom07,
-          cloudinaryAssets.academyClassroom08,
-        ]}
-      />
+      <TeachingPrinciplesSection />
       <AcademyProgramsSection programs={programs} />
       <SkoolCommunitySection />
       <AcademyPhilosophySection />

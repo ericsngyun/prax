@@ -11,12 +11,11 @@ const nextConfig: NextConfig = {
     // Image sizes for smaller images
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
 
-    // Cloudinary remote patterns
+    // Vercel Blob remote pattern (data: URIs work natively without config)
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '/dpc0d4a7s/**',
+        hostname: '*.public.blob.vercel-storage.com',
       },
     ],
 

@@ -59,21 +59,6 @@ export const blurPlaceholders = {
 };
 
 /**
- * Get Cloudinary blur placeholder URL
- * Generates a tiny blurred version of the image from Cloudinary
- * @param publicId - Cloudinary public ID
- * @param cloudName - Cloudinary cloud name
- * @returns Cloudinary blur URL
- */
-export function getCloudinaryBlurUrl(
-  publicId: string,
-  cloudName: string = 'dpc0d4a7s'
-): string {
-  // Use Cloudinary's blur transformation for ultra-low quality placeholder
-  return `https://res.cloudinary.com/${cloudName}/image/upload/f_auto,q_10,e_blur:1000,w_20/${publicId}`;
-}
-
-/**
  * Generates a shimmer effect placeholder (for skeleton loading)
  */
 export function getShimmerPlaceholder(): string {

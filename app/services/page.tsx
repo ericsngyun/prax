@@ -4,10 +4,9 @@ import { ProcessGallerySection } from '@/components/sections/ProcessGallerySecti
 import { HonestySection } from '@/components/sections/HonestySection';
 import { DifferentiationSection } from '@/components/sections/DifferentiationSection';
 import { ExperienceTimelineSection } from '@/components/sections/ExperienceTimelineSection';
-import { BeforeAfterGallery } from '@/components/sections/BeforeAfterGallery';
 import { CTASection } from '@/components/sections/CTASection';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 export const metadata: Metadata = {
   title: 'Services',
@@ -22,7 +21,7 @@ export default function ServicesPage() {
         label="Services"
         headline="Built, Not Rushed"
         description="Clear service categories. Transparent expectations. Direct booking."
-        backgroundImage={cloudinaryAssets.servicesHeroImage}
+        backgroundImage={assets.servicesHeroImage}
       />
 
       {/* Service Menu */}
@@ -129,21 +128,26 @@ export default function ServicesPage() {
       {/* The Process in Detail */}
       <ProcessGallerySection
         items={[
-          { title: 'Consultation', imageSrc: cloudinaryAssets.processConsultation },
-          { title: 'Precision Cutting', imageSrc: cloudinaryAssets.processCutting },
-          { title: 'Detailing', imageSrc: cloudinaryAssets.processDetailing },
-        ]}
-      />
-
-      {/* Before/After Gallery */}
-      <BeforeAfterGallery
-        heading="Results Speak"
-        items={[
           {
-            beforeSrc: cloudinaryAssets.beforeAfter01Before,
-            afterSrc: cloudinaryAssets.beforeAfter01After,
-            title: 'Precision Fade',
-            service: 'Signature Cut'
+            number: '01',
+            title: 'Consultation',
+            description:
+              'We listen first. Hair texture, growth patterns, lifestyle, maintenance capacity. Every cut starts with understanding the head, not the trend.',
+            imageSrc: assets.processConsultation,
+          },
+          {
+            number: '02',
+            title: 'Precision Cutting',
+            description:
+              'Built on structural analysis, not improvisation. Every section is measured, every line is drawn with intention, every angle is checked.',
+            imageSrc: assets.processCutting,
+          },
+          {
+            number: '03',
+            title: 'Detailing',
+            description:
+              'The work is in the last 20%. Edges, weight removal, and the finishing that determines how a cut looks three weeks from now, not just today.',
+            imageSrc: assets.processDetailing,
           },
         ]}
       />

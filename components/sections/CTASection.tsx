@@ -1,10 +1,12 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { prefersReducedMotion } from '@/lib/utils';
 import { BOOKING_URL } from '@/lib/constants';
+import { assets } from '@/lib/assets';
 
 interface CTASectionProps {
   headline?: string;
@@ -14,6 +16,8 @@ interface CTASectionProps {
   secondaryButtonText?: string;
   secondaryButtonHref?: string;
   showPrimaryButton?: boolean;
+  /** Atmospheric background image. Defaults to assets.ctaBackground; pass null to disable. */
+  backgroundImage?: string | null;
 }
 
 export function CTASection({
@@ -24,6 +28,7 @@ export function CTASection({
   secondaryButtonText,
   secondaryButtonHref,
   showPrimaryButton = true,
+  backgroundImage = assets.ctaBackground,
 }: CTASectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const decorativeLineRef = useRef<HTMLDivElement>(null);
@@ -102,9 +107,30 @@ export function CTASection({
   return (
     <section
       ref={sectionRef}
-      className="section-padding-lg bg-prax-ink relative"
+      className="section-padding-lg bg-prax-ink relative overflow-hidden"
     >
-      <div className="container-prax text-center">
+      {backgroundImage && (
+        <>
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={backgroundImage}
+              alt=""
+              fill
+              sizes="100vw"
+              quality={70}
+              loading="lazy"
+              className="object-cover"
+              style={{ objectPosition: 'center 35%' }}
+            />
+          </div>
+          <div
+            className="absolute inset-0 bg-prax-ink/85 z-[1]"
+            aria-hidden="true"
+          />
+        </>
+      )}
+
+      <div className="container-prax text-center relative z-10">
         {/* Decorative Line */}
         <div
           ref={decorativeLineRef}

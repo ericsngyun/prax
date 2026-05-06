@@ -16,9 +16,9 @@ interface TeamMember {
   credentials: string[];
   philosophy: string;
   portraitSrc: string;
-  actionSrc: string;
-  actionSrcPosition?: string; // CSS object-position value (e.g., 'top', '50% 20%')
-  workSamples?: string[]; // Array of work sample image URLs
+  /** CSS object-position for the portrait crop. Default 'center center'. */
+  portraitPosition?: string;
+  workSamples?: string[];
   instagramHandle?: string;
   bookingUrl?: string;
 }
@@ -48,6 +48,7 @@ function TeamMemberPortrait({
           placeholder="blur"
           blurDataURL={blurPlaceholders.portrait}
           className="team-portrait-img object-cover"
+          style={member.portraitPosition ? { objectPosition: member.portraitPosition } : undefined}
         />
       ) : (
         <div className="absolute inset-0 flex items-center justify-center bg-prax-charcoal">
@@ -205,38 +206,26 @@ export function TeamGridSection({
                 >
                   <TeamMemberPortrait member={member} />
 
-                  {member.actionSrc && (
-                    <div className="relative aspect-[16/9] bg-prax-charcoal overflow-hidden">
-                      <Image
-                        src={member.actionSrc}
-                        alt={`${member.name} working`}
-                        fill
-                        sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 600px"
-                        quality={75}
-                        loading="lazy"
-                        className="object-cover img-portfolio"
-                        style={member.actionSrcPosition ? { objectPosition: member.actionSrcPosition } : undefined}
-                      />
-                    </div>
-                  )}
-
-                  {/* Work Samples Grid */}
+                  {/* Work Samples — uniform 2x2 grid for every member */}
                   {member.workSamples && member.workSamples.length > 0 && (
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
                       {member.workSamples.map((workSrc, workIndex) => (
                         <div
                           key={workIndex}
-                          className="relative aspect-[3/4] bg-prax-charcoal overflow-hidden rounded-sm"
+                          className="relative aspect-[3/4] bg-prax-charcoal overflow-hidden rounded-sm group/work"
                         >
                           <Image
                             src={workSrc}
                             alt={`${member.name} work sample ${workIndex + 1}`}
                             fill
-                            sizes="(max-width: 768px) 45vw, (max-width: 1024px) 22vw, 300px"
+                            sizes="(max-width: 640px) 45vw, (max-width: 1024px) 22vw, 280px"
                             quality={75}
                             loading="lazy"
-                            className="object-cover img-portfolio team-work-sample"
+                            className="object-cover img-portfolio team-work-sample transition-transform duration-700 group-hover/work:scale-[1.04]"
                           />
+                          <span className="absolute bottom-2 right-2 text-caption text-prax-white/70 tabular-nums tracking-widest opacity-0 group-hover/work:opacity-100 transition-opacity duration-300">
+                            {String(workIndex + 1).padStart(2, '0')}
+                          </span>
                         </div>
                       ))}
                     </div>

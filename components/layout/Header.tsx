@@ -7,7 +7,7 @@ import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { useNavigationStore } from '@/lib/store';
 import { cn } from '@/lib/utils';
 import { prefersReducedMotion } from '@/lib/utils';
-import { cloudinaryAssets } from '@/lib/cloudinary';
+import { assets } from '@/lib/assets';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    HEADER COMPONENT
@@ -128,7 +128,7 @@ export function Header() {
               className="relative block hover:opacity-80 transition-opacity duration-300 cursor-pointer"
             >
               <Image
-                src={cloudinaryAssets.textLogo}
+                src={assets.textLogo}
                 alt="PRAX"
                 width={186}
                 height={24}

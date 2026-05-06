@@ -14,9 +14,16 @@ interface InnerPageHeroProps {
   backgroundImage?: string;
   videoSrc?: string;
   videoPoster?: string;
+  /**
+   * CSS object-position for the background image. Defaults to 'center 25%',
+   * which keeps the upper-third subject visible on portrait sources after
+   * object-cover scales them into a wide hero. Override per-page when a
+   * specific shot needs the subject framed elsewhere.
+   */
+  backgroundPosition?: string;
 }
 
-export function InnerPageHero({ label, headline, description, backgroundImage, videoSrc, videoPoster }: InnerPageHeroProps) {
+export function InnerPageHero({ label, headline, description, backgroundImage, videoSrc, videoPoster, backgroundPosition = 'center 25%' }: InnerPageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
@@ -65,6 +72,7 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
               placeholder="blur"
               blurDataURL={blurPlaceholders.darkGradient}
               className="object-cover"
+              style={{ objectPosition: backgroundPosition }}
             />
           </div>
           {/* Overlay for readability - extends to top of viewport */}
