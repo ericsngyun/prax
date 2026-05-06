@@ -239,7 +239,14 @@ async function uploadToBlob(
     allowOverwrite: true,
   });
 
-  return url;
+  // Vercel Blob caches each URL for 30 days. Re-uploading the same path
+  // updates the bytes but browsers keep serving the cached version. Append
+  // a content hash so changed bytes produce a new URL — and so the patched
+  // lib/assets.ts entry actually visibly diffs across re-uploads.
+  const head = await fetch(url, { method: 'HEAD' });
+  const etag = head.headers.get('etag')?.replace(/"/g, '');
+  const cacheBust = etag ?? Date.now().toString();
+  return `${url}?v=${cacheBust}`;
 }
 
 async function main(): Promise<void> {

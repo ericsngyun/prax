@@ -98,7 +98,7 @@ export const assets = {
 
   // Content
   philosophyImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/philosophyImage.jpg',
-  servicesHeroImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/servicesHeroImage.jpg',
+  servicesHeroImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/servicesHeroImage.jpg?v=2f7eb6047f0dbd804d819ca6016a48d9',
   aboutHeroBackground: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/aboutHeroBackground.jpg',
   academyHeroBackground: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/academy/academyHeroBackground.jpg',
   ctaBackground: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/ctaBackground.jpg',
