@@ -57,6 +57,7 @@ export default function AcademyPage() {
         headline="Elevate Your Craft"
         description="PRAX Academy teaches the same precision methodology we use in our studio. Structure, discipline, and fundamentals — not trends."
         videoSrc={assets.academyVideo}
+        backgroundImage={assets.academyHeroBackground}
       />
       <StatsSection
         stats={[
