@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { StatsSection } from '@/components/sections/StatsSection';
-import { ClassroomGallerySection } from '@/components/sections/ClassroomGallerySection';
+import { TeachingPrinciplesSection } from '@/components/sections/TeachingPrinciplesSection';
 import { AcademyProgramsSection } from '@/components/sections/AcademyProgramsSection';
 import { SkoolCommunitySection } from '@/components/sections/SkoolCommunitySection';
 import { AcademyPhilosophySection } from '@/components/sections/AcademyPhilosophySection';
@@ -66,18 +66,7 @@ export default function AcademyPage() {
           { value: 6, suffix: '+', label: 'Years Teaching' },
         ]}
       />
-      <ClassroomGallerySection
-        images={[
-          assets.academyClassroom01,
-          assets.academyClassroom02,
-          assets.academyClassroom03,
-          assets.academyClassroom04,
-          assets.academyClassroom05,
-          assets.academyClassroom06,
-          assets.academyClassroom07,
-          assets.academyClassroom08,
-        ]}
-      />
+      <TeachingPrinciplesSection />
       <AcademyProgramsSection programs={programs} />
       <SkoolCommunitySection />
       <AcademyPhilosophySection />

@@ -86,16 +86,6 @@ export const assets = {
   processCutting: makeImagePlaceholder({ label: 'Process: Cutting', context: '/services · Step 2 · Precision cutting' }),
   processDetailing: makeImagePlaceholder({ label: 'Process: Detailing', context: '/services · Step 3 · Final detailing' }),
 
-  // Academy (classroom gallery)
-  academyClassroom01: makeImagePlaceholder({ label: 'Academy Classroom 01', context: '/academy · Classroom gallery · Teaching environment' }),
-  academyClassroom02: makeImagePlaceholder({ label: 'Academy Classroom 02', context: '/academy · Classroom gallery' }),
-  academyClassroom03: makeImagePlaceholder({ label: 'Academy Classroom 03', context: '/academy · Classroom gallery' }),
-  academyClassroom04: makeImagePlaceholder({ label: 'Academy Classroom 04', context: '/academy · Classroom gallery' }),
-  academyClassroom05: makeImagePlaceholder({ label: 'Academy Classroom 05', context: '/academy · Classroom gallery' }),
-  academyClassroom06: makeImagePlaceholder({ label: 'Academy Classroom 06', context: '/academy · Classroom gallery' }),
-  academyClassroom07: makeImagePlaceholder({ label: 'Academy Classroom 07', context: '/academy · Classroom gallery' }),
-  academyClassroom08: makeImagePlaceholder({ label: 'Academy Classroom 08', context: '/academy · Classroom gallery' }),
-
   // Content
   philosophyImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/philosophyImage.jpg',
   servicesHeroImage: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/servicesHeroImage.jpg?v=2f7eb6047f0dbd804d819ca6016a48d9',
