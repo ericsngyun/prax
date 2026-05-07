@@ -21,7 +21,9 @@ export function Preloader() {
     if (isComplete) return;
 
     const startTime = Date.now();
-    const minDuration = 500;
+    // Tight floor so the preloader doesn't blink on fast loads but also
+    // doesn't add perceptible latency. Was 500ms — felt like a delay.
+    const minDuration = 150;
 
     const updateProgress = () => {
       const elapsed = Date.now() - startTime;

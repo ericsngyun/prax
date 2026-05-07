@@ -5,11 +5,12 @@ import { LenisProvider } from '@/components/providers/LenisProvider';
 import { ServiceWorkerProvider } from '@/components/providers/ServiceWorkerProvider';
 import { Header } from '@/components/layout/Header';
 import { PreloaderWrapper } from '@/components/ui/Preloader';
-import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { Footer } from '@/components/sections/Footer';
 import { footerColumns } from '@/lib/footerConfig';
 
-// Söhne — Minimalist sans-serif with editorial polish
+// Söhne — minimalist sans-serif with editorial polish.
+// Audited Tailwind classes show only font-light (300), default (400), and
+// font-medium (mapped to 600). Weights 700 / 800 were dead bytes — removed.
 const sohneSans = localFont({
   src: [
     {
@@ -25,16 +26,6 @@ const sohneSans = localFont({
     {
       path: '../public/fonts/sohne-font-family/TestSohne-Halbfett-BF663d89cd2d67b.otf',
       weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Fett-BF663d89cca89ff.otf',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Extrafett-BF663d89cc9f2c0.otf',
-      weight: '800',
       style: 'normal',
     },
   ],
@@ -126,7 +117,6 @@ export default function RootLayout({
             {children}
             <Footer columns={footerColumns} />
           </PreloaderWrapper>
-          <ScrollProgress />
         </LenisProvider>
         {/* Noise Overlay */}
         <div className="noise-overlay" aria-hidden="true" />

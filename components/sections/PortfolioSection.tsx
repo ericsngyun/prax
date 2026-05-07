@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { prefersReducedMotion, formatNumber } from '@/lib/utils';
-import { tiltCardOnHover, revealWithBlur } from '@/lib/animations';
+import { revealWithBlur } from '@/lib/animations';
 
 interface PortfolioItem {
   src: string;
@@ -36,15 +36,12 @@ export function PortfolioSection({
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
-  const baseSpeed = useRef(1);
-  const currentSpeed = useRef(1);
   const isPaused = useRef(false);
 
   useEffect(() => {
     if (!sectionRef.current || !marqueeRef.current || prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
-      // Header — simple fade up
       gsap.from(headerRef.current, {
         scrollTrigger: {
           trigger: headerRef.current,
@@ -56,22 +53,6 @@ export function PortfolioSection({
         ease: 'power2.out',
       });
     }, sectionRef);
-
-    // Subtle 3D tilt on portfolio items (desktop only, very minimal)
-    if (window.innerWidth >= 768) {
-      const portfolioItems = sectionRef.current.querySelectorAll('.portfolio-item-tilt');
-      const cleanupFunctions: (() => void)[] = [];
-
-      portfolioItems.forEach((item) => {
-        const cleanup = tiltCardOnHover(item as HTMLElement, { strength: 2 }); // Very subtle - 2deg max
-        if (cleanup) cleanupFunctions.push(cleanup);
-      });
-
-      return () => {
-        ctx.revert();
-        cleanupFunctions.forEach(cleanup => cleanup());
-      };
-    }
 
     return () => ctx.revert();
   }, []);
@@ -107,21 +88,33 @@ export function PortfolioSection({
     return () => observer.disconnect();
   }, []);
 
-  // Marquee with scroll-velocity sensitivity (optimized)
+  // Constant-speed marquee loop, paused while off-screen and on hover.
+  // Removed the scroll-velocity tracking — it added a continuous scroll
+  // listener for a barely-perceptible speed nudge.
   useEffect(() => {
     if (!marqueeRef.current || prefersReducedMotion()) return;
 
     const marqueeInner = marqueeRef.current;
     const marqueeWidth = marqueeInner.scrollWidth / 2;
+    const speedPxPerFrame = 0.5;
 
-    let animationId: number;
+    let animationId = 0;
     let position = 0;
-    let lastScrollY = window.scrollY;
-    let lastTime = performance.now();
     let isIntersecting = false;
-    let scrollThrottleId: number | null = null;
 
-    // Intersection Observer - only run animation when section is visible
+    const animate = () => {
+      if (isIntersecting && !isPaused.current) {
+        position -= speedPxPerFrame;
+        if (Math.abs(position) >= marqueeWidth) {
+          position += marqueeWidth;
+        }
+        marqueeInner.style.transform = `translate3d(${position}px, 0, 0)`;
+      }
+      if (isIntersecting) {
+        animationId = requestAnimationFrame(animate);
+      }
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -136,64 +129,15 @@ export function PortfolioSection({
       },
       { rootMargin: '100px' }
     );
-
     observer.observe(marqueeInner);
 
-    // Throttled scroll velocity tracking - only update every 50ms
-    const handleScroll = () => {
-      if (scrollThrottleId !== null) return;
-
-      scrollThrottleId = window.requestAnimationFrame(() => {
-        const now = performance.now();
-        const dt = now - lastTime;
-        if (dt > 0) {
-          const scrollDelta = Math.abs(window.scrollY - lastScrollY);
-          const velocity = scrollDelta / dt;
-          currentSpeed.current = 1 + Math.min(velocity * 8, 2);
-          lastScrollY = window.scrollY;
-          lastTime = now;
-        }
-        scrollThrottleId = null;
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    const animate = () => {
-      // Only animate if visible and not paused
-      if (isIntersecting && !isPaused.current) {
-        currentSpeed.current += (baseSpeed.current - currentSpeed.current) * 0.05;
-        position -= 0.5 * currentSpeed.current;
-        if (Math.abs(position) >= marqueeWidth) {
-          position += marqueeWidth;
-        }
-        marqueeInner.style.transform = `translate3d(${position}px, 0, 0)`;
-      }
-
-      if (isIntersecting) {
-        animationId = requestAnimationFrame(animate);
-      }
-    };
-
-    // Pause on hover
-    const handleMouseEnter = () => {
-      isPaused.current = true;
-    };
-
-    const handleMouseLeave = () => {
-      isPaused.current = false;
-    };
-
+    const handleMouseEnter = () => { isPaused.current = true; };
+    const handleMouseLeave = () => { isPaused.current = false; };
     marqueeInner.addEventListener('mouseenter', handleMouseEnter);
     marqueeInner.addEventListener('mouseleave', handleMouseLeave);
 
-    // Start animation if initially visible
-    animationId = requestAnimationFrame(animate);
-
     return () => {
       if (animationId) cancelAnimationFrame(animationId);
-      if (scrollThrottleId !== null) cancelAnimationFrame(scrollThrottleId);
-      window.removeEventListener('scroll', handleScroll);
       marqueeInner.removeEventListener('mouseenter', handleMouseEnter);
       marqueeInner.removeEventListener('mouseleave', handleMouseLeave);
       observer.disconnect();
@@ -203,7 +147,7 @@ export function PortfolioSection({
   const renderItem = (item: PortfolioItem, index: number, keyPrefix: string) => (
     <div
       key={`${keyPrefix}-${index}`}
-      className="portfolio-item portfolio-item-tilt flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative transform-gpu"
+      className="portfolio-item flex-shrink-0 w-[280px] sm:w-[350px] md:w-[400px] group relative transform-gpu"
     >
       <span className="absolute -top-8 left-0 text-label text-prax-bone opacity-60">
         {formatNumber(index + 1)}
