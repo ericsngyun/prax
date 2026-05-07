@@ -13,27 +13,30 @@ export function LenisProvider({ children }: LenisProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Respect reduced motion preference
     if (prefersReducedMotion()) {
       return;
     }
 
-    // Detect mobile device
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    // Skip Lenis entirely on touch devices and small viewports — native
+    // scrolling there is already smooth and an extra scroll-handling layer
+    // just competes with it. Lenis is a desktop-mouse-wheel polish only.
+    const isTouchOrMobile =
+      typeof window !== 'undefined' &&
+      (window.innerWidth < 1024 ||
+        window.matchMedia('(pointer: coarse)').matches);
+    if (isTouchOrMobile) {
+      return;
+    }
 
     const lenis = new Lenis({
-      // Faster duration on mobile for more responsive feel
-      duration: isMobile ? 1.0 : 1.4,
+      duration: 1.4,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
-      // Disable smooth wheel on mobile (native scroll feel)
-      smoothWheel: !isMobile,
+      smoothWheel: true,
       wheelMultiplier: 0.8,
-      // More responsive touch on mobile
-      touchMultiplier: isMobile ? 1.2 : 1.5,
-      // Better touch sync on mobile
-      syncTouch: isMobile,
+      touchMultiplier: 1.5,
+      syncTouch: false,
       autoRaf: false,
     });
 

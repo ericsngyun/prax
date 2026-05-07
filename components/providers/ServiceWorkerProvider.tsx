@@ -46,23 +46,18 @@ async function registerServiceWorker() {
           60 * 60 * 1000
         ); // Check every hour
 
-        // Handle updates
+        // Handle updates: activate the new worker silently in the background.
+        // The next full navigation will pick up the new code naturally —
+        // forcing window.location.reload() mid-session interrupts the user.
         registration.addEventListener('updatefound', () => {
           const newWorker = registration.installing;
-
           if (newWorker) {
             newWorker.addEventListener('statechange', () => {
               if (
                 newWorker.state === 'installed' &&
                 navigator.serviceWorker.controller
               ) {
-                // New service worker available — skip waiting and auto-reload
-                console.log('[SW] New version available. Reloading...');
                 newWorker.postMessage({ type: 'SKIP_WAITING' });
-              }
-
-              if (newWorker.state === 'activated') {
-                window.location.reload();
               }
             });
           }

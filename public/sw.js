@@ -3,7 +3,7 @@
  * Provides offline support and intelligent caching for optimal performance
  */
 
-const CACHE_VERSION = 'prax-v1.0.0';
+const CACHE_VERSION = 'prax-v1.1.0';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
@@ -86,8 +86,14 @@ self.addEventListener('fetch', (event) => {
 async function handleFetch(request) {
   const url = new URL(request.url);
 
-  // Images from Cloudinary - Cache-first strategy
-  if (url.hostname === 'res.cloudinary.com') {
+  // Images from Vercel Blob - Cache-first strategy (long TTL, immutable URLs
+  // when content-hash query param is present)
+  if (url.hostname.endsWith('.public.blob.vercel-storage.com')) {
+    return cacheFirst(request, IMAGE_CACHE, MAX_IMAGE_CACHE);
+  }
+
+  // Next.js optimized images (/_next/image?url=...) - Cache-first
+  if (url.pathname.startsWith('/_next/image')) {
     return cacheFirst(request, IMAGE_CACHE, MAX_IMAGE_CACHE);
   }
 
