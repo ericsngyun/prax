@@ -15,8 +15,8 @@ export const SOCIAL_LINKS = {
 
 // Business info
 export const BUSINESS_INFO = {
-  address: '1752 W Adams Blvd #206',
-  city: 'Los Angeles, CA 90018',
+  address: '142 E Huntington Dr',
+  city: 'Arcadia, CA 91006',
   hours: [
     'Monday - Saturday: 10am - 9pm',
     'Sunday: Closed',

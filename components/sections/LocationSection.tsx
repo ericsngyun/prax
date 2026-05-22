@@ -26,8 +26,8 @@ export function LocationSection({
   label = 'Visit Us',
   heading = 'Located in Los Angeles',
   description = 'PRAX Studio offers a calm, focused environment designed for clients who value quality and consistency.',
-  address = '1752 W Adams Blvd #206',
-  city = 'Los Angeles, CA 90018',
+  address = '142 E Huntington Dr',
+  city = 'Arcadia, CA 91006',
   hours = [
     'Monday - Saturday: 10am - 9pm',
     'Sunday: Closed',
