@@ -67,12 +67,7 @@ export default function TeamPage() {
             philosophy: '',
             portraitSrc: assets.teamSteven,
             portraitPosition: 'center 25%',
-            workSamples: [
-              assets.stevenWork01,
-              assets.stevenWork02,
-              assets.stevenWork03,
-              assets.stevenWork04,
-            ],
+            workSamples: [],
             instagramHandle: 'steventaotran',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
@@ -85,12 +80,7 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.arielWork02,
-            workSamples: [
-              assets.arielWork01,
-              assets.arielWork02,
-              assets.arielWork03,
-              assets.arielWork04,
-            ],
+            workSamples: [],
             instagramHandle: 'aridonnel',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-arcadia/barber/ariel-30/services',
@@ -103,12 +93,7 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.jaredWork03,
-            workSamples: [
-              assets.jaredWork01,
-              assets.jaredWork02,
-              assets.jaredWork03,
-              assets.jaredWork04,
-            ],
+            workSamples: [],
             instagramHandle: 'jaredtphan',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-arcadia/barber/jared-phan-2/services',
@@ -121,12 +106,7 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.teamBrandon,
-            workSamples: [
-              assets.brandonWork01,
-              assets.brandonWork02,
-              assets.brandonWork03,
-              assets.brandonWork04,
-            ],
+            workSamples: [],
             instagramHandle: 'mysticalasian',
             bookingUrl: '',
           },
