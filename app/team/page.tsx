@@ -35,13 +35,8 @@ export default function TeamPage() {
             credentials: [],
             philosophy:
               'Precision is not about perfection—it is about intention. Every cut should be designed to maintain structure as it grows. That is the standard.',
-            portraitSrc: assets.teamJack,
-            workSamples: [
-              assets.jackWork01,
-              assets.jackWork02,
-              assets.jackWork03,
-              assets.jackWork04,
-            ],
+            portraitSrc: assets.jackWork04,
+            workSamples: [],
             instagramHandle: 'jacklouii',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
@@ -58,7 +53,6 @@ export default function TeamPage() {
               assets.gavinWork01,
               assets.gavinWork02,
               assets.gavinWork03,
-              assets.gavinWork04,
             ],
             instagramHandle: 'gavinblond',
             bookingUrl:
@@ -90,7 +84,7 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: assets.teamAriel,
+            portraitSrc: assets.arielWork02,
             workSamples: [
               assets.arielWork01,
               assets.arielWork02,
@@ -108,7 +102,7 @@ export default function TeamPage() {
             experience: '',
             credentials: [],
             philosophy: '',
-            portraitSrc: assets.teamJared,
+            portraitSrc: assets.jaredWork03,
             workSamples: [
               assets.jaredWork01,
               assets.jaredWork02,

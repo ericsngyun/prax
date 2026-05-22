@@ -47,11 +47,10 @@ export const assets = {
   jackWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork03.jpg',
   jackWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork04.jpg',
 
-  // Gavin's work (4 images)
-  gavinWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork01.jpg',
-  gavinWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork02.jpg',
-  gavinWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork03.jpg',
-  gavinWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork04.jpg',
+  // Gavin's work (3 images)
+  gavinWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork01.png?v=bb84ffcfe397fa98bcae4093c54aba12',
+  gavinWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork02.png?v=b1c413487dede8b566cdf881d0443002',
+  gavinWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork03.png?v=dcf0dd5a8086500e3f36ff7265bf4b07',
 
   // Steven's work (4 images)
   stevenWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork01.jpg',
