@@ -42,9 +42,9 @@ export const assets = {
   portfolio19: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio19.jpg',
 
   // Jack's work (4 images)
-  jackWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork01.jpg',
-  jackWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork02.jpg',
-  jackWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork03.jpg',
+  jackWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork01.webp?v=b85201d361c50d72c8ab08347afe1c92',
+  jackWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork02.webp?v=f9d9f65eb7302a677761bcfc3b05236e',
+  jackWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork03.jpg?v=e9d41974c873de93b59f3cb75c03804e',
   jackWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork04.jpg',
 
   // Gavin's work (3 images)

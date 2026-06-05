@@ -206,9 +206,13 @@ export function TeamGridSection({
                 >
                   <TeamMemberPortrait member={member} />
 
-                  {/* Work Samples — uniform 2x2 grid for every member */}
+                  {/* Work Samples — balanced row of 3, else uniform 2x2 grid */}
                   {member.workSamples && member.workSamples.length > 0 && (
-                    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div
+                      className={`grid gap-3 sm:gap-4 ${
+                        member.workSamples.length === 3 ? 'grid-cols-3' : 'grid-cols-2'
+                      }`}
+                    >
                       {member.workSamples.map((workSrc, workIndex) => (
                         <div
                           key={workIndex}
