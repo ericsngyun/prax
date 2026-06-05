@@ -36,7 +36,11 @@ export default function TeamPage() {
             philosophy:
               'Precision is not about perfection—it is about intention. Every cut should be designed to maintain structure as it grows. That is the standard.',
             portraitSrc: assets.jackWork04,
-            workSamples: [],
+            workSamples: [
+              assets.jackWork01,
+              assets.jackWork02,
+              assets.jackWork03,
+            ],
             instagramHandle: 'jacklouii',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
