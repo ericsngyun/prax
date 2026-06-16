@@ -71,7 +71,7 @@ export default function TeamPage() {
             philosophy: '',
             portraitSrc: assets.teamSteven,
             portraitPosition: 'center 25%',
-            workSamples: [],
+            workSamples: [assets.stevenWork01, assets.stevenWork02],
             instagramHandle: 'steventaotran',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
@@ -84,7 +84,7 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.arielWork02,
-            workSamples: [],
+            workSamples: [assets.arielWork01, assets.arielWork03],
             instagramHandle: 'aridonnel',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-arcadia/barber/ariel-30/services',
@@ -97,7 +97,7 @@ export default function TeamPage() {
             credentials: [],
             philosophy: '',
             portraitSrc: assets.jaredWork03,
-            workSamples: [],
+            workSamples: [assets.jaredWork01, assets.jaredWork02, assets.jaredWork04],
             instagramHandle: 'jaredtphan',
             bookingUrl:
               'https://getsquire.com/booking/book/prax-arcadia/barber/jared-phan-2/services',
