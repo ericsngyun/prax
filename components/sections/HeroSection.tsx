@@ -141,49 +141,15 @@ export function HeroSection({
             {kicker}
           </p>
 
-          {/* New Location — subtle address chip */}
-          <div className="mt-7 md:mt-10 flex justify-center">
+          {/* New Location — blended text line, same label styling as the kicker */}
+          <div className="mt-5 md:mt-6 flex justify-center px-6">
             <a
               href="https://www.google.com/maps/search/?api=1&query=142+E+Huntington+Drive+Arcadia+CA+91006"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-2.5 md:gap-3 border border-prax-bone/15 bg-prax-black/40 backdrop-blur-sm px-3.5 py-2 md:px-4 md:py-2.5 hover:border-prax-bone/35 transition-colors duration-300"
+              className="text-label text-prax-bone/70 tracking-[0.2em] md:tracking-[0.3em] text-center max-w-[300px] sm:max-w-none hover:text-prax-bone transition-colors duration-300 cursor-pointer"
             >
-              {/* Editorial corner ticks */}
-              <span className="absolute -top-px -left-px w-1.5 h-1.5 border-t border-l border-prax-bone/60" aria-hidden="true" />
-              <span className="absolute -top-px -right-px w-1.5 h-1.5 border-t border-r border-prax-bone/60" aria-hidden="true" />
-              <span className="absolute -bottom-px -left-px w-1.5 h-1.5 border-b border-l border-prax-bone/60" aria-hidden="true" />
-              <span className="absolute -bottom-px -right-px w-1.5 h-1.5 border-b border-r border-prax-bone/60" aria-hidden="true" />
-
-              <svg
-                className="w-3 h-3 md:w-3.5 md:h-3.5 text-prax-bone/65 shrink-0"
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M8 1.5c-2.8 0-5 2.2-5 5 0 3.75 5 8 5 8s5-4.25 5-8c0-2.8-2.2-5-5-5z"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
-                <circle cx="8" cy="6.5" r="1.4" stroke="currentColor" strokeWidth="1" />
-              </svg>
-
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-2 leading-tight">
-                <span className="text-label text-prax-bone/50 tracking-[0.2em] uppercase">
-                  Now Open
-                </span>
-                <address className="not-italic text-caption md:text-body-sm text-prax-bone leading-snug">
-                  142 E Huntington Dr, Arcadia
-                </address>
-              </div>
-
-              <span
-                className="text-caption text-prax-bone/65 group-hover:text-prax-bone group-hover:translate-x-0.5 transition-all duration-300 ml-0.5 md:ml-1"
-                aria-hidden="true"
-              >
-                →
-              </span>
+              Now Open · 142 E Huntington Dr, Arcadia
             </a>
           </div>
 
