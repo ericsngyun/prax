@@ -145,7 +145,7 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-body-sm text-prax-white hover:text-prax-bone transition-colors duration-300 opacity-100 cursor-pointer"
+                    className="link-underline text-body-sm text-prax-white hover:text-prax-bone transition-colors duration-300 opacity-100 cursor-pointer"
                   >
                     {link.label}
                   </Link>
