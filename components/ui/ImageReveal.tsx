@@ -61,14 +61,16 @@ export function ImageReveal({
     if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
 
     const speed = typeof parallax === 'number' ? parallax : 0.5;
-    const range = Math.min(speed, 1) * 8;
+    const range = Math.min(speed, 1) * 4; // gentle drift for portraits
 
     const ctx = gsap.context(() => {
+      // Slight scale provides the overscan; the wrapper's overflow-hidden clips it.
       gsap.fromTo(
         parallaxRef.current,
-        { yPercent: -range },
+        { yPercent: -range, scale: 1.12 },
         {
           yPercent: range,
+          scale: 1.12,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -110,7 +112,7 @@ export function ImageReveal({
       >
         <div
           ref={parallaxRef}
-          className={parallax ? 'absolute inset-x-0 -top-[10%] h-[120%] will-change-transform' : 'w-full h-full'}
+          className={parallax ? 'w-full h-full will-change-transform' : 'w-full h-full'}
         >
           <Image
             className={cn('w-full h-full object-cover', className)}

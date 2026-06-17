@@ -45,8 +45,10 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
     return () => ctx.revert();
   }, []);
 
-  // Background parallax — desktop, non-touch, reduced-motion-safe. The bg layer
-  // is overscaled (h-125%) so the drift never reveals empty space.
+  // Background parallax — desktop only, non-touch, reduced-motion-safe.
+  // The image sits at natural framing (inset-0); GSAP applies a slight scale
+  // (the overscan) plus a gentle vertical drift, clipped by the section's
+  // overflow-hidden. On touch / reduced-motion it stays perfectly framed.
   useEffect(() => {
     if (!bgRef.current || !sectionRef.current || prefersReducedMotion()) return;
     if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
@@ -54,9 +56,10 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
     const ctx = gsap.context(() => {
       gsap.fromTo(
         bgRef.current,
-        { yPercent: -6 },
+        { yPercent: -5, scale: 1.16 },
         {
-          yPercent: 6,
+          yPercent: 5,
+          scale: 1.16,
           ease: 'none',
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -74,7 +77,7 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
   const hasBackground = backgroundImage || videoSrc;
 
   return (
-    <section ref={sectionRef} className={`relative min-h-screen flex items-center ${hasBackground ? '' : 'bg-prax-black'} pb-16 md:pb-20`}>
+    <section ref={sectionRef} className={`relative min-h-[100svh] flex items-center overflow-hidden ${hasBackground ? '' : 'bg-prax-black'} pb-16 md:pb-20`}>
       {/* Video Background */}
       {videoSrc && (
         <VideoBackground
@@ -88,8 +91,8 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
       {/* Image Background (fallback if no video) */}
       {!videoSrc && backgroundImage && (
         <>
-          {/* Background Image (overscaled for parallax headroom) */}
-          <div ref={bgRef} className="absolute inset-x-0 -top-[12.5%] h-[125%] z-0 will-change-transform">
+          {/* Background Image — natural framing; GSAP adds scale+drift on desktop */}
+          <div ref={bgRef} className="absolute inset-0 z-0 will-change-transform">
             <Image
               src={backgroundImage}
               alt=""
