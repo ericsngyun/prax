@@ -97,7 +97,7 @@ export function HeroSection({
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen min-h-[600px] overflow-hidden"
+      className="relative h-[100svh] min-h-[600px] overflow-hidden"
     >
       {/* Video Background */}
       <VideoBackground
@@ -197,7 +197,7 @@ export function HeroSection({
               {subheadline}
             </p>
 
-            <div>
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
               <a
                 href={primaryCTA.href}
                 target={primaryCTA.href.startsWith('http') ? '_blank' : undefined}
@@ -206,6 +206,19 @@ export function HeroSection({
               >
                 {primaryCTA.text}
               </a>
+              {secondaryCTA && (
+                <a
+                  href={secondaryCTA.href}
+                  target={secondaryCTA.href.startsWith('http') ? '_blank' : undefined}
+                  rel={secondaryCTA.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="group inline-flex items-center gap-2 text-body-sm text-prax-bone/90 hover:text-prax-white transition-colors duration-300 cursor-pointer"
+                >
+                  {secondaryCTA.text}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              )}
             </div>
           </div>
         </div>

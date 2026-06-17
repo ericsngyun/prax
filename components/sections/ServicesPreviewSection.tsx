@@ -63,7 +63,16 @@ export function ServicesPreviewSection({
   const numberRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
-    if (!sectionRef.current || prefersReducedMotion()) return;
+    if (!sectionRef.current) return;
+
+    // Reduced motion: skip the count-up but still render the final index
+    // numbers (otherwise they stay frozen at "00").
+    if (prefersReducedMotion()) {
+      numberRefs.current.forEach((num, i) => {
+        if (num) num.textContent = String(i + 1).padStart(2, '0');
+      });
+      return;
+    }
 
     const config = getMobileAnimationConfig();
 

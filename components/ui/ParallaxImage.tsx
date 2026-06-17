@@ -27,14 +27,21 @@ export function ParallaxImage({
   const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current || !imageRef.current || prefersReducedMotion()) return;
+    if (!containerRef.current || !imageRef.current) return;
+    if (prefersReducedMotion()) return;
+    // Skip on touch — parallax tied to scroll feels off on momentum scrolling,
+    // and it matches the Lenis policy (smooth scroll is desktop-only here).
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
 
     const ctx = gsap.context(() => {
+      // The inner layer is overscaled (h-130%, -top-15%) so translating it
+      // never reveals empty space above/below the frame.
+      const range = Math.min(speed, 1) * 10; // yPercent travel, capped to the overscan
       gsap.fromTo(
         imageRef.current,
-        { y: offset - 50 },
+        { yPercent: -range },
         {
-          y: offset + 50 * speed,
+          yPercent: range,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -54,7 +61,7 @@ export function ParallaxImage({
       ref={containerRef}
       className={cn('relative overflow-hidden', containerClassName)}
     >
-      <div ref={imageRef} className="w-full h-full">
+      <div ref={imageRef} className="absolute inset-x-0 -top-[15%] h-[130%] will-change-transform">
         <Image
           className={cn('object-cover w-full h-full', className)}
           alt={alt}
