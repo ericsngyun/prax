@@ -394,9 +394,11 @@ html.lenis body {
   box-shadow: 0 20px 40px oklch(0 0 0 / 0.4);
 }
 
-/* Image Treatments */
+/* Image Treatments — a subtle, consistent grade so mixed-source photography
+   reads as art-directed (gentle contrast + a touch of desaturation toward the
+   muted ink/bone palette). Kept light so color work isn't washed out. */
 .img-portfolio {
-  filter: contrast(1.03) brightness(0.98);
+  filter: contrast(1.05) brightness(0.98) saturate(0.92);
 }
 
 .img-team {
@@ -733,13 +735,6 @@ html.lenis body {
   overflow: hidden;
 }
 
-.image-reveal-frame {
-  position: absolute;
-  inset: 0;
-  border: 2px solid var(--color-prax-bone);
-  pointer-events: none;
-}
-
 /* ═══════════════════════════════════════════════════════════════════════════
    TEAM SECTION
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -912,22 +907,6 @@ html.lenis body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   BLEND MODES & EFFECTS
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.blend-difference {
-  mix-blend-mode: difference;
-}
-
-.blend-exclusion {
-  mix-blend-mode: exclusion;
-}
-
-.blend-overlay {
-  mix-blend-mode: overlay;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
    MARQUEE ANIMATION
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -987,85 +966,5 @@ html.lenis body {
     0 0 60px oklch(0.93 0.01 90 / 0.05);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   3D TILT CARD STYLES
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.tilt-card {
-  transform-style: preserve-3d;
-}
-
-.tilt-card-inner {
-  transform: translateZ(20px);
-}
-
-.tilt-card-shine {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    oklch(1 0 0 / 0.03) 45%,
-    oklch(1 0 0 / 0.05) 50%,
-    oklch(1 0 0 / 0.03) 55%,
-    transparent 60%
-  );
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.tilt-card:hover .tilt-card-shine {
-  opacity: 1;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   SPOTLIGHT HOVER EFFECT
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.spotlight-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.spotlight-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    oklch(1 0 0 / 0.06),
-    transparent 40%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.spotlight-card:hover::before {
-  opacity: 1;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   SCROLL PROGRESS INDICATOR
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--color-prax-graphite);
-  z-index: 9999;
-}
-
-.scroll-progress-bar {
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    var(--color-prax-bone),
-    var(--color-prax-white)
-  );
-  transform-origin: left;
-}
+/* Dead decorative utilities (3D tilt / spotlight / scroll-progress) removed —
+   they were defined but never rendered. */
