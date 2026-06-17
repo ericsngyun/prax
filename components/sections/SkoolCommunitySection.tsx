@@ -1,3 +1,5 @@
+import { SKOOL_URL } from '@/lib/constants';
+
 export function SkoolCommunitySection() {
   return (
     <section className="section-padding bg-prax-charcoal">
@@ -13,7 +15,7 @@ export function SkoolCommunitySection() {
             Join our exclusive community of barbers learning precision haircutting. Get access to educational content, connect with fellow students, and stay updated on upcoming programs.
           </p>
           <a
-            href="https://www.skool.com/praxacademy/about"
+            href={SKOOL_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary text-body-sm cursor-pointer inline-block"
