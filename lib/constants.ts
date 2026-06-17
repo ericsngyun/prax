@@ -13,6 +13,9 @@ export const SOCIAL_LINKS = {
   tiktok: 'https://www.tiktok.com/@praxhair',
 } as const;
 
+// PRAX Academy community (Skool)
+export const SKOOL_URL = 'https://www.skool.com/praxacademy/about';
+
 // Business info
 export const BUSINESS_INFO = {
   address: '142 E Huntington Dr',

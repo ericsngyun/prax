@@ -3,7 +3,7 @@
    Centralized footer links used across all pages
    ═══════════════════════════════════════════════════════════════════════════ */
 
-import { BOOKING_URL, SOCIAL_LINKS } from '@/lib/constants';
+import { BOOKING_URL, SOCIAL_LINKS, SKOOL_URL } from '@/lib/constants';
 
 export const footerColumns = [
   {
@@ -33,6 +33,7 @@ export const footerColumns = [
       { label: 'Programs', href: '/academy' },
       { label: 'In-Person Classes', href: '/academy#programs' },
       { label: 'Online Courses', href: '/academy#programs' },
+      { label: 'Skool Community', href: SKOOL_URL },
     ],
   },
   {
