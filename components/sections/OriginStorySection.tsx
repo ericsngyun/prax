@@ -97,6 +97,7 @@ export function OriginStorySection({
                 quality={75}
                 direction="right"
                 showFrame={false}
+                parallax
                 containerClassName="aspect-[4/5]"
                 className=""
               />

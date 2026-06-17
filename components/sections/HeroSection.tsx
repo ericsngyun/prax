@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { VideoBackground } from '@/components/ui/VideoBackground';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 import { prefersReducedMotion } from '@/lib/utils';
 import { getMobileAnimationConfig } from '@/lib/mobileAnimations';
 import { assets } from '@/lib/assets';
@@ -198,14 +199,15 @@ export function HeroSection({
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-              <a
+              <MagneticButton
+                as="a"
                 href={primaryCTA.href}
                 target={primaryCTA.href.startsWith('http') ? '_blank' : undefined}
                 rel={primaryCTA.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="btn btn-primary text-body-sm cursor-pointer"
+                className="btn-primary btn-wipe text-body-sm"
               >
                 {primaryCTA.text}
-              </a>
+              </MagneticButton>
               {secondaryCTA && (
                 <a
                   href={secondaryCTA.href}
