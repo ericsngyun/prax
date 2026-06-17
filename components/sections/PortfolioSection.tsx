@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { prefersReducedMotion, formatNumber } from '@/lib/utils';
@@ -36,7 +36,21 @@ export function PortfolioSection({
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
-  const isPaused = useRef(false);
+  // Effective pause = explicit user toggle OR transient hover. Refs drive the
+  // rAF loop (no stale closures); `paused`/`motionOn` state drives the UI.
+  const explicitPaused = useRef(false);
+  const hovered = useRef(false);
+  const [paused, setPaused] = useState(false);
+  const [motionOn, setMotionOn] = useState(false);
+
+  useEffect(() => {
+    setMotionOn(!prefersReducedMotion());
+  }, []);
+
+  const togglePause = () => {
+    explicitPaused.current = !explicitPaused.current;
+    setPaused(explicitPaused.current);
+  };
 
   useEffect(() => {
     if (!sectionRef.current || !marqueeRef.current || prefersReducedMotion()) return;
@@ -103,7 +117,7 @@ export function PortfolioSection({
     let isIntersecting = false;
 
     const animate = () => {
-      if (isIntersecting && !isPaused.current) {
+      if (isIntersecting && !explicitPaused.current && !hovered.current) {
         position -= speedPxPerFrame;
         if (Math.abs(position) >= marqueeWidth) {
           position += marqueeWidth;
@@ -131,8 +145,8 @@ export function PortfolioSection({
     );
     observer.observe(marqueeInner);
 
-    const handleMouseEnter = () => { isPaused.current = true; };
-    const handleMouseLeave = () => { isPaused.current = false; };
+    const handleMouseEnter = () => { hovered.current = true; };
+    const handleMouseLeave = () => { hovered.current = false; };
     marqueeInner.addEventListener('mouseenter', handleMouseEnter);
     marqueeInner.addEventListener('mouseleave', handleMouseLeave);
 
@@ -194,14 +208,34 @@ export function PortfolioSection({
       {/* Header */}
       <div
         ref={headerRef}
-        className="container-prax pb-12 md:pb-16"
+        className="container-prax pb-12 md:pb-16 flex items-end justify-between gap-6"
       >
-        <span className="text-label text-prax-bone uppercase tracking-widest block mb-4">
-          {label}
-        </span>
-        <h2 className="text-display text-prax-white tracking-tight">
-          {heading}
-        </h2>
+        <div>
+          <span className="text-label text-prax-bone uppercase tracking-widest block mb-4">
+            {label}
+          </span>
+          <h2 className="text-display text-prax-white tracking-tight">
+            {heading}
+          </h2>
+        </div>
+
+        {/* Accessible pause/play for the auto-scrolling marquee (WCAG 2.2.2) */}
+        {motionOn && (
+          <button
+            type="button"
+            onClick={togglePause}
+            aria-pressed={paused}
+            aria-label={paused ? 'Play portfolio carousel' : 'Pause portfolio carousel'}
+            className="group shrink-0 inline-flex items-center gap-2 border border-prax-graphite hover:border-prax-stone px-3 py-2 text-prax-stone hover:text-prax-white transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-prax-white"
+          >
+            <span aria-hidden="true" className="text-[0.7rem] leading-none">
+              {paused ? '▶' : '❚❚'}
+            </span>
+            <span className="text-label uppercase tracking-widest">
+              {paused ? 'Play' : 'Pause'}
+            </span>
+          </button>
+        )}
       </div>
 
       {/* Marquee Container */}

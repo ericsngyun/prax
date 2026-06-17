@@ -37,7 +37,7 @@ export function Preloader() {
       } else {
         setProgress(100);
         setDisplayProgress(100);
-        setTimeout(() => setComplete(true), 300);
+        setComplete(true);
       }
     };
 
@@ -196,17 +196,14 @@ export function PreloaderWrapper({ children }: PreloaderWrapperProps) {
     return <>{children}</>;
   }
 
+  // The Preloader is a fixed, opaque overlay (z-[10001]) that covers content
+  // while it runs, then fades itself out. Render children directly — never gate
+  // their opacity behind JS — so server-rendered content paints immediately and
+  // first-paint/LCP isn't blocked on hydration + the preloader timer.
   return (
     <>
       {!hasShown && <Preloader />}
-      <div
-        className={cn(
-          'transition-opacity duration-500',
-          !isComplete && !hasShown ? 'opacity-0' : 'opacity-100'
-        )}
-      >
-        {children}
-      </div>
+      {children}
     </>
   );
 }

@@ -20,7 +20,7 @@
   --color-prax-white: oklch(0.98 0 0);         /* #fafafa - Primary text, headlines */
   --color-prax-bone: oklch(0.93 0.01 90);      /* #ede9e3 - Warm white (key moments) */
   --color-prax-stone: oklch(0.75 0 0);         /* #a3a3a3 - Body text */
-  --color-prax-silver: oklch(0.55 0 0);        /* #6e6e6e - Muted text, captions */
+  --color-prax-silver: oklch(0.64 0 0);        /* #8c8c8c - Muted text, captions (≥5.9:1 on dark bg → WCAG AA) */
 
   /* Functional */
   --color-prax-error: oklch(0.65 0.2 25);      /* Error state */
