@@ -42,9 +42,9 @@ export const assets = {
   portfolio19: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/portfolio/portfolio19.jpg',
 
   // Jack's work (4 images)
-  jackWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork01.webp?v=b85201d361c50d72c8ab08347afe1c92',
-  jackWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork02.webp?v=f9d9f65eb7302a677761bcfc3b05236e',
-  jackWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork03.jpg?v=e9d41974c873de93b59f3cb75c03804e',
+  jackWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork01.webp?v=9af4aaaf6b1ce390214915a7d7525173',
+  jackWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork02.webp?v=dec39838c3369c44f8d8d36e59ad69e2',
+  jackWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork03.webp?v=6ca62ee400534c0e52e59d373c20441e',
   jackWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jackWork04.jpg',
 
   // Gavin's work (3 images)
@@ -53,21 +53,21 @@ export const assets = {
   gavinWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/gavinWork03.png?v=dcf0dd5a8086500e3f36ff7265bf4b07',
 
   // Steven's work (4 images)
-  stevenWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork01.jpg',
-  stevenWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork02.jpg',
+  stevenWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork01.webp?v=837c663bef12f22f482983370522c3e7',
+  stevenWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork02.webp?v=0e31e7a3b01ada0ea08e33af5fc12ad2',
   stevenWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork03.jpg',
   stevenWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/stevenWork04.jpg',
 
   // Jared's work (4 images)
-  jaredWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork01.jpg',
-  jaredWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork02.jpg',
+  jaredWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork01.webp?v=b0f1b8f49b68d88736f37e307e1a184a',
+  jaredWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork02.webp?v=a62fc8fd6e0fb3d25ef28fed7c8ab163',
   jaredWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork03.jpg',
-  jaredWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork04.jpg',
+  jaredWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/jaredWork04.webp?v=9fa2f201f4f236cb1f59848b789f952e',
 
   // Ariel's work (4 images)
-  arielWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork01.jpg',
+  arielWork01: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork01.webp?v=2ac86768172c71883ef3b9fafd2e8f25',
   arielWork02: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork02.jpg',
-  arielWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork03.jpg',
+  arielWork03: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork03.webp?v=c81bcf4a285a0cb5f09fca3d52c30925',
   arielWork04: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/work-samples/arielWork04.jpg',
 
   // Brandon's work (4 images)
