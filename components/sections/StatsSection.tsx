@@ -21,7 +21,19 @@ export function StatsSection({ stats }: StatsSectionProps) {
   const suffixRefs = useRef<HTMLSpanElement[]>([]);
 
   useEffect(() => {
-    if (!sectionRef.current || prefersReducedMotion()) return;
+    if (!sectionRef.current) return;
+
+    // Reduced motion: skip the count-up but still show the final values
+    // (otherwise the numbers stay frozen at "0" and suffixes stay hidden).
+    if (prefersReducedMotion()) {
+      valueRefs.current.forEach((el, i) => {
+        if (el) el.textContent = `${stats[i].prefix ?? ''}${stats[i].value}`;
+      });
+      suffixRefs.current.forEach((el) => {
+        if (el) el.style.opacity = '1';
+      });
+      return;
+    }
 
     const ctx = gsap.context(() => {
       valueRefs.current.forEach((el, i) => {
@@ -62,7 +74,7 @@ export function StatsSection({ stats }: StatsSectionProps) {
   return (
     <section ref={sectionRef} className="section-padding bg-prax-ink">
       <div className="container-prax max-w-5xl mx-auto">
-        <div className="grid grid-cols-3 gap-4 md:gap-16">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-4 md:gap-16">
           {stats.map((stat, i) => (
             <div key={i} className="text-center md:text-left">
               <div className="text-display-sm md:text-display text-prax-bone font-light mb-2">

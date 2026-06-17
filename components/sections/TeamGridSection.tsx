@@ -209,14 +209,14 @@ export function TeamGridSection({
                   {/* Work Samples — balanced row of 3, else uniform 2x2 grid */}
                   {member.workSamples && member.workSamples.length > 0 && (
                     <div
-                      className={`grid gap-3 sm:gap-4 ${
-                        member.workSamples.length === 3 ? 'grid-cols-3' : 'grid-cols-2'
+                      className={`flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:gap-4 sm:overflow-visible sm:pb-0 ${
+                        member.workSamples.length === 3 ? 'sm:grid-cols-3' : 'sm:grid-cols-2'
                       }`}
                     >
                       {member.workSamples.map((workSrc, workIndex) => (
                         <div
                           key={workIndex}
-                          className="relative aspect-[3/4] bg-prax-charcoal overflow-hidden rounded-sm group/work"
+                          className="relative aspect-[3/4] w-[62%] shrink-0 snap-start sm:w-auto bg-prax-charcoal overflow-hidden rounded-sm group/work"
                         >
                           <Image
                             src={workSrc}

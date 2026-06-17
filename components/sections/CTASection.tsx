@@ -36,6 +36,7 @@ export function CTASection({
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const dividerRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
@@ -104,6 +105,32 @@ export function CTASection({
     return () => ctx.revert();
   }, []);
 
+  // Background parallax — desktop, non-touch, reduced-motion-safe. The bg layer
+  // is overscaled (h-125%) so the drift never reveals empty space.
+  useEffect(() => {
+    if (!bgRef.current || !sectionRef.current || !backgroundImage || prefersReducedMotion()) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        bgRef.current,
+        { yPercent: -6 },
+        {
+          yPercent: 6,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [backgroundImage]);
+
   return (
     <section
       ref={sectionRef}
@@ -111,7 +138,7 @@ export function CTASection({
     >
       {backgroundImage && (
         <>
-          <div className="absolute inset-0 z-0">
+          <div ref={bgRef} className="absolute inset-x-0 -top-[12.5%] h-[125%] z-0 will-change-transform">
             <Image
               src={backgroundImage}
               alt=""

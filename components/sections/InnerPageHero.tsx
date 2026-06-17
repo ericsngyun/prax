@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { gsap } from '@/lib/gsap';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { VideoBackground } from '@/components/ui/VideoBackground';
 import { prefersReducedMotion } from '@/lib/utils';
 import { blurPlaceholders } from '@/lib/blurPlaceholder';
@@ -26,6 +26,7 @@ interface InnerPageHeroProps {
 export function InnerPageHero({ label, headline, description, backgroundImage, videoSrc, videoPoster, backgroundPosition = 'center 25%' }: InnerPageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!sectionRef.current || prefersReducedMotion()) return;
@@ -44,6 +45,32 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
     return () => ctx.revert();
   }, []);
 
+  // Background parallax — desktop, non-touch, reduced-motion-safe. The bg layer
+  // is overscaled (h-125%) so the drift never reveals empty space.
+  useEffect(() => {
+    if (!bgRef.current || !sectionRef.current || prefersReducedMotion()) return;
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        bgRef.current,
+        { yPercent: -6 },
+        {
+          yPercent: 6,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [backgroundImage]);
+
   const hasBackground = backgroundImage || videoSrc;
 
   return (
@@ -61,8 +88,8 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
       {/* Image Background (fallback if no video) */}
       {!videoSrc && backgroundImage && (
         <>
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0">
+          {/* Background Image (overscaled for parallax headroom) */}
+          <div ref={bgRef} className="absolute inset-x-0 -top-[12.5%] h-[125%] z-0 will-change-transform">
             <Image
               src={backgroundImage}
               alt=""

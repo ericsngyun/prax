@@ -9,8 +9,10 @@ import { Footer } from '@/components/sections/Footer';
 import { footerColumns } from '@/lib/footerConfig';
 
 // Söhne — minimalist sans-serif with editorial polish.
-// Audited Tailwind classes show only font-light (300), default (400), and
-// font-medium (mapped to 600). Weights 700 / 800 were dead bytes — removed.
+// Every weight the design system actually uses must have a real face, or the
+// browser synthesizes (faux-bolds) it. The type scale calls for 300 (light),
+// 400 (book), 500 (font-medium), 600 (h3/h4), and 700 (h1/h2/display/title).
+// Halbfett covers 500–600; Fett provides the true 700 for headlines.
 const sohneSans = localFont({
   src: [
     {
@@ -25,7 +27,17 @@ const sohneSans = localFont({
     },
     {
       path: '../public/fonts/sohne-font-family/TestSohne-Halbfett-BF663d89cd2d67b.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/sohne-font-family/TestSohne-Halbfett-BF663d89cd2d67b.otf',
       weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/sohne-font-family/TestSohne-Fett-BF663d89cca89ff.otf',
+      weight: '700',
       style: 'normal',
     },
   ],
