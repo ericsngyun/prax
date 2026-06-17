@@ -1,6 +1,11 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Pin the workspace root to this app. Multiple lockfiles were detected
+  // (a stray parent package-lock.json), which made Next infer the wrong root
+  // for output file tracing. This forces correct, deterministic tracing.
+  outputFileTracingRoot: process.cwd(),
+
   images: {
     // Enable modern image formats (AVIF first for best compression, WebP fallback)
     formats: ['image/avif', 'image/webp'],

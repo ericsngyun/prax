@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { OriginStorySection } from '@/components/sections/OriginStorySection';
 import { CoreValuesDeepDive } from '@/components/sections/CoreValuesDeepDive';
-import { StudioSpaceSection } from '@/components/sections/StudioSpaceSection';
+// import { StudioSpaceSection } from '@/components/sections/StudioSpaceSection'; // Hidden until real studio photography exists (was shipping empty "Coming Soon" tiles)
 import { PraxStandardSection } from '@/components/sections/PraxStandardSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
@@ -74,46 +74,12 @@ export default function AboutPage() {
         ]}
       />
 
-      {/* Studio Space */}
-      <StudioSpaceSection
-        heading="The Space"
-        description={[
-          'PRAX Studio in Los Angeles is designed to reflect our values: clean, focused, and intentional.',
-          'No distractions. No rush. Just a calm environment where precision work can happen.',
-        ]}
-        images={[
-          {
-            src: '',
-            alt: 'Studio interior wide shot',
-            caption: 'Wide studio interior — clean lines, neutral tones',
-          },
-          {
-            src: '',
-            alt: 'Individual cutting station',
-            caption: 'Station detail — mirror, chair, tools, minimal clutter',
-          },
-          {
-            src: '',
-            alt: 'Tool detail shot',
-            caption: 'Close-up tools — scissors/clipper, shallow depth of field',
-          },
-          {
-            src: '',
-            alt: 'Product shelf',
-            caption: 'Product shelf — curated, orderly, monochrome styling',
-          },
-          {
-            src: '',
-            alt: 'Waiting area',
-            caption: 'Waiting area — calm, soft lighting, minimal texture',
-          },
-          {
-            src: '',
-            alt: 'Studio exterior',
-            caption: 'Exterior — signage + street context, late-afternoon light',
-          },
-        ]}
-      />
+      {/*
+        Studio Space — hidden until real studio photography is available.
+        It previously shipped six empty "Coming Soon" placeholder tiles, which
+        undercut the premium positioning. Restore <StudioSpaceSection /> (and its
+        import above) once images exist in lib/assets.ts.
+      */}
 
       {/* The PRAX Standard */}
       <PraxStandardSection />

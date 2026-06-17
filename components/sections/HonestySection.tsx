@@ -97,7 +97,7 @@ export function HonestySection({
                 {notForYouItems.map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <span className="text-prax-silver text-lg mt-1">-</span>
-                    <span className="text-body text-prax-silver/80 leading-relaxed">
+                    <span className="text-body text-prax-stone leading-relaxed">
                       {item}
                     </span>
                   </li>
