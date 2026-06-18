@@ -124,7 +124,7 @@ export default function HomePage() {
         founderName="Jack Louii"
         founderTitle="Founder & Lead Artist"
         founderBio="Raised the standard for precision haircutting through discipline, education, and an uncompromising commitment to craft."
-        imageSrc={assets.teamJack}
+        imageSrc={assets.jackWork04}
         imageAlt="Jack Louii - PRAX Founder"
       />
 
