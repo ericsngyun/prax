@@ -11,7 +11,7 @@
      ═══════════════════════════════════════════════════════════════════════════ */
 
   /* Primary Palette */
-  --color-prax-ink: oklch(0.08 0 0);           /* #0d0d0d - Primary background */
+  --color-prax-ink: #0d0d0d;                   /* Primary background — canonical. Was oklch(0.08 0 0), which renders ~#020202; pinned to true #0d0d0d to match blur placeholders, themeColor, and PRAX Academy. */
   --color-prax-black: oklch(0.05 0 0);         /* #080808 - Hero/deepest black */
   --color-prax-charcoal: oklch(0.13 0 0);      /* #1a1a1a - Cards, elevated surfaces */
   --color-prax-graphite: oklch(0.20 0 0);      /* #2d2d2d - Borders, subtle dividers */
@@ -334,10 +334,10 @@ html.lenis body {
 .hero-gradient {
   background: linear-gradient(
     180deg,
-    oklch(0.08 0 0 / 0) 0%,
-    oklch(0.08 0 0 / 0.2) 40%,
-    oklch(0.08 0 0 / 0.7) 70%,
-    oklch(0.08 0 0 / 0.95) 100%
+    rgb(13 13 13 / 0) 0%,
+    rgb(13 13 13 / 0.2) 40%,
+    rgb(13 13 13 / 0.7) 70%,
+    rgb(13 13 13 / 0.95) 100%
   );
 }
 
