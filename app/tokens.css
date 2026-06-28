@@ -1,0 +1,26 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRAX DESIGN TOKENS — "Ink & Bone"
+   Canonical brand primitives shared across prax.studio and PRAX Academy.
+
+   Single source of truth for the cross-property brand layer. Keep this file
+   byte-identical in both repos; each app maps these raw vars into its own
+   Tailwind @theme (studio: --color-prax-*; academy: --color-background, etc.).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Color — OKLCH for wide-gamut displays ──────────────────────────────── */
+  /* Ink is exact #0d0d0d (not oklch) so page backgrounds match hero-gradient
+     endpoints pixel-for-pixel — no seam. */
+  --prax-ink: #0d0d0d;                /* primary background                     */
+  --prax-black: oklch(0.05 0 0);      /* #080808 — deepest black                */
+  --prax-charcoal: oklch(0.13 0 0);   /* #1a1a1a — cards, elevated surfaces     */
+  --prax-graphite: oklch(0.20 0 0);   /* #2d2d2d — borders, subtle dividers     */
+
+  --prax-white: oklch(0.98 0 0);      /* #fafafa — primary text, headlines      */
+  --prax-bone: oklch(0.93 0.01 90);   /* #ede9e3 — warm white, key moments      */
+  --prax-stone: oklch(0.75 0 0);      /* #a3a3a3 — body text                    */
+  --prax-silver: oklch(0.64 0 0);     /* #8c8c8c — muted captions (WCAG AA)     */
+
+  /* ── Signature image grade — unifies photography across both properties ─── */
+  --prax-img-grade: contrast(1.05) brightness(0.98) saturate(0.92);
+}
