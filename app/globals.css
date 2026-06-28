@@ -408,6 +408,24 @@ html.lenis body {
   transition: filter var(--duration-slow) var(--ease-out);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   VIEW TRANSITIONS — cross-page cross-fade (next-view-transitions)
+   Tuned to the brand's deliberate pace; disabled under reduced-motion.
+   ═══════════════════════════════════════════════════════════════════════════ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 /* Text Reveal Mask */
 .text-reveal-mask {
   overflow: hidden;

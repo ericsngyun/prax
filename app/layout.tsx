@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import { ViewTransitions } from 'next-view-transitions';
 import { LenisProvider } from '@/components/providers/LenisProvider';
 import { ServiceWorkerProvider } from '@/components/providers/ServiceWorkerProvider';
 import { Header } from '@/components/layout/Header';
@@ -120,7 +121,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={sohneSans.variable}>
+    <ViewTransitions>
+      <html lang="en" className={sohneSans.variable}>
       <body className="bg-prax-ink text-prax-white font-sans antialiased">
         <ServiceWorkerProvider />
         <LenisProvider>
@@ -133,6 +135,7 @@ export default function RootLayout({
         {/* Noise Overlay */}
         <div className="noise-overlay" aria-hidden="true" />
       </body>
-    </html>
+      </html>
+    </ViewTransitions>
   );
 }
