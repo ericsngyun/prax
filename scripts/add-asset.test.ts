@@ -164,6 +164,7 @@ test('folderForKey: academy classroom gallery', () => {
 
 test('folderForKey: video rule wins over page-prefix rules', () => {
   assert.equal(folderForKey('heroVideo'), 'videos');
+  assert.equal(folderForKey('heroVideoWebm'), 'videos');
   assert.equal(folderForKey('aboutVideo'), 'videos');
   assert.equal(folderForKey('academyVideo'), 'videos');
 });

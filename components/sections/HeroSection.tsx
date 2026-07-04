@@ -18,6 +18,7 @@ interface HeroSectionProps {
   primaryCTA?: { text: string; href: string };
   secondaryCTA?: { text: string; href: string };
   videoSrc?: string;
+  videoWebmSrc?: string;
   videoPoster?: string;
 }
 
@@ -28,6 +29,7 @@ export function HeroSection({
   primaryCTA = { text: 'Book an Appointment', href: BOOKING_URL },
   secondaryCTA = { text: 'View Our Work', href: '#work' },
   videoSrc = '/videos/hero-bg.mp4',
+  videoWebmSrc,
   videoPoster,
 }: HeroSectionProps) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -103,6 +105,7 @@ export function HeroSection({
       {/* Video Background */}
       <VideoBackground
         src={videoSrc}
+        webmSrc={videoWebmSrc}
         poster={videoPoster}
         scaleOnScroll
         scaleAmount={1.15}

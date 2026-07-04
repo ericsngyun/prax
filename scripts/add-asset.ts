@@ -37,7 +37,7 @@ export const VIDEO_EXTENSIONS = new Set([
  * routes to videos/ rather than academy/.
  */
 const FOLDER_RULES: Array<[RegExp, string]> = [
-  [/Video$/, 'videos'],
+  [/Video(Webm)?$/, 'videos'],
   [/^(logoX?|textLogo)$/, 'brand'],
   [/^team/, 'team'],
   [/^portfolio/, 'portfolio'],

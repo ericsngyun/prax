@@ -24,6 +24,7 @@ export default function HomePage() {
         }}
         secondaryCTA={{ text: 'View Our Work', href: '/team' }}
         videoSrc={assets.heroVideo}
+        videoWebmSrc={assets.heroVideoWebm}
         videoPoster={assets.heroPoster}
       />
 

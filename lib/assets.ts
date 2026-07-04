@@ -95,10 +95,11 @@ export const assets = {
   teamBrandon: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/team/teamBrandon.jpg',
 
   // Videos (placeholders show dark gradient via VideoBackground; replace via pnpm add-asset)
-  heroVideo: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/videos/heroVideo.mp4?v=81ef5662fa8706ea730d3d0097cf9c28',
+  heroVideo: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/videos/heroVideo.mp4?v=a6efa2fe42e849f2bd80dea5b85302b1',
+  heroVideoWebm: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/videos/heroVideoWebm.webm?v=05a435a5215513bd7c47c7cc42119e09',
   academyVideo: '',
   aboutVideo: '',
 
   // Manually added (via add-asset)
-  heroPoster: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/heroPoster.webp?v=ebb024959cf5ab0cde40538c7db57cf5',
+  heroPoster: 'https://8svr7iaqhh9hclyu.public.blob.vercel-storage.com/prax/editorial/heroPoster.webp?v=cf7807e10c8de8dfeb4f96c3786d00e4',
 } as const;
