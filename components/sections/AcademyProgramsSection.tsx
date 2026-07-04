@@ -14,9 +14,11 @@ interface Program {
 
 interface AcademyProgramsSectionProps {
   programs: Program[];
+  /** Optional link rendered after the program list. External hrefs open in a new tab. */
+  cta?: { text: string; href: string };
 }
 
-export function AcademyProgramsSection({ programs }: AcademyProgramsSectionProps) {
+export function AcademyProgramsSection({ programs, cta }: AcademyProgramsSectionProps) {
   const programRefs = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
@@ -80,6 +82,22 @@ export function AcademyProgramsSection({ programs }: AcademyProgramsSectionProps
             </div>
           ))}
         </div>
+
+        {cta && (
+          <div className="mt-12 md:mt-16">
+            <a
+              href={cta.href}
+              target={cta.href.startsWith('http') ? '_blank' : undefined}
+              rel={cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="group inline-flex items-center gap-2 text-body-sm text-prax-bone/90 hover:text-prax-white transition-colors duration-300 cursor-pointer"
+            >
+              {cta.text}
+              <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
+                →
+              </span>
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

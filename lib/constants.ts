@@ -13,6 +13,9 @@ export const SOCIAL_LINKS = {
   tiktok: 'https://www.tiktok.com/@praxhair',
 } as const;
 
+// PRAX Academy — education site (programs, enrollment)
+export const PRAX_ACADEMY_URL = 'https://praxacademy.com';
+
 // PRAX Academy community (Skool)
 export const SKOOL_URL = 'https://www.skool.com/praxacademy/about';
 

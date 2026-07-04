@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { VideoBackground } from '@/components/ui/VideoBackground';
+import { MagneticButton } from '@/components/ui/MagneticButton';
 import { prefersReducedMotion } from '@/lib/utils';
 import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
@@ -11,6 +12,8 @@ interface InnerPageHeroProps {
   label: string;
   headline: string;
   description: string;
+  /** Optional primary CTA rendered below the description. External hrefs open in a new tab. */
+  cta?: { text: string; href: string };
   backgroundImage?: string;
   videoSrc?: string;
   videoPoster?: string;
@@ -23,7 +26,7 @@ interface InnerPageHeroProps {
   backgroundPosition?: string;
 }
 
-export function InnerPageHero({ label, headline, description, backgroundImage, videoSrc, videoPoster, backgroundPosition = 'center 25%' }: InnerPageHeroProps) {
+export function InnerPageHero({ label, headline, description, cta, backgroundImage, videoSrc, videoPoster, backgroundPosition = 'center 25%' }: InnerPageHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -126,6 +129,19 @@ export function InnerPageHero({ label, headline, description, backgroundImage, v
         >
           {description}
         </p>
+        {cta && (
+          <div className="mt-10 md:mt-12">
+            <MagneticButton
+              as="a"
+              href={cta.href}
+              target={cta.href.startsWith('http') ? '_blank' : undefined}
+              rel={cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="btn-primary btn-wipe text-body-sm"
+            >
+              {cta.text}
+            </MagneticButton>
+          </div>
+        )}
       </div>
     </section>
   );

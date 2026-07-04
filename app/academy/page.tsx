@@ -7,6 +7,7 @@ import { SkoolCommunitySection } from '@/components/sections/SkoolCommunitySecti
 import { AcademyPhilosophySection } from '@/components/sections/AcademyPhilosophySection';
 import { CTASection } from '@/components/sections/CTASection';
 import { assets } from '@/lib/assets';
+import { PRAX_ACADEMY_URL } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Academy',
@@ -56,6 +57,7 @@ export default function AcademyPage() {
         label="Academy"
         headline="Elevate Your Craft"
         description="PRAX Academy teaches the same precision methodology we use in our studio. Structure, discipline, and fundamentals — not trends."
+        cta={{ text: 'Visit PRAX Academy', href: PRAX_ACADEMY_URL }}
         videoSrc={assets.academyVideo}
         backgroundImage={assets.academyHeroBackground}
       />
@@ -67,13 +69,17 @@ export default function AcademyPage() {
         ]}
       />
       <TeachingPrinciplesSection />
-      <AcademyProgramsSection programs={programs} />
+      <AcademyProgramsSection
+        programs={programs}
+        cta={{ text: 'Program details & enrollment at praxacademy.com', href: PRAX_ACADEMY_URL }}
+      />
       <SkoolCommunitySection />
       <AcademyPhilosophySection />
       <CTASection
         headline="Ready to Raise Your Standard?"
         description="Applications for upcoming classes are open. Limited seats per session to maintain quality."
-        showPrimaryButton={false}
+        primaryButtonText="Apply at PRAX Academy"
+        primaryButtonHref={PRAX_ACADEMY_URL}
       />
     </main>
   );
