@@ -1,12 +1,12 @@
 # Source Manifest
 
-## Repository source
+## Current repository
 
-- Current source repository: `ericsngyun/prax`
+- Repository: `ericsngyun/prax`
 - Branch: `main`
-- Asset manifest: `lib/assets.ts`
-- Asset-manifest Git blob: `99b378f0fdce092ad69ba1a9680c9edfa5c80421`
-- Previous mockup repository `ericsngyun/prax-studio` was not used for the new photography.
+- Team source: `app/team/page.tsx`
+- Asset source: `lib/assets.ts`
+- Previous repository `ericsngyun/prax-studio` was not used for staff photography.
 
 ## Brand provenance
 
@@ -17,16 +17,41 @@
 | `brand/prax-lockup-black-original.png` | `public/images/prax-logo.png` | `659f69ee686096ae4c5e4beb68f54fdd05b8a62f` |
 | `brand/prax-lockup-white-original.png` | `public/images/prax-logo-white.png` | `7dc0dc42d71ff312a51e3323585d21c290f61660` |
 
-## Selected photography
+The two `*-black.png` files are monochrome inversions derived from the exact alpha silhouettes. Their geometry was not redrawn.
 
-| Local file | Manifest key | SHA-256 |
+## Staff photography
+
+| Local file | Current manifest key | SHA-256 |
 |---|---|---|
-| `source-photography/portfolio01.jpg` | `portfolio01` | `678b9fdc0ccee7643689c43fe1eaef5e157089f450976ca7fd8bf0618aeb0b41` |
-| `source-photography/portfolio03.jpg` | `portfolio03` | `b17c1c93a3730f350be68fe79373d3a16e3d40e48131347d54ccc58f0f15db72` |
-| `source-photography/portfolio05.jpg` | `portfolio05` | `4ecbce40d6df60bcc68004232e68c8f07a0a58c54e96d1c014176458a0769598` |
-| `source-photography/portfolio10.jpg` | `portfolio10` | `dd6009d390e519eebc7a24e7321bb634dc34057c78a089edb3a36c93f62aa9eb` |
-| `source-photography/portfolio13.jpg` | `portfolio13` | `fe96f03481e1bc92efee1a6c3a9921cb47ad805d523e973280fd6acd118103ad` |
-| `source-photography/portfolio17.jpg` | `portfolio17` | `9ae3b0a5fea31fe2dc75a752c029b819fb5077f749301236093d42aa55d79f35` |
-| `source-photography/portfolio19.jpg` | `portfolio19` | `9d2b1ca712753b7c46414226c000e53357b0c799be6a5db65502034b19aa8faf` |
+| `source-photography/staff/jack.jpg` | `jackWork04` | `c4803e300888eb17e1b0ae21ce5038c1f0ed29a7ae4179168071f0e217fcd343` |
+| `source-photography/staff/gavin.jpg` | `teamGavin` | `f393510f58f75f3005ff1649164b1fbcbbd4f07e288d4c41e71d8ca22ea0a9dc` |
+| `source-photography/staff/steven.jpg` | `teamSteven` | `f09d706f98f9c3fc48cb05284dba1b5c98dfef6b39f9a3fe7acffbe92aac09f7` |
+| `source-photography/staff/ariel.jpg` | `arielWork02` | `f563ff3350e9559fbb5876ae4747ef1a657362afb8a40ea2691fff9c81b2a8f7` |
+| `source-photography/staff/jared.jpg` | `jaredWork03` | `8550f6c9829473bece31055f9748e8e4e9aa0546ce66287a3c80d28a1f8ab29e` |
+| `source-photography/staff/brandon.jpg` | `teamBrandon` | `40a129a88e1db6054b8b42160507043a41e04020e9efbea9fb25f2279599e561` |
 
-The corresponding Vercel Blob URLs are declared in the current `lib/assets.ts` manifest. No synthetic or substituted model photography was used.
+No synthetic, stock, or substituted staff photography is included.
+
+## Pricing sources
+
+Verified August 19, 2026 from public Squire discovery pages:
+
+| Artist | Squire profile | Haircut | Haircut & Beard |
+|---|---|---:|---:|
+| Jack Louii | `https://getsquire.com/discover/barbershop/prax-arcadia/barber/jack-183` | $165 | $190 |
+| Gavin | `https://getsquire.com/discover/barbershop/prax-arcadia/barber/gavin-ly-1` | $95 | $120 |
+| Steven Tao Tran | `https://getsquire.com/discover/barbershop/prax-arcadia/barber/steven-tran-5` | $95 | $120 |
+| Ariel Donnel | `https://getsquire.com/discover/barbershop/prax-arcadia/barber/ariel-30` | $70 | $85 |
+| Jared Phan | `https://getsquire.com/discover/barbershop/prax-arcadia/barber/jared-phan-2` | $70 | $85 |
+
+Shop source: `https://getsquire.com/discover/barbershop/prax-arcadia`
+
+The complete service table is in `STAFF-AND-PRICING.md` and `data/staff-pricing.json`. Availability is intentionally not stored because it changes continuously.
+
+## Device source
+
+Apple’s iPhone 17 specifications list a `2622-by-1206-pixel` display and Dynamic Island: `https://www.apple.com/iphone-17/specs/`.
+
+## Static concept data
+
+The appointment date and time on screens 4–5 illustrate the selected state and are not claims of live availability. Production booking data must be refreshed from Squire at runtime.

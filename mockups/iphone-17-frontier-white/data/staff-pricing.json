@@ -1,0 +1,94 @@
+{
+  "verified_at": "2026-08-19",
+  "currency": "USD",
+  "shop": {
+    "name": "PRAX",
+    "address": "142 E Huntington Dr, Arcadia, CA 91006",
+    "squire_profile": "https://getsquire.com/discover/barbershop/prax-arcadia"
+  },
+  "artists": [
+    {
+      "id": "jack",
+      "name": "Jack Louii",
+      "role": "Founder & Lead Artist",
+      "portrait_manifest_key": "jackWork04",
+      "repo_booking_url": "https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services",
+      "squire_profile": "https://getsquire.com/discover/barbershop/prax-arcadia/barber/jack-183",
+      "bookable": true,
+      "services": [
+        { "name": "Haircut", "duration_minutes": 60, "price": 165 },
+        { "name": "Haircut & Beard", "duration_minutes": 60, "price": 190 },
+        { "name": "Haircut + Styling Consultation", "duration_minutes": 90, "price": 215 },
+        { "name": "Haircut + Perm", "duration_minutes": 180, "price": 400 },
+        { "name": "Highlights + Haircut", "duration_minutes": 180, "price": 400 },
+        { "name": "Cut & Color (short hair)", "duration_minutes": 270, "price": 550 }
+      ]
+    },
+    {
+      "id": "gavin",
+      "name": "Gavin",
+      "role": "Artist",
+      "portrait_manifest_key": "teamGavin",
+      "repo_booking_url": "https://getsquire.com/booking/book/prax-los-angeles/barber/gavin-ly-1/services",
+      "squire_profile": "https://getsquire.com/discover/barbershop/prax-arcadia/barber/gavin-ly-1",
+      "bookable": true,
+      "services": [
+        { "name": "Haircut", "duration_minutes": 60, "price": 95 },
+        { "name": "Haircut & Beard", "duration_minutes": 60, "price": 120 },
+        { "name": "Haircut + Styling Consultation", "duration_minutes": 90, "price": 140 }
+      ]
+    },
+    {
+      "id": "steven",
+      "name": "Steven Tao Tran",
+      "role": "Artist",
+      "portrait_manifest_key": "teamSteven",
+      "repo_booking_url": "https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services",
+      "squire_profile": "https://getsquire.com/discover/barbershop/prax-arcadia/barber/steven-tran-5",
+      "bookable": true,
+      "services": [
+        { "name": "Haircut", "duration_minutes": 60, "price": 95 },
+        { "name": "Haircut & Beard", "duration_minutes": 90, "price": 120 },
+        { "name": "Haircut + Styling Consultation", "duration_minutes": 90, "price": 140 }
+      ]
+    },
+    {
+      "id": "ariel",
+      "name": "Ariel Donnel",
+      "role": "Artist",
+      "portrait_manifest_key": "arielWork02",
+      "repo_booking_url": "https://getsquire.com/booking/book/prax-arcadia/barber/ariel-30/services",
+      "squire_profile": "https://getsquire.com/discover/barbershop/prax-arcadia/barber/ariel-30",
+      "bookable": true,
+      "services": [
+        { "name": "Haircut", "duration_minutes": 60, "price": 70 },
+        { "name": "Haircut & Beard", "duration_minutes": 75, "price": 85 },
+        { "name": "Haircut + Styling Consultation", "duration_minutes": 90, "price": 100 }
+      ]
+    },
+    {
+      "id": "jared",
+      "name": "Jared Phan",
+      "role": "Artist",
+      "portrait_manifest_key": "jaredWork03",
+      "repo_booking_url": "https://getsquire.com/booking/book/prax-arcadia/barber/jared-phan-2/services",
+      "squire_profile": "https://getsquire.com/discover/barbershop/prax-arcadia/barber/jared-phan-2",
+      "bookable": true,
+      "services": [
+        { "name": "Haircut", "duration_minutes": 60, "price": 70 },
+        { "name": "Haircut & Beard", "duration_minutes": 60, "price": 85 },
+        { "name": "Haircut + Styling Consultation", "duration_minutes": 90, "price": 100 }
+      ]
+    },
+    {
+      "id": "brandon",
+      "name": "Brandon Latung",
+      "role": "Intern Artist",
+      "portrait_manifest_key": "teamBrandon",
+      "repo_booking_url": null,
+      "squire_profile": null,
+      "bookable": false,
+      "services": []
+    }
+  ]
+}

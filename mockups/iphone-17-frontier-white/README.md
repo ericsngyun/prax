@@ -1,38 +1,41 @@
-# PRAX Studio — Frontier White Mobile Teasers
+# PRAX — iPhone 17 Staff-First Booking Mockups
 
-A five-screen iPhone 17 concept set built around PRAX's newer brand system and current editorial photography. The visual language replaces decorative chrome with optic white, deep black, flat high-contrast controls, disciplined geometry, and precise microtype. Every export is a complete iPhone screen with iOS-style system chrome.
+A polished five-screen concept for a minimal PRAX mobile booking experience. The set uses the current `ericsngyun/prax` roster, current repository portraits, exact PRAX logo assets, and prices verified against each artist’s public Squire profile on August 19, 2026.
 
-## Included screens
+The direction is intentionally restrained: optic white, deep black, monochrome staff photography, large readable type, and one clear action per screen. It is designed to look credible inside premium iPhone 17 mockups rather than like campaign artwork pasted into a phone.
 
-1. `01-intro` — brand-led editorial entry
-2. `02-home` — featured form and booking call-to-action
-3. `03-services` — service selection
-4. `04-work` — current editorial catalog
-5. `05-confirmed` — appointment confirmation
+## Screens
 
-Every screen is supplied in three formats:
+1. `01-home` — focused booking entry with Jack Louii and studio-level starting prices
+2. `02-artists` — all current staff, portrait, role, haircut price, and haircut-plus-beard price
+3. `03-artist-jack` — Jack’s complete six-service Squire price menu
+4. `04-booking` — selected artist/service, date and time selection, summary, and sticky review action
+5. `05-confirmed` — compact confirmation with artist, service, price, date, time, and address
 
-- PNG: `1206 × 2622 px`, lossless UltraMock source
-- WebP: `1206 × 2622 px`, compact preview source
+Every screen is supplied as:
+
+- PNG: `1206 × 2622 px`, lossless and ready for UltraMock
+- WebP: `1206 × 2622 px`, compact preview
 - SVG: editable `402 × 874 pt` master with embedded photography and type
 
-## Brand assets
+## Included assets
 
-- `brand/prax-wordmark-white-original.png` — exact current-repository asset
-- `brand/prax-wordmark-black.png` — black treatment derived from the exact alpha silhouette
-- `brand/prax-mark-white-original.png` — exact current-repository PRAX mark
-- `brand/prax-mark-black.png` — black treatment derived from the exact alpha silhouette
-- `brand/prax-lockup-black-original.png` — exact current-repository lockup
-- `brand/prax-lockup-white-original.png` — exact current-repository lockup
+- `brand/` — exact current-repository PRAX wordmark, mark, and lockups, plus derived black treatments
+- `source-photography/staff/` — the six exact portraits selected by the current team page
+- `data/staff-pricing.json` — structured roster, services, prices, durations, booking URLs, and provenance
+- `STAFF-AND-PRICING.md` — human-readable rate sheet
+- `MOBILE-UI-NOTES.md` — implementation and accessibility guidance
+- `ULTRAMOCK-GUIDE.md` — recommended device, scene, and export settings
+- `SOURCE-MANIFEST.md` — repository, image, Squire, and device-source audit trail
 
-## Photography
+## Accuracy boundaries
 
-The seven files in `source-photography/` are the exact portfolio assets selected from the newer `ericsngyun/prax` repository's current Vercel Blob manifest. They are included so crops can be changed without re-fetching the source.
+- Artist names and roles follow the current PRAX team page.
+- Portraits are exact assets from the current PRAX asset manifest; no synthetic or substituted people are used.
+- Displayed prices and service durations were verified on public Squire pages on August 19, 2026.
+- Brandon Latung is shown as an intern artist with “Not booking” because the repository supplies no public booking URL for him.
+- The dates and times on screens 4–5 are static concept states, not live availability. A production implementation must read current availability and checkout terms from Squire.
 
-## Notes
+## iPhone chrome
 
-- The screenshots include the Dynamic Island, 9:41 status bar, cellular and Wi-Fi indicators, battery percentage, and bottom home indicator.
-- The canvas matches Apple's native iPhone 17 resolution: `1206 × 2622 px`.
-- Optic white is the primary signal surface; there are no metallic fills or chrome gradients.
-- Studio address and brand language follow the newer PRAX repository.
-- Service prices and appointment details are presentation copy and should be confirmed before production use.
+The exports include the Dynamic Island, 9:41 time, cellular and Wi-Fi indicators, `82%` battery, and home indicator. The canvas matches Apple’s iPhone 17 display resolution of `1206 × 2622 px`. Do not add a second status-bar overlay in UltraMock.
