@@ -8,6 +8,7 @@
 4. Use a matte black, soft concrete, or seamless optical-white scene. Avoid Liquid Metal for this version.
 5. Keep screen reflections very low so the white UI remains clean and neutral.
 6. Use `brand/prax-wordmark-white-original.png` as a separate logo layer only on dark compositions.
+7. These are complete iPhone screenshots with the Dynamic Island and status bar already included. Disable any additional automatic status-bar overlay to avoid duplication.
 
 ## Suggested motion
 
