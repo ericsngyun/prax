@@ -308,6 +308,47 @@ export default function PrivacyPolicyPage() {
 
           <Section number="07" title="California Privacy Rights">
             <p>
+              In the past twelve months, we have collected the following
+              categories of personal information. Each entry lists where it
+              comes from; Section 4 explains why we use it and Section 5 lists
+              who receives it.
+            </p>
+            <List
+              items={[
+                <>
+                  <strong>Identifiers</strong> — name, email address, phone
+                  number, and IP address. Collected from you directly, or from
+                  a lead form you submit on a Meta platform.
+                </>,
+                <>
+                  <strong>Internet and device activity</strong> — pages viewed,
+                  referring page, clicks, browser and device type. Collected
+                  automatically through server logs and the technologies in
+                  Section 3.
+                </>,
+                <>
+                  <strong>Approximate location</strong> — the general region
+                  derived from your IP address. We do not collect precise
+                  geolocation.
+                </>,
+                <>
+                  <strong>Commercial information</strong> — the services or
+                  programs you ask about. Collected from you directly.
+                </>,
+                <>
+                  <strong>Inferences</strong> — advertising audience segments
+                  built by Meta from the activity described in Section 3.
+                </>,
+              ]}
+            />
+            <p>
+              We do not collect sensitive personal information as California
+              law defines it, we do not use or disclose personal information
+              for purposes beyond those described in this policy, and we do not
+              knowingly sell or share the personal information of anyone under
+              16.
+            </p>
+            <p>
               If you are a California resident, you may have the right to know
               what personal information we have collected about you, to request
               that we delete or correct it, to opt out of the
@@ -328,7 +369,8 @@ export default function PrivacyPolicyPage() {
               To exercise any of these rights, email us at{' '}
               <a href={mailto}>{CONTACT_EMAIL}</a>. We will verify your request
               by asking for information that matches what we already hold, and
-              we will respond within the time required by law. You may
+              we will respond within 45 days, extending once by a further 45
+              days if we need more time and tell you why. You may
               designate an authorized agent to make a request on your behalf.
             </p>
           </Section>
