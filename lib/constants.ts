@@ -30,12 +30,14 @@ export const BUSINESS_INFO = {
 } as const;
 
 // Legal / privacy
-// "PRAX Hair" is the trade name; JACKLOUII LLC is the operating entity that
-// controls the data. Confirm the exact registered name with the CA Secretary
-// of State filing before this is cited in a Meta lead form.
-export const LEGAL_ENTITY = 'JACKLOUII LLC';
+// "PRAX Hair" is the trade name; JACKLOUII is the operating entity that
+// controls the data. Verified against the CA Secretary of State registry:
+// entity no. 5497896, a California general stock corporation (NOT an LLC),
+// filed 2023-02-08, active and in good standing. The registered name carries
+// no suffix — California does not require a designator on stock corporations.
+export const LEGAL_ENTITY = 'JACKLOUII';
 export const TRADE_NAME = 'PRAX Hair';
 export const CONTACT_EMAIL = 'praxhair@gmail.com';
 
 // Displayed on /privacy. Bump whenever the policy text materially changes.
-export const PRIVACY_EFFECTIVE_DATE = 'September 4, 2026';
+export const PRIVACY_EFFECTIVE_DATE = 'September 5, 2026';
