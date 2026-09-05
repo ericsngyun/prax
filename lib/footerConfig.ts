@@ -42,6 +42,7 @@ export const footerColumns = [
       { label: 'Instagram', href: SOCIAL_LINKS.instagram },
       { label: 'TikTok', href: SOCIAL_LINKS.tiktok },
       { label: 'Contact', href: SOCIAL_LINKS.instagram },
+      { label: 'Privacy Policy', href: '/privacy' },
     ],
   },
 ];

@@ -7,6 +7,7 @@ import { ServiceWorkerProvider } from '@/components/providers/ServiceWorkerProvi
 import { Header } from '@/components/layout/Header';
 import { PreloaderWrapper } from '@/components/ui/Preloader';
 import { Footer } from '@/components/sections/Footer';
+import { MetaPixel } from '@/components/analytics/MetaPixel';
 import { footerColumns } from '@/lib/footerConfig';
 
 // Söhne — minimalist sans-serif with editorial polish.
@@ -125,6 +126,7 @@ export default function RootLayout({
       <html lang="en" className={sohneSans.variable}>
       <body className="bg-prax-ink text-prax-white font-sans antialiased">
         <ServiceWorkerProvider />
+        <MetaPixel />
         <LenisProvider>
           <PreloaderWrapper>
             <Header />

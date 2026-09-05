@@ -28,3 +28,14 @@ export const BUSINESS_INFO = {
     'Sunday: Closed',
   ],
 } as const;
+
+// Legal / privacy
+// "PRAX Hair" is the trade name; JACKLOUII LLC is the operating entity that
+// controls the data. Confirm the exact registered name with the CA Secretary
+// of State filing before this is cited in a Meta lead form.
+export const LEGAL_ENTITY = 'JACKLOUII LLC';
+export const TRADE_NAME = 'PRAX Hair';
+export const CONTACT_EMAIL = 'praxhair@gmail.com';
+
+// Displayed on /privacy. Bump whenever the policy text materially changes.
+export const PRIVACY_EFFECTIVE_DATE = 'September 4, 2026';
