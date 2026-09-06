@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import localFont from 'next/font/local';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { ViewTransitions } from 'next-view-transitions';
 import { LenisProvider } from '@/components/providers/LenisProvider';
@@ -11,42 +11,22 @@ import { MetaPixel } from '@/components/analytics/MetaPixel';
 import { ViewContentObserver } from '@/components/analytics/ViewContentObserver';
 import { footerColumns } from '@/lib/footerConfig';
 
-// Söhne — minimalist sans-serif with editorial polish.
-// Every weight the design system actually uses must have a real face, or the
-// browser synthesizes (faux-bolds) it. The type scale calls for 300 (light),
-// 400 (book), 500 (font-medium), 600 (h3/h4), and 700 (h1/h2/display/title).
-// Halbfett covers 500–600; Fett provides the true 700 for headlines.
-const sohneSans = localFont({
-  src: [
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Leicht-BF663d89cd4952e.otf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Buch-BF663d89cd32e6a.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Halbfett-BF663d89cd2d67b.otf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Halbfett-BF663d89cd2d67b.otf',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../public/fonts/sohne-font-family/TestSohne-Fett-BF663d89cca89ff.otf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
+// Inter — the brand sans, self-hosted by next/font at build time (no runtime
+// request to Google, no CLS from a swap).
+//
+// Replaced Söhne, which shipped here as Klim TRIAL files ("TestSohne-*.otf")
+// under a befonts "Free for Personal Use" grant — not a licence that covers a
+// commercial client site. The trial subset was also missing common glyphs:
+// the "@" in praxhair@gmail.com was rendering in Arial mid-word, measured on
+// the live privacy page. Inter is SIL OFL, covers the full Latin set, and is
+// what praxacademy.com uses, so both properties read as one brand.
+//
+// Variable font: one file serves every weight the type scale calls for
+// (300 light, 400 book, 500/600 medium, 700 display).
+const sans = Inter({
+  subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
-  preload: true,
   fallback: ['system-ui', 'sans-serif'],
 });
 
@@ -124,7 +104,7 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en" className={sohneSans.variable}>
+      <html lang="en" className={sans.variable}>
       <body className="bg-prax-ink text-prax-white font-sans antialiased">
         <ServiceWorkerProvider />
         <MetaPixel />
