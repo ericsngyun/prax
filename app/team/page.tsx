@@ -28,6 +28,7 @@ export default function TeamPage() {
         description="Trained to the same rigorous standards. United by the same philosophy."
         members={[
           {
+            slug: 'jack-louii',
             name: 'Jack Louii',
             role: 'Founder & Lead Artist',
             specialty: '',
@@ -46,6 +47,7 @@ export default function TeamPage() {
               'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
           },
           {
+            slug: 'gavin-ly',
             name: 'Gavin',
             role: 'Artist',
             specialty: '',
@@ -63,6 +65,7 @@ export default function TeamPage() {
               'https://getsquire.com/booking/book/prax-los-angeles/barber/gavin-ly-1/services',
           },
           {
+            slug: 'steven-tao-tran',
             name: 'Steven Tao Tran',
             role: 'Artist',
             specialty: '',
@@ -77,6 +80,7 @@ export default function TeamPage() {
               'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
           },
           {
+            slug: 'ariel-donnel',
             name: 'Ariel Donnel',
             role: 'Artist',
             specialty: '',
@@ -90,6 +94,7 @@ export default function TeamPage() {
               'https://getsquire.com/booking/book/prax-arcadia/barber/ariel-30/services',
           },
           {
+            slug: 'jared-phan',
             name: 'Jared Phan',
             role: 'Artist',
             specialty: '',
@@ -103,6 +108,7 @@ export default function TeamPage() {
               'https://getsquire.com/booking/book/prax-arcadia/barber/jared-phan-2/services',
           },
           {
+            slug: 'brandon-latung',
             name: 'Brandon Latung',
             role: 'Intern Artist',
             specialty: '',

@@ -9,7 +9,9 @@
     "lint": "next lint",
     "migrate:blob": "tsx scripts/migrate-to-blob.ts",
     "add-asset": "tsx --env-file-if-exists=.env.local scripts/add-asset.ts",
-    "test:add-asset": "tsx --test scripts/add-asset.test.ts"
+    "test:add-asset": "tsx --test scripts/add-asset.test.ts",
+    "test:meta": "tsx --test lib/meta/meta.test.ts",
+    "test": "tsx --test scripts/add-asset.test.ts lib/meta/meta.test.ts"
   },
   "dependencies": {
     "@vercel/blob": "^2.3.3",

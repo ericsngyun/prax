@@ -79,6 +79,9 @@ export function LocationSection({
   return (
     <section
       ref={sectionRef}
+      data-prax-content="location:arcadia-studio"
+      data-prax-content-type="location"
+      data-prax-content-name="PRAX Studio — Arcadia"
       className="section-padding bg-prax-ink"
     >
       <div className="container-prax">

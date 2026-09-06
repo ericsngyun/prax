@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/Header';
 import { PreloaderWrapper } from '@/components/ui/Preloader';
 import { Footer } from '@/components/sections/Footer';
 import { MetaPixel } from '@/components/analytics/MetaPixel';
+import { ViewContentObserver } from '@/components/analytics/ViewContentObserver';
 import { footerColumns } from '@/lib/footerConfig';
 
 // Söhne — minimalist sans-serif with editorial polish.
@@ -127,6 +128,7 @@ export default function RootLayout({
       <body className="bg-prax-ink text-prax-white font-sans antialiased">
         <ServiceWorkerProvider />
         <MetaPixel />
+        <ViewContentObserver />
         <LenisProvider>
           <PreloaderWrapper>
             <Header />

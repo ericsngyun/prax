@@ -1,75 +1,123 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
-import { META_PIXEL_ID, isMetaPixelEnabled, trackMetaEvent } from '@/lib/analytics';
+import { META_DATASET_ID, isMetaEnabled } from '@/lib/meta/config';
+import { getMarketingConsent } from '@/lib/meta/consent';
+import { trackMeta, trackPageView } from '@/lib/meta/client';
+import type { CustomData, MetaEventName } from '@/lib/meta/events';
 
 /* ═══════════════════════════════════════════════════════════════════════════
    META PIXEL
-   Renders nothing until NEXT_PUBLIC_META_PIXEL_ID is set, so this is safe to
-   ship before the ads team hands over an ID.
+   Renders nothing without NEXT_PUBLIC_META_PIXEL_ID, and nothing when
+   marketing consent is withheld — no script, no cookies, no events.
 
-   Two things the stock Meta snippet does NOT handle on its own, both covered
-   below:
-
-   1. SPA navigation. The base snippet fires PageView once, on script load.
-      App Router route changes never reload it, so every page after the first
-      would go unrecorded without the pathname effect.
-
-   2. Off-site conversions. Booking and enrollment happen on Squire and
-      praxacademy.com — domains we cannot install a pixel on. The closest
-      trackable signal on prax.studio is the outbound click, so we fire it as
-      a Lead the moment a visitor leaves for one of those destinations.
+   Outbound clicks are classified here rather than in each CTA, because the
+   booking links are spread across seven components and several are wrapped by
+   GSAP magnetic buttons. One delegated capture-phase listener covers them all
+   and cannot be forgotten when a new CTA is added.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/** Outbound destinations that count as a conversion, and the event each fires. */
-const CONVERSION_DESTINATIONS: { match: string; contentName: string }[] = [
-  { match: 'getsquire.com', contentName: 'Booking — Squire' },
-  { match: 'praxacademy.com', contentName: 'Academy — Enrollment' },
-  { match: 'skool.com', contentName: 'Academy — Skool Community' },
+interface OutboundRule {
+  match: (href: string) => boolean;
+  event: MetaEventName;
+  data: (href: string) => CustomData;
+}
+
+/** Which Squire tenant a booking URL belongs to — the shop is split across two. */
+function squireTenant(href: string): string | undefined {
+  const match = href.match(/getsquire\.com\/booking\/book\/([^/]+)/);
+  return match?.[1];
+}
+
+const OUTBOUND_RULES: OutboundRule[] = [
+  {
+    // Booking intent. Deliberately NOT Schedule — nothing here confirms an
+    // appointment; the booking completes on a domain we cannot observe.
+    match: (href) => href.includes('getsquire.com'),
+    event: 'BookNowClick',
+    data: (href) => ({
+      content_type: 'booking',
+      ...(squireTenant(href) ? { booking_tenant: squireTenant(href) } : {}),
+    }),
+  },
+  {
+    match: (href) => href.includes('instagram.com'),
+    event: 'Contact',
+    data: () => ({ content_type: 'instagram' }),
+  },
+  {
+    match: (href) => href.includes('tiktok.com'),
+    event: 'Contact',
+    data: () => ({ content_type: 'tiktok' }),
+  },
+  {
+    match: (href) => href.startsWith('mailto:'),
+    event: 'Contact',
+    data: () => ({ content_type: 'email' }),
+  },
+  // praxacademy.com and skool.com are intentionally absent: those are Academy
+  // conversions, and this dataset is tagged business_unit="studio". Mapping
+  // them here would attribute Academy interest to studio campaigns.
 ];
 
 export function MetaPixel() {
   const pathname = usePathname();
-  const isInitialRender = useRef(true);
+  const isFirstRender = useRef(true);
 
-  // SPA route changes → PageView. Skipped on first render because the base
-  // snippet already fired one at init.
+  // Consent depends on browser-only signals (GPC, localStorage), so it cannot
+  // be evaluated during SSR. Resolving it after mount keeps the server and the
+  // first client render identical — reading it during render renders nothing
+  // on the server and a script on the client, which is a hydration mismatch
+  // that drops the pixel entirely.
+  const [active, setActive] = useState(false);
   useEffect(() => {
-    if (!isMetaPixelEnabled) return;
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
+    if (isMetaEnabled && getMarketingConsent() === 'granted') setActive(true);
+  }, []);
+
+  // SPA route changes. The base snippet fires the first PageView at init, so
+  // the first render is skipped to avoid doubling it.
+  useEffect(() => {
+    if (!active) return;
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
       return;
     }
-    trackMetaEvent('PageView');
-  }, [pathname]);
+    trackPageView();
+  }, [pathname, active]);
 
-  // Outbound conversion clicks. One delegated listener in the capture phase
-  // catches every booking/academy link on the site — including the ones GSAP
-  // and the magnetic buttons wrap — without touching a single CTA component.
   useEffect(() => {
-    if (!isMetaPixelEnabled) return;
+    if (!active) return;
 
     const handleClick = (event: MouseEvent) => {
       const anchor = (event.target as HTMLElement | null)?.closest?.('a');
       const href = anchor?.getAttribute('href');
       if (!href) return;
 
-      const destination = CONVERSION_DESTINATIONS.find((d) => href.includes(d.match));
-      if (!destination) return;
+      const rule = OUTBOUND_RULES.find((r) => r.match(href));
+      if (!rule) return;
 
-      trackMetaEvent('Lead', {
-        content_name: destination.contentName,
+      // Nearest annotated ancestor supplies context — which barber's card the
+      // booking button sits in, for example — without threading props through
+      // every CTA component.
+      const context = anchor?.closest<HTMLElement>('[data-prax-content]');
+      const contentId = context?.dataset.praxContent;
+      const contentName = context?.dataset.praxContentName;
+
+      trackMeta(rule.event, {
+        ...rule.data(href),
         source_path: window.location.pathname,
+        ...(contentId ? { content_ids: [contentId] } : {}),
+        ...(contentName ? { content_name: contentName } : {}),
       });
     };
 
     document.addEventListener('click', handleClick, { capture: true });
     return () => document.removeEventListener('click', handleClick, { capture: true });
-  }, []);
+  }, [active]);
 
-  if (!isMetaPixelEnabled) return null;
+  if (!active) return null;
 
   return (
     <>
@@ -82,7 +130,7 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '${META_PIXEL_ID}');
+fbq('init', '${META_DATASET_ID}');
 fbq('track', 'PageView');`}
       </Script>
       <noscript>
@@ -92,7 +140,7 @@ fbq('track', 'PageView');`}
           width="1"
           style={{ display: 'none' }}
           alt=""
-          src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+          src={`https://www.facebook.com/tr?id=${META_DATASET_ID}&ev=PageView&noscript=1`}
         />
       </noscript>
     </>

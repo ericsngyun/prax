@@ -9,6 +9,9 @@ import { revealWithBlur } from '@/lib/animations';
 import { blurPlaceholders } from '@/lib/blurPlaceholder';
 
 interface TeamMember {
+  /** Stable identifier for analytics content_ids. Never derive this from
+   *  array position — reordering the grid would silently rewrite history. */
+  slug: string;
   name: string;
   role: string;
   specialty: string;
@@ -189,8 +192,11 @@ export function TeamGridSection({
             <div className="space-y-24 md:space-y-32">
               {members.map((member, index) => (
                 <div
-                  key={index}
+                  key={member.slug}
                   id={`team-${index + 1}`}
+                  data-prax-content={`barber:${member.slug}`}
+                  data-prax-content-type="barber"
+                  data-prax-content-name={member.name}
                   ref={(el) => {
                     if (el) memberRefs.current[index] = el;
                   }}

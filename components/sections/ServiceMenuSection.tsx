@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { prefersReducedMotion } from '@/lib/utils';
 import { BOOKING_URL } from '@/lib/constants';
+import { slugify } from '@/lib/utils';
 
 interface ServiceItem {
   name: string;
@@ -92,10 +93,13 @@ export function ServiceMenuSection({
         <div className="space-y-16 md:space-y-20">
           {categories.map((category, catIndex) => (
             <div
-              key={catIndex}
+              key={category.category}
               ref={(el) => {
                 if (el) categoryRefs.current[catIndex] = el;
               }}
+              data-prax-content={`service:${slugify(category.category)}`}
+              data-prax-content-type="service"
+              data-prax-content-name={category.category}
             >
               {/* Category Header */}
               <div className="mb-8">
