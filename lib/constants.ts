@@ -31,10 +31,19 @@ export const BUSINESS_INFO = {
 
 // Legal / privacy
 // "PRAX Hair" is the trade name; JACKLOUII is the operating entity that
-// controls the data. Verified against the CA Secretary of State registry:
-// entity no. 5497896, a California general stock corporation (NOT an LLC),
-// filed 2023-02-08, active and in good standing. The registered name carries
-// no suffix — California does not require a designator on stock corporations.
+// controls the data.
+//
+// UNRESOLVED — do not add an entity-type descriptor until Jack confirms with
+// his accountant. Two sources conflict:
+//   - CA SOS record: JACKLOUII, entity no. 5497896, a general STOCK
+//     CORPORATION filed 2023-02-08, principal address in Glendale, agent
+//     DONGHYUN LEE.
+//   - Signed quote PRAX-MVP-0901-R1: "JACKLOUII LLC, dba PRAX HAIR" in
+//     Arcadia.
+// Either two entities exist or one document is wrong. "JACKLOUII" alone is
+// accurate under both readings, which is why the policy says only that. The
+// same answer decides what goes into Stripe onboarding, where a mismatch
+// against the EIN causes verification failures and payout holds.
 export const LEGAL_ENTITY = 'JACKLOUII';
 export const TRADE_NAME = 'PRAX Hair';
 export const CONTACT_EMAIL = 'praxhair@gmail.com';

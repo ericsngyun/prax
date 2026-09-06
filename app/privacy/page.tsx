@@ -96,8 +96,7 @@ export default function PrivacyPolicyPage() {
             <p>
               {TRADE_NAME} (&ldquo;PRAX,&rdquo; &ldquo;we,&rdquo;
               &ldquo;us,&rdquo; or &ldquo;our&rdquo;) is a grooming studio and
-              barbering education brand operated by {LEGAL_ENTITY}, a California
-              corporation. Our studio
+              barbering education brand operated by {LEGAL_ENTITY}. Our studio
               is located at {BUSINESS_INFO.address}, {BUSINESS_INFO.city}.
             </p>
             <p>
