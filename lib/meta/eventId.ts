@@ -5,13 +5,15 @@
    mismatch here double-counts and a collision under-counts.
    ═══════════════════════════════════════════════════════════════════════════ */
 
+import { EVENT_ID_PREFIX } from './config';
+
 export function newEventId(): string {
   if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
-    return crypto.randomUUID();
+    return `${EVENT_ID_PREFIX}_${crypto.randomUUID()}`;
   }
   // Older Safari and any non-secure context. Not cryptographically strong,
   // but event ids only need to be unique, not unguessable.
-  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+  return `${EVENT_ID_PREFIX}_${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
 }
 
 /** Event ids are echoed back from the client, so bound what we accept. */

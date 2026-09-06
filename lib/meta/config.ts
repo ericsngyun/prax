@@ -32,5 +32,14 @@ export const META_TAGS = {
   site_domain: 'prax.studio',
 } as const;
 
+/**
+ * Namespaces every event_id this property generates. PRAX Academy shares this
+ * dataset and prefixes with "acad", and there is a third, currently
+ * unidentified emitter on the dataset. The prefix makes it possible to tell at
+ * a glance which system produced an event without cross-referencing anything.
+ * Not a correctness measure — UUIDv4 does not collide — purely diagnostic.
+ */
+export const EVENT_ID_PREFIX = 'studio';
+
 /** Hosts we accept as the origin of an event. Anything else is spoofed. */
 export const TRUSTED_HOSTS = ['prax.studio', 'www.prax.studio'] as const;

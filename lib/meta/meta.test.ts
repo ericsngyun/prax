@@ -98,10 +98,15 @@ test('clamps long strings and caps content_ids', () => {
 
 /* ── Event ids ───────────────────────────────────────────────────────────── */
 
-test('generated event ids are valid and unique', () => {
+test('generated event ids are valid, unique, and namespaced to this property', () => {
   const ids = new Set(Array.from({ length: 500 }, () => newEventId()));
   assert.equal(ids.size, 500);
-  for (const id of ids) assert.equal(isValidEventId(id), true);
+  for (const id of ids) {
+    assert.equal(isValidEventId(id), true);
+    // PRAX Academy shares this dataset and prefixes with acad_.
+    assert.ok(id.startsWith('studio_'), 'event id must be namespaced');
+    assert.ok(id.length <= 64, 'prefix must not push the id past the length cap');
+  }
 });
 
 /* ── Identity ────────────────────────────────────────────────────────────── */
