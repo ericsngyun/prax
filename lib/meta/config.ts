@@ -23,9 +23,13 @@ export const META_DATASET_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? '';
 export const isMetaEnabled = META_DATASET_ID.length > 0;
 
 /**
- * Stamped onto every event, browser and server alike. PRAX Academy shares this
- * dataset, so without these two tags studio and academy conversions are
- * indistinguishable downstream.
+ * Stamped onto every event, browser and server alike.
+ *
+ * The studio and PRAX Academy are on SEPARATE datasets by the advertiser's
+ * decision (confirmed 2026-09-06), so these tags are no longer what keeps the
+ * two properties apart — the dataset boundary does that. They stay because
+ * they make the origin of an event self-describing in reporting, and because
+ * this dataset has more than one producer: see EVENT_ID_PREFIX.
  */
 export const META_TAGS = {
   business_unit: 'studio',
@@ -33,10 +37,12 @@ export const META_TAGS = {
 } as const;
 
 /**
- * Namespaces every event_id this property generates. PRAX Academy shares this
- * dataset and prefixes with "acad", and there is a third, currently
- * unidentified emitter on the dataset. The prefix makes it possible to tell at
- * a glance which system produced an event without cross-referencing anything.
+ * Namespaces every event_id this property generates.
+ *
+ * This dataset has two producers: this site, and Squire's own Conversions API
+ * connection, which reports completed appointments (see events.ts). Squire's
+ * events are not ours and will never carry this prefix, so the prefix makes it
+ * possible to tell at a glance which system produced an event.
  * Not a correctness measure — UUIDv4 does not collide — purely diagnostic.
  */
 export const EVENT_ID_PREFIX = 'studio';

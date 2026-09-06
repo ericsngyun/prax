@@ -18,7 +18,11 @@ const base = {
 
 /* ── Event contract ──────────────────────────────────────────────────────── */
 
-test('Schedule is never an allowed event — no booking confirmation exists', () => {
+// Squire runs its own Conversions API connection on this dataset reporting
+// COMPLETED appointments. Emitting Schedule here would double-count real
+// bookings against that feed, undeduplicatably, since Squire's events do not
+// carry our event_id. We report intent; Squire reports outcome.
+test('Schedule is never an allowed event — Squire is the authoritative source', () => {
   assert.equal(isAllowedEvent('Schedule'), false);
   const res = validateTrackRequest({ ...base, event_name: 'Schedule' }, NOW);
   assert.equal(res.ok, false);

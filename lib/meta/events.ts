@@ -10,10 +10,22 @@ import { TRUSTED_HOSTS } from './config';
 /**
  * Meta standard events we emit. Deliberately narrow.
  *
- * `Schedule` is absent and must stay absent: booking completes on
- * getsquire.com, which we cannot observe. There is no confirmation mechanism
- * in this repository, so a Schedule event would be a claim we cannot support.
- * A Book Now click and a booking-page visit are intent, not appointments.
+ * `Schedule` is absent and must stay absent — and there is now a second,
+ * stronger reason than when this was written.
+ *
+ * 1. We still cannot observe it. Booking completes on getsquire.com and
+ *    nothing here confirms an appointment, so it would be a claim we cannot
+ *    support. A Book Now click and a booking-page visit are intent.
+ * 2. Squire already reports it. Squire operates its own Conversions API
+ *    connection on this dataset that tracks COMPLETED appointment bookings
+ *    (confirmed by the advertiser 2026-09-06). That connection is the
+ *    authoritative source for confirmed bookings.
+ *
+ * So adding Schedule here would not merely be unsupportable, it would
+ * DOUBLE-COUNT real appointments against Squire's feed — and it could not be
+ * deduplicated, because Squire's events do not share our event_id. Our events
+ * and Squire's are deliberately disjoint: we report intent, Squire reports
+ * outcome.
  *
  * `Lead` is absent because no lead surface exists — the site has no forms, no
  * phone number, and no inquiry capture. When one ships, add it here in the
