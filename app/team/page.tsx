@@ -5,6 +5,7 @@ import { StatsSection } from '@/components/sections/StatsSection';
 import { CTASection } from '@/components/sections/CTASection';
 import { InnerPageHero } from '@/components/sections/InnerPageHero';
 import { assets } from '@/lib/assets';
+import { TEAM_BOOKING_URLS } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Team',
@@ -43,8 +44,7 @@ export default function TeamPage() {
               assets.jackWork03,
             ],
             instagramHandle: 'jacklouii',
-            bookingUrl:
-              'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
+            bookingUrl: TEAM_BOOKING_URLS['jack-louii'],
           },
           {
             slug: 'gavin-ly',
@@ -61,8 +61,7 @@ export default function TeamPage() {
               assets.gavinWork03,
             ],
             instagramHandle: 'gavinblond',
-            bookingUrl:
-              'https://getsquire.com/booking/book/prax-los-angeles/barber/gavin-ly-1/services',
+            bookingUrl: TEAM_BOOKING_URLS['gavin-ly'],
           },
           {
             slug: 'steven-tao-tran',
@@ -76,8 +75,7 @@ export default function TeamPage() {
             portraitPosition: 'center 25%',
             workSamples: [assets.stevenWork01, assets.stevenWork02],
             instagramHandle: 'steventaotran',
-            bookingUrl:
-              'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
+            bookingUrl: TEAM_BOOKING_URLS['steven-tao-tran'],
           },
           {
             slug: 'ariel-donnel',
@@ -90,8 +88,7 @@ export default function TeamPage() {
             portraitSrc: assets.arielWork02,
             workSamples: [assets.arielWork01, assets.arielWork03],
             instagramHandle: 'aridonnel',
-            bookingUrl:
-              'https://getsquire.com/booking/book/prax-arcadia/barber/ariel-30/services',
+            bookingUrl: TEAM_BOOKING_URLS['ariel-donnel'],
           },
           {
             slug: 'jared-phan',
@@ -104,8 +101,7 @@ export default function TeamPage() {
             portraitSrc: assets.jaredWork03,
             workSamples: [assets.jaredWork01, assets.jaredWork02, assets.jaredWork04],
             instagramHandle: 'jaredtphan',
-            bookingUrl:
-              'https://getsquire.com/booking/book/prax-arcadia/barber/jared-phan-2/services',
+            bookingUrl: TEAM_BOOKING_URLS['jared-phan'],
           },
           {
             slug: 'brandon-latung',

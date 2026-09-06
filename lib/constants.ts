@@ -1,10 +1,18 @@
 // Booking URLs
 export const BOOKING_URL = 'https://getsquire.com/booking/brands/6764fc64-ed09-49da-8fb0-1cc6b59b9eb7';
 
+// Keyed by the same slug used for analytics content_ids, so a barber has ONE
+// identifier across booking and tracking. Note the two Squire tenants —
+// prax-los-angeles and prax-arcadia — which surface as booking_tenant on
+// BookNowClick events.
 export const TEAM_BOOKING_URLS: Record<string, string> = {
-  jack: 'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
-  gavin: 'https://getsquire.com/booking/book/prax-los-angeles/barber/gavin-ly-1/services',
-  steven: 'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
+  'jack-louii': 'https://getsquire.com/booking/book/prax-los-angeles/barber/jack-183/services',
+  'gavin-ly': 'https://getsquire.com/booking/book/prax-los-angeles/barber/gavin-ly-1/services',
+  'steven-tao-tran': 'https://getsquire.com/booking/book/prax-los-angeles/barber/steven-tran-5/services',
+  'ariel-donnel': 'https://getsquire.com/booking/book/prax-arcadia/barber/ariel-30/services',
+  'jared-phan': 'https://getsquire.com/booking/book/prax-arcadia/barber/jared-phan-2/services',
+  // brandon-latung has no Squire profile yet — the team card renders no
+  // booking button when the URL is absent.
 };
 
 // Social links
